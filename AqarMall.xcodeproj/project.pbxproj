@@ -21,6 +21,13 @@
 		52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527221D9E55500E66AA2 /* UserAccount.storyboard */; };
 		52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527421D9E57800E66AA2 /* MoreSection.storyboard */; };
 		52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */; };
+		52E6527A21D9E8F000E66AA2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6527921D9E8F000E66AA2 /* UIColor.swift */; };
+		52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6527B21D9EAD800E66AA2 /* UIView.swift */; };
+		52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6527D21D9EB3800E66AA2 /* UIImageView.swift */; };
+		52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6527F21D9EB5100E66AA2 /* UITextField.swift */; };
+		52E6528221D9EB6700E66AA2 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6528121D9EB6700E66AA2 /* String.swift */; };
+		52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6528321D9EBCB00E66AA2 /* UIDevice.swift */; };
+		52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6528521D9EC6F00E66AA2 /* ViewController.swift */; };
 		D14614E74A255B5A69F05E90 /* Pods_AqarMallUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +70,13 @@
 		52E6527221D9E55500E66AA2 /* UserAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserAccount.storyboard; sourceTree = "<group>"; };
 		52E6527421D9E57800E66AA2 /* MoreSection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreSection.storyboard; sourceTree = "<group>"; };
 		52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advertisements.storyboard; sourceTree = "<group>"; };
+		52E6527921D9E8F000E66AA2 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		52E6527B21D9EAD800E66AA2 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		52E6527D21D9EB3800E66AA2 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		52E6527F21D9EB5100E66AA2 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		52E6528121D9EB6700E66AA2 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		52E6528321D9EBCB00E66AA2 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		52E6528521D9EC6F00E66AA2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5A22D66B8A30A73F8CC5EB94 /* Pods-AqarMallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.release.xcconfig"; sourceTree = "<group>"; };
 		6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +151,7 @@
 		52E6523621D9DB6700E66AA2 /* AqarMall */ = {
 			isa = PBXGroup;
 			children = (
+				52E6528A21D9ECD600E66AA2 /* Model */,
 				52E6526E21D9E43800E66AA2 /* App */,
 				52E6526D21D9E41F00E66AA2 /* Views */,
 				52E6526C21D9E41600E66AA2 /* Controllers */,
@@ -215,6 +230,10 @@
 		52E6526C21D9E41600E66AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				52E6528921D9ECC400E66AA2 /* MoreSection */,
+				52E6528821D9EC9D00E66AA2 /* Advertisements */,
+				52E6528721D9EC9200E66AA2 /* UserAccount */,
+				52E6528521D9EC6F00E66AA2 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -229,6 +248,7 @@
 		52E6526E21D9E43800E66AA2 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				52E6527821D9E89400E66AA2 /* Extensions */,
 				52E6526F21D9E45F00E66AA2 /* Helper */,
 			);
 			path = App;
@@ -240,6 +260,47 @@
 				52E6527021D9E47000E66AA2 /* AppUtils.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		52E6527821D9E89400E66AA2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52E6527921D9E8F000E66AA2 /* UIColor.swift */,
+				52E6527B21D9EAD800E66AA2 /* UIView.swift */,
+				52E6527D21D9EB3800E66AA2 /* UIImageView.swift */,
+				52E6527F21D9EB5100E66AA2 /* UITextField.swift */,
+				52E6528121D9EB6700E66AA2 /* String.swift */,
+				52E6528321D9EBCB00E66AA2 /* UIDevice.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		52E6528721D9EC9200E66AA2 /* UserAccount */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserAccount;
+			sourceTree = "<group>";
+		};
+		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Advertisements;
+			sourceTree = "<group>";
+		};
+		52E6528921D9ECC400E66AA2 /* MoreSection */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MoreSection;
+			sourceTree = "<group>";
+		};
+		52E6528A21D9ECD600E66AA2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F77F5B38FEFE9EE25B2F3049 /* Frameworks */ = {
@@ -467,8 +528,15 @@
 			files = (
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
+				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
+				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
+				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
+				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
+				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
+				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
+				52E6527A21D9E8F000E66AA2 /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,7 +715,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -663,7 +734,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -680,7 +754,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -698,7 +776,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -715,7 +797,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -732,7 +818,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
