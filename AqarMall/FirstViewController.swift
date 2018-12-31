@@ -7,7 +7,7 @@
 //
 
 import UIKit
-// wail test 
+
 class FirstViewController: UIViewController {
 
     override func viewDidLoad() {

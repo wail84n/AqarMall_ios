@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2077FDCBB8A028D561281588 /* Pods_AqarMall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */; };
+		42DFDF8452B06B26F476BBE6 /* Pods_AqarMallTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */; };
 		52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523721D9DB6700E66AA2 /* AppDelegate.swift */; };
 		52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523921D9DB6700E66AA2 /* FirstViewController.swift */; };
 		52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */; };
@@ -15,6 +17,11 @@
 		52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6524221D9DB6A00E66AA2 /* LaunchScreen.storyboard */; };
 		52E6524F21D9DB6A00E66AA2 /* AqarMallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6524E21D9DB6A00E66AA2 /* AqarMallTests.swift */; };
 		52E6525A21D9DB6A00E66AA2 /* AqarMallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6525921D9DB6A00E66AA2 /* AqarMallUITests.swift */; };
+		52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6527021D9E47000E66AA2 /* AppUtils.swift */; };
+		52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527221D9E55500E66AA2 /* UserAccount.storyboard */; };
+		52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527421D9E57800E66AA2 /* MoreSection.storyboard */; };
+		52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */; };
+		D14614E74A255B5A69F05E90 /* Pods_AqarMallUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		455CA263B09E7266E36C4C8F /* Pods-AqarMallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523421D9DB6700E66AA2 /* AqarMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AqarMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523721D9DB6700E66AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6523921D9DB6700E66AA2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +59,16 @@
 		52E6525521D9DB6A00E66AA2 /* AqarMallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AqarMallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6525921D9DB6A00E66AA2 /* AqarMallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AqarMallUITests.swift; sourceTree = "<group>"; };
 		52E6525B21D9DB6A00E66AA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E6527021D9E47000E66AA2 /* AppUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtils.swift; sourceTree = "<group>"; };
+		52E6527221D9E55500E66AA2 /* UserAccount.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserAccount.storyboard; sourceTree = "<group>"; };
+		52E6527421D9E57800E66AA2 /* MoreSection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreSection.storyboard; sourceTree = "<group>"; };
+		52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Advertisements.storyboard; sourceTree = "<group>"; };
+		5A22D66B8A30A73F8CC5EB94 /* Pods-AqarMallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.release.xcconfig"; sourceTree = "<group>"; };
+		6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.release.xcconfig"; sourceTree = "<group>"; };
+		B36DB8AF7DE3552A89C541A4 /* Pods-AqarMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.debug.xcconfig"; sourceTree = "<group>"; };
+		DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallUITests/Pods-AqarMallUITests.release.xcconfig"; sourceTree = "<group>"; };
+		EF798DB85A1A5E2E60C6F57A /* Pods-AqarMallUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallUITests/Pods-AqarMallUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2077FDCBB8A028D561281588 /* Pods_AqarMall.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DFDF8452B06B26F476BBE6 /* Pods_AqarMallTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +92,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D14614E74A255B5A69F05E90 /* Pods_AqarMallUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1BB99E39073274A94314BC5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B36DB8AF7DE3552A89C541A4 /* Pods-AqarMall.debug.xcconfig */,
+				A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */,
+				455CA263B09E7266E36C4C8F /* Pods-AqarMallTests.debug.xcconfig */,
+				5A22D66B8A30A73F8CC5EB94 /* Pods-AqarMallTests.release.xcconfig */,
+				EF798DB85A1A5E2E60C6F57A /* Pods-AqarMallUITests.debug.xcconfig */,
+				DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		52E6522B21D9DB6700E66AA2 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +119,8 @@
 				52E6524D21D9DB6A00E66AA2 /* AqarMallTests */,
 				52E6525821D9DB6A00E66AA2 /* AqarMallUITests */,
 				52E6523521D9DB6700E66AA2 /* Products */,
+				1BB99E39073274A94314BC5E /* Pods */,
+				F77F5B38FEFE9EE25B2F3049 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,12 +137,14 @@
 		52E6523621D9DB6700E66AA2 /* AqarMall */ = {
 			isa = PBXGroup;
 			children = (
+				52E6526E21D9E43800E66AA2 /* App */,
+				52E6526D21D9E41F00E66AA2 /* Views */,
+				52E6526C21D9E41600E66AA2 /* Controllers */,
+				52E6526B21D9E40B00E66AA2 /* Service */,
+				52E6526721D9E39900E66AA2 /* Resources */,
 				52E6523721D9DB6700E66AA2 /* AppDelegate.swift */,
 				52E6523921D9DB6700E66AA2 /* FirstViewController.swift */,
 				52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */,
-				52E6523D21D9DB6700E66AA2 /* Main.storyboard */,
-				52E6524021D9DB6A00E66AA2 /* Assets.xcassets */,
-				52E6524221D9DB6A00E66AA2 /* LaunchScreen.storyboard */,
 				52E6524521D9DB6A00E66AA2 /* Info.plist */,
 			);
 			path = AqarMall;
@@ -128,6 +168,90 @@
 			path = AqarMallUITests;
 			sourceTree = "<group>";
 		};
+		52E6526721D9E39900E66AA2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				52E6526A21D9E3EA00E66AA2 /* Fonts */,
+				52E6526921D9E3D400E66AA2 /* Images */,
+				52E6526821D9E3BF00E66AA2 /* Storyboards */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		52E6526821D9E3BF00E66AA2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				52E6524221D9DB6A00E66AA2 /* LaunchScreen.storyboard */,
+				52E6523D21D9DB6700E66AA2 /* Main.storyboard */,
+				52E6527221D9E55500E66AA2 /* UserAccount.storyboard */,
+				52E6527421D9E57800E66AA2 /* MoreSection.storyboard */,
+				52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		52E6526921D9E3D400E66AA2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				52E6524021D9DB6A00E66AA2 /* Assets.xcassets */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		52E6526A21D9E3EA00E66AA2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		52E6526B21D9E40B00E66AA2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		52E6526C21D9E41600E66AA2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		52E6526D21D9E41F00E66AA2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		52E6526E21D9E43800E66AA2 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				52E6526F21D9E45F00E66AA2 /* Helper */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		52E6526F21D9E45F00E66AA2 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				52E6527021D9E47000E66AA2 /* AppUtils.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		F77F5B38FEFE9EE25B2F3049 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */,
+				3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */,
+				6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +259,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E6525E21D9DB6A00E66AA2 /* Build configuration list for PBXNativeTarget "AqarMall" */;
 			buildPhases = (
+				DC871CAE7A62D8E766E9077B /* [CP] Check Pods Manifest.lock */,
 				52E6523021D9DB6700E66AA2 /* Sources */,
 				52E6523121D9DB6700E66AA2 /* Frameworks */,
 				52E6523221D9DB6700E66AA2 /* Resources */,
+				A8DB8293494057739D3A8FBE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +278,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E6526121D9DB6A00E66AA2 /* Build configuration list for PBXNativeTarget "AqarMallTests" */;
 			buildPhases = (
+				EA6BB70F475E157A8D3F562C /* [CP] Check Pods Manifest.lock */,
 				52E6524621D9DB6A00E66AA2 /* Sources */,
 				52E6524721D9DB6A00E66AA2 /* Frameworks */,
 				52E6524821D9DB6A00E66AA2 /* Resources */,
@@ -170,6 +297,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E6526421D9DB6A00E66AA2 /* Build configuration list for PBXNativeTarget "AqarMallUITests" */;
 			buildPhases = (
+				821E940BE7D64E629609BDD3 /* [CP] Check Pods Manifest.lock */,
 				52E6525121D9DB6A00E66AA2 /* Sources */,
 				52E6525221D9DB6A00E66AA2 /* Frameworks */,
 				52E6525321D9DB6A00E66AA2 /* Resources */,
@@ -233,7 +361,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */,
+				52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */,
+				52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */,
 				52E6524121D9DB6A00E66AA2 /* Assets.xcassets in Resources */,
+				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +385,81 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		821E940BE7D64E629609BDD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AqarMallUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8DB8293494057739D3A8FBE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC871CAE7A62D8E766E9077B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AqarMall-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA6BB70F475E157A8D3F562C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AqarMallTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		52E6523021D9DB6700E66AA2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -262,6 +468,7 @@
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
+				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,15 +641,13 @@
 		};
 		52E6525F21D9DB6A00E66AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B36DB8AF7DE3552A89C541A4 /* Pods-AqarMall.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -452,15 +657,13 @@
 		};
 		52E6526021D9DB6A00E66AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -470,17 +673,14 @@
 		};
 		52E6526221D9DB6A00E66AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 455CA263B09E7266E36C4C8F /* Pods-AqarMallTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -491,17 +691,14 @@
 		};
 		52E6526321D9DB6A00E66AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A22D66B8A30A73F8CC5EB94 /* Pods-AqarMallTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -512,16 +709,13 @@
 		};
 		52E6526521D9DB6A00E66AA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF798DB85A1A5E2E60C6F57A /* Pods-AqarMallUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -532,16 +726,13 @@
 		};
 		52E6526621D9DB6A00E66AA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
