@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		2077FDCBB8A028D561281588 /* Pods_AqarMall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */; };
 		42DFDF8452B06B26F476BBE6 /* Pods_AqarMallTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */; };
+		52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76A21DBF33400FE1D70 /* Phone.swift */; };
+		52AFE76D21DBF35700FE1D70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76C21DBF35700FE1D70 /* User.swift */; };
+		52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */; };
+		52AFE77121DD5AAF00FE1D70 /* AdsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */; };
+		52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52AFE77521DD5E6000FE1D70 /* Notifications.storyboard */; };
+		52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77721DD5EAC00FE1D70 /* NotificationsVC.swift */; };
+		52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77921DD5F4400FE1D70 /* MoreVC.swift */; };
 		52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523721D9DB6700E66AA2 /* AppDelegate.swift */; };
 		52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523921D9DB6700E66AA2 /* FirstViewController.swift */; };
 		52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */; };
@@ -52,6 +59,13 @@
 		3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		455CA263B09E7266E36C4C8F /* Pods-AqarMallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52AFE76A21DBF33400FE1D70 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
+		52AFE76C21DBF35700FE1D70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierSubscription.swift; sourceTree = "<group>"; };
+		52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListVC.swift; sourceTree = "<group>"; };
+		52AFE77521DD5E6000FE1D70 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		52AFE77721DD5EAC00FE1D70 /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
+		52AFE77921DD5F4400FE1D70 /* MoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreVC.swift; sourceTree = "<group>"; };
 		52E6523421D9DB6700E66AA2 /* AqarMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AqarMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523721D9DB6700E66AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6523921D9DB6700E66AA2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +138,28 @@
 				DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		52AFE77221DD5E1400FE1D70 /* Advertisements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Advertisements;
+			sourceTree = "<group>";
+		};
+		52AFE77321DD5E1B00FE1D70 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		52AFE77421DD5E5200FE1D70 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				52AFE77721DD5EAC00FE1D70 /* NotificationsVC.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		52E6522B21D9DB6700E66AA2 = {
@@ -201,6 +237,7 @@
 				52E6527221D9E55500E66AA2 /* UserAccount.storyboard */,
 				52E6527421D9E57800E66AA2 /* MoreSection.storyboard */,
 				52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */,
+				52AFE77521DD5E6000FE1D70 /* Notifications.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -230,6 +267,7 @@
 		52E6526C21D9E41600E66AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				52AFE77421DD5E5200FE1D70 /* Notifications */,
 				52E6528921D9ECC400E66AA2 /* MoreSection */,
 				52E6528821D9EC9D00E66AA2 /* Advertisements */,
 				52E6528721D9EC9200E66AA2 /* UserAccount */,
@@ -241,6 +279,8 @@
 		52E6526D21D9E41F00E66AA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				52AFE77321DD5E1B00FE1D70 /* Notifications */,
+				52AFE77221DD5E1400FE1D70 /* Advertisements */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +325,7 @@
 		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -292,6 +333,7 @@
 		52E6528921D9ECC400E66AA2 /* MoreSection */ = {
 			isa = PBXGroup;
 			children = (
+				52AFE77921DD5F4400FE1D70 /* MoreVC.swift */,
 			);
 			path = MoreSection;
 			sourceTree = "<group>";
@@ -299,6 +341,9 @@
 		52E6528A21D9ECD600E66AA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52AFE76A21DBF33400FE1D70 /* Phone.swift */,
+				52AFE76C21DBF35700FE1D70 /* User.swift */,
+				52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -425,6 +470,7 @@
 				52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */,
 				52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */,
 				52E6524121D9DB6A00E66AA2 /* Assets.xcassets in Resources */,
+				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
@@ -526,10 +572,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52AFE77121DD5AAF00FE1D70 /* AdsListVC.swift in Sources */,
+				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
+				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
+				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
+				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
+				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
 				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
