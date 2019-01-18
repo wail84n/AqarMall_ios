@@ -14,6 +14,9 @@ class CarrierSubscription: NSObject {
     let number: String
     unowned let user: User
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    
     lazy var completePhoneNumber: () -> String = { [unowned self] in
         self.countryCode + " " + self.number
     }

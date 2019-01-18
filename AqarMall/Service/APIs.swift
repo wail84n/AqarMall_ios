@@ -21,8 +21,11 @@ public enum appURLs: String{
 
 class APIs: NSObject {
 
+    public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
+    
     init(baseURL: String){
-        
+        Router.baseURL = URL(string: baseURL)
+        super.init()
     }
     
     public enum APIError:LocalizedError {
@@ -53,13 +56,16 @@ class APIs: NSObject {
         guard let data = data else { return .failure(APIError.unknown) }
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-            
-            if let error = json["error"]! as AnyObject! {
+
+            if let error = json["error"] as AnyObject? {
                 return .failure(APIError.with(error))
             }
-            else if let result = json["result"]! as AnyObject! {
+            else if let result = json as AnyObject? {
                 return .success
             }
+//            else if let result = json["result"] as AnyObject? {
+//                return .success
+//            }
             else {
                 return .failure(APIError.unknown)
             }
@@ -70,11 +76,12 @@ class APIs: NSObject {
     }
     
     private func result(with response:DataResponse<Any>) -> AnyObject? {
-        guard let value = response.result.value as? [String:Any]
+        guard let value = response.result.value as AnyObject?
             else {
                 return nil
         }
-        return value["result"] as AnyObject?
+        return value as AnyObject?
+        //return value["result"] as AnyObject?
     }
     
     enum Router:URLRequestConvertible {
@@ -192,19 +199,19 @@ class APIs: NSObject {
     
     typealias categoriesCallback = (_ users:[Categories]?, _ error:Error?) -> Void
     
-    func searchUsers(lastchange:Int, callback: @escaping categoriesCallback) {
+    func getCategories(lastchange:Int, callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: lastchange)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             // self.handleUserListResponse(response: response, callback: callback)
             guard
                 response.result.isSuccess,
                 let result = self.result(with: response),
-                let followUsers = (result as? [AnyObject])?.flatMap({ Categories(object: $0) })
+                let categories = (result as? [AnyObject])?.compactMap({ Categories(object: $0) })
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
-            callback(followUsers, nil)
+            callback(categories, nil)
         }
     }
 }
