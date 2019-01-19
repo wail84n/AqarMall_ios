@@ -17,27 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         
-        
-        validateDelete()
         return true
-    }
-
-    func validateDelete(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoriesData")
-        userFetch.predicate = NSPredicate(format: "id = %@", "12")
-        do {
-            let contacts = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
-            if  contacts?.count != 0 {
-                for contact in contacts!{
-                    print("Id: \(contact.id) name :\(contact.name)")
-
-                }
-            }
-        }catch{
-            print("Fiald")
-        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -57,7 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        SyncAPIData.callCategoriesAPI()
+        SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
+            print("Categories No : \(recordNo ?? 0)")
+            
+            SyncAPIData.callProvincesAPI { (result, recordNo, error) in
+                print("Provinces No : \(recordNo ?? 0)")
+                
+                SyncAPIData.callAreasAPI { (result, recordNo, error) in
+                    print("Areas No : \(recordNo ?? 0)")
+                    
+                    SyncAPIData.callGeneralPagesAPI { (result, recordNo, error) in
+                        print("General Pages No : \(recordNo ?? 0)")
+                    }
+                    
+                }
+                
+            }
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

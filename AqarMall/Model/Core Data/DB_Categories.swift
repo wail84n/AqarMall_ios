@@ -12,8 +12,8 @@ import CoreData
 struct DB_Categories {
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    static func saveCatRecord(category : Categories){
-        if validateCategory(catId: category.ID) == false {
+    static func saveRecord(category : Categories){
+        if validateRecord(catId: category.ID) == false {
             let categoryObj = CategoriesData(context: appDelegate.persistentContainer.viewContext)
             categoryObj.name = category.Name
             categoryObj.ageOfBuilding = category.AgeOfBuilding
@@ -40,14 +40,14 @@ struct DB_Categories {
         }
     }
     
-    static func validateCategory(catId : Int)-> Bool{
+    static func validateRecord(catId : Int)-> Bool{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoriesData")
         userFetch.predicate = NSPredicate(format: "id = %@", "\(catId)")
         do {
-            let contacts = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
-            if  contacts?.count ?? 0 > 0 {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
+            if  result?.count ?? 0 > 0 {
                 return true
             }
         }catch{

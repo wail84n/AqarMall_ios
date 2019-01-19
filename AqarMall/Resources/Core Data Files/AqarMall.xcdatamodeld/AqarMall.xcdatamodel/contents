@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AreasData" representedClassName="AreasData" syncable="YES" codeGenerationType="class">
+        <attribute name="colourCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastChange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provinceID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="CategoriesData" representedClassName="CategoriesData" syncable="YES" codeGenerationType="class">
         <attribute name="ageOfBuilding" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="buildingSize" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -20,6 +27,19 @@
         <attribute name="priceLabel" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="GeneralPagesData" representedClassName="GeneralPagesData" syncable="YES" codeGenerationType="class">
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastChange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProvincesData" representedClassName="ProvincesData" syncable="YES" codeGenerationType="class">
+        <attribute name="colourCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastChange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,5 +48,8 @@
     <elements>
         <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="315"/>
         <element name="Users" positionX="-54" positionY="108" width="128" height="90"/>
+        <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
+        <element name="AreasData" positionX="-45" positionY="126" width="128" height="120"/>
+        <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
     </elements>
 </model>

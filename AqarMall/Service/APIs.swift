@@ -97,6 +97,9 @@ class APIs: NSObject {
         
         case getAds(catId:String)
         case getCategories(lastchange : Int?)
+        case getProvinces(lastchange : Int?)
+        case getAreas(lastchange : Int?)
+        case getGeneralPages(lastchange : Int?)
         
         var contentType:ContentType {
             switch self {
@@ -148,6 +151,12 @@ class APIs: NSObject {
                 return ""
             case .getCategories(_):
                 return "getCategories"
+            case .getProvinces(_):
+                return "getProvinces"
+            case .getAreas(_):
+                return "getAreas"
+            case .getGeneralPages(_):
+                return "getGeneralPages"
             }
         }
         
@@ -159,6 +168,18 @@ class APIs: NSObject {
                     dict["catId"] = catId
                 }
             case .getCategories(let lastchange):
+                if let _lastchange = lastchange{
+                    dict["lastchange"] = _lastchange
+                }
+            case .getProvinces(let lastchange):
+                if let _lastchange = lastchange{
+                    dict["lastchange"] = _lastchange
+                }
+            case .getAreas(let lastchange):
+                if let _lastchange = lastchange{
+                    dict["lastchange"] = _lastchange
+                }
+            case .getGeneralPages(let lastchange):
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
                 }
@@ -198,11 +219,13 @@ class APIs: NSObject {
     }
     
     typealias categoriesCallback = (_ users:[Categories]?, _ error:Error?) -> Void
+    typealias provincesCallback = (_ users:[Provinces]?, _ error:Error?) -> Void
+    typealias areasCallback = (_ users:[Areas]?, _ error:Error?) -> Void
+    typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
     
-    func getCategories(lastchange:Int, callback: @escaping categoriesCallback) {
-        let route = Router.getCategories(lastchange: lastchange)
+    func getCategories(callback: @escaping categoriesCallback) {
+        let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
-            // self.handleUserListResponse(response: response, callback: callback)
             guard
                 response.result.isSuccess,
                 let result = self.result(with: response),
@@ -214,4 +237,50 @@ class APIs: NSObject {
             callback(categories, nil)
         }
     }
+    
+    func getProvinces(callback: @escaping provincesCallback) {
+        let route = Router.getProvinces(lastchange: Int(AppUtils.LoadData(key: .provinces_last_change)) ?? 0)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let provinces = (result as? [AnyObject])?.compactMap({ Provinces(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(provinces, nil)
+        }
+    }
+    
+    func getAreas(callback: @escaping areasCallback) {
+        let route = Router.getAreas(lastchange: Int(AppUtils.LoadData(key: .areas_last_change)) ?? 0)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let areas = (result as? [AnyObject])?.compactMap({ Areas(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(areas, nil)
+        }
+    }
+    
+    func getGeneralPages(callback: @escaping generalPagesCallback) {
+        let route = Router.getGeneralPages(lastchange: Int(AppUtils.LoadData(key: .general_pages_last_change)) ?? 0)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ GeneralPages(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
 }
