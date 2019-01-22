@@ -9,8 +9,7 @@
 import UIKit
 
 struct SyncAPIData{
-    
-    
+
     static func callCategoriesAPI(completion: @escaping (Bool?, Int?, Error?) -> ()) {
         APIs.shared.getCategories() { (result, error) in
             guard error == nil else {
@@ -26,7 +25,6 @@ struct SyncAPIData{
                     DB_Categories.saveRecord(category: category)
                 }
             }
-            
             completion(true, result?.count ?? 0 , nil)
         }
     }
@@ -65,7 +63,6 @@ struct SyncAPIData{
                     DB_Areas.saveRecord(area: record)
                 }
             }
-            
             completion(true, result?.count ?? 0 , nil)
         }
     }
@@ -85,10 +82,27 @@ struct SyncAPIData{
                     DB_GeneralPages.saveRecord(generalPage: record)
                 }
             }
-            
             completion(true, result?.count ?? 0 , nil)
         }
     }
  
+    static func callBannersAPI(completion: @escaping (Bool?, Int?, Error?) -> ()) {
+        APIs.shared.getBanners() { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                completion(false, 0 , error)
+                return
+            }
+            if let _result = result{
+                for (index, record) in _result.enumerated() {
+                    if index == 0 {
+                        AppUtils.SaveData(key: .banner_last_change, value: "\(record.lastChange)")
+                    }
+                    DB_Banners.saveRecord(banner: record)
+                }
+            }
+            completion(true, result?.count ?? 0 , nil)
+        }
+    }
     
 }

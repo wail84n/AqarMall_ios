@@ -18,6 +18,9 @@
 		5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89B21F352A900A177B0 /* DB_Provinces.swift */; };
 		5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89D21F3648300A177B0 /* GeneralPages.swift */; };
 		5281D8A021F3652300A177B0 /* DB_GeneralPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */; };
+		5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D8A121F3A1F400A177B0 /* Banners.swift */; };
+		5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D8A321F3A3A300A177B0 /* DB_Banners.swift */; };
+		5281D8A621F5065B00A177B0 /* AdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D8A521F5065B00A177B0 /* AdsCell.swift */; };
 		52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76A21DBF33400FE1D70 /* Phone.swift */; };
 		52AFE76D21DBF35700FE1D70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76C21DBF35700FE1D70 /* User.swift */; };
 		52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */; };
@@ -81,6 +84,9 @@
 		5281D89B21F352A900A177B0 /* DB_Provinces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Provinces.swift; sourceTree = "<group>"; };
 		5281D89D21F3648300A177B0 /* GeneralPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPages.swift; sourceTree = "<group>"; };
 		5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_GeneralPages.swift; sourceTree = "<group>"; };
+		5281D8A121F3A1F400A177B0 /* Banners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banners.swift; sourceTree = "<group>"; };
+		5281D8A321F3A3A300A177B0 /* DB_Banners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Banners.swift; sourceTree = "<group>"; };
+		5281D8A521F5065B00A177B0 /* AdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCell.swift; sourceTree = "<group>"; };
 		52AFE76A21DBF33400FE1D70 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		52AFE76C21DBF35700FE1D70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierSubscription.swift; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 				5281D89521F3474E00A177B0 /* DB_Areas.swift */,
 				5281D89B21F352A900A177B0 /* DB_Provinces.swift */,
 				5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */,
+				5281D8A321F3A3A300A177B0 /* DB_Banners.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -189,6 +196,7 @@
 		52AFE77221DD5E1400FE1D70 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				5281D8A521F5065B00A177B0 /* AdsCell.swift */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -401,6 +409,7 @@
 				5281D89721F3494A00A177B0 /* Areas.swift */,
 				5281D89921F3513E00A177B0 /* Provinces.swift */,
 				5281D89D21F3648300A177B0 /* GeneralPages.swift */,
+				5281D8A121F3A1F400A177B0 /* Banners.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -649,6 +658,8 @@
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
+				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,
+				5281D8A621F5065B00A177B0 /* AdsCell.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
 				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
@@ -658,6 +669,7 @@
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
 				5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */,
+				5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
 				52EC44DF21E1373500A3E8C0 /* Categories.swift in Sources */,

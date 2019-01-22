@@ -48,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     SyncAPIData.callGeneralPagesAPI { (result, recordNo, error) in
                         print("General Pages No : \(recordNo ?? 0)")
+                        
+                        SyncAPIData.callBannersAPI { (result, recordNo, error) in
+                            print("Banners No : \(recordNo ?? 0)")
+                        }
                     }
                     
                 }

@@ -100,6 +100,7 @@ class APIs: NSObject {
         case getProvinces(lastchange : Int?)
         case getAreas(lastchange : Int?)
         case getGeneralPages(lastchange : Int?)
+        case getBanners(lastchange : Int?)
         
         var contentType:ContentType {
             switch self {
@@ -157,6 +158,8 @@ class APIs: NSObject {
                 return "getAreas"
             case .getGeneralPages(_):
                 return "getGeneralPages"
+            case .getBanners(_):
+                return "getBanners"
             }
         }
         
@@ -180,6 +183,10 @@ class APIs: NSObject {
                     dict["lastchange"] = _lastchange
                 }
             case .getGeneralPages(let lastchange):
+                if let _lastchange = lastchange{
+                    dict["lastchange"] = _lastchange
+                }
+            case .getBanners(let lastchange):
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
                 }
@@ -222,6 +229,7 @@ class APIs: NSObject {
     typealias provincesCallback = (_ users:[Provinces]?, _ error:Error?) -> Void
     typealias areasCallback = (_ users:[Areas]?, _ error:Error?) -> Void
     typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
+    typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
     
     func getCategories(callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
@@ -275,6 +283,21 @@ class APIs: NSObject {
                 response.result.isSuccess,
                 let result = self.result(with: response),
                 let records = (result as? [AnyObject])?.compactMap({ GeneralPages(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    func getBanners(callback: @escaping bannersCallback) {
+        let route = Router.getBanners(lastchange: Int(AppUtils.LoadData(key: .banner_last_change)) ?? 0)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ Banners(object: $0) })
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return

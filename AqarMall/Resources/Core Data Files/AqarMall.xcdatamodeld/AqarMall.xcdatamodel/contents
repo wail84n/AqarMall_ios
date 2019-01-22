@@ -7,6 +7,17 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="provinceID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="BannersData" representedClassName="BannersData" syncable="YES" codeGenerationType="class">
+        <attribute name="bannerID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullImage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastChange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="CategoriesData" representedClassName="CategoriesData" syncable="YES" codeGenerationType="class">
         <attribute name="ageOfBuilding" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="buildingSize" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -51,5 +62,6 @@
         <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
         <element name="AreasData" positionX="-45" positionY="126" width="128" height="120"/>
         <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
+        <element name="BannersData" positionX="-18" positionY="144" width="128" height="180"/>
     </elements>
 </model>
