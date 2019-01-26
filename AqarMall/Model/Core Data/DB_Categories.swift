@@ -11,6 +11,10 @@ import CoreData
 
 struct DB_Categories {
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    enum CategoriesType : String {
+        case isRent = "isRent"
+        case isSale = "isSale"
+    }
     
     static func saveRecord(category : Categories){
         if validateRecord(catId: category.ID) == false {
@@ -31,6 +35,8 @@ struct DB_Categories {
             categoryObj.numberOfBathrooms = category.NumberOfBathrooms
             categoryObj.numberOfFloors = category.NumberOfFloors
             categoryObj.numberOfRooms = category.NumberOfRooms
+            categoryObj.rentPriceLabel = category.RentPriceLabel
+            categoryObj.salePriceLabel = category.SalePriceLabel
             categoryObj.size = category.Size
             do{
                 try appDelegate.persistentContainer.viewContext.save()
@@ -56,5 +62,21 @@ struct DB_Categories {
          return false
     }
     
+    
+    static func callCategories(byType : CategoriesType)-> [CategoriesData]?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoriesData")
+        userFetch.predicate = NSPredicate(format: "\(byType.rawValue) = 1")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
+            if  result?.count ?? 0 > 0 {
+                return result
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
     
 }

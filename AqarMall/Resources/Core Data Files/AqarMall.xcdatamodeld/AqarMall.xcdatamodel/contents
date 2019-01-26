@@ -35,7 +35,8 @@
         <attribute name="numberOfBathrooms" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numberOfFloors" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numberOfRooms" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="priceLabel" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="rentPriceLabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="salePriceLabel" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="GeneralPagesData" representedClassName="GeneralPagesData" syncable="YES" codeGenerationType="class">
@@ -57,7 +58,7 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="315"/>
+        <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="330"/>
         <element name="Users" positionX="-54" positionY="108" width="128" height="90"/>
         <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
         <element name="AreasData" positionX="-45" positionY="126" width="128" height="120"/>

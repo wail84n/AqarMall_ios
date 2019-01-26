@@ -2,14 +2,21 @@
 //  AdsCell.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 1/20/19.
+//  Created by Macbookpro on 1/26/19.
 //  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
 
 class AdsCell: UITableViewCell {
-
+    @IBOutlet weak var adsTitleLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var detailsLable: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var priceTitleLabel: UILabel!
+    @IBOutlet weak var curencyLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +27,5 @@ class AdsCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

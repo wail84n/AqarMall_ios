@@ -7,28 +7,43 @@
 //
 
 import UIKit
+import ScrollableSegmentedControl
 
 class AdsListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
-    
-    let maxHeaderHeight: CGFloat = 160;
-    let minHeaderHeight: CGFloat = 64;
-    
-    var previousScrollOffset: CGFloat = 0;
-    
     @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerTitleView: UILabel!
+    @IBOutlet weak var tileLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var sectionSegment: UISegmentedControl!
+    var segmentedControl: ScrollableSegmentedControl!
+    
+    
+    var segmentedControl222: ScrollableSegmentedControl!
+    let maxHeaderHeight: CGFloat = 200;
+    let minHeaderHeight: CGFloat = 64;
+    
+    var previousScrollOffset: CGFloat = 0;
+    var categories = [CategoriesData]()
+    var intProvince = 1
+    var intArea = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-    }
+        
+        getCategoriesData(isRent: true)
     
+        tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
+
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
@@ -37,6 +52,160 @@ class AdsListVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    func getCategoriesData(isRent : Bool)
+    {
+        let screenBound_width = UIScreen.main.bounds.width
+        
+        if let _ = segmentedControl {
+            segmentedControl.removeFromSuperview()
+        }
+        
+        segmentedControl = ScrollableSegmentedControl(frame: CGRect(x: 0, y: sectionSegment.frame.origin.y + sectionSegment.frame.size.height + 10, width: screenBound_width , height: 32))
+        
+        
+        segmentedControl.segmentStyle = .textOnly
+        segmentedControl.underlineSelected = false
+        
+        if isRent == true {
+            if let _categories = DB_Categories.callCategories(byType: .isRent) {
+                categories = _categories
+            }
+            
+        }else{
+            if let _categories = DB_Categories.callCategories(byType: .isSale) {
+                categories = _categories
+            }
+        }
+        
+        
+        if categories.count > 1 {
+            
+            segmentedControl.segmentStyle = .textOnly
+            segmentedControl.underlineSelected = true
+            segmentedControl.selectedSegmentIndex = 0
+            segmentedControl.tintColor = UIColor.segmentColor()
+            segmentedControl.fixedSegmentWidth = true
+            
+            segmentedControl.addTarget(self, action: #selector(AdsListVC.segmentSelected(sender:)), for: .valueChanged)
+
+            for i in 0 ..< self.categories.count  {
+                let item = self.categories[i]
+                print(item.name ?? "")
+                
+                self.segmentedControl.insertSegment(withTitle: item.name ?? "", at: i)
+            }
+            
+            self.segmentedControl.insertSegment(withTitle: "الكل", at: self.categories.count)
+            self.segmentedControl.selectedSegmentIndex = self.categories.count
+            
+            headerView.addSubview(segmentedControl)
+        }
+    }
+    
+    @IBAction func changeSection(_ sender: Any) {
+        
+        switch sectionSegment.selectedSegmentIndex
+        {
+        case 0:
+            break
+        case 1:
+            break
+        case 2:
+            getCategoriesData(isRent: true)
+        case 3:
+            getCategoriesData(isRent: false)
+        default:
+            break
+        }
+        self.setNavigationTitle()
+    }
+    
+    func setNavigationTitle(){
+        var section = ""
+        
+        switch sectionSegment.selectedSegmentIndex
+        {
+        case 0:
+            section = "للبدل"
+        case 1:
+            section = "مطلوب عقار"
+        case 2:
+            section = "للإيجار"
+        case 3:
+            section = "للبيع"
+        default:
+            break
+        }
+        
+        var category = ""
+        if sectionSegment.selectedSegmentIndex == 2 || sectionSegment.selectedSegmentIndex == 3{
+            if self.segmentedControl.selectedSegmentIndex != self.categories.count {
+                let item = self.categories[self.segmentedControl.selectedSegmentIndex]
+                category = item.name ?? ""
+            }
+        }
+        
+        var province = ""
+        if intProvince != 0 {
+            province = "مبارك الكبير"
+        }
+        
+        var area = ""
+        if intArea != 0 {
+            area = "العدان"
+        }
+        
+        if category.isEmpty {
+            tileLabel.text = "\(section)"
+        }else{
+            tileLabel.text = "\(category) \(section)"
+        }
+        
+        if province.isEmpty && area.isEmpty {
+            addressLabel.isHidden = true
+        }else if !province.isEmpty && !area.isEmpty {
+            addressLabel.isHidden = false
+            addressLabel.text = "\(province) - \(area)"
+        }else{
+            addressLabel.text = "\(province)"
+        }
+        //
+
+    }
+    
+    @objc func segmentSelected(sender:ScrollableSegmentedControl) {
+       print("Segment at index \(sender.selectedSegmentIndex)  selected")
+        
+        self.setNavigationTitle()
+        
+//        let item = allEntries.object(at: sender.selectedSegmentIndex) as! CategoryRecord
+//        CatRecord = item
+//
+//        ads.removeAll()
+//        self.adsCollectionView.reloadData()
+//        currentPage = 1
+//        nextpage = 0
+//        intNumberOfRows = 0
+//
+//        self.GetAds_Count(record: CatRecord)
+//
+//        // Utility.ShowLoading(View: self.view, title: "", details: "")
+//        Utility.ShowLoading()
+//        if adsSegment.selectedSegmentIndex == 1 {
+//            self.GetAds_MyCity(callType: CallType.firstPage, record: CatRecord)
+//        }
+//        if adsSegment.selectedSegmentIndex == 2 {
+//            self.GetAds_List(callType: CallType.firstPage, record: CatRecord)
+//        }
+//        if adsSegment.selectedSegmentIndex == 0 {
+//            self.GetAds_MyLocation(callType: CallType.firstPage, record: CatRecord)
+//        }
+    }
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -55,11 +224,21 @@ extension AdsListVC: UITableViewDataSource {
         return 40
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel!.text = "Cell \(indexPath.row)"
-        return cell
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? AdsCell {
+          //  cell.update(with: arrUserNotifications[indexPath.row])
+        }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "AdsCell")!
+    }
+    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = UITableViewCell()
+//        cell.textLabel!.text = "Cell \(indexPath.row)"
+//        return cell
+//    }
 }
 
 extension AdsListVC: UITableViewDelegate {
@@ -149,7 +328,13 @@ extension AdsListVC: UITableViewDelegate {
         let openAmount = self.headerHeightConstraint.constant - self.minHeaderHeight
         let percentage = openAmount / range
         
-        self.titleTopConstraint.constant = -openAmount + 10
+        if intProvince == 0 {
+            self.titleTopConstraint.constant = -openAmount + 20
+        }else{
+            self.titleTopConstraint.constant = -openAmount + 15
+        }
+        
+        
         self.headerView.alpha = percentage
         self.headerTitleView.alpha = percentage
         

@@ -25,7 +25,8 @@ class Categories: NSObject {
     let NumberOfBathrooms:Bool
     let NumberOfFloors:Bool
     let NumberOfRooms:Bool
-    let PriceLabel:String
+    let RentPriceLabel:String
+    let SalePriceLabel:String
     let Size:Bool
     
     public init?(object: AnyObject?) {
@@ -45,7 +46,8 @@ class Categories: NSObject {
             let _NumberOfBathrooms = _object["NumberOfBathrooms"] as? Bool,
             let _NumberOfFloors = _object["NumberOfFloors"] as? Bool,
             let _NumberOfRooms = _object["NumberOfRooms"] as? Bool,
-            let _PriceLabel = _object["PriceLabel"] as? String,
+            let _RentPriceLabel = _object["RentPriceLabel"] as? String,
+            let _SalePriceLabel = _object["SalePriceLabel"] as? String,
             let _Size = _object["Size"] as? Bool
             else{
                 return nil
@@ -79,7 +81,8 @@ class Categories: NSObject {
         self.NumberOfBathrooms = _NumberOfBathrooms
         self.NumberOfFloors = _NumberOfFloors
         self.NumberOfRooms = _NumberOfRooms
-        self.PriceLabel = _PriceLabel
+        self.RentPriceLabel = _RentPriceLabel
+        self.SalePriceLabel = _SalePriceLabel
         self.Size = _Size
         
         super.init()
