@@ -28,9 +28,16 @@ class AdsListVC: UIViewController {
     
     var previousScrollOffset: CGFloat = 0;
     var categories = [CategoriesData]()
-    var intProvince = 1
-    var intArea = 1
+    var intProvince = 0
+    var intArea = 0
+    var intCat = 0
     
+    var currentPage = 1
+    var nextpage = 0
+    var isLastCall = true
+    var orderBy = 0
+    
+    var arrAdve = [AdvtsList]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -42,8 +49,27 @@ class AdsListVC: UIViewController {
     
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
 
+        
     }
 
+    func callAdvAPI() {
+        
+        print(sectionSegment.selectedSegmentIndex - 1)
+        APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: intProvince, _areaId: intArea, _pageNumber: 1, _orderBy: 4, _orderType: "DESC") { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            if let _result = result{
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    
+                    self.arrAdve.append(record)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
@@ -104,6 +130,14 @@ class AdsListVC: UIViewController {
             
             headerView.addSubview(segmentedControl)
         }
+        
+        clearTableView()
+        callAdvAPI()
+    }
+    
+    func clearTableView(){
+        self.arrAdve.removeAll()
+        tableView.reloadData()
     }
     
     @IBAction func changeSection(_ sender: Any) {
@@ -116,6 +150,7 @@ class AdsListVC: UIViewController {
             break
         case 2:
             getCategoriesData(isRent: true)
+            
         case 3:
             getCategoriesData(isRent: false)
         default:
@@ -206,6 +241,51 @@ class AdsListVC: UIViewController {
 //        }
     }
     
+    func showAlert(withTitle title: String, text: String) {
+        let alertController = UIAlertController(title: title, message: text, preferredStyle: .actionSheet)
+        let higherPriceAction = UIAlertAction(title: "الأعلى سعر", style: .destructive) { action in
+            self.clearTableView()
+            self.currentPage = 1
+            self.nextpage = 0
+            
+            self.orderBy = 1
+//            Utility.ShowLoading(View: self.view, title: "الرجاء الانتظار", details: "جاري تحديث البيانات")
+//            self.GetAds_List(record: self.CatRecord)
+        }
+        alertController.addAction(higherPriceAction)
+        
+        let lowerPriceAction = UIAlertAction(title: "الأقل سعر", style: .destructive) { action in
+            self.clearTableView()
+            self.currentPage = 1
+            self.nextpage = 0
+            
+            self.orderBy = 0
+//            Utility.ShowLoading(View: self.view, title: "الرجاء الانتظار", details: "جاري تحديث البيانات")
+//            self.GetAds_List(record: self.CatRecord)
+        }
+        alertController.addAction(lowerPriceAction)
+        
+        let newestAction = UIAlertAction(title: "الأحدث", style: .destructive) { action in
+            self.clearTableView()
+            self.currentPage = 1
+            self.nextpage = 0
+            
+            self.orderBy = -1
+//            Utility.ShowLoading(View: self.view, title: "الرجاء الانتظار", details: "جاري تحديث البيانات")
+//            self.GetAds_List(record: self.CatRecord)
+        }
+        alertController.addAction(newestAction)
+        
+        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+            
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
@@ -221,11 +301,18 @@ extension AdsListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 40
+        return arrAdve.count
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? AdsCell {
+            let record = arrAdve[indexPath.row]
+            cell.adsTitleLabel.text = record.title
+            cell.addressLabel.text = "\(record.provinceName) / \(record.areaName)"
+            cell.detailsLable.text = record.description
+            cell.priceLabel.text = "\(record.price)"
+            cell.priceTitleLabel.text = "\(record.priceLabel)"
+            cell.sizeLabel.text = "\(record.size)"
           //  cell.update(with: arrUserNotifications[indexPath.row])
         }
     }

@@ -102,6 +102,12 @@ class APIs: NSObject {
         case getGeneralPages(lastchange : Int?)
         case getBanners(lastchange : Int?)
         
+        // Service at http://test.imallkw.com/Api.svc/getAdvts?provinceType={PROVINCETYPE}&areaId={AREAID}&provinceId={PROVINCEID}&sectionId={SECTIONID}&catId={CATID}&pageNumber={PAGENUMBER}&orderBy={ORDERBY}&orderType={ORDERTYPE}
+
+        
+        
+        case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
+        
         var contentType:ContentType {
             switch self {
             default:
@@ -160,6 +166,8 @@ class APIs: NSObject {
                 return "getGeneralPages"
             case .getBanners(_):
                 return "getBanners"
+            case .getAdvts(_, _, _, _, _, _, _, _):
+                return "getAdvts"
             }
         }
         
@@ -189,6 +197,36 @@ class APIs: NSObject {
             case .getBanners(let lastchange):
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
+                }
+                
+            case .getAdvts(let provinceType, let sectionId, let catId, let provinceId, let areaId, let pageNumber, let orderBy, let orderType):
+                if let _provinceType = provinceType{
+                    dict["provinceType"] = _provinceType
+                }
+                if let _sectionId = sectionId{
+                    dict["sectionId"] = _sectionId
+                }
+                
+                if let _catId = catId, _catId != 0{
+                    dict["catId"] = _catId
+                }
+                
+                if let _provinceId = provinceId, _provinceId != 0{
+                    dict["provinceId"] = _provinceId
+                }
+                
+                if let _areaId = areaId, _areaId != 0{
+                    dict["areaId"] = _areaId
+                }
+                
+                if let _pageNumber = pageNumber{
+                    dict["pageNumber"] = _pageNumber
+                }
+                if let _orderBy = orderBy{
+                    dict["orderBy"] = _orderBy
+                }
+                if let _orderType = orderType{
+                    dict["orderType"] = _orderType
                 }
             default:
                 return nil
@@ -230,6 +268,7 @@ class APIs: NSObject {
     typealias areasCallback = (_ users:[Areas]?, _ error:Error?) -> Void
     typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
     typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
+    typealias AdvtsCallback = (_ users:[AdvtsList]?, _ error:Error?) -> Void
     
     func getCategories(callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
@@ -298,6 +337,21 @@ class APIs: NSObject {
                 response.result.isSuccess,
                 let result = self.result(with: response),
                 let records = (result as? [AnyObject])?.compactMap({ Banners(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    func getAdvts(_provinceType : Int?, _sectionId: Int?, _catId: Int?, _provinceId: Int?, _areaId: Int?, _pageNumber: Int?, _orderBy: Int16?, _orderType : String?, callback: @escaping AdvtsCallback) {
+        let route = Router.getAdvts(provinceType: _provinceType, sectionId: _sectionId, catId: _catId, provinceId: _provinceId, areaId: _areaId, pageNumber: _pageNumber, orderBy: _orderBy, orderType: _orderType)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ AdvtsList(object: $0) })
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return
