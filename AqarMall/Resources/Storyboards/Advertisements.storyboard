@@ -149,6 +149,9 @@
                                             <constraint firstAttribute="height" constant="25" id="fjZ-rB-RN9"/>
                                         </constraints>
                                         <state key="normal" image="filter"/>
+                                        <connections>
+                                            <action selector="showFilterList:" destination="A3h-kp-3KN" eventType="touchUpInside" id="G8d-rW-6TE"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

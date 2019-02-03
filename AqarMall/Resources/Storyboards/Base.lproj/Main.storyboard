@@ -14,7 +14,7 @@
         <scene sceneID="6pe-43-YtU">
             <objects>
                 <navigationController id="RQe-ti-iXc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="اضافة اعلان" id="Vac-c9-8Dz"/>
+                    <tabBarItem key="tabBarItem" title="اضافة اعلان" image="tab_AddAds" id="Vac-c9-8Dz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lpO-x8-xKh">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -68,7 +68,7 @@
         <scene sceneID="RVT-e6-J1F">
             <objects>
                 <navigationController id="JVl-VA-F48" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="المزيد" id="998-It-VEH"/>
+                    <tabBarItem key="tabBarItem" title="المزيد" image="tab_More" id="998-It-VEH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z39-T0-iu1">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -95,7 +95,7 @@
         <scene sceneID="zzb-Ox-hcb">
             <objects>
                 <navigationController id="dSe-CG-mdc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="الإشعارات" id="oUJ-iv-aZh"/>
+                    <tabBarItem key="tabBarItem" title="الإشعارات" image="tab_Notification" id="oUJ-iv-aZh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Fa-QX-8bK">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -121,9 +121,8 @@
         <!--الرئيسية-->
         <scene sceneID="ykq-Ws-xYW">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="scT-aJ-4NL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ty1-j2-8PL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="الرئيسية" id="vfb-1d-MCs"/>
+                    <tabBarItem key="tabBarItem" title="الرئيسية" image="tab_Main" id="vfb-1d-MCs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0bZ-8R-57e">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -132,6 +131,7 @@
                         <segue destination="rfU-ti-01H" kind="relationship" relationship="rootViewController" id="xc9-Lg-Q79"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="scT-aJ-4NL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="294" y="-1054"/>
         </scene>
@@ -149,7 +149,7 @@
         <scene sceneID="Ned-GF-p0G">
             <objects>
                 <navigationController id="ukO-e2-7Of" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="المفضلة" id="gSM-br-Pox"/>
+                    <tabBarItem key="tabBarItem" title="المفضلة" image="tab_Favorate" id="gSM-br-Pox"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VpF-7g-L5q">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -179,4 +179,11 @@
             <point key="canvasLocation" x="1327" y="-244"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab_AddAds" width="30" height="30"/>
+        <image name="tab_Favorate" width="30" height="30"/>
+        <image name="tab_Main" width="30" height="30"/>
+        <image name="tab_More" width="30" height="30"/>
+        <image name="tab_Notification" width="30" height="30"/>
+    </resources>
 </document>

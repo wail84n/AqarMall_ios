@@ -48,12 +48,9 @@ class AdsListVC: UIViewController {
         getCategoriesData(isRent: true)
     
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
-
-        
     }
 
     func callAdvAPI() {
-        
         print(sectionSegment.selectedSegmentIndex - 1)
         APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: intProvince, _areaId: intArea, _pageNumber: 1, _orderBy: 4, _orderType: "DESC") { (result, error) in
             guard error == nil else {
@@ -70,6 +67,7 @@ class AdsListVC: UIViewController {
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
@@ -91,28 +89,21 @@ class AdsListVC: UIViewController {
         }
         
         segmentedControl = ScrollableSegmentedControl(frame: CGRect(x: 0, y: sectionSegment.frame.origin.y + sectionSegment.frame.size.height + 10, width: screenBound_width , height: 32))
-        
-        
-        segmentedControl.segmentStyle = .textOnly
-        segmentedControl.underlineSelected = false
-        
+
         if isRent == true {
             if let _categories = DB_Categories.callCategories(byType: .isRent) {
                 categories = _categories
             }
-            
         }else{
             if let _categories = DB_Categories.callCategories(byType: .isSale) {
                 categories = _categories
             }
         }
-        
-        
+
         if categories.count > 1 {
-            
             segmentedControl.segmentStyle = .textOnly
             segmentedControl.underlineSelected = true
-            segmentedControl.selectedSegmentIndex = 0
+           // segmentedControl.selectedSegmentIndex = 0
             segmentedControl.tintColor = UIColor.segmentColor()
             segmentedControl.fixedSegmentWidth = true
             
@@ -121,7 +112,6 @@ class AdsListVC: UIViewController {
             for i in 0 ..< self.categories.count  {
                 let item = self.categories[i]
                 print(item.name ?? "")
-                
                 self.segmentedControl.insertSegment(withTitle: item.name ?? "", at: i)
             }
             
@@ -131,8 +121,8 @@ class AdsListVC: UIViewController {
             headerView.addSubview(segmentedControl)
         }
         
-        clearTableView()
-        callAdvAPI()
+//        clearTableView()
+//        callAdvAPI()
     }
     
     func clearTableView(){
@@ -142,6 +132,7 @@ class AdsListVC: UIViewController {
     
     @IBAction func changeSection(_ sender: Any) {
         
+        intCat = 0
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
@@ -150,13 +141,14 @@ class AdsListVC: UIViewController {
             break
         case 2:
             getCategoriesData(isRent: true)
-            
         case 3:
             getCategoriesData(isRent: false)
         default:
             break
         }
         self.setNavigationTitle()
+//        clearTableView()
+//        callAdvAPI()
     }
     
     func setNavigationTitle(){
@@ -215,8 +207,17 @@ class AdsListVC: UIViewController {
     @objc func segmentSelected(sender:ScrollableSegmentedControl) {
        print("Segment at index \(sender.selectedSegmentIndex)  selected")
         
+        if (sender.selectedSegmentIndex  == self.categories.count){
+            intCat = 0
+        }else{
+            let cat = self.categories[sender.selectedSegmentIndex]
+            intCat = Int(cat.id)
+        }
+        
         self.setNavigationTitle()
         
+        clearTableView()
+        callAdvAPI()
 //        let item = allEntries.object(at: sender.selectedSegmentIndex) as! CategoryRecord
 //        CatRecord = item
 //
@@ -241,8 +242,8 @@ class AdsListVC: UIViewController {
 //        }
     }
     
-    func showAlert(withTitle title: String, text: String) {
-        let alertController = UIAlertController(title: title, message: text, preferredStyle: .actionSheet)
+    @IBAction func showFilterList(_ sender: Any) {
+        let alertController = UIAlertController(title: "تصنيف الإعلانات", message: "الرجاء اختر احد التصنيفات التالية:", preferredStyle: .actionSheet)
         let higherPriceAction = UIAlertAction(title: "الأعلى سعر", style: .destructive) { action in
             self.clearTableView()
             self.currentPage = 1
@@ -421,9 +422,7 @@ extension AdsListVC: UITableViewDelegate {
             self.titleTopConstraint.constant = -openAmount + 15
         }
         
-        
         self.headerView.alpha = percentage
         self.headerTitleView.alpha = percentage
-        
     }
 }
