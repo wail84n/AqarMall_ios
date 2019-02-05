@@ -43,67 +43,75 @@
                                                     <action selector="changeSection:" destination="A3h-kp-3KN" eventType="valueChanged" id="y7w-wQ-GtT"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIl-i2-wcG" customClass="ScrollableSegmentedControl" customModule="ScrollableSegmentedControl">
-                                                <rect key="frame" x="0.0" y="53" width="375" height="37"/>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIl-i2-wcG" customClass="ScrollableSegmentedControl" customModule="ScrollableSegmentedControl">
+                                                <rect key="frame" x="0.0" y="48" width="375" height="37"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="37" id="9mY-tP-jCv"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prx-4i-enw">
-                                                <rect key="frame" x="195" y="100" width="170" height="35"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hth-Ny-ANL">
+                                                <rect key="frame" x="0.0" y="93" width="375" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prx-4i-enw">
+                                                        <rect key="frame" x="195" y="4" width="165" height="37"/>
+                                                        <state key="normal" title="المحافظة">
+                                                            <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-cr-ObE">
+                                                        <rect key="frame" x="15" y="4" width="165" height="37"/>
+                                                        <state key="normal" title="المنطقة">
+                                                            <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="2X2-g4-AyS"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Prx-4i-enw" secondAttribute="trailing" constant="15" id="4MQ-Zi-SsX"/>
+                                                    <constraint firstItem="Prx-4i-enw" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="4" id="6zp-57-S3v"/>
+                                                    <constraint firstItem="ZzS-cr-ObE" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="4" id="8xG-uU-Uyc"/>
+                                                    <constraint firstItem="ZzS-cr-ObE" firstAttribute="leading" secondItem="Hth-Ny-ANL" secondAttribute="leading" constant="15" id="JWp-B6-l7d"/>
+                                                    <constraint firstAttribute="height" constant="45" id="NVX-s0-JTz"/>
+                                                    <constraint firstItem="Prx-4i-enw" firstAttribute="leading" secondItem="ZzS-cr-ObE" secondAttribute="trailing" constant="15" id="kAi-eH-dhy"/>
+                                                    <constraint firstItem="Prx-4i-enw" firstAttribute="width" secondItem="ZzS-cr-ObE" secondAttribute="width" id="l98-8N-Hgb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Prx-4i-enw" secondAttribute="bottom" constant="4" id="rX4-8p-E4S"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="4" id="sSO-j9-4Do"/>
                                                 </constraints>
-                                                <state key="normal" title="المحافظة">
-                                                    <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-cr-ObE">
-                                                <rect key="frame" x="10" y="100" width="170" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="loJ-J0-sV7"/>
-                                                </constraints>
-                                                <state key="normal" title="المنطقة">
-                                                    <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Hth-Ny-ANL" firstAttribute="top" secondItem="RIl-i2-wcG" secondAttribute="bottom" constant="8" id="3XX-pa-XFJ"/>
                                             <constraint firstAttribute="trailing" secondItem="RIl-i2-wcG" secondAttribute="trailing" id="4P1-Xw-5jD"/>
                                             <constraint firstItem="RIl-i2-wcG" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" id="7dv-Cj-rZB"/>
                                             <constraint firstItem="QUe-Ot-EMV" firstAttribute="top" secondItem="SmB-kK-26F" secondAttribute="top" constant="8" id="AqN-fl-8aJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="Prx-4i-enw" secondAttribute="bottom" constant="5" id="QCb-3x-bkx"/>
-                                            <constraint firstAttribute="trailing" secondItem="Prx-4i-enw" secondAttribute="trailing" constant="10" id="REW-49-cbA"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hth-Ny-ANL" secondAttribute="bottom" constant="2" id="QgP-O4-8fL"/>
                                             <constraint firstItem="QUe-Ot-EMV" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="8" id="Y6o-fp-pDq"/>
-                                            <constraint firstItem="Prx-4i-enw" firstAttribute="leading" secondItem="ZzS-cr-ObE" secondAttribute="trailing" constant="15" id="Zje-5w-XFu"/>
-                                            <constraint firstItem="ZzS-cr-ObE" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="10" id="hxy-QE-2BE"/>
-                                            <constraint firstItem="ZzS-cr-ObE" firstAttribute="width" secondItem="Prx-4i-enw" secondAttribute="width" id="mPd-dc-sle"/>
-                                            <constraint firstItem="Prx-4i-enw" firstAttribute="top" secondItem="RIl-i2-wcG" secondAttribute="bottom" constant="10" id="oT1-Sb-p9c"/>
-                                            <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="5" id="q9e-Ks-5TL"/>
+                                            <constraint firstItem="Hth-Ny-ANL" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" id="ckF-X4-SPa"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hth-Ny-ANL" secondAttribute="trailing" id="j2M-31-gaX"/>
                                             <constraint firstAttribute="height" constant="140" id="vSl-aY-k3C"/>
                                             <constraint firstAttribute="trailing" secondItem="QUe-Ot-EMV" secondAttribute="trailing" constant="8" id="zCc-q4-D0Q"/>
                                         </constraints>
@@ -190,10 +198,13 @@
                     <navigationItem key="navigationItem" id="aKV-e6-4mr"/>
                     <connections>
                         <outlet property="addressLabel" destination="cYy-t6-7kf" id="IYc-fX-eXl"/>
+                        <outlet property="addressView" destination="Hth-Ny-ANL" id="m3g-8K-DIC"/>
                         <outlet property="headerHeightConstraint" destination="Mxl-dt-dHn" id="fdB-mg-DVl"/>
                         <outlet property="headerTitleView" destination="E30-Ac-EO2" id="7DA-w7-zS1"/>
                         <outlet property="headerView" destination="SmB-kK-26F" id="X6E-o6-Ein"/>
+                        <outlet property="mainHeaderView" destination="7wR-vC-n1P" id="dIy-TI-FJW"/>
                         <outlet property="sectionSegment" destination="QUe-Ot-EMV" id="oPV-Nt-QfM"/>
+                        <outlet property="subHeaderHeightConstraint" destination="vSl-aY-k3C" id="TDu-jN-8yK"/>
                         <outlet property="tableView" destination="K0e-24-eNF" id="LXe-kB-fAJ"/>
                         <outlet property="tileLabel" destination="03T-7k-r1p" id="KlM-fC-5Ii"/>
                         <outlet property="titleTopConstraint" destination="CqN-NV-9jF" id="tVo-ob-igV"/>

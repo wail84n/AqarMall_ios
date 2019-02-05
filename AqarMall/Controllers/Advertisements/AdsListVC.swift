@@ -13,17 +13,19 @@ class AdsListVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var subHeaderHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mainHeaderView: UIView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerTitleView: UILabel!
     @IBOutlet weak var tileLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var sectionSegment: UISegmentedControl!
+    @IBOutlet weak var addressView: UIView!
     var segmentedControl: ScrollableSegmentedControl!
     
-    
     var segmentedControl222: ScrollableSegmentedControl!
-    let maxHeaderHeight: CGFloat = 200;
+    var maxHeaderHeight: CGFloat = 200;
     let minHeaderHeight: CGFloat = 64;
     
     var previousScrollOffset: CGFloat = 0;
@@ -103,7 +105,6 @@ class AdsListVC: UIViewController {
         if categories.count > 1 {
             segmentedControl.segmentStyle = .textOnly
             segmentedControl.underlineSelected = true
-           // segmentedControl.selectedSegmentIndex = 0
             segmentedControl.tintColor = UIColor.segmentColor()
             segmentedControl.fixedSegmentWidth = true
             
@@ -120,9 +121,6 @@ class AdsListVC: UIViewController {
             
             headerView.addSubview(segmentedControl)
         }
-        
-//        clearTableView()
-//        callAdvAPI()
     }
     
     func clearTableView(){
@@ -131,17 +129,32 @@ class AdsListVC: UIViewController {
     }
     
     @IBAction func changeSection(_ sender: Any) {
-        
         intCat = 0
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
+            maxHeaderHeight = 110
+            self.subHeaderHeightConstraint.constant = 50
+            self.headerHeightConstraint.constant = 110
+            addressView.isHidden = true
             break
         case 1:
+            maxHeaderHeight = 110
+            self.subHeaderHeightConstraint.constant = 50
+            self.headerHeightConstraint.constant = 110
+            addressView.isHidden = true
             break
         case 2:
+            maxHeaderHeight = 200
+            self.subHeaderHeightConstraint.constant = 140
+            self.headerHeightConstraint.constant = 200
+            addressView.isHidden = false
             getCategoriesData(isRent: true)
         case 3:
+            maxHeaderHeight = 200
+            self.subHeaderHeightConstraint.constant = 140
+            self.headerHeightConstraint.constant = 200
+            addressView.isHidden = false
             getCategoriesData(isRent: false)
         default:
             break
@@ -422,6 +435,7 @@ extension AdsListVC: UITableViewDelegate {
             self.titleTopConstraint.constant = -openAmount + 15
         }
         
+        self.headerTitleView.alpha = percentage
         self.headerView.alpha = percentage
         self.headerTitleView.alpha = percentage
     }
