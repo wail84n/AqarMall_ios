@@ -22,6 +22,8 @@ class AdsListVC: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var sectionSegment: UISegmentedControl!
     @IBOutlet weak var addressView: UIView!
+    @IBOutlet weak var areaButton: UIButton!
+    @IBOutlet weak var areasss: UIImageView!
     var segmentedControl: ScrollableSegmentedControl!
     
     var segmentedControl222: ScrollableSegmentedControl!
@@ -40,6 +42,7 @@ class AdsListVC: UIViewController {
     var orderBy = 0
     
     var arrAdve = [AdvtsList]()
+    var arrExchangeAdve = [ExchangeAds]()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,8 +53,11 @@ class AdsListVC: UIViewController {
         getCategoriesData(isRent: true)
     
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
+        tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
+        
     }
 
+    
     func callAdvAPI() {
         print(sectionSegment.selectedSegmentIndex - 1)
         APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: intProvince, _areaId: intArea, _pageNumber: 1, _orderBy: 4, _orderType: "DESC") { (result, error) in
@@ -70,11 +76,31 @@ class AdsListVC: UIViewController {
         }
     }
     
+    func getExchangeAds() {
+        print(sectionSegment.selectedSegmentIndex - 1)
+        APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: 1, _keyword: "") { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            if let _result = result{
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    
+                    self.arrExchangeAdve.append(record)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
         updateHeader()
         
+        areaButton.ShowHeartbeatAnimation(key: "pulse")
+        areasss.ShowHeartbeatAnimation(key: "pulse")
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
@@ -124,6 +150,7 @@ class AdsListVC: UIViewController {
     }
     
     func clearTableView(){
+        self.arrExchangeAdve.removeAll()
         self.arrAdve.removeAll()
         tableView.reloadData()
     }
@@ -137,12 +164,15 @@ class AdsListVC: UIViewController {
             self.subHeaderHeightConstraint.constant = 50
             self.headerHeightConstraint.constant = 110
             addressView.isHidden = true
+            clearTableView()
             break
         case 1:
             maxHeaderHeight = 110
             self.subHeaderHeightConstraint.constant = 50
             self.headerHeightConstraint.constant = 110
             addressView.isHidden = true
+            clearTableView()
+            getExchangeAds()
             break
         case 2:
             maxHeaderHeight = 200
@@ -170,7 +200,7 @@ class AdsListVC: UIViewController {
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
-            section = "للبدل"
+            section = "عقار للبدل"
         case 1:
             section = "مطلوب عقار"
         case 2:
@@ -315,6 +345,9 @@ extension AdsListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
+            return arrExchangeAdve.count
+        }
         return arrAdve.count
     }
     
@@ -328,10 +361,25 @@ extension AdsListVC: UITableViewDataSource {
             cell.priceTitleLabel.text = "\(record.priceLabel)"
             cell.sizeLabel.text = "\(record.size)"
           //  cell.update(with: arrUserNotifications[indexPath.row])
+        }else if let cell = cell as? ExchangeAdsCell {
+            let record = arrExchangeAdve[indexPath.row]
+            cell.adsTitleLabel.text = record.title
+            cell.detailsLable.text = record.description
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
+            return 90
+        }
+        return 135
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
+            return tableView.dequeueReusableCell(withIdentifier: "ExchangeAdsCell")!
+        }
         return tableView.dequeueReusableCell(withIdentifier: "AdsCell")!
     }
     
@@ -435,7 +483,7 @@ extension AdsListVC: UITableViewDelegate {
             self.titleTopConstraint.constant = -openAmount + 15
         }
         
-        self.headerTitleView.alpha = percentage
+        self.tileLabel.alpha = 1 - percentage
         self.headerView.alpha = percentage
         self.headerTitleView.alpha = percentage
     }

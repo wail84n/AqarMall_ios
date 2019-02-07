@@ -1,17 +1,17 @@
 //
-//  UIImageView.swift
+//  UIButton.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 12/31/18.
-//  Copyright © 2018 Macbookpro. All rights reserved.
+//  Created by Macbookpro on 2/7/19.
+//  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
 
-extension UIImageView {
-    
+extension UIButton {
     func ShowHeartbeatAnimation(key : String){
         isUserInteractionEnabled = true
+        isEnabled = true
         
         let pulse1 = CASpringAnimation(keyPath: "transform.scale")
         pulse1.duration = 0.6
@@ -23,7 +23,7 @@ extension UIImageView {
         pulse1.damping = 0.4
         
         let animationGroup = CAAnimationGroup()
-        animationGroup.duration = 5
+        animationGroup.duration = 3.5
         animationGroup.repeatCount = 1000
         animationGroup.animations = [pulse1]
         

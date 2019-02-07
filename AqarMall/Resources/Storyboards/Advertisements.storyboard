@@ -72,6 +72,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-cr-ObE">
                                                         <rect key="frame" x="15" y="4" width="165" height="37"/>
+                                                        <color key="backgroundColor" red="0.95686274510000002" green="0.72941176470000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="المنطقة">
                                                             <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -87,6 +88,13 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="first" translatesAutoresizingMaskIntoConstraints="NO" id="g7B-q2-egP">
+                                                        <rect key="frame" x="70" y="0.0" width="41" height="41"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="41" id="HFd-6r-u1e"/>
+                                                            <constraint firstAttribute="width" constant="41" id="Yog-oF-BFm"/>
+                                                        </constraints>
+                                                    </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -97,12 +105,14 @@
                                                     <constraint firstAttribute="height" constant="45" id="NVX-s0-JTz"/>
                                                     <constraint firstItem="Prx-4i-enw" firstAttribute="leading" secondItem="ZzS-cr-ObE" secondAttribute="trailing" constant="15" id="kAi-eH-dhy"/>
                                                     <constraint firstItem="Prx-4i-enw" firstAttribute="width" secondItem="ZzS-cr-ObE" secondAttribute="width" id="l98-8N-Hgb"/>
+                                                    <constraint firstItem="g7B-q2-egP" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" id="n7t-mN-sed"/>
+                                                    <constraint firstItem="g7B-q2-egP" firstAttribute="leading" secondItem="Hth-Ny-ANL" secondAttribute="leading" constant="70" id="ogM-p5-CN8"/>
                                                     <constraint firstAttribute="bottom" secondItem="Prx-4i-enw" secondAttribute="bottom" constant="4" id="rX4-8p-E4S"/>
                                                     <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="4" id="sSO-j9-4Do"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Hth-Ny-ANL" firstAttribute="top" secondItem="RIl-i2-wcG" secondAttribute="bottom" constant="8" id="3XX-pa-XFJ"/>
                                             <constraint firstAttribute="trailing" secondItem="RIl-i2-wcG" secondAttribute="trailing" id="4P1-Xw-5jD"/>
@@ -199,6 +209,8 @@
                     <connections>
                         <outlet property="addressLabel" destination="cYy-t6-7kf" id="IYc-fX-eXl"/>
                         <outlet property="addressView" destination="Hth-Ny-ANL" id="m3g-8K-DIC"/>
+                        <outlet property="areaButton" destination="ZzS-cr-ObE" id="tDv-6x-2SB"/>
+                        <outlet property="areasss" destination="g7B-q2-egP" id="3MG-ng-jXP"/>
                         <outlet property="headerHeightConstraint" destination="Mxl-dt-dHn" id="fdB-mg-DVl"/>
                         <outlet property="headerTitleView" destination="E30-Ac-EO2" id="7DA-w7-zS1"/>
                         <outlet property="headerView" destination="SmB-kK-26F" id="X6E-o6-Ein"/>
@@ -218,5 +230,6 @@
     <resources>
         <image name="advSearch" width="40" height="33"/>
         <image name="filter" width="19" height="20"/>
+        <image name="first" width="30" height="30"/>
     </resources>
 </document>

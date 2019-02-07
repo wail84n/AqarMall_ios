@@ -94,17 +94,13 @@ class APIs: NSObject {
         }
         static var auth:Auth?
         
-        
         case getAds(catId:String)
         case getCategories(lastchange : Int?)
         case getProvinces(lastchange : Int?)
         case getAreas(lastchange : Int?)
         case getGeneralPages(lastchange : Int?)
         case getBanners(lastchange : Int?)
-        
-        // Service at http://test.imallkw.com/Api.svc/getAdvts?provinceType={PROVINCETYPE}&areaId={AREAID}&provinceId={PROVINCEID}&sectionId={SECTIONID}&catId={CATID}&pageNumber={PAGENUMBER}&orderBy={ORDERBY}&orderType={ORDERTYPE}
-
-        
+        case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
         
@@ -168,6 +164,8 @@ class APIs: NSObject {
                 return "getBanners"
             case .getAdvts(_, _, _, _, _, _, _, _):
                 return "getAdvts"
+            case .getExchangeAds(_, _, _):
+                return "getExchangePropertyAds"
             }
         }
         
@@ -228,6 +226,18 @@ class APIs: NSObject {
                 if let _orderType = orderType{
                     dict["orderType"] = _orderType
                 }
+            case .getExchangeAds(let areaId, let pageNumber, let keyword):
+                if let _pageNumber = pageNumber{
+                    dict["pageNumber"] = _pageNumber
+                }
+                
+                if let _areaId = areaId{
+                    dict["areaId"] = _areaId
+                }
+                
+                if let _keyword = keyword{
+                    dict["keyword"] = _keyword
+                }
             default:
                 return nil
             }
@@ -269,6 +279,7 @@ class APIs: NSObject {
     typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
     typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
     typealias AdvtsCallback = (_ users:[AdvtsList]?, _ error:Error?) -> Void
+    typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     
     func getCategories(callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
@@ -352,6 +363,21 @@ class APIs: NSObject {
                 response.result.isSuccess,
                 let result = self.result(with: response),
                 let records = (result as? [AnyObject])?.compactMap({ AdvtsList(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    func getExchangeAds(_areaId : Int?, _pageNumber: Int16?, _keyword: String?, callback: @escaping ExchangeAdsCallback) {
+        let route = Router.getExchangeAds(areaId: _areaId, pageNumber: _pageNumber, keyword: _keyword)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ ExchangeAds(object: $0) })
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return

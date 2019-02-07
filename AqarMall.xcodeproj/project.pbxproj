@@ -32,6 +32,11 @@
 		52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77921DD5F4400FE1D70 /* MoreVC.swift */; };
 		52AFE77E21E11E5B00FE1D70 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77D21E11E5B00FE1D70 /* APIs.swift */; };
 		52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77F21E1224F00FE1D70 /* FullUser.swift */; };
+		52CEE2202209376900ADDC8B /* ExchangeAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE21F2209376900ADDC8B /* ExchangeAds.swift */; };
+		52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE2212209377F00ADDC8B /* RequiredAds.swift */; };
+		52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */; };
+		52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */; };
+		52DC5255220C065D009F2B88 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC5254220C065D009F2B88 /* UIButton.swift */; };
 		52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523721D9DB6700E66AA2 /* AppDelegate.swift */; };
 		52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523921D9DB6700E66AA2 /* FirstViewController.swift */; };
 		52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */; };
@@ -101,6 +106,11 @@
 		52AFE77D21E11E5B00FE1D70 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		52AFE77F21E1224F00FE1D70 /* FullUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullUser.swift; sourceTree = "<group>"; };
 		52AFE78121E12AAA00FE1D70 /* AqarMall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AqarMall.entitlements; sourceTree = "<group>"; };
+		52CEE21F2209376900ADDC8B /* ExchangeAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAds.swift; sourceTree = "<group>"; };
+		52CEE2212209377F00ADDC8B /* RequiredAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredAds.swift; sourceTree = "<group>"; };
+		52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAdsCell.swift; sourceTree = "<group>"; };
+		52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeAdsCell.xib; sourceTree = "<group>"; };
+		52DC5254220C065D009F2B88 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		52E6523421D9DB6700E66AA2 /* AqarMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AqarMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523721D9DB6700E66AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6523921D9DB6700E66AA2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +212,8 @@
 			children = (
 				52389F3321FCB54700F52A0B /* AdsCell.swift */,
 				52389F3421FCB54700F52A0B /* AdsCell.xib */,
+				52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */,
+				52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -369,6 +381,7 @@
 			children = (
 				52E6527921D9E8F000E66AA2 /* UIColor.swift */,
 				52E6527B21D9EAD800E66AA2 /* UIView.swift */,
+				52DC5254220C065D009F2B88 /* UIButton.swift */,
 				52E6527D21D9EB3800E66AA2 /* UIImageView.swift */,
 				52E6527F21D9EB5100E66AA2 /* UITextField.swift */,
 				52E6528121D9EB6700E66AA2 /* String.swift */,
@@ -416,6 +429,8 @@
 				5281D89D21F3648300A177B0 /* GeneralPages.swift */,
 				5281D8A121F3A1F400A177B0 /* Banners.swift */,
 				52389F3A22021D8300F52A0B /* AdvtsList.swift */,
+				52CEE21F2209376900ADDC8B /* ExchangeAds.swift */,
+				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -550,6 +565,7 @@
 				52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */,
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
+				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,6 +679,7 @@
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
+				52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */,
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
@@ -676,7 +693,9 @@
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
 				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
+				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
+				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
 				5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */,
 				5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */,
@@ -684,6 +703,7 @@
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
 				52EC44DF21E1373500A3E8C0 /* Categories.swift in Sources */,
 				52AFE77E21E11E5B00FE1D70 /* APIs.swift in Sources */,
+				52CEE2202209376900ADDC8B /* ExchangeAds.swift in Sources */,
 				52E6527A21D9E8F000E66AA2 /* UIColor.swift in Sources */,
 				52EC44E121E139DF00A3E8C0 /* aqarMallErrors.swift in Sources */,
 			);
