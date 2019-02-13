@@ -8,15 +8,32 @@
 
 import UIKit
 
-struct AdvtsList {
-    let entryID:Int
-    let title:String
-    let provinceName:String
-    let areaName:String
-    let description:String
-    let price:Double
-    let priceLabel:String
-    let size:String
+struct AdvertisementInfo {
+    var entryID:Int?
+    var title:String?
+    var provinceName:String?
+    var areaName:String?
+    var description:String?
+    var price:Double?
+    var priceLabel:String?
+    var size:String?
+    
+    var image1 : String?
+    var image2 : String?
+    var image3 : String?
+    var image4 : String?
+    var image5 : String?
+    var image6 : String?
+    var image7 : String?
+    var image8 : String?
+    var image9 : String?
+    var WhatsApp : String?
+    var bids : String?
+    var Date : String?
+    
+    init() {
+        
+    }
     
     public init?(object: AnyObject?) {
         guard
@@ -44,3 +61,14 @@ struct AdvtsList {
     }
 }
 
+struct AdvertisementDetails {
+    var image1 : String?
+    var image2 : String?
+    var image3 : String?
+    var image4 : String?
+    var image5 : String?
+    var image6 : String?
+    var image7 : String?
+    var image8 : String?
+    var image9 : String?
+}

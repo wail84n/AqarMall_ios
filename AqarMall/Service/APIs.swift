@@ -16,12 +16,17 @@ public enum ContentType:String {
 
 public enum appURLs: String{
     case mainServer = "http://test.imallkw.com"
+    case imageURL = "http://test.imallkw.com/Upload/"
     case apiURL = "http://test.imallkw.com/Api.svc/"
 }
 
 class APIs: NSObject {
 
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
+    
+    func getFileURL(imageName: String) -> URL? {
+        return URL(string: appURLs.imageURL.rawValue + imageName)
+    }
     
     init(baseURL: String){
         Router.baseURL = URL(string: baseURL)
@@ -101,6 +106,7 @@ class APIs: NSObject {
         case getGeneralPages(lastchange : Int?)
         case getBanners(lastchange : Int?)
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
+        case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
         
@@ -166,6 +172,9 @@ class APIs: NSObject {
                 return "getAdvts"
             case .getExchangeAds(_, _, _):
                 return "getExchangePropertyAds"
+            case .getRequiredAds(_, _, _):
+                return "getBuyerRequiredAds"
+                
             }
         }
         
@@ -238,6 +247,18 @@ class APIs: NSObject {
                 if let _keyword = keyword{
                     dict["keyword"] = _keyword
                 }
+            case .getRequiredAds(let areaId, let pageNumber, let keyword):
+                if let _pageNumber = pageNumber{
+                    dict["pageNumber"] = _pageNumber
+                }
+                
+                if let _areaId = areaId{
+                    dict["areaId"] = _areaId
+                }
+                
+                if let _keyword = keyword{
+                    dict["keyword"] = _keyword
+                }
             default:
                 return nil
             }
@@ -278,7 +299,7 @@ class APIs: NSObject {
     typealias areasCallback = (_ users:[Areas]?, _ error:Error?) -> Void
     typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
     typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
-    typealias AdvtsCallback = (_ users:[AdvtsList]?, _ error:Error?) -> Void
+    typealias AdvtsCallback = (_ users:[AdvertisementInfo]?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     
     func getCategories(callback: @escaping categoriesCallback) {
@@ -362,7 +383,7 @@ class APIs: NSObject {
             guard
                 response.result.isSuccess,
                 let result = self.result(with: response),
-                let records = (result as? [AnyObject])?.compactMap({ AdvtsList(object: $0) })
+                let records = (result as? [AnyObject])?.compactMap({ AdvertisementInfo(object: $0) })
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return
@@ -385,5 +406,21 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+    
+    func getRequiredAds(_areaId : Int?, _pageNumber: Int16?, _keyword: String?, callback: @escaping ExchangeAdsCallback) {
+        let route = Router.getRequiredAds(areaId: _areaId, pageNumber: _pageNumber, keyword: _keyword)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ ExchangeAds(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+
     
 }

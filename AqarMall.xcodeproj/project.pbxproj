@@ -9,12 +9,18 @@
 /* Begin PBXBuildFile section */
 		2077FDCBB8A028D561281588 /* Pods_AqarMall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */; };
 		42DFDF8452B06B26F476BBE6 /* Pods_AqarMallTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */; };
+		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
+		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
+		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
+		52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */; };
+		52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */; };
 		52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3321FCB54700F52A0B /* AdsCell.swift */; };
 		52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52389F3421FCB54700F52A0B /* AdsCell.xib */; };
-		52389F3B22021D8300F52A0B /* AdvtsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3A22021D8300F52A0B /* AdvtsList.swift */; };
+		52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */; };
 		52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */; };
 		52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5121F2646E005480C2 /* SyncAPIData.swift */; };
 		52641B5521F27710005480C2 /* DB_Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5421F27710005480C2 /* DB_Categories.swift */; };
+		5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5277570B220F540500A222C7 /* AdsDetailsView.swift */; };
 		5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89521F3474E00A177B0 /* DB_Areas.swift */; };
 		5281D89821F3494A00A177B0 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89721F3494A00A177B0 /* Areas.swift */; };
 		5281D89A21F3513E00A177B0 /* Provinces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89921F3513E00A177B0 /* Provinces.swift */; };
@@ -82,12 +88,18 @@
 		3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		455CA263B09E7266E36C4C8F /* Pods-AqarMallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
+		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
+		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryVC.swift; sourceTree = "<group>"; };
+		52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryVC.xib; sourceTree = "<group>"; };
 		52389F3321FCB54700F52A0B /* AdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCell.swift; sourceTree = "<group>"; };
 		52389F3421FCB54700F52A0B /* AdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCell.xib; sourceTree = "<group>"; };
-		52389F3A22021D8300F52A0B /* AdvtsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvtsList.swift; sourceTree = "<group>"; };
+		52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementInfo.swift; sourceTree = "<group>"; };
 		52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AqarMall.xcdatamodel; sourceTree = "<group>"; };
 		52641B5121F2646E005480C2 /* SyncAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncAPIData.swift; sourceTree = "<group>"; };
 		52641B5421F27710005480C2 /* DB_Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Categories.swift; sourceTree = "<group>"; };
+		5277570B220F540500A222C7 /* AdsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDetailsView.swift; sourceTree = "<group>"; };
 		5281D89521F3474E00A177B0 /* DB_Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Areas.swift; sourceTree = "<group>"; };
 		5281D89721F3494A00A177B0 /* Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
 		5281D89921F3513E00A177B0 /* Provinces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provinces.swift; sourceTree = "<group>"; };
@@ -214,6 +226,8 @@
 				52389F3421FCB54700F52A0B /* AdsCell.xib */,
 				52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */,
 				52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */,
+				5277570B220F540500A222C7 /* AdsDetailsView.swift */,
+				52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -266,6 +280,7 @@
 				52E6526B21D9E40B00E66AA2 /* Service */,
 				52E6526721D9E39900E66AA2 /* Resources */,
 				52E6523721D9DB6700E66AA2 /* AppDelegate.swift */,
+				52290AA8221367BC00EBEAA7 /* BaseVC.swift */,
 				52E6523921D9DB6700E66AA2 /* FirstViewController.swift */,
 				52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */,
 				52E6524521D9DB6A00E66AA2 /* Info.plist */,
@@ -400,6 +415,9 @@
 		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */,
+				52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */,
+				52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */,
 				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
 			);
 			path = Advertisements;
@@ -428,7 +446,7 @@
 				5281D89921F3513E00A177B0 /* Provinces.swift */,
 				5281D89D21F3648300A177B0 /* GeneralPages.swift */,
 				5281D8A121F3A1F400A177B0 /* Banners.swift */,
-				52389F3A22021D8300F52A0B /* AdvtsList.swift */,
+				52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */,
 				52CEE21F2209376900ADDC8B /* ExchangeAds.swift */,
 				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 			);
@@ -559,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */,
+				52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */,
 				52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */,
 				52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */,
 				52E6524121D9DB6A00E66AA2 /* Assets.xcassets in Resources */,
@@ -566,6 +585,7 @@
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
+				52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,11 +633,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/RSLoadingView/RSLoadingView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSLoadingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -675,6 +701,7 @@
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
+				52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */,
 				5281D89821F3494A00A177B0 /* Areas.swift in Sources */,
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
@@ -683,17 +710,20 @@
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
-				52389F3B22021D8300F52A0B /* AdvtsList.swift in Sources */,
+				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,
 				52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
+				5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */,
+				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
 				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
 				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
 				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
+				52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */,
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,

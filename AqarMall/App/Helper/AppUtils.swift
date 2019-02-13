@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RSLoadingView
 
 class AppUtils: NSObject {
     enum AppVariables : String {
@@ -36,4 +37,42 @@ class AppUtils: NSObject {
         UserDefaults.standard.synchronize()
     }
     
+    
+    
+    
+    static var loadingView = RSLoadingView()
+    class func ShowLoading(){
+        loadingView = RSLoadingView()
+        
+        loadingView.shouldTapToDismiss = false
+        // loadingView.variantKey = "inAndOut"
+        loadingView.speedFactor = 1.5
+        loadingView.lifeSpanFactor = 1.5
+        loadingView.mainColor = UIColor.lightGray
+        loadingView.dimBackgroundColor = UIColor.clear
+        loadingView.showOnKeyWindow()
+    }
+    
+    class func HideLoading()
+    {
+        loadingView.hide()
+    }
+    
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
 }

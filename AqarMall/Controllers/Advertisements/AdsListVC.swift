@@ -23,7 +23,7 @@ class AdsListVC: UIViewController {
     @IBOutlet weak var sectionSegment: UISegmentedControl!
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var areaButton: UIButton!
-    @IBOutlet weak var areasss: UIImageView!
+
     var segmentedControl: ScrollableSegmentedControl!
     
     var segmentedControl222: ScrollableSegmentedControl!
@@ -41,7 +41,7 @@ class AdsListVC: UIViewController {
     var isLastCall = true
     var orderBy = 0
     
-    var arrAdve = [AdvtsList]()
+    var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +51,15 @@ class AdsListVC: UIViewController {
         self.tableView.dataSource = self
         
         getCategoriesData(isRent: true)
-    
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
         
     }
 
-    
     func callAdvAPI() {
         print(sectionSegment.selectedSegmentIndex - 1)
         APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: intProvince, _areaId: intArea, _pageNumber: 1, _orderBy: 4, _orderType: "DESC") { (result, error) in
+            AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 return
@@ -79,6 +78,25 @@ class AdsListVC: UIViewController {
     func getExchangeAds() {
         print(sectionSegment.selectedSegmentIndex - 1)
         APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: 1, _keyword: "") { (result, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            if let _result = result{
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    self.arrExchangeAdve.append(record)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func getRequiredAds() {
+        print(sectionSegment.selectedSegmentIndex - 1)
+        APIs.shared.getRequiredAds(_areaId: 0, _pageNumber: 1, _keyword: "") { (result, error) in
+            AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 return
@@ -94,13 +112,14 @@ class AdsListVC: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
         updateHeader()
         
-        areaButton.ShowHeartbeatAnimation(key: "pulse")
-        areasss.ShowHeartbeatAnimation(key: "pulse")
+//        areaButton.ShowHeartbeatAnimation(key: "pulse")
+//        areasss.ShowHeartbeatAnimation(key: "pulse")
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
@@ -136,14 +155,14 @@ class AdsListVC: UIViewController {
             
             segmentedControl.addTarget(self, action: #selector(AdsListVC.segmentSelected(sender:)), for: .valueChanged)
 
+            self.segmentedControl.insertSegment(withTitle: "الكل", at: 0)
             for i in 0 ..< self.categories.count  {
                 let item = self.categories[i]
                 print(item.name ?? "")
-                self.segmentedControl.insertSegment(withTitle: item.name ?? "", at: i)
+                self.segmentedControl.insertSegment(withTitle: item.name ?? "", at: i + 1)
             }
             
-            self.segmentedControl.insertSegment(withTitle: "الكل", at: self.categories.count)
-            self.segmentedControl.selectedSegmentIndex = self.categories.count
+            self.segmentedControl.selectedSegmentIndex = 0
             
             headerView.addSubview(segmentedControl)
         }
@@ -157,6 +176,7 @@ class AdsListVC: UIViewController {
     
     @IBAction func changeSection(_ sender: Any) {
         intCat = 0
+        AppUtils.ShowLoading()
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
@@ -165,6 +185,7 @@ class AdsListVC: UIViewController {
             self.headerHeightConstraint.constant = 110
             addressView.isHidden = true
             clearTableView()
+            getExchangeAds()
             break
         case 1:
             maxHeaderHeight = 110
@@ -172,7 +193,7 @@ class AdsListVC: UIViewController {
             self.headerHeightConstraint.constant = 110
             addressView.isHidden = true
             clearTableView()
-            getExchangeAds()
+            getRequiredAds()
             break
         case 2:
             maxHeaderHeight = 200
@@ -243,17 +264,15 @@ class AdsListVC: UIViewController {
         }else{
             addressLabel.text = "\(province)"
         }
-        //
-
     }
     
     @objc func segmentSelected(sender:ScrollableSegmentedControl) {
        print("Segment at index \(sender.selectedSegmentIndex)  selected")
-        
-        if (sender.selectedSegmentIndex  == self.categories.count){
+        AppUtils.ShowLoading()
+        if (sender.selectedSegmentIndex  == 0) { // self.categories.count)
             intCat = 0
         }else{
-            let cat = self.categories[sender.selectedSegmentIndex]
+            let cat = self.categories[sender.selectedSegmentIndex - 1]
             intCat = Int(cat.id)
         }
         
@@ -328,15 +347,27 @@ class AdsListVC: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? PlayerProfileViewController {
+            let player = sender as? GeneralFollowingPlayers
+            
+            
+            if let _isFriend = player?.isFriend{
+                vc.isFriend = _isFriend
+            }
+            vc.delegate = self
+            let indexRow = tableView.indexPathForSelectedRow?.row
+            vc.rowIndex = indexRow!
+            vc.followingUser = player
+        }
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         // Hide the Navigation Bar
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
 }
 
 extension AdsListVC: UITableViewDataSource {
@@ -355,11 +386,11 @@ extension AdsListVC: UITableViewDataSource {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
             cell.adsTitleLabel.text = record.title
-            cell.addressLabel.text = "\(record.provinceName) / \(record.areaName)"
+            cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
             cell.detailsLable.text = record.description
-            cell.priceLabel.text = "\(record.price)"
-            cell.priceTitleLabel.text = "\(record.priceLabel)"
-            cell.sizeLabel.text = "\(record.size)"
+            cell.priceLabel.text = "\(record.price ?? 0)"
+            cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
+            cell.sizeLabel.text = "\(record.size ?? "")"
           //  cell.update(with: arrUserNotifications[indexPath.row])
         }else if let cell = cell as? ExchangeAdsCell {
             let record = arrExchangeAdve[indexPath.row]

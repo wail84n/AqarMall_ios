@@ -12,9 +12,6 @@ class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        
         do {
             let user1 = User(name: "John")
             let iPhone = Phone(model: "iPhone 6s Plus")
@@ -24,26 +21,17 @@ class FirstViewController: UIViewController {
             
             print(subscription1.completePhoneNumber())
         }
-        
-        
         let greetingMaker: () -> String
         
         do {
             let mermaid = WWDCGreeting(who: "caffinated mermaid")
             greetingMaker = mermaid.greetingMaker
-            
         }
         
         print(greetingMaker()) // TRAP!
-        
-        
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
-
-
 
 class WWDCGreeting {
     let who: String
