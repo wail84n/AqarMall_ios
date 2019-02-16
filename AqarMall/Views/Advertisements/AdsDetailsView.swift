@@ -81,7 +81,7 @@ class AdsDetailsView: UIView {
 //
 //        self.priceLabel.text = "\(myAd2.price!) \(Utility.GetCurrency())"
         
-        self.descriptionTxtView.text = myAd2.description
+        self.descriptionTxtView.text = myAd2.details
         
         var stradDetails = myAd2.description
         
@@ -109,31 +109,39 @@ class AdsDetailsView: UIView {
         }
         
         intImagesCount = 0
-        if (myAd2.image1?.count)! > 0 {
+        if let image1 = myAd2.image1, image1.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image2?.count)! > 0 {
+
+        if let image2 = myAd2.image2, image2.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image3?.count)! > 0 {
+
+        if let image3 = myAd2.image3, image3.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image4?.count)! > 0 {
+
+        if let image4 = myAd2.image4, image4.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image5?.count)! > 0 {
+        
+        if let image5 = myAd2.image5, image5.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image6?.count)! > 0 {
+        
+        if let image6 = myAd2.image6, image6.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image7?.count)! > 0 {
+        
+        if let image7 = myAd2.image7, image7.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image8?.count)! > 0 {
+        
+        if let image8 = myAd2.image8, image8.isEmpty == false {
             intImagesCount += 1
         }
-        if (myAd2.image9?.count)! > 0 {
+        
+        if let image9 = myAd2.image9, image9.isEmpty == false {
             intImagesCount += 1
         }
         
@@ -173,42 +181,47 @@ class AdsDetailsView: UIView {
     }
     
     //MARK:-
+    
+    func getImagePath(image : String)-> String {
+        return "Advertisements/Advt\(AdDetails.entryID ?? 0)/\(image)"
+        
+    }
     func loadImages() {
         var imageURLs : [URL] = []
         if let image1 = AdDetails.image1 {
-            let picture1URL = APIs.shared.getFileURL(imageName: image1)!
+            let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
             imageURLs.append(picture1URL)
         }
         if let image2 = AdDetails.image2 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image2)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
             imageURLs.append(pictureURL)
         }
         if let image3 = AdDetails.image3 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image3)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
             imageURLs.append(pictureURL)
         }
         if let image4 = AdDetails.image4 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image4)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
             imageURLs.append(pictureURL)
         }
         if let image5 = AdDetails.image5 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image5)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
             imageURLs.append(pictureURL)
         }
         if let image6 = AdDetails.image6 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image6)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
             imageURLs.append(pictureURL)
         }
         if let image7 = AdDetails.image7 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image7)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
             imageURLs.append(pictureURL)
         }
         if let image8 = AdDetails.image8 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image8)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
             imageURLs.append(pictureURL)
         }
         if let image9 = AdDetails.image9 {
-            let pictureURL = APIs.shared.getFileURL(imageName: image9)!
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
             imageURLs.append(pictureURL)
         }
 

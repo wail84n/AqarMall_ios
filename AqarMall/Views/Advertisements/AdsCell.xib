@@ -75,9 +75,12 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1253" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBm-43-VhI">
-                                        <rect key="frame" x="5" y="7" width="41" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1253" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="GBm-43-VhI">
+                                        <rect key="frame" x="5" y="7" width="60" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="h3y-yH-lKT"/>
+                                            <constraint firstAttribute="width" constant="60" id="wG5-gz-0ny"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.63137254901960782" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -86,7 +89,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="68B-Us-4gY"/>
+                                    <constraint firstItem="GBm-43-VhI" firstAttribute="centerY" secondItem="Rv4-ih-cKA" secondAttribute="centerY" id="NU5-g8-jIE"/>
                                     <constraint firstAttribute="trailing" secondItem="WGK-tI-Oc8" secondAttribute="trailing" constant="5" id="Nx3-Ho-EAy"/>
+                                    <constraint firstItem="GBm-43-VhI" firstAttribute="leading" secondItem="Rv4-ih-cKA" secondAttribute="leading" constant="5" id="oPQ-7G-JfK"/>
                                     <constraint firstItem="WGK-tI-Oc8" firstAttribute="top" secondItem="Rv4-ih-cKA" secondAttribute="top" constant="3" id="qQD-Th-PgH"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -124,9 +129,12 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="123,22,2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neI-CO-d4s">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123,22,2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="neI-CO-d4s">
                                         <rect key="frame" x="5" y="7" width="72" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="ceC-Pr-gq9"/>
+                                            <constraint firstAttribute="height" constant="21" id="rW4-jZ-Rj3"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.63137254899999995" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -134,9 +142,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="neI-CO-d4s" firstAttribute="leading" secondItem="cCy-ez-cta" secondAttribute="leading" constant="5" id="81L-Jt-LdV"/>
                                     <constraint firstAttribute="trailing" secondItem="4Xt-oG-PK3" secondAttribute="trailing" constant="5" id="9M6-kB-zHr"/>
                                     <constraint firstAttribute="height" constant="35" id="KY9-qB-WPa"/>
                                     <constraint firstItem="4Xt-oG-PK3" firstAttribute="top" secondItem="cCy-ez-cta" secondAttribute="top" constant="3" id="KlK-Be-x27"/>
+                                    <constraint firstItem="neI-CO-d4s" firstAttribute="centerY" secondItem="cCy-ez-cta" secondAttribute="centerY" id="XBZ-C4-23u"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">

@@ -15,15 +15,77 @@
             <objects>
                 <viewController storyboardIdentifier="MoreVC" id="fyF-bV-CnQ" customClass="MoreVC" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aot-iF-zEG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seG-rR-irL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AgT-r7-ns3">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JSq-XU-K2C">
+                                                <rect key="frame" x="127" y="931" width="121" height="29"/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                </segments>
+                                            </segmentedControl>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zr3-Gt-Y7l">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ha2-Np-lx0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57o-b8-goY">
+                                                                <rect key="frame" x="53" y="65" width="46" height="30"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <state key="normal" title="Button"/>
+                                                            </button>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.96470588239999999" green="0.89411764709999997" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="t36-Bq-jqJ"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Zr3-Gt-Y7l" firstAttribute="leading" secondItem="AgT-r7-ns3" secondAttribute="leading" id="5Ec-te-8xe"/>
+                                            <constraint firstItem="JSq-XU-K2C" firstAttribute="leading" secondItem="AgT-r7-ns3" secondAttribute="leading" constant="127" id="GlT-iy-ckg"/>
+                                            <constraint firstItem="Zr3-Gt-Y7l" firstAttribute="top" secondItem="AgT-r7-ns3" secondAttribute="top" id="hR5-zA-JLF"/>
+                                            <constraint firstAttribute="bottom" secondItem="JSq-XU-K2C" secondAttribute="bottom" constant="41" id="oON-bP-vIp"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zr3-Gt-Y7l" secondAttribute="trailing" id="t2P-7s-9Qp"/>
+                                            <constraint firstAttribute="trailing" secondItem="JSq-XU-K2C" secondAttribute="trailing" constant="127" id="tnw-Im-Qvd"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AgT-r7-ns3" secondAttribute="trailing" id="1SI-pq-aRu"/>
+                                    <constraint firstAttribute="bottom" secondItem="AgT-r7-ns3" secondAttribute="bottom" id="4nS-AB-GNr"/>
+                                    <constraint firstItem="AgT-r7-ns3" firstAttribute="height" secondItem="seG-rR-irL" secondAttribute="height" id="6g6-BN-IpL"/>
+                                    <constraint firstItem="AgT-r7-ns3" firstAttribute="centerX" secondItem="seG-rR-irL" secondAttribute="centerX" id="Ygp-QF-pE8"/>
+                                    <constraint firstItem="AgT-r7-ns3" firstAttribute="top" secondItem="seG-rR-irL" secondAttribute="top" id="m6A-5W-O4K"/>
+                                    <constraint firstItem="AgT-r7-ns3" firstAttribute="leading" secondItem="seG-rR-irL" secondAttribute="leading" id="rsU-LU-x0A"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="seG-rR-irL" firstAttribute="leading" secondItem="s3j-TC-b7Y" secondAttribute="leading" id="54r-cV-LS3"/>
+                            <constraint firstItem="seG-rR-irL" firstAttribute="trailing" secondItem="s3j-TC-b7Y" secondAttribute="trailing" id="DgU-9J-J8a"/>
+                            <constraint firstItem="seG-rR-irL" firstAttribute="top" secondItem="Aot-iF-zEG" secondAttribute="top" id="c4Z-bG-yun"/>
+                            <constraint firstItem="s3j-TC-b7Y" firstAttribute="bottom" secondItem="seG-rR-irL" secondAttribute="bottom" id="eR5-Aq-UEO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="s3j-TC-b7Y"/>
                     </view>
+                    <size key="freeformSize" width="375" height="1000"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2h-aR-QCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="111" y="165"/>
+            <point key="canvasLocation" x="109.59999999999999" y="164.6176911544228"/>
         </scene>
     </scenes>
 </document>

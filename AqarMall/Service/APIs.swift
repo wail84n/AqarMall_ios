@@ -25,6 +25,7 @@ class APIs: NSObject {
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
     
     func getFileURL(imageName: String) -> URL? {
+        print(URL(string: appURLs.imageURL.rawValue + imageName))
         return URL(string: appURLs.imageURL.rawValue + imageName)
     }
     
@@ -100,6 +101,7 @@ class APIs: NSObject {
         static var auth:Auth?
         
         case getAds(catId:String)
+        
         case getCategories(lastchange : Int?)
         case getProvinces(lastchange : Int?)
         case getAreas(lastchange : Int?)
@@ -107,8 +109,8 @@ class APIs: NSObject {
         case getBanners(lastchange : Int?)
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
-        
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
+        case getAdvtDetails(Id:Int?)
         
         var contentType:ContentType {
             switch self {
@@ -174,7 +176,8 @@ class APIs: NSObject {
                 return "getExchangePropertyAds"
             case .getRequiredAds(_, _, _):
                 return "getBuyerRequiredAds"
-                
+            case .getAdvtDetails(_):
+                return "getAdvtDetails_ios"
             }
         }
         
@@ -205,6 +208,12 @@ class APIs: NSObject {
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
                 }
+              
+            case .getAdvtDetails(let Id):
+                if let _Id = Id{
+                    dict["id"] = _Id
+                }
+              //  dict["id"] = Id
                 
             case .getAdvts(let provinceType, let sectionId, let catId, let provinceId, let areaId, let pageNumber, let orderBy, let orderType):
                 if let _provinceType = provinceType{
@@ -300,6 +309,7 @@ class APIs: NSObject {
     typealias generalPagesCallback = (_ users:[GeneralPages]?, _ error:Error?) -> Void
     typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
     typealias AdvtsCallback = (_ users:[AdvertisementInfo]?, _ error:Error?) -> Void
+    typealias AdvtDetailsCallback = (_ users:AdvertisementInfo?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     
     func getCategories(callback: @escaping categoriesCallback) {
@@ -389,6 +399,22 @@ class APIs: NSObject {
                     return
             }
             callback(records, nil)
+        }
+    }
+    
+    func getAdvtDetails(adv : AdvertisementInfo, callback: @escaping AdvtDetailsCallback) {
+        let route = Router.getAdvtDetails(Id: adv.entryID)
+
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let advDetails = (result as? [AnyObject])?.compactMap({ AdvertisementInfo(object: $0, shortDetails: adv) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(advDetails[0], nil)
         }
     }
     

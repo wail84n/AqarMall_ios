@@ -209,7 +209,7 @@
                         <outlet property="tableView" destination="K0e-24-eNF" id="LXe-kB-fAJ"/>
                         <outlet property="tileLabel" destination="03T-7k-r1p" id="KlM-fC-5Ii"/>
                         <outlet property="titleTopConstraint" destination="CqN-NV-9jF" id="tVo-ob-igV"/>
-                        <segue destination="8B0-ey-Q44" kind="show" id="3aq-kA-p9g"/>
+                        <segue destination="8B0-ey-Q44" kind="show" identifier="adsListToDetails" id="3aq-kA-p9g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiG-JB-1vD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,7 +243,7 @@
                                             <constraint firstAttribute="width" constant="32" id="ICa-xK-mGT"/>
                                             <constraint firstAttribute="height" constant="32" id="syi-JE-d6q"/>
                                         </constraints>
-                                        <state key="normal" image="Backgray"/>
+                                        <state key="normal" image="adDetailsBack"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zD-UH-SqD">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="60"/>
@@ -273,7 +273,7 @@
                                             <constraint firstAttribute="width" constant="32" id="Q8v-FT-wa0"/>
                                             <constraint firstAttribute="height" constant="32" id="gT9-qq-uHv"/>
                                         </constraints>
-                                        <state key="normal" image="reportHand"/>
+                                        <state key="normal" image="adDetailsShare"/>
                                         <connections>
                                             <action selector="report" destination="8B0-ey-Q44" eventType="touchUpInside" id="oTB-Aw-YIw"/>
                                         </connections>
@@ -295,7 +295,7 @@
                                             <constraint firstAttribute="width" constant="32" id="HDC-kY-dtN"/>
                                             <constraint firstAttribute="height" constant="32" id="b4p-PP-zGK"/>
                                         </constraints>
-                                        <state key="normal" image="Fav"/>
+                                        <state key="normal" image="adDetailsShare"/>
                                         <connections>
                                             <action selector="favoriteButtonPressed:" destination="8B0-ey-Q44" eventType="touchUpInside" id="J4r-9W-l6z"/>
                                         </connections>
@@ -495,12 +495,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Backgray" width="16" height="16"/>
-        <image name="Fav" width="16" height="16"/>
+        <image name="adDetailsBack" width="85" height="83"/>
+        <image name="adDetailsShare" width="85" height="83"/>
         <image name="advSearch" width="40" height="33"/>
         <image name="filter" width="19" height="20"/>
         <image name="leftarrow" width="16" height="16"/>
-        <image name="reportHand" width="16" height="16"/>
         <image name="rightArrow" width="16" height="16"/>
         <image name="wrongCategory" width="16" height="16"/>
     </resources>

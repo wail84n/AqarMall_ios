@@ -11,7 +11,7 @@ import Social
 import MessageUI
 
 protocol AdDetailsDelegate {
-    func refreshScreen(myAd: AdvertisementInfo)
+    func updateAdvInAdsList(myAd: AdvertisementInfo, index : Int)
 }
 
 class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
@@ -71,13 +71,35 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
             self.btnNext.isEnabled = false
         }
 
-        self.SetView()
+        self.callAdvDetailsAPI()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
             
         }
-        
-        
+    }
+    
+    func callAdvDetailsAPI() {
+        let adsRecord = self.ads[intAdIndex]
+        if adsRecord.isCalledDetails == true {
+            self.SetView()
+        }else{
+            AppUtils.ShowLoading()
+            APIs.shared.getAdvtDetails(adv: adsRecord) { (result, error) in
+                AppUtils.HideLoading()
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+                
+                if let _delegate = self.delegate, let _result = result  {
+                    _delegate.updateAdvInAdsList(myAd: _result, index: self.intAdIndex)
+                    if (self.ads.count - 1) >= self.intAdIndex {
+                        self.ads[self.intAdIndex] = _result
+                    }
+                }
+                self.SetView()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

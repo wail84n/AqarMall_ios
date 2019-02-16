@@ -9,8 +9,7 @@
 import UIKit
 import ScrollableSegmentedControl
 
-class AdsListVC: UIViewController {
-
+class AdsListVC: UIViewController, AdDetailsDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subHeaderHeightConstraint: NSLayoutConstraint!
@@ -49,11 +48,9 @@ class AdsListVC: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         getCategoriesData(isRent: true)
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
-        
     }
 
     func callAdvAPI() {
@@ -72,6 +69,12 @@ class AdsListVC: UIViewController {
                 }
                 self.tableView.reloadData()
             }
+        }
+    }
+    
+    func updateAdvInAdsList(myAd: AdvertisementInfo, index: Int) {
+        if (self.arrAdve.count - 1) >= index {
+            self.arrAdve[index] = myAd
         }
     }
     
@@ -349,17 +352,33 @@ class AdsListVC: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PlayerProfileViewController {
-            let player = sender as? GeneralFollowingPlayers
+        if let navPlace = segue.destination as? AdDetails_NewVC {
             
+            let adDetails = sender as? AdvertisementInfo
             
-            if let _isFriend = player?.isFriend{
-                vc.isFriend = _isFriend
+
+            navPlace.ads = arrAdve
+            navPlace.delegate = self
+            navPlace.currentPage = currentPage
+            print(isLastCall)
+            navPlace.isLastCall = isLastCall
+         //   navPlace.strKeywordSearch = strKeywordSearch
+
+            navPlace.catId = intCat
+            
+//            if strKeywordSearch != "" {
+//                navPlace.proccessType = -1
+//            }else{
+//                navPlace.proccessType = 2 //Int8(adsSegment.selectedSegmentIndex)
+//            }
+            
+            navPlace.proccessType = 2
+            
+            let indexPath = tableView.indexPathForSelectedRow
+            navPlace.intAdIndex = indexPath?.row ?? 0
+            if let _adDetails = adDetails {
+                navPlace.adDetails = _adDetails
             }
-            vc.delegate = self
-            let indexRow = tableView.indexPathForSelectedRow?.row
-            vc.rowIndex = indexRow!
-            vc.followingUser = player
         }
     }
     
@@ -387,7 +406,7 @@ extension AdsListVC: UITableViewDataSource {
             let record = arrAdve[indexPath.row]
             cell.adsTitleLabel.text = record.title
             cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
-            cell.detailsLable.text = record.description
+            cell.detailsLable.text = record.details
             cell.priceLabel.text = "\(record.price ?? 0)"
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
@@ -412,6 +431,11 @@ extension AdsListVC: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: "ExchangeAdsCell")!
         }
         return tableView.dequeueReusableCell(withIdentifier: "AdsCell")!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "adsListToDetails", sender: self.arrAdve[indexPath.item])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
