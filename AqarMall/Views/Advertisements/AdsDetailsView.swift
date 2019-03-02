@@ -21,6 +21,9 @@ protocol AdDetailsViewDelegate {
     func reNewAd(AdDetails: AdvertisementInfo, result :Bool)
     func RemoveAd(AdDetails: AdvertisementInfo)
     func EditAd(AdDetails: AdvertisementInfo)
+    func showHideDetails()
+    func showHideHeaderView(isHide :Bool)
+    func contactByWhatsApp(AdDetails: AdvertisementInfo)
 }
 
 
@@ -35,11 +38,10 @@ extension UIView {
 }
 
 
-class AdsDetailsView: UIView {
+class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var adImagesSV: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
     @IBOutlet weak var areaNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -51,10 +53,40 @@ class AdsDetailsView: UIView {
     @IBOutlet weak var lblImageNo: UILabel!
     @IBOutlet weak var priceView: UIView!
     @IBOutlet weak var catName : UILabel!
+    @IBOutlet weak var advDetailsView: UIView!
+    @IBOutlet weak var roomsNoView: UIView!
+    @IBOutlet weak var roomNoLabel: UILabel!
+    @IBOutlet weak var bathroomNoView: UIView!
+    @IBOutlet weak var bathroomNoLabel: UILabel!
+    @IBOutlet weak var floorsNoView: UIView!
+    @IBOutlet weak var flooresNoLabel: UILabel!
+    @IBOutlet weak var finishingView: UIView!
+    @IBOutlet weak var finishingLabel: UILabel!
+    @IBOutlet weak var interfaceTypeView: UIView!
+    @IBOutlet weak var interfaceLabel: UILabel!
+    @IBOutlet weak var ageOfBuildingView: UIView!
+    @IBOutlet weak var ageOfBuildingLabel: UILabel!
+    @IBOutlet weak var buildingSizeView: UIView!
+    @IBOutlet weak var buildingSizeLabel: UILabel!
+    @IBOutlet weak var landSizeView: UIView!
+    @IBOutlet weak var landSizeLabel: UILabel!
+    @IBOutlet weak var licenseView: UIView!
+    @IBOutlet weak var licenseLabel: UILabel!
+    @IBOutlet weak var sizeView: UIView!
+    @IBOutlet weak var sizeLabel: UILabel!
     
+    @IBOutlet weak var moreDetailsButton: UIButton!
     
     @IBOutlet weak var descriptionConstraint_Height: NSLayoutConstraint!
+    @IBOutlet weak var descriptionViewConstraint_Height: NSLayoutConstraint!
+    @IBOutlet weak var stackButtonViewConstraint_Height: NSLayoutConstraint!
+    @IBOutlet weak var imagesScrollViewConstraint_Height: NSLayoutConstraint!
+    
     @IBOutlet weak var changeAdStatusStackView: UIStackView!
+    @IBOutlet weak var optionsStackView: UIStackView!
+    
+    @IBOutlet weak var advDateLabel: UILabel!
+    @IBOutlet weak var advIdLabel: UILabel!
     
     let placeholderImage = UIImage(named: "PlaceHolder")!
     var sourceSegueId = String()
@@ -62,6 +94,8 @@ class AdsDetailsView: UIView {
     var delegate : AdDetailsViewDelegate? = nil
     
     var AdDetails = AdvertisementInfo()
+    var viewHeight : CGFloat = 1160
+    
   //  let user = UserVM.checkUserLogin()
     
     func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool)  {
@@ -71,8 +105,7 @@ class AdsDetailsView: UIView {
         self.changeAdStatusStackView.isHidden = !isFromMyAds
         self.loadImages()
         
-        
-        
+        adImagesSV.delegate = self
         
 //        self.dateLabel.text = myAd2.regDate!
 //        self.areaNameLabel.text = myAd2.area
@@ -82,28 +115,14 @@ class AdsDetailsView: UIView {
 //        self.priceLabel.text = "\(myAd2.price!) \(Utility.GetCurrency())"
         
         self.descriptionTxtView.text = myAd2.details
-        
-        var stradDetails = myAd2.description
-        
-        var counter = 0
-        
-        // ++ wail
-//        while(stradDetails.contains("\r\n")) {
-//            stradDetails = stradDetails.removeFirst(of: "\r\n", with: "")
-//            counter += 1
-//        }
-//
-//        while(stradDetails.contains("\n")) {
-//            stradDetails = stradDetails.replaceFirst(of: "\n", with: "")
-//            counter += 1
-//        }
-        
-        print(counter)
+        descriptionTxtView.isScrollEnabled = false
         
         
 //        self.setFavoriteImageBy(flag: MyAdsVM.checkIsFavorite(ad: myAd2))
 //        self.catName.text = myAd2.CatName
-        
+        advDateLabel.text = myAd2.date
+        advIdLabel.text = "\(myAd2.entryID ?? 0)"
+
         if sourceSegueId == "MyAdDetailsVC" {
             self.changeAdStatusStackView.isHidden = false
         }
@@ -145,19 +164,142 @@ class AdsDetailsView: UIView {
             intImagesCount += 1
         }
         
+        SetProperties()
         if intImagesCount > 0 {
             adImagesSV.isHidden = false
             lblImageNo.text = ("\(1) / \(intImagesCount)")
+            self.delegate?.showHideHeaderView(isHide: true)
         }else{
+            self.delegate?.showHideHeaderView(isHide: false)
             adImagesSV.isHidden = true
+            imagesScrollViewConstraint_Height.constant = 110
+            pageControl.isHidden = true
             lblImageNo.text = ("\(0) / \(intImagesCount)")
         }
         
+    }
+    
+    func SetProperties(){
+        if AdDetails.properties?.ageOfBuilding == "-1" {
+            ageOfBuildingView.isHidden = true
+        }else{
+            ageOfBuildingView.isHidden = false
+            ageOfBuildingLabel.text = AdDetails.properties?.ageOfBuilding
+        }
+        
+        if AdDetails.properties?.buildingSize == "-1" {
+            buildingSizeView.isHidden = true
+        }else{
+            buildingSizeView.isHidden = false
+            buildingSizeLabel.text = AdDetails.properties?.buildingSize
+        }
+        
+        if AdDetails.properties?.finishing == "-1" {
+            finishingView.isHidden = true
+        }else{
+            finishingView.isHidden = false
+            finishingLabel.text = AdDetails.properties?.finishing
+        }
+        
+        if AdDetails.properties?.interfaceType == "-1" {
+            interfaceTypeView.isHidden = true
+        }else{
+            interfaceTypeView.isHidden = false
+            interfaceLabel.text = AdDetails.properties?.interfaceType
+        }
+        
+        if AdDetails.properties?.landSize == "-1" {
+            landSizeView.isHidden = true
+        }else{
+            landSizeView.isHidden = false
+            landSizeLabel.text = AdDetails.properties?.landSize
+        }
+        
+        
+        if AdDetails.properties?.licenseType == "-1" {
+            licenseView.isHidden = true
+        }else{
+            licenseView.isHidden = false
+            licenseLabel.text = AdDetails.properties?.licenseType
+        }
+        
+        
+        if AdDetails.properties?.numberOfBathrooms == "-1" {
+            bathroomNoView.isHidden = true
+        }else{
+            bathroomNoView.isHidden = false
+            bathroomNoLabel.text = AdDetails.properties?.numberOfBathrooms
+        }
+        
+        
+        if AdDetails.properties?.numberOfFloors == "-1" {
+            floorsNoView.isHidden = true
+        }else{
+            floorsNoView.isHidden = false
+            flooresNoLabel.text = AdDetails.properties?.numberOfFloors
+        }
+        
+        
+        if AdDetails.properties?.numberOfRooms == "-1" {
+            roomsNoView.isHidden = true
+        }else{
+            roomsNoView.isHidden = false
+            roomNoLabel.text = AdDetails.properties?.numberOfRooms
+        }
+        
+    }
+    
+    @IBAction func showHideMoreDetails(_ sender: Any) {
+        descriptionTxtView.isScrollEnabled = true
+        if advDetailsView.tag == 0 {
+           advDetailsView.tag = 1 // ++ show details
+            var stradDetails = self.descriptionTxtView.text
+            
+            var counter = 0
+            
+            print(counter)
+            
+            let frame =  getTextViewHight()// self.descriptionTxtView.frame;
+          //  frame.size.height = self.descriptionTxtView.contentSize.height + CGFloat((counter * 10));
+            
+            self.descriptionTxtView.frame = frame;
+            
+            self.descriptionConstraint_Height.constant = frame.size.height;
+            descriptionViewConstraint_Height.constant = frame.size.height;
+
+        }else{
+            advDetailsView.tag = 0 // ++ hide details
+            descriptionConstraint_Height.constant = 100
+            descriptionViewConstraint_Height.constant = 100
+        }
+        
+      //  moreButtonViewConstraint_Buttom.constant = 35
+        
+        if let _delegate = delegate {
+          //  moreDetailsButton
+            descriptionTxtView.isScrollEnabled = false
+            _delegate.showHideDetails()
+        }
+    }
+    
+    func getTextViewHight() -> CGRect{
         var frame = self.descriptionTxtView.frame;
-        frame.size.height = self.descriptionTxtView.contentSize.height + CGFloat((counter * 10));
-        self.descriptionTxtView.frame = frame;
-        descriptionTxtView.isScrollEnabled = false
-        self.descriptionConstraint_Height.constant = frame.size.height;
+        frame.size.height = self.descriptionTxtView.contentSize.height
+        return frame
+    }
+    
+    func editDetailsSize()-> CGFloat{
+        let actualViewHeight = getActualViewHeight()
+        stackButtonViewConstraint_Height.constant = actualViewHeight
+        return actualViewHeight
+//        if advDetailsView.tag == 1 {
+//            let frame =  getTextViewHight()
+//            stackButtonViewConstraint_Height.constant = viewHeight + (frame.size.height - 100)
+//            return viewHeight + (frame.size.height - 100)
+//        }else{
+//            stackButtonViewConstraint_Height.constant = viewHeight
+//            return(viewHeight)
+//        }
     }
     
     func UpdateViews(){
@@ -172,12 +314,30 @@ class AdsDetailsView: UIView {
         self.loadImages()
     }
     
-    func getViewHight()-> CGFloat{
-        print(self.descriptionTxtView.frame.origin.y)
-        print(self.descriptionTxtView.frame.size.height)
-        print(self.descriptionTxtView.frame.origin.y + self.descriptionTxtView.frame.size.height)
+    func getActualViewHeight() -> CGFloat{
+        var _viewHeight = viewHeight
         
-        return(self.descriptionTxtView.frame.origin.y + self.descriptionTxtView.frame.size.height)
+        if intImagesCount == 0 {
+            _viewHeight -= 287
+        }
+        
+        if advDetailsView.tag == 1 {
+            let _frame =  getTextViewHight()
+            _viewHeight += _frame.size.height - 100
+        }
+        
+        let availableNo : Int = 10 - (AdDetails.properties?.availableNo ?? 0)
+        
+        if availableNo > 0 {
+            _viewHeight -= CGFloat((availableNo * 40))
+        }
+        return _viewHeight
+    }
+    
+    func getViewHight() -> CGFloat{
+        let actualViewHeight = getActualViewHeight()
+        stackButtonViewConstraint_Height.constant = actualViewHeight
+        return actualViewHeight
     }
     
     //MARK:-
@@ -316,6 +476,10 @@ class AdsDetailsView: UIView {
     
     @IBAction func CallPhoneButton(){
         self.delegate?.CallPhone(AdDetails: self.AdDetails)
+    }
+    
+    @IBAction func contactByWhatsApp(){
+        self.delegate?.contactByWhatsApp(AdDetails: self.AdDetails)
     }
     
     @IBAction func SnedSMSButton(){

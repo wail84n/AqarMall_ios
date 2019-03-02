@@ -27,11 +27,15 @@ class AdvertisementInfo : NSObject {
     var image7 : String?
     var image8 : String?
     var image9 : String?
-    var WhatsApp : String?
+    var whatsApp : String?
     var bids : String?
-    var Date : String?
+    var date : String?
+    var phone : String?
     var isCalledDetails : Bool = false
+    var isBanner : Bool = false
+    var banner : BannersData? = nil
     
+    var properties : AdvertisementProperties? = nil
     override init() {
         
     }
@@ -79,7 +83,24 @@ class AdvertisementInfo : NSObject {
         if let _image9 = _object["Image9"] as? String {
             self.image9 = _image9
         }
+        
+        if let _date = _object["Date"] as? String {
+            self.date = _date
+        }
+        
+        if let _phone = _object["Phone"] as? String {
+            self.phone = _phone
+        }
+        
+        if let _whatsApp = _object["WhatsApp"] as? String {
+            self.whatsApp = _whatsApp
+        }
+        
+        
 
+        if let _properties = AdvertisementProperties(object: _object["properties"] as AnyObject?){
+            self.properties = _properties
+        }
         self.entryID = shortDetails.entryID
         self.title = shortDetails.title
         self.provinceName = shortDetails.provinceName
@@ -119,14 +140,112 @@ class AdvertisementInfo : NSObject {
 
 }
 
-struct AdvertisementDetails {
-    var image1 : String?
-    var image2 : String?
-    var image3 : String?
-    var image4 : String?
-    var image5 : String?
-    var image6 : String?
-    var image7 : String?
-    var image8 : String?
-    var image9 : String?
+
+struct AdvertisementProperties {
+    var ageOfBuilding : String?
+    var buildingSize : String?
+    var finishing : String?
+    var footPrice : String?
+    var interfaceType : String?
+    var landSize : String?
+    var licenseType : String?
+    var monthlyRent : String?
+    var numberOfBathrooms : String?
+    var numberOfFloors : String?
+    var numberOfRooms : String?
+    var size : String?
+    var availableNo : Int = 0
+    
+    public init?(object: AnyObject?) {
+        
+        guard
+            let _object = object
+            else{
+                return nil
+        }
+        
+        if let _ageOfBuilding = _object["AgeOfBuilding"] as? String {
+            self.ageOfBuilding = _ageOfBuilding
+            availableNo += 1
+        }else{
+            self.ageOfBuilding = "-1"
+        }
+        
+        if let _buildingSize = _object["BuildingSize"] as? String {
+            self.buildingSize = _buildingSize
+            availableNo += 1
+        }else{
+            self.buildingSize = "-1"
+        }
+        
+        if let _finishing = _object["Finishing"] as? String {
+            self.finishing = _finishing
+            availableNo += 1
+        }else{
+            self.finishing = "-1"
+        }
+        
+        if let _footPrice = _object["FootPrice"] as? String {
+            self.footPrice = _footPrice
+            availableNo += 1
+        }else{
+            self.footPrice = "-1"
+        }
+        
+        if let _interfaceType = _object["InterfaceType"] as? String {
+            self.interfaceType = _interfaceType
+            availableNo += 1
+        }else{
+            self.interfaceType = "-1"
+        }
+        
+        if let _landSize = _object["LandSize"] as? String {
+            self.landSize = _landSize
+            availableNo += 1
+        }else{
+            self.landSize = "-1"
+        }
+        
+        if let _licenseType = _object["LicenseType"] as? String {
+            self.licenseType = _licenseType
+            availableNo += 1
+        }else{
+            self.licenseType = "-1"
+        }
+        
+        if let _monthlyRent = _object["MonthlyRent"] as? String {
+            self.monthlyRent = _monthlyRent
+            availableNo += 1
+        }else{
+            self.monthlyRent = "-1"
+        }
+       
+        if let _numberOfBathrooms = _object["NumberOfBathrooms"] as? String {
+            self.numberOfBathrooms = _numberOfBathrooms
+            availableNo += 1
+        }else{
+            self.numberOfBathrooms = "-1"
+        }
+        
+        if let _numberOfFloors = _object["NumberOfFloors"] as? String {
+            self.numberOfFloors = _numberOfFloors
+            availableNo += 1
+        }else{
+            self.numberOfFloors = "-1"
+        }
+        
+        if let _numberOfRooms = _object["NumberOfRooms"] as? String {
+            self.numberOfRooms = _numberOfRooms
+            availableNo += 1
+        }else{
+            self.numberOfRooms = "-1"
+        }
+        
+        if let _size = _object["Size"] as? String {
+            self.size = _size
+            availableNo += 1
+        }else{
+            self.size = "-1"
+        }
+    }
 }

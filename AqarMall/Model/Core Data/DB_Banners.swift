@@ -48,4 +48,21 @@ struct DB_Banners {
         }
         return false
     }
+    
+    static func callBanners()-> [BannersData]?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "BannersData")
+       // userFetch.predicate = NSPredicate(format: "\(byType.rawValue) = 1")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [BannersData]
+            if  result?.count ?? 0 > 0 {
+                return result
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
 }

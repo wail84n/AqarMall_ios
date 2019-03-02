@@ -31,6 +31,7 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
     
     var previousScrollOffset: CGFloat = 0;
     var categories = [CategoriesData]()
+    var banners = [BannersData]()
     var intProvince = 0
     var intArea = 0
     var intCat = 0
@@ -39,7 +40,7 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
     var nextpage = 0
     var isLastCall = true
     var orderBy = 0
-    
+    var bannerIndex = 0
     var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
     override func viewDidLoad() {
@@ -51,6 +52,7 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
         getCategoriesData(isRent: true)
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
+        tableView.register(UINib(nibName: "bannerCell", bundle: nil), forCellReuseIdentifier: "bannerCell")
     }
 
     func callAdvAPI() {
@@ -62,14 +64,32 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
                 return
             }
             if let _result = result{
+                var counter = 0
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
+                    if counter == 4 {
+                        counter = 0
+                        self.arrAdve.append(self.addBanner())
+                    }
+                    counter += 1
                     self.arrAdve.append(record)
                 }
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    func addBanner()-> AdvertisementInfo{
+        if bannerIndex >= banners.count{
+            bannerIndex = 0
+        }
+        let banner = AdvertisementInfo()
+        banner.isBanner = true
+        banner.banner = banners[bannerIndex]
+        
+        bannerIndex += 1
+        return banner
     }
     
     func updateAdvInAdsList(myAd: AdvertisementInfo, index: Int) {
@@ -115,12 +135,12 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
         }
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
         updateHeader()
         
+        getBannersData()
 //        areaButton.ShowHeartbeatAnimation(key: "pulse")
 //        areasss.ShowHeartbeatAnimation(key: "pulse")
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -128,6 +148,14 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         
+    }
+    
+    func getBannersData(){
+      //  banners
+        
+        if let _banners = DB_Banners.callBanners(){
+            banners = _banners
+        }
     }
     
     func getCategoriesData(isRent : Bool)
@@ -353,25 +381,15 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navPlace = segue.destination as? AdDetails_NewVC {
-            
             let adDetails = sender as? AdvertisementInfo
-            
-
             navPlace.ads = arrAdve
             navPlace.delegate = self
             navPlace.currentPage = currentPage
             print(isLastCall)
             navPlace.isLastCall = isLastCall
-         //   navPlace.strKeywordSearch = strKeywordSearch
 
             navPlace.catId = intCat
-            
-//            if strKeywordSearch != "" {
-//                navPlace.proccessType = -1
-//            }else{
-//                navPlace.proccessType = 2 //Int8(adsSegment.selectedSegmentIndex)
-//            }
-            
+
             navPlace.proccessType = 2
             
             let indexPath = tableView.indexPathForSelectedRow
@@ -379,6 +397,12 @@ class AdsListVC: UIViewController, AdDetailsDelegate {
             if let _adDetails = adDetails {
                 navPlace.adDetails = _adDetails
             }
+        }else if let navPlace = segue.destination as? BannerDetailsViewController {
+            let bannerDetails = sender as? AdvertisementInfo
+            if let banner = bannerDetails?.banner {
+                navPlace.bannerDetails = banner
+            }
+            
         }
     }
     
@@ -404,6 +428,8 @@ extension AdsListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
+            
+            print(record.isBanner)
             cell.adsTitleLabel.text = record.title
             cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
             cell.detailsLable.text = record.details
@@ -411,6 +437,12 @@ extension AdsListVC: UITableViewDataSource {
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
           //  cell.update(with: arrUserNotifications[indexPath.row])
+        }else if let cell = cell as? bannerCell {
+            let record = arrAdve[indexPath.row]
+            if let banner = record.banner {
+                cell.updateCell(banner: banner)
+            }
+            
         }else if let cell = cell as? ExchangeAdsCell {
             let record = arrExchangeAdve[indexPath.row]
             cell.adsTitleLabel.text = record.title
@@ -423,6 +455,11 @@ extension AdsListVC: UITableViewDataSource {
         if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
             return 90
         }
+        
+        let record = arrAdve[indexPath.row]
+        if record.isBanner == true{
+            return 100
+        }
         return 135
     }
     
@@ -430,11 +467,25 @@ extension AdsListVC: UITableViewDataSource {
         if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
             return tableView.dequeueReusableCell(withIdentifier: "ExchangeAdsCell")!
         }
+        
+        let record = arrAdve[indexPath.row]
+        
+        if record.isBanner == true{
+            return tableView.dequeueReusableCell(withIdentifier: "bannerCell")!
+        }
+        
         return tableView.dequeueReusableCell(withIdentifier: "AdsCell")!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "adsListToDetails", sender: self.arrAdve[indexPath.item])
+        
+        let record = arrAdve[indexPath.row]
+        
+        if record.isBanner == true{
+            performSegue(withIdentifier: "fromAdsListToBannerDetails", sender: self.arrAdve[indexPath.item])
+        }else{
+            performSegue(withIdentifier: "adsListToDetails", sender: self.arrAdve[indexPath.item])
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

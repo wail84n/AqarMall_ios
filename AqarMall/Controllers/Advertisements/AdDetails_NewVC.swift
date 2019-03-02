@@ -16,10 +16,15 @@ protocol AdDetailsDelegate {
 
 class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
+    func share_Ad(AdDetails: AdvertisementInfo) {
+        
+    }
+    
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var favoriteImageView: UIButton!
+    @IBOutlet weak var headerView: UIView!
     
     //let scrollView = UIScrollView(frame: CGRect(x:0, y:0, width:320,height: 300))
     var colors:[UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
@@ -54,6 +59,8 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
 //        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
 //        tracker.send(builder.build() as [NSObject : AnyObject])
         
+        
+        title = "تفاصيل الإعلان"
         if ads.count == 0 || ads.count == 1 {
             btnNext.isEnabled = false
             btnBack.isEnabled = false
@@ -78,6 +85,10 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
         }
     }
     
+    func showHideHeaderView(isHide: Bool) {
+        headerView.isHidden = isHide
+    }
+    
     func callAdvDetailsAPI() {
         let adsRecord = self.ads[intAdIndex]
         if adsRecord.isCalledDetails == true {
@@ -91,6 +102,7 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
                     return
                 }
                 
+                print(result?.properties?.availableNo)
                 if let _delegate = self.delegate, let _result = result  {
                     _delegate.updateAdvInAdsList(myAd: _result, index: self.intAdIndex)
                     if (self.ads.count - 1) >= self.intAdIndex {
@@ -132,12 +144,13 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
         scrollView2.addSubview(adView)
        // scrollView2.backgroundColor = UIColor.red
         adView.tag = Int(intAdIndex)
+        adView.delegate = self
         let adsRecord = self.ads[intAdIndex]
         adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds)
-        adView.delegate = self
+        
         let viewHight = adView.getViewHight()
                 
-       // self.setFavoriteImageBy(flag: MyAdsVM.checkIsFavorite(ad: adsRecord)) // +++ wail
+        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
         scrollView2.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight + 30)
         
 //        if intAdIndex == index {
@@ -161,11 +174,20 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
     func changePage(){
         let adsRecord = self.ads[intAdIndex]
         
-        // self.setFavoriteImageBy(flag: MyAdsVM.checkIsFavorite(ad: adsRecord)) // +++ wail
+        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
         
         self.SetView()
     }
-
+    
+    func showHideDetails() {
+        let viewHight = adView.editDetailsSize()
+        
+        // self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
+        adView.frame.size.height = viewHight + 80
+        scrollView2.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight + 80)
+        
+    }
+    
     func AddPage(_adDetails: AdvertisementInfo, index : Int){
         adView = (AdsDetailsView().loadNib() as? AdsDetailsView)!
         // let adsRecord = self.ads[index]
@@ -578,11 +600,11 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
     
     func setFavoriteImageBy(flag: Bool) {
         if flag {
-            self.favoriteImageView.setImage(UIImage(named: "btnFavorateAdsOn"), for: .normal)
+            self.favoriteImageView.setImage(UIImage(named: "adDetailsFavorate_on"), for: .normal)
             // self.googleAnalyticsEventForSpecialAds(title: "اعجاب")
             //self.googleAnalyticsEventForNormalAds(title: "اضافة الى المفضلة")
         }else {
-            self.favoriteImageView.setImage(UIImage(named: "btnFavorateAds2"), for: .normal)
+            self.favoriteImageView.setImage(UIImage(named: "adDetailsFavorate_off"), for: .normal)
             //self.favoriteImageView.image = UIImage(named: "btnFavorateAds2")
             // self.googleAnalyticsEventForNormalAds(title: "حذف من المفضلة")
         }
@@ -591,23 +613,42 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         let adsRecord = self.ads[intAdIndex]
         // +++ wail
-//        let favoriteFlag = MyAdsVM.markAdAsFavorite(ad: adsRecord)
-//        self.setFavoriteImageBy(flag: favoriteFlag)
+        let favoriteFlag = AppUtils.markAdAsFavorite(ad: adsRecord)
+        self.setFavoriteImageBy(flag: favoriteFlag)
     }
     
     func CallPhone(AdDetails: AdvertisementInfo) {
         // +++ wail
-//        let phoneNumber = AdDetails.phone
-//        if #available(iOS 10.0, *) {
-//            guard let number = URL(string: "telprompt://" + phoneNumber!) else { return }
-//            UIApplication.shared.open(number, options: [:], completionHandler: nil)
-//        } else {
-//            // Fallback on earlier versions
-//            guard let number = URL(string: "tel://" + phoneNumber!) else { return }
-//            UIApplication.shared.openURL(number)
-//        }
-//
+        let adsRecord = self.ads[intAdIndex]
+        let phoneNumber = adsRecord.phone
+        if #available(iOS 10.0, *) {
+            guard let number = URL(string: "telprompt://" + phoneNumber!) else { return }
+            UIApplication.shared.open(number, options: [:], completionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+            guard let number = URL(string: "tel://" + phoneNumber!) else { return }
+            UIApplication.shared.openURL(number)
+        }
+
 //        self.googleAnalyticsEventTrack(category: "\(self.selectedPlace.Name) \(AdDetails.title!) ID: \(AdDetails.id!)", actionName:  "اتصال")
+    }
+    
+    func contactByWhatsApp(AdDetails: AdvertisementInfo) {
+        let adsRecord = self.ads[intAdIndex]
+       // UIApplication.shared.openURL(URL(string:adsRecord.whatsApp ?? "")!)
+        
+        guard let _whatsApp = adsRecord.whatsApp else {
+            return
+        }
+        
+        if #available(iOS 10.0, *) {
+            guard let number = URL(string: _whatsApp) else { return }
+            UIApplication.shared.open(number, options: [:], completionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+            guard let number = URL(string: _whatsApp) else { return }
+            UIApplication.shared.openURL(number)
+        }
     }
     
     func Send_SMS(AdDetails: AdvertisementInfo) {
@@ -629,10 +670,11 @@ class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMa
     }
     
     
-    func share_Ad(AdDetails: AdvertisementInfo) {
-        if let entryID = AdDetails.entryID {
-            let shareLink = "http://shamelksa.com/frmShareAd.aspx?id=\(entryID)"
-            let text = "\(AdDetails.title!)\n\(shareLink)\n حمل تطبيق المعرض للمزيد \n\("http://www.shamelksa.com")"
+    @IBAction func share_Ad(_ sender: Any) {
+        let adsRecord = self.ads[intAdIndex]
+        if let entryID = adsRecord.entryID {
+            let shareLink = "http://test.imallkw.com/frmAvailable.aspx?id=\(entryID)"
+            let text = "\(adsRecord.title!)\n\(shareLink)\n حمل تطبيق عقار مول للمزيد \n\("http://http://imallkw.com/")"
 
             let textToShare = [ text ]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)

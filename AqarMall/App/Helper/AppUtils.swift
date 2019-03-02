@@ -58,6 +58,54 @@ class AppUtils: NSObject {
         loadingView.hide()
     }
     
+    class func markAdAsFavorite(ad: AdvertisementInfo) -> Bool {
+        
+        let IDs = UserDefaults.standard.value(forKey: "FavoriteAdIDs") as? String
+        var arrayIDs:[String] = []
+        if IDs != nil {
+            //Convert String to array. Example: "1,2,3,4" to ["1","2","3","4"]
+            arrayIDs = IDs!.components(separatedBy: ",")
+        }
+        //Check for array contains value
+        if arrayIDs.contains("\(ad.entryID ?? 0)") {
+            // ID found remove... and make it as UnFavorite
+            arrayIDs = arrayIDs.filter{$0 != "\(ad.entryID ?? 0)"}
+            //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
+            let finalStringIDs = arrayIDs.joined(separator: ",")
+            //Save IDs
+            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+            return false
+        }
+        else {
+            //Appen new value to array
+            arrayIDs.insert("\(ad.entryID ?? 0)", at: 0)
+            //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
+            let finalStringIDs = arrayIDs.joined(separator: ",")
+            //Save IDs
+            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+            
+            return true
+        }
+    }
+    
+    class func checkIsFavorite(ad: AdvertisementInfo) -> Bool {
+        let IDs = UserDefaults.standard.value(forKey: "FavoriteAdIDs") as? String
+        var arrayIDs:[String] = []
+        if IDs != nil {
+            //Convert String to array. Example: "1,2,3,4" to ["1","2","3","4"]
+            arrayIDs = IDs!.components(separatedBy: ",")
+        }
+        //Check for array contains value
+        if arrayIDs.contains("\(ad.entryID ?? 0)") {
+            // ID found, set this Ad as favorite
+            return true
+        }
+        else {
+            // ID not found, set this Ad as UnFavorite
+            return false
+        }
+    }
+    
 }
 
 extension UIApplication {

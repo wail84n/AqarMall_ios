@@ -13,6 +13,7 @@ class MoreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "المزيد"
         // Do any additional setup after loading the view.
     }
     
