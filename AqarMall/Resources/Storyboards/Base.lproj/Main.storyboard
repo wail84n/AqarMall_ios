@@ -20,28 +20,22 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZhJ-NZ-ndF" kind="relationship" relationship="rootViewController" id="qKU-9g-69S"/>
+                        <segue destination="yeS-qC-c1I" kind="relationship" relationship="rootViewController" id="tad-R2-UAW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEn-Qq-XYP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="294" y="452"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tPI-pM-AGT">
+        <!--ChooseAdvSectionViewController-->
+        <scene sceneID="VMa-tK-Ii6">
             <objects>
-                <viewController id="ZhJ-NZ-ndF" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3XB-OV-0eS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="P9k-p1-Q9b"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="5nF-ch-K66"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vHv-1C-Qv5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SubmitAdv" referencedIdentifier="ChooseAdvSectionViewController" id="yeS-qC-c1I" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Zvx-Xw-fp7"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmD-og-2BA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1302" y="475"/>
+            <point key="canvasLocation" x="1188" y="320"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

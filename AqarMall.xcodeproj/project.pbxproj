@@ -24,7 +24,16 @@
 		527E0A902225C881005934DC /* bannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0A8E2225C881005934DC /* bannerCell.swift */; };
 		527E0A912225C881005934DC /* bannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527E0A8F2225C881005934DC /* bannerCell.xib */; };
 		527E0A9422278E1F005934DC /* BannerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0A9322278E1F005934DC /* BannerDetailsViewController.swift */; };
-		527E0A96222B1EDE005934DC /* CreateNewAdv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527E0A95222B1EDE005934DC /* CreateNewAdv.storyboard */; };
+		527E0A98222B1FA9005934DC /* SubmitAdv.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 527E0A97222B1FA9005934DC /* SubmitAdv.storyboard */; };
+		527E0A9B222B1FE2005934DC /* SubmitAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0A9A222B1FE2005934DC /* SubmitAdvViewController.swift */; };
+		527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0A9C222B202B005934DC /* ChooseAdvSectionViewController.swift */; };
+		527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0A9E222C540A005934DC /* ChooseAdvCatedoryViewController.swift */; };
+		527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AA3222C5904005934DC /* ChooseAdvCatedoryCell.swift */; };
+		527E0AA6222C5904005934DC /* ChooseAdvCatedoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527E0AA4222C5904005934DC /* ChooseAdvCatedoryCell.xib */; };
+		527E0AA8222DBFF1005934DC /* SubmitAdvFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AA7222DBFF1005934DC /* SubmitAdvFormViewController.swift */; };
+		527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */; };
+		527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AAB223041D1005934DC /* ChooseAddressCell.swift */; };
+		527E0AAE223041D1005934DC /* ChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527E0AAC223041D1005934DC /* ChooseAddressCell.xib */; };
 		5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89521F3474E00A177B0 /* DB_Areas.swift */; };
 		5281D89821F3494A00A177B0 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89721F3494A00A177B0 /* Areas.swift */; };
 		5281D89A21F3513E00A177B0 /* Provinces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89921F3513E00A177B0 /* Provinces.swift */; };
@@ -107,7 +116,16 @@
 		527E0A8E2225C881005934DC /* bannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bannerCell.swift; sourceTree = "<group>"; };
 		527E0A8F2225C881005934DC /* bannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = bannerCell.xib; sourceTree = "<group>"; };
 		527E0A9322278E1F005934DC /* BannerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerDetailsViewController.swift; sourceTree = "<group>"; };
-		527E0A95222B1EDE005934DC /* CreateNewAdv.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateNewAdv.storyboard; sourceTree = "<group>"; };
+		527E0A97222B1FA9005934DC /* SubmitAdv.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmitAdv.storyboard; sourceTree = "<group>"; };
+		527E0A9A222B1FE2005934DC /* SubmitAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdvViewController.swift; sourceTree = "<group>"; };
+		527E0A9C222B202B005934DC /* ChooseAdvSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAdvSectionViewController.swift; sourceTree = "<group>"; };
+		527E0A9E222C540A005934DC /* ChooseAdvCatedoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAdvCatedoryViewController.swift; sourceTree = "<group>"; };
+		527E0AA3222C5904005934DC /* ChooseAdvCatedoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAdvCatedoryCell.swift; sourceTree = "<group>"; };
+		527E0AA4222C5904005934DC /* ChooseAdvCatedoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseAdvCatedoryCell.xib; sourceTree = "<group>"; };
+		527E0AA7222DBFF1005934DC /* SubmitAdvFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdvFormViewController.swift; sourceTree = "<group>"; };
+		527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressViewController.swift; sourceTree = "<group>"; };
+		527E0AAB223041D1005934DC /* ChooseAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressCell.swift; sourceTree = "<group>"; };
+		527E0AAC223041D1005934DC /* ChooseAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseAddressCell.xib; sourceTree = "<group>"; };
 		5281D89521F3474E00A177B0 /* DB_Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Areas.swift; sourceTree = "<group>"; };
 		5281D89721F3494A00A177B0 /* Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
 		5281D89921F3513E00A177B0 /* Provinces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provinces.swift; sourceTree = "<group>"; };
@@ -235,6 +253,29 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
+		527E0A99222B1FC4005934DC /* SubmitAdv */ = {
+			isa = PBXGroup;
+			children = (
+				527E0A9A222B1FE2005934DC /* SubmitAdvViewController.swift */,
+				527E0A9C222B202B005934DC /* ChooseAdvSectionViewController.swift */,
+				527E0A9E222C540A005934DC /* ChooseAdvCatedoryViewController.swift */,
+				527E0AA7222DBFF1005934DC /* SubmitAdvFormViewController.swift */,
+				527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */,
+			);
+			path = SubmitAdv;
+			sourceTree = "<group>";
+		};
+		527E0AA0222C56CC005934DC /* SubmitAdv */ = {
+			isa = PBXGroup;
+			children = (
+				527E0AA3222C5904005934DC /* ChooseAdvCatedoryCell.swift */,
+				527E0AA4222C5904005934DC /* ChooseAdvCatedoryCell.xib */,
+				527E0AAB223041D1005934DC /* ChooseAddressCell.swift */,
+				527E0AAC223041D1005934DC /* ChooseAddressCell.xib */,
+			);
+			path = SubmitAdv;
+			sourceTree = "<group>";
+		};
 		52AFE77221DD5E1400FE1D70 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +385,7 @@
 				52E6527421D9E57800E66AA2 /* MoreSection.storyboard */,
 				52E6527621D9E5B600E66AA2 /* Advertisements.storyboard */,
 				52AFE77521DD5E6000FE1D70 /* Notifications.storyboard */,
-				527E0A95222B1EDE005934DC /* CreateNewAdv.storyboard */,
+				527E0A97222B1FA9005934DC /* SubmitAdv.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -375,6 +416,7 @@
 		52E6526C21D9E41600E66AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				527E0A99222B1FC4005934DC /* SubmitAdv */,
 				527E0A9222278DF5005934DC /* Banner */,
 				52AFE77421DD5E5200FE1D70 /* Notifications */,
 				52E6528921D9ECC400E66AA2 /* MoreSection */,
@@ -388,6 +430,7 @@
 		52E6526D21D9E41F00E66AA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				527E0AA0222C56CC005934DC /* SubmitAdv */,
 				52AFE77321DD5E1B00FE1D70 /* Notifications */,
 				52AFE77221DD5E1400FE1D70 /* Advertisements */,
 			);
@@ -596,17 +639,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527E0A98222B1FA9005934DC /* SubmitAdv.storyboard in Resources */,
 				52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */,
 				52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */,
 				52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */,
 				52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */,
 				52E6524121D9DB6A00E66AA2 /* Assets.xcassets in Resources */,
+				527E0AAE223041D1005934DC /* ChooseAddressCell.xib in Resources */,
 				52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */,
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
-				527E0A96222B1EDE005934DC /* CreateNewAdv.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
 				527E0A912225C881005934DC /* bannerCell.xib in Resources */,
+				527E0AA6222C5904005934DC /* ChooseAdvCatedoryCell.xib in Resources */,
 				52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
@@ -722,6 +767,7 @@
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
+				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
 				527E0A902225C881005934DC /* bannerCell.swift in Sources */,
 				52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */,
@@ -732,16 +778,21 @@
 				52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */,
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
+				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,
 				52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
+				527E0AA8222DBFF1005934DC /* SubmitAdvFormViewController.swift in Sources */,
 				5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */,
+				527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */,
 				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
+				527E0A9B222B1FE2005934DC /* SubmitAdvViewController.swift in Sources */,
 				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
 				527E0A9422278E1F005934DC /* BannerDetailsViewController.swift in Sources */,
+				527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
@@ -753,6 +804,7 @@
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
 				5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */,
 				5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */,
+				527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
 				52EC44DF21E1373500A3E8C0 /* Categories.swift in Sources */,

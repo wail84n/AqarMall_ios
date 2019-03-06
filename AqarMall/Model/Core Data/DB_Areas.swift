@@ -44,4 +44,20 @@ struct DB_Areas {
         return false
     }
     
+    static func callAreas(provinceID : Int32)-> [AreasData]?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AreasData")
+        userFetch.predicate = NSPredicate(format: "provinceID = %@", "\(provinceID)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [AreasData]
+            if  result?.count ?? 0 > 0 {
+                return result
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
 }
