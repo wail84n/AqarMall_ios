@@ -302,7 +302,7 @@
             <objects>
                 <viewController storyboardIdentifier="SubmitAdvFormViewController" hidesBottomBarWhenPushed="YES" id="eAm-2d-udV" customClass="SubmitAdvFormViewController" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Boh-Xk-7EY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G03-qf-o1s">
@@ -315,20 +315,20 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1070"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ano-Q9-6eT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Na3-5v-CYh">
-                                                                <rect key="frame" x="15" y="12" width="345" height="45"/>
+                                                                <rect key="frame" x="15" y="12" width="345" height="46"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rowToLeft" translatesAutoresizingMaskIntoConstraints="NO" id="bgM-T3-XAC">
-                                                                        <rect key="frame" x="315" y="15" width="15" height="15"/>
+                                                                        <rect key="frame" x="315" y="15.5" width="15" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="15" id="Jk2-vw-QIh"/>
                                                                             <constraint firstAttribute="width" constant="15" id="fRh-vi-iy2"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حدد العنوان" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-x9-i6a">
-                                                                        <rect key="frame" x="224" y="10" width="81" height="25"/>
+                                                                        <rect key="frame" x="224" y="10.5" width="81" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="FAo-kz-HZz"/>
                                                                         </constraints>
@@ -352,7 +352,7 @@
                                                                         <real key="value" value="0.5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
@@ -369,9 +369,9 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFT-wk-2MB">
-                                                        <rect key="frame" x="0.0" y="69" width="375" height="350"/>
+                                                        <rect key="frame" x="0.0" y="70" width="375" height="350"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYZ-NJ-45J">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25/0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYZ-NJ-45J">
                                                                 <rect key="frame" x="319" y="15" width="36" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="21" id="DYY-uE-bIg"/>
@@ -388,8 +388,19 @@
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rEG-Tb-wbK">
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="rEG-Tb-wbK">
                                                                 <rect key="frame" x="15" y="96" width="345" height="239"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -399,12 +410,15 @@
                                                                         <real key="value" value="6"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                        <color key="value" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                         <real key="value" value="0.5"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="eAm-2d-udV" id="wcV-fw-ARk"/>
+                                                                </connections>
                                                             </textView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -422,17 +436,10 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3wT-3h-Wsp">
-                                                        <rect key="frame" x="0.0" y="419" width="375" height="501"/>
+                                                        <rect key="frame" x="0.0" y="420" width="375" height="500"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-gZ-SBi">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="ODy-z3-R6m"/>
-                                                                </constraints>
-                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmG-cG-Gtv">
-                                                                <rect key="frame" x="0.0" y="1" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الغرف" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dvs-A4-HwJ">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -442,6 +449,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -453,7 +471,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vk7-k7-FCh">
-                                                                <rect key="frame" x="0.0" y="51" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="50" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الحمامات" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-NY-svj">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -463,6 +481,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -474,7 +503,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCo-xl-9sA">
-                                                                <rect key="frame" x="0.0" y="101" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="100" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الطوابق" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O0r-by-UeU">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -484,6 +513,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -495,7 +535,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7JL-Vv-eZF">
-                                                                <rect key="frame" x="0.0" y="151" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="150" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="التشطيب" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zFE-7c-gGf">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -505,6 +545,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -516,7 +567,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPS-Fl-1GT">
-                                                                <rect key="frame" x="0.0" y="201" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="200" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="الواجهة" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3WF-pR-3QO">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -526,6 +577,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -537,7 +599,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNL-tM-Tro">
-                                                                <rect key="frame" x="0.0" y="251" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="250" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عمر البناء" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LBy-a9-1gz">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -547,6 +609,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -558,7 +631,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv4-zB-PHi">
-                                                                <rect key="frame" x="0.0" y="301" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="300" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="مساحة البناء" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lr9-cb-gpO">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -568,6 +641,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -579,7 +663,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCd-nI-vXE">
-                                                                <rect key="frame" x="0.0" y="351" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="350" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="مساحة الارض" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVp-km-ayf">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -589,6 +673,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -600,7 +695,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzK-mf-MXe">
-                                                                <rect key="frame" x="0.0" y="401" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="400" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="نوع الترخيص" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8k-OK-e6u">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -610,6 +705,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -621,7 +727,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bmw-QK-yoT">
-                                                                <rect key="frame" x="0.0" y="451" width="375" height="50"/>
+                                                                <rect key="frame" x="0.0" y="450" width="375" height="50"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="المساحة" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dla-Ng-lCR">
                                                                         <rect key="frame" x="15" y="5" width="345" height="40"/>
@@ -631,6 +737,17 @@
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </textField>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -645,13 +762,9 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="Vk7-k7-FCh" firstAttribute="top" secondItem="jmG-cG-Gtv" secondAttribute="bottom" id="0Ts-se-7mA"/>
-                                                            <constraint firstItem="jmG-cG-Gtv" firstAttribute="top" secondItem="8ML-gZ-SBi" secondAttribute="bottom" id="3oe-xx-B5p"/>
-                                                            <constraint firstAttribute="trailing" secondItem="8ML-gZ-SBi" secondAttribute="trailing" id="GRL-Dy-hzd"/>
                                                             <constraint firstItem="Vk7-k7-FCh" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" id="HLK-IM-Lkf"/>
-                                                            <constraint firstItem="8ML-gZ-SBi" firstAttribute="top" secondItem="3wT-3h-Wsp" secondAttribute="top" id="XZu-Ek-MHL"/>
                                                             <constraint firstAttribute="trailing" secondItem="jmG-cG-Gtv" secondAttribute="trailing" id="avn-cH-mf4"/>
-                                                            <constraint firstItem="8ML-gZ-SBi" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" id="dAn-8E-rJT"/>
-                                                            <constraint firstAttribute="height" constant="501" id="f50-Wj-9b7"/>
+                                                            <constraint firstAttribute="height" constant="500" id="f50-Wj-9b7"/>
                                                             <constraint firstItem="jmG-cG-Gtv" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" id="iPj-3Z-Bxb"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vk7-k7-FCh" secondAttribute="trailing" id="oZp-ae-vyf"/>
                                                         </constraints>
@@ -780,19 +893,41 @@
                                     <constraint firstAttribute="bottom" secondItem="Tey-2f-mq7" secondAttribute="bottom" id="wKm-Ds-BTX"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsQ-ea-vHp">
+                                <rect key="frame" x="15" y="1140" width="345" height="45"/>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="cqb-CA-Xke"/>
+                                </constraints>
+                                <state key="normal" title="اضف اعلانك">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="trailing" secondItem="lVa-fw-qcL" secondAttribute="trailing" id="0L1-qO-e4W"/>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="leading" secondItem="lVa-fw-qcL" secondAttribute="leading" id="9Gj-76-J87"/>
+                            <constraint firstItem="lVa-fw-qcL" firstAttribute="trailing" secondItem="QsQ-ea-vHp" secondAttribute="trailing" constant="15" id="Bcw-Jx-Yga"/>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="top" secondItem="Boh-Xk-7EY" secondAttribute="top" id="KbX-aU-5hL"/>
+                            <constraint firstItem="QsQ-ea-vHp" firstAttribute="leading" secondItem="lVa-fw-qcL" secondAttribute="leading" constant="15" id="euk-66-7bH"/>
+                            <constraint firstItem="lVa-fw-qcL" firstAttribute="bottom" secondItem="QsQ-ea-vHp" secondAttribute="bottom" constant="15" id="xE0-cO-DUW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lVa-fw-qcL"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1100"/>
+                    <size key="freeformSize" width="375" height="1200"/>
                     <connections>
+                        <outlet property="adDetailsTextView" destination="rEG-Tb-wbK" id="sft-bc-knt"/>
                         <outlet property="addressLabel" destination="5Dk-x9-i6a" id="eWe-jb-hBj"/>
                         <outlet property="addressView" destination="Na3-5v-CYh" id="l5S-cU-N7k"/>
+                        <outlet property="advTitleTextField" destination="dL1-Qq-Q0v" id="1nI-LF-L5b"/>
+                        <outlet property="bathRoomNoTextField" destination="gKG-NY-svj" id="njw-j3-CLS"/>
+                        <outlet property="bathRoomNoView" destination="Vk7-k7-FCh" id="7Hd-Rn-bFZ"/>
                         <outlet property="buildingAgeTextfield" destination="LBy-a9-1gz" id="FJT-xs-Pw7"/>
                         <outlet property="buildingAgeView" destination="dNL-tM-Tro" id="JM6-aD-jiR"/>
                         <outlet property="buildingSizeTextField" destination="lr9-cb-gpO" id="wMc-1X-c7Q"/>
@@ -808,13 +943,14 @@
                         <outlet property="landSizeView" destination="nCd-nI-vXE" id="qqV-qf-NqC"/>
                         <outlet property="licenseTypeTextField" destination="i8k-OK-e6u" id="IXj-LF-XAZ"/>
                         <outlet property="licenseTypeView" destination="OzK-mf-MXe" id="nJZ-l5-Dnv"/>
-                        <outlet property="pathRoomNoTextField" destination="gKG-NY-svj" id="8hU-N4-Qjk"/>
-                        <outlet property="pathRoomNoView" destination="Vk7-k7-FCh" id="g6R-65-bhL"/>
+                        <outlet property="optionsHeightConstraint" destination="f50-Wj-9b7" id="7Ig-3a-myi"/>
                         <outlet property="roomsNoTextField" destination="Dvs-A4-HwJ" id="UJQ-tk-8At"/>
                         <outlet property="roomsNoView" destination="jmG-cG-Gtv" id="dFu-8Y-VSS"/>
                         <outlet property="scrollView" destination="G03-qf-o1s" id="f8U-tg-Ojm"/>
                         <outlet property="sizeTextField" destination="Dla-Ng-lCR" id="zlC-HV-c4M"/>
                         <outlet property="sizeView" destination="Bmw-QK-yoT" id="bEt-53-Dye"/>
+                        <outlet property="titleCounterLabel" destination="uYZ-NJ-45J" id="wk4-FF-igh"/>
+                        <outlet property="viewHeightConstraint" destination="W9W-o4-4Bz" id="rjg-Vw-3AC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BSN-eG-RSD" userLabel="First Responder" sceneMemberID="firstResponder"/>

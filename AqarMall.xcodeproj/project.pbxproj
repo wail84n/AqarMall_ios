@@ -17,6 +17,7 @@
 		5204DD6A22339DB600319A58 /* ResizeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD6422339DB600319A58 /* ResizeControl.swift */; };
 		5204DD6D22339E8300319A58 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD6C22339E8300319A58 /* UIImage.swift */; };
 		5204DD6F2233A69100319A58 /* postAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD6E2233A69100319A58 /* postAdv.swift */; };
+		5204DD722235A12600319A58 /* NeedToLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD712235A12600319A58 /* NeedToLoginViewController.swift */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -25,6 +26,14 @@
 		52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3321FCB54700F52A0B /* AdsCell.swift */; };
 		52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52389F3421FCB54700F52A0B /* AdsCell.xib */; };
 		52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */; };
+		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
+		5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */; };
+		526143512236F22D00339882 /* DB_Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143502236F22D00339882 /* DB_Countries.swift */; };
+		526143532236F2A300339882 /* Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143522236F2A300339882 /* Countries.swift */; };
+		526143552237038C00339882 /* ChooseCountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143542237038C00339882 /* ChooseCountryViewController.swift */; };
+		5261435822382E5600339882 /* ChooseCountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435622382E5600339882 /* ChooseCountryCell.swift */; };
+		5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5261435722382E5600339882 /* ChooseCountryCell.xib */; };
+		5261435C2239F41800339882 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435B2239F41800339882 /* Sponsor.swift */; };
 		52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */; };
 		52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5121F2646E005480C2 /* SyncAPIData.swift */; };
 		52641B5521F27710005480C2 /* DB_Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5421F27710005480C2 /* DB_Categories.swift */; };
@@ -119,6 +128,7 @@
 		5204DD6C22339E8300319A58 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		5204DD6E2233A69100319A58 /* postAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postAdv.swift; sourceTree = "<group>"; };
 		5204DD702233ACA900319A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5204DD712235A12600319A58 /* NeedToLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedToLoginViewController.swift; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -127,6 +137,14 @@
 		52389F3321FCB54700F52A0B /* AdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCell.swift; sourceTree = "<group>"; };
 		52389F3421FCB54700F52A0B /* AdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCell.xib; sourceTree = "<group>"; };
 		52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementInfo.swift; sourceTree = "<group>"; };
+		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
+		5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewController.swift; sourceTree = "<group>"; };
+		526143502236F22D00339882 /* DB_Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Countries.swift; sourceTree = "<group>"; };
+		526143522236F2A300339882 /* Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countries.swift; sourceTree = "<group>"; };
+		526143542237038C00339882 /* ChooseCountryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryViewController.swift; sourceTree = "<group>"; };
+		5261435622382E5600339882 /* ChooseCountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryCell.swift; sourceTree = "<group>"; };
+		5261435722382E5600339882 /* ChooseCountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCountryCell.xib; sourceTree = "<group>"; };
+		5261435B2239F41800339882 /* Sponsor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
 		52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AqarMall.xcdatamodel; sourceTree = "<group>"; };
 		52641B5121F2646E005480C2 /* SyncAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncAPIData.swift; sourceTree = "<group>"; };
 		52641B5421F27710005480C2 /* DB_Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Categories.swift; sourceTree = "<group>"; };
@@ -257,6 +275,15 @@
 			path = CropViewController;
 			sourceTree = "<group>";
 		};
+		5261435A22382F0E00339882 /* UserAccount */ = {
+			isa = PBXGroup;
+			children = (
+				5261435622382E5600339882 /* ChooseCountryCell.swift */,
+				5261435722382E5600339882 /* ChooseCountryCell.xib */,
+			);
+			path = UserAccount;
+			sourceTree = "<group>";
+		};
 		52641B0A21F23564005480C2 /* Core Data Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,6 +300,7 @@
 				5281D89B21F352A900A177B0 /* DB_Provinces.swift */,
 				5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */,
 				5281D8A321F3A3A300A177B0 /* DB_Banners.swift */,
+				526143502236F22D00339882 /* DB_Countries.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -463,6 +491,7 @@
 		52E6526D21D9E41F00E66AA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5261435A22382F0E00339882 /* UserAccount */,
 				527E0AA0222C56CC005934DC /* SubmitAdv */,
 				52AFE77321DD5E1B00FE1D70 /* Notifications */,
 				52AFE77221DD5E1400FE1D70 /* Advertisements */,
@@ -506,6 +535,10 @@
 		52E6528721D9EC9200E66AA2 /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
+				5204DD712235A12600319A58 /* NeedToLoginViewController.swift */,
+				5261434C2236E7DB00339882 /* UserInformationViewController.swift */,
+				5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */,
+				526143542237038C00339882 /* ChooseCountryViewController.swift */,
 			);
 			path = UserAccount;
 			sourceTree = "<group>";
@@ -544,10 +577,12 @@
 				5281D89921F3513E00A177B0 /* Provinces.swift */,
 				5281D89D21F3648300A177B0 /* GeneralPages.swift */,
 				5281D8A121F3A1F400A177B0 /* Banners.swift */,
+				526143522236F2A300339882 /* Countries.swift */,
 				52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */,
 				52CEE21F2209376900ADDC8B /* ExchangeAds.swift */,
 				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 				5204DD6E2233A69100319A58 /* postAdv.swift */,
+				5261435B2239F41800339882 /* Sponsor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -686,6 +721,7 @@
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
+				5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */,
 				527E0A912225C881005934DC /* bannerCell.xib in Resources */,
 				527E0AA6222C5904005934DC /* ChooseAdvCatedoryCell.xib in Resources */,
 				52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */,
@@ -806,6 +842,8 @@
 				52AFE77121DD5AAF00FE1D70 /* AdsListVC.swift in Sources */,
 				5281D8A021F3652300A177B0 /* DB_GeneralPages.swift in Sources */,
 				5281D89A21F3513E00A177B0 /* Provinces.swift in Sources */,
+				5261435822382E5600339882 /* ChooseCountryCell.swift in Sources */,
+				526143552237038C00339882 /* ChooseCountryViewController.swift in Sources */,
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
@@ -814,6 +852,7 @@
 				527E0A902225C881005934DC /* bannerCell.swift in Sources */,
 				52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */,
 				5281D89821F3494A00A177B0 /* Areas.swift in Sources */,
+				5261435C2239F41800339882 /* Sponsor.swift in Sources */,
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
 				5204DD6F2233A69100319A58 /* postAdv.swift in Sources */,
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
@@ -822,6 +861,7 @@
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
 				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
+				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
 				5204DD6D22339E8300319A58 /* UIImage.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
@@ -840,6 +880,7 @@
 				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
 				527E0A9422278E1F005934DC /* BannerDetailsViewController.swift in Sources */,
 				527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */,
+				526143532236F2A300339882 /* Countries.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
@@ -856,10 +897,13 @@
 				527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
+				526143512236F22D00339882 /* DB_Countries.swift in Sources */,
 				52EC44DF21E1373500A3E8C0 /* Categories.swift in Sources */,
 				52AFE77E21E11E5B00FE1D70 /* APIs.swift in Sources */,
 				52CEE2202209376900ADDC8B /* ExchangeAds.swift in Sources */,
 				5204DD5D22331BDD00319A58 /* MyImageCell.swift in Sources */,
+				5204DD722235A12600319A58 /* NeedToLoginViewController.swift in Sources */,
+				5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */,
 				52E6527A21D9E8F000E66AA2 /* UIColor.swift in Sources */,
 				52EC44E121E139DF00A3E8C0 /* aqarMallErrors.swift in Sources */,
 			);

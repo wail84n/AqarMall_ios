@@ -21,6 +21,16 @@ class ChooseAdvSectionViewController: ViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if AppUtils.LoadData(key: .user_id).isEmpty {
+            let popOverVC = UIStoryboard(name: "UserAccount", bundle: nil).instantiateViewController(withIdentifier: "NeedToLoginViewController") as! NeedToLoginViewController
+            self.addChild(popOverVC)
+            popOverVC.view.frame = self.view.frame
+            self.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self)
+        }
+    }
+    
     func configureView(){
         title = "أضف اعلانك"
     }

@@ -21,11 +21,10 @@ public enum appURLs: String{
 }
 
 class APIs: NSObject {
-
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
     
     func getFileURL(imageName: String) -> URL? {
-        print(URL(string: appURLs.imageURL.rawValue + imageName))
+       // print(URL(string: appURLs.imageURL.rawValue + imageName))
         return URL(string: appURLs.imageURL.rawValue + imageName)
     }
     
@@ -111,6 +110,9 @@ class APIs: NSObject {
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
         case getAdvtDetails(Id:Int?)
+        case getCountries()
+        case userRegister(email : String?, name : String, phone : String,SMSCode : String)
+        case getSponsors(lastchange:Int, countryId:Int)
         
         var contentType:ContentType {
             switch self {
@@ -148,9 +150,8 @@ class APIs: NSObject {
         
         var method:HTTPMethod {
             switch self {
-//            case .getAds(_),
-//                 .getCategories(_):
-//                return .get
+            case .userRegister(_ , _, _, _):
+                return .post
             default:
                 return .get
             }
@@ -178,6 +179,12 @@ class APIs: NSObject {
                 return "getBuyerRequiredAds"
             case .getAdvtDetails(_):
                 return "getAdvtDetails_ios"
+            case .getCountries():
+                return "getInnerCountries"
+            case .userRegister(_ , _, _, _):
+                return "postRegister"
+            case .getSponsors(_, _):
+                return "getSponsors"
             }
         }
         
@@ -268,6 +275,9 @@ class APIs: NSObject {
                 if let _keyword = keyword{
                     dict["keyword"] = _keyword
                 }
+            case .getSponsors(let lastchange, let countryId):
+                dict["lastchange"] = lastchange
+                dict["countryId"] = countryId
             default:
                 return nil
             }
@@ -277,7 +287,8 @@ class APIs: NSObject {
         
         var body:[String:Any]? {
             switch self {
-                
+            case .userRegister(let email, let name, let phone, let SMSCode):
+                return ["Email":email ?? "", "Name":name, "Phone":phone, "SMSCode":SMSCode]
             default:
                 return nil
             }
@@ -294,15 +305,14 @@ class APIs: NSObject {
             
             if let body = self.body, self.contentType == .applicationJson {
                 print(body)
-                // body["error"]
                 urlRequest = try JSONEncoding.default.encode(urlRequest, with: body)
             }
-            
             return urlRequest
         }
-        
     }
     
+    typealias sponsorCallback = (_ users:[Sponsor]?, _ error:Error?) -> Void
+    typealias countriesCallback = (_ users:[Countries]?, _ error:Error?) -> Void
     typealias categoriesCallback = (_ users:[Categories]?, _ error:Error?) -> Void
     typealias provincesCallback = (_ users:[Provinces]?, _ error:Error?) -> Void
     typealias areasCallback = (_ users:[Areas]?, _ error:Error?) -> Void
@@ -311,6 +321,52 @@ class APIs: NSObject {
     typealias AdvtsCallback = (_ users:[AdvertisementInfo]?, _ error:Error?) -> Void
     typealias AdvtDetailsCallback = (_ users:AdvertisementInfo?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
+    
+    func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping categoriesCallback) {
+        let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let categories = (result as? [AnyObject])?.compactMap({ Categories(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(categories, nil)
+        }
+    }
+    
+    func getCountries(callback: @escaping countriesCallback) {
+        let route = Router.getCountries()
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let countries = (result as? [AnyObject])?.compactMap({ Countries(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(countries, nil)
+        }
+    }
+    
+    
+    func getSponsor(lastchange : Int, countryId : Int,callback: @escaping sponsorCallback) {
+        let route = Router.getSponsors(lastchange: lastchange, countryId: countryId)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let sponsor = (result as? [AnyObject])?.compactMap({ Sponsor(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(sponsor, nil)
+        }
+    }
     
     func getCategories(callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
@@ -447,6 +503,4 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
-
-    
 }

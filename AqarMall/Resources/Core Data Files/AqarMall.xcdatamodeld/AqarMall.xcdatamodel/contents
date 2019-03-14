@@ -39,6 +39,12 @@
         <attribute name="salePriceLabel" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="CountriesData" representedClassName="CountriesData" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="GeneralPagesData" representedClassName="GeneralPagesData" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -58,11 +64,12 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="330"/>
-        <element name="Users" positionX="-54" positionY="108" width="128" height="90"/>
-        <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
         <element name="AreasData" positionX="-45" positionY="126" width="128" height="120"/>
-        <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
         <element name="BannersData" positionX="-18" positionY="144" width="128" height="180"/>
+        <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="330"/>
+        <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
+        <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
+        <element name="Users" positionX="-54" positionY="108" width="128" height="90"/>
+        <element name="CountriesData" positionX="-36" positionY="135" width="128" height="105"/>
     </elements>
 </model>

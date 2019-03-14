@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ChooseAddressDelegate {
+protocol ChooseAddressDelegate : class {
     func setAddress(with area:AreasData, fullAddress : String)
 }
 

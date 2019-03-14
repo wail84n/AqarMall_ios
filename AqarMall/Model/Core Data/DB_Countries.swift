@@ -1,15 +1,15 @@
 //
-//  DB_Provinces.swift
+//  DB_Countries.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 1/19/19.
+//  Created by Macbookpro on 3/11/19.
 //  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-struct DB_Provinces {
+struct DB_Countries {
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     static func saveRecord(provinces : Provinces){
         if validateRecord(Id: provinces.entryID) == false {

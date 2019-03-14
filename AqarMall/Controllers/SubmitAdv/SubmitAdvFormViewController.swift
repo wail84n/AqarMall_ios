@@ -11,16 +11,20 @@ import OpalImagePicker
 import ALCameraViewController
 import Photos
 
-class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var imagesCollection: UICollectionView!
     
+    @IBOutlet weak var titleCounterLabel: UILabel!
+    @IBOutlet weak var advTitleTextField: UITextField!
+    @IBOutlet weak var adDetailsTextView: UITextView!
+    
     @IBOutlet weak var roomsNoTextField: UITextField!
     @IBOutlet weak var roomsNoView: UIView!
-    @IBOutlet weak var pathRoomNoView: UIView!
-    @IBOutlet weak var pathRoomNoTextField: UITextField!
+    @IBOutlet weak var bathRoomNoView: UIView!
+    @IBOutlet weak var bathRoomNoTextField: UITextField!
     @IBOutlet weak var floorsNoView: UIView!
     @IBOutlet weak var floorsNoTextField: UITextField!
     @IBOutlet weak var finishingView: UIView!
@@ -37,6 +41,10 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     @IBOutlet weak var licenseTypeTextField: UITextField!
     @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var sizeTextField: UITextField!
+    
+    @IBOutlet weak var optionsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
+    
     var selectedArea = AreasData()
     var category : CategoriesData? = nil
     var isRent = false
@@ -57,12 +65,107 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     func configureView(){
         title = "اضف اعلان - \(category?.name ?? "")"
         self.setBack()
+        
+        adDetailsTextView.text = "وصف الإعلان"
+        adDetailsTextView.textColor = UIColor.lightGray
+        advTitleTextField.delegate = self
+        
         selectedImages = NSMutableArray()
         
+        setCatProperties()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 1100 + 430)
+        print(getCatPropertiesCount() )
+        print(CGFloat(570 + (getCatPropertiesCount() * 50)))
+        scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: CGFloat(1100 + (getCatPropertiesCount() * 50)))
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 24
+        
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        titleCounterLabel.text = "25/\(newString.length)"
+        print("newString.length \(newString.length)")
+        return newString.length <= maxLength
+    }
+    
+    //MARK:- TextView Delegates
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == adDetailsTextView && textView.text == "وصف الإعلان" {
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+        textView.becomeFirstResponder()
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == adDetailsTextView && textView.text == "" {
+            textView.text = "وصف الإعلان"
+            textView.textColor = UIColor.lightGray
+        }
+        textView.resignFirstResponder()
+    }
+    
+    func  getCatPropertiesCount()-> Int {
+        var counter = 0
+        if let _category = category{
+            if _category.ageOfBuilding == true{
+                counter += 1
+            }
+            if _category.buildingSize == true{
+                counter += 1
+            }
+            if _category.finishing == true{
+                counter += 1
+            }
+            if _category.interfaceType == true{
+                counter += 1
+            }
+            if _category.landSize == true{
+                counter += 1
+            }
+            if _category.licenseType == true{
+                counter += 1
+            }
+            if _category.numberOfBathrooms == true{
+                counter += 1
+            }
+            if _category.numberOfFloors == true{
+                counter += 1
+            }
+            if _category.numberOfRooms == true{
+                counter += 1
+            }
+        }
+        return counter
+    }
+    
+    func setCatProperties(){
+        if let _category = category{
+
+            let counter = getCatPropertiesCount()
+            print(counter * 50)
+            optionsHeightConstraint.constant = CGFloat(counter * 50)
+            viewHeightConstraint.constant = CGFloat(570 + (counter * 50))
+            
+            buildingAgeView.isHidden = !_category.ageOfBuilding
+            buildingSizeView.isHidden = !_category.buildingSize
+            finishingView.isHidden = !_category.finishing
+            interfaceView.isHidden = !_category.interfaceType
+            landSizeView.isHidden = !_category.landSize
+            licenseTypeView.isHidden = !_category.licenseType
+            bathRoomNoView.isHidden = !_category.numberOfBathrooms
+            floorsNoView.isHidden = !_category.numberOfFloors
+            roomsNoView.isHidden = !_category.numberOfRooms
+        }
+   }
+    
+    func clearFields() {
+        adDetailsTextView.text = "وصف الإعلان"
     }
     
     @IBAction func getAddressAction(_ sender: UILongPressGestureRecognizer) {

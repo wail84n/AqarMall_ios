@@ -246,7 +246,6 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             roomsNoView.isHidden = false
             roomNoLabel.text = AdDetails.properties?.numberOfRooms
         }
-        
     }
     
     @IBAction func showHideMoreDetails(_ sender: Any) {

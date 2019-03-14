@@ -16,6 +16,7 @@ class AppUtils: NSObject {
         case areas_last_change = "areas_last_change"
         case general_pages_last_change = "general_pages_last_change"
         case banner_last_change = "banner_last_change"
+        case user_id = "user_id"
     }
     
     class func LoadData(key: AppVariables)  -> String

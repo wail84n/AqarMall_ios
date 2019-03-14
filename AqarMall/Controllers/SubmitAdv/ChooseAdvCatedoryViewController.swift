@@ -30,7 +30,6 @@ class ChooseAdvCatedoryViewController: ViewController {
         title = "اختر الفئة"
         self.setBack()
         tableView.register(UINib(nibName: "ChooseAdvCatedoryCell", bundle: nil), forCellReuseIdentifier: "ChooseAdvCatedoryCell")
-        
         self.getCategoriesData()
     }
     
