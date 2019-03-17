@@ -14,7 +14,7 @@ protocol AdDetailsDelegate {
     func updateAdvInAdsList(myAd: AdvertisementInfo, index : Int)
 }
 
-class AdDetails_NewVC: BaseVC, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     func share_Ad(AdDetails: AdvertisementInfo) {
         

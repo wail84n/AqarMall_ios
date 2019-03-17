@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 
+let ReceivedPushNotification = "General_Notification"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
@@ -36,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        
+        callSponsoreAPI()
         SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
             print("Categories No : \(recordNo ?? 0)")
             
@@ -60,6 +62,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    func callSponsoreAPI(){
+        APIs.shared.getSponsor(lastchange: 0, countryId: 1) { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            if let _result = result{
+                print(_result.count)
+                if _result.count > 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                        self.goToSponsorPage()
+                    })
+                }
+            }
+        }
+    }
+    
+    func goToSponsorPage(){
+         NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "showSponsor", userInfo: nil)
+    }
+    
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }

@@ -1,20 +1,28 @@
 //
-//  MoreVC.swift
+//  exchangeDetailsViewController.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 1/3/19.
+//  Created by Macbookpro on 3/16/19.
 //  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
 
-class MoreVC: ViewController {
+class exchangeDetailsViewController: ViewController {
 
+    var exchangeAds : ExchangeAds? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "المزيد"
         // Do any additional setup after loading the view.
+        configureView()
+    }
+    
+    func configureView(){
+        self.setBack()
+        title = "تفاصيل الإعلان"
+        print(exchangeAds?.title)
     }
     
 

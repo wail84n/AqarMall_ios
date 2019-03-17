@@ -17,6 +17,8 @@ class AppUtils: NSObject {
         case general_pages_last_change = "general_pages_last_change"
         case banner_last_change = "banner_last_change"
         case user_id = "user_id"
+        case sponsor = "sponsorData"
+        case sponsorLastChange = "sponsorLastChange"
     }
     
     class func LoadData(key: AppVariables)  -> String
@@ -38,8 +40,23 @@ class AppUtils: NSObject {
         UserDefaults.standard.synchronize()
     }
     
+    class func SaveDictionary(key:AppVariables ,value:NSDictionary)
+    {
+        UserDefaults.standard.set(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
+    }
     
-    
+    class func LoadDictionaryData(key: AppVariables )  -> NSDictionary?
+    {
+        let userDefaults = UserDefaults.standard
+        if((userDefaults.value(forKey: key.rawValue)) != nil)
+        {
+            let strValue = userDefaults.value(forKey: key.rawValue) as? NSDictionary
+            
+            return strValue!
+        }
+        return nil
+    }
     
     static var loadingView = RSLoadingView()
     class func ShowLoading(){

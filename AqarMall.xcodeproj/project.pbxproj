@@ -34,6 +34,9 @@
 		5261435822382E5600339882 /* ChooseCountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435622382E5600339882 /* ChooseCountryCell.swift */; };
 		5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5261435722382E5600339882 /* ChooseCountryCell.xib */; };
 		5261435C2239F41800339882 /* Sponsor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435B2239F41800339882 /* Sponsor.swift */; };
+		5261435F223A012D00339882 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435E223A012D00339882 /* SponsorViewController.swift */; };
+		52614361223C20DC00339882 /* SponsorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614360223C20DC00339882 /* SponsorDetailsViewController.swift */; };
+		52614363223D208A00339882 /* exchangeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614362223D208A00339882 /* exchangeDetailsViewController.swift */; };
 		52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */; };
 		52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5121F2646E005480C2 /* SyncAPIData.swift */; };
 		52641B5521F27710005480C2 /* DB_Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5421F27710005480C2 /* DB_Categories.swift */; };
@@ -145,6 +148,9 @@
 		5261435622382E5600339882 /* ChooseCountryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryCell.swift; sourceTree = "<group>"; };
 		5261435722382E5600339882 /* ChooseCountryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseCountryCell.xib; sourceTree = "<group>"; };
 		5261435B2239F41800339882 /* Sponsor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sponsor.swift; sourceTree = "<group>"; };
+		5261435E223A012D00339882 /* SponsorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
+		52614360223C20DC00339882 /* SponsorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorDetailsViewController.swift; sourceTree = "<group>"; };
+		52614362223D208A00339882 /* exchangeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchangeDetailsViewController.swift; sourceTree = "<group>"; };
 		52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AqarMall.xcdatamodel; sourceTree = "<group>"; };
 		52641B5121F2646E005480C2 /* SyncAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncAPIData.swift; sourceTree = "<group>"; };
 		52641B5421F27710005480C2 /* DB_Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Categories.swift; sourceTree = "<group>"; };
@@ -284,6 +290,15 @@
 			path = UserAccount;
 			sourceTree = "<group>";
 		};
+		5261435D223A00F600339882 /* Sponsor */ = {
+			isa = PBXGroup;
+			children = (
+				5261435E223A012D00339882 /* SponsorViewController.swift */,
+				52614360223C20DC00339882 /* SponsorDetailsViewController.swift */,
+			);
+			path = Sponsor;
+			sourceTree = "<group>";
+		};
 		52641B0A21F23564005480C2 /* Core Data Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +415,7 @@
 				52E6526B21D9E40B00E66AA2 /* Service */,
 				52E6526721D9E39900E66AA2 /* Resources */,
 				52E6523721D9DB6700E66AA2 /* AppDelegate.swift */,
+				52E6528521D9EC6F00E66AA2 /* ViewController.swift */,
 				52290AA8221367BC00EBEAA7 /* BaseVC.swift */,
 				52E6523921D9DB6700E66AA2 /* FirstViewController.swift */,
 				52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */,
@@ -477,13 +493,13 @@
 		52E6526C21D9E41600E66AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5261435D223A00F600339882 /* Sponsor */,
 				527E0A99222B1FC4005934DC /* SubmitAdv */,
 				527E0A9222278DF5005934DC /* Banner */,
 				52AFE77421DD5E5200FE1D70 /* Notifications */,
 				52E6528921D9ECC400E66AA2 /* MoreSection */,
 				52E6528821D9EC9D00E66AA2 /* Advertisements */,
 				52E6528721D9EC9200E66AA2 /* UserAccount */,
-				52E6528521D9EC6F00E66AA2 /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -550,6 +566,7 @@
 				52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */,
 				52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */,
 				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
+				52614362223D208A00339882 /* exchangeDetailsViewController.swift */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -853,7 +870,9 @@
 				52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */,
 				5281D89821F3494A00A177B0 /* Areas.swift in Sources */,
 				5261435C2239F41800339882 /* Sponsor.swift in Sources */,
+				52614363223D208A00339882 /* exchangeDetailsViewController.swift in Sources */,
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
+				52614361223C20DC00339882 /* SponsorDetailsViewController.swift in Sources */,
 				5204DD6F2233A69100319A58 /* postAdv.swift in Sources */,
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
@@ -864,6 +883,7 @@
 				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
 				5204DD6D22339E8300319A58 /* UIImage.swift in Sources */,
+				5261435F223A012D00339882 /* SponsorViewController.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,

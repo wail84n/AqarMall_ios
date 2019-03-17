@@ -9,13 +9,28 @@
 import UIKit
 
 struct ExchangeAds {
-    let entryID:Int
-    let countryID:Int
-    let title:String
-    let date:String
-    let description:String
-    let provinceID:Int
-    let whatsApp:String
+    let entryID:Int?
+    let countryID:Int?
+    let title:String?
+    let date:String?
+    let description:String?
+    let provinceID:Int?
+    let whatsApp:String?
+    var isBanner : Bool? = false
+    var banner : BannersData? = nil
+    
+    public init?(withBanner: BannersData?) {
+        self.isBanner = true
+        self.banner = withBanner
+        
+        self.entryID = 0
+        self.countryID = 0
+        self.title = ""
+        self.date = ""
+        self.description = ""
+        self.provinceID = 0
+        self.whatsApp = ""
+    }
     
     public init?(object: AnyObject?) {
         guard

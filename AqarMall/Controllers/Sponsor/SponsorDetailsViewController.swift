@@ -1,22 +1,42 @@
 //
-//  ViewController.swift
+//  SponsorDetailsViewController.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 12/31/18.
-//  Copyright © 2018 Macbookpro. All rights reserved.
+//  Created by Macbookpro on 3/15/19.
+//  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
-
+class SponsorDetailsViewController: UIViewController {
+    @IBOutlet weak var webView: UIWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configureView()
         // Do any additional setup after loading the view.
     }
     
-
+    func configureView(){
+        setBack()
+        if let _sponsor = Sponsor(object: AppUtils.LoadDictionaryData(key: .sponsor)) {
+            
+            title = _sponsor.name
+            
+            webView.allowsInlineMediaPlayback = true
+            webView.loadHTMLString(_sponsor.details, baseURL: nil)
+            self.webView.isOpaque = false
+            self.webView.backgroundColor = UIColor.clear
+            self.webView.scalesPageToFit = false
+        }
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!)
+    {
+        print(#function)
+    }
+    
     func setBack(){
         let buttonImage = #imageLiteral(resourceName: "back")
         let button = UIButton(type: .system)
@@ -32,8 +52,10 @@ class ViewController: UIViewController {
     }
     
     @objc func backAction() {
-        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+       // _ = navigationController?.popViewController(animated: true)
     }
+    
     
     /*
     // MARK: - Navigation

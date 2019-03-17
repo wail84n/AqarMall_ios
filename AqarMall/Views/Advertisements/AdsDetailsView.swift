@@ -407,7 +407,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
                         // Force the cell update
                     }
             }
-            
+             
             let tap = UITapGestureRecognizer(target: self, action: #selector(Gallery(sender:))) // +++
             imageView.addGestureRecognizer(tap) // +++
             imageView.isUserInteractionEnabled = true

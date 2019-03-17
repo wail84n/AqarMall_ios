@@ -364,6 +364,12 @@ class APIs: NSObject {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
+            
+            var body:NSDictionary
+            
+            body = ["SponsorID": sponsor[0].sponsorID,"Name": sponsor[0].name , "FileName":sponsor[0].fileName, "Details":sponsor[0].details, "LastChange": sponsor[0].lastChange, "LastChangeType": sponsor[0].lastChangeType]
+            
+            AppUtils.SaveDictionary(key: .sponsor, value: body)
             callback(sponsor, nil)
         }
     }

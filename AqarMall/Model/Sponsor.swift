@@ -24,18 +24,21 @@ struct Sponsor {
             let _name = _object["Name"] as? String,
             let _details = _object["Details"] as? String,
             let _fileName = _object["FileName"] as? String,
-            let _noOfViews = _object["NoOfViews"] as? Int,
             let _lastChange = _object["LastChange"] as? Int,
             let _lastChangeType = _object["LastChangeType"] as? Int
             else{
                 return nil
         }
         
+        if let _noOfViews = _object["NoOfViews"] as? Int{
+            self.noOfViews = _noOfViews
+        }else{
+            self.noOfViews = 0
+        }
         self.sponsorID = _sponsorID
         self.name = _name
         self.details = _details
         self.fileName = _fileName
-        self.noOfViews = _noOfViews
         self.lastChange = _lastChange
         self.lastChangeType = _lastChangeType
     }
