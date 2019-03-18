@@ -9,6 +9,28 @@
 import UIKit
 import RSLoadingView
 
+enum AdvType : String {
+    case rent = "rent"
+    case sale = "sale"
+    case required = "required"
+    case for_exchange = "for_exchange"
+    
+    
+    var getFavorateSavedName: String? {
+        switch self {
+        case .rent:
+            return "rentFavoriteAdIDs"
+        case .sale:
+            return "saleFavoriteAdIDs"
+        case .required:
+            return "requiredFavoriteAdIDs"
+        case .for_exchange:
+            return "for_exchangeFavoriteAdIDs"
+        }
+    }
+    
+}
+
 class AppUtils: NSObject {
     enum AppVariables : String {
         case categories_last_change = "categories_last_change"
@@ -76,45 +98,77 @@ class AppUtils: NSObject {
         loadingView.hide()
     }
     
-    class func markAdAsFavorite(ad: AdvertisementInfo) -> Bool {
+    class func markAdAsFavorite(entryID: Int, advType : AdvType) -> Bool {
+        print(advType.getFavorateSavedName!)
+        guard let name = advType.getFavorateSavedName else{return false}
         
-        let IDs = UserDefaults.standard.value(forKey: "FavoriteAdIDs") as? String
+        let IDs = UserDefaults.standard.value(forKey: name) as? String
         var arrayIDs:[String] = []
         if IDs != nil {
             //Convert String to array. Example: "1,2,3,4" to ["1","2","3","4"]
             arrayIDs = IDs!.components(separatedBy: ",")
         }
+        
         //Check for array contains value
-        if arrayIDs.contains("\(ad.entryID ?? 0)") {
+        if arrayIDs.contains("\(entryID )") {
             // ID found remove... and make it as UnFavorite
-            arrayIDs = arrayIDs.filter{$0 != "\(ad.entryID ?? 0)"}
+            arrayIDs = arrayIDs.filter{$0 != "\(entryID )"}
             //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
             let finalStringIDs = arrayIDs.joined(separator: ",")
             //Save IDs
-            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+            UserDefaults.standard.setValue(finalStringIDs, forKey: name)
             return false
         }
         else {
             //Appen new value to array
-            arrayIDs.insert("\(ad.entryID ?? 0)", at: 0)
+            arrayIDs.insert("\(entryID)", at: 0)
             //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
             let finalStringIDs = arrayIDs.joined(separator: ",")
             //Save IDs
-            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+            UserDefaults.standard.setValue(finalStringIDs, forKey: name)
             
             return true
         }
     }
     
-    class func checkIsFavorite(ad: AdvertisementInfo) -> Bool {
-        let IDs = UserDefaults.standard.value(forKey: "FavoriteAdIDs") as? String
+//    class func markAdAsFavorite(ad: AdvertisementInfo) -> Bool {
+//        let IDs = UserDefaults.standard.value(forKey: "FavoriteAdIDs") as? String
+//        var arrayIDs:[String] = []
+//        if IDs != nil {
+//            //Convert String to array. Example: "1,2,3,4" to ["1","2","3","4"]
+//            arrayIDs = IDs!.components(separatedBy: ",")
+//        }
+//        //Check for array contains value
+//        if arrayIDs.contains("\(ad.entryID ?? 0)") {
+//            // ID found remove... and make it as UnFavorite
+//            arrayIDs = arrayIDs.filter{$0 != "\(ad.entryID ?? 0)"}
+//            //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
+//            let finalStringIDs = arrayIDs.joined(separator: ",")
+//            //Save IDs
+//            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+//            return false
+//        }
+//        else {
+//            //Appen new value to array
+//            arrayIDs.insert("\(ad.entryID ?? 0)", at: 0)
+//            //Convert Array to String. Example: ["1","2","3"] to "1,2,3"
+//            let finalStringIDs = arrayIDs.joined(separator: ",")
+//            //Save IDs
+//            UserDefaults.standard.setValue(finalStringIDs, forKey: "FavoriteAdIDs")
+//
+//            return true
+//        }
+//    }
+    
+    class func checkIsFavorite(entryID: Int, advType : AdvType) -> Bool {
+        let IDs = UserDefaults.standard.value(forKey: advType.getFavorateSavedName!) as? String
         var arrayIDs:[String] = []
         if IDs != nil {
             //Convert String to array. Example: "1,2,3,4" to ["1","2","3","4"]
             arrayIDs = IDs!.components(separatedBy: ",")
         }
         //Check for array contains value
-        if arrayIDs.contains("\(ad.entryID ?? 0)") {
+        if arrayIDs.contains("\(entryID)") {
             // ID found, set this Ad as favorite
             return true
         }

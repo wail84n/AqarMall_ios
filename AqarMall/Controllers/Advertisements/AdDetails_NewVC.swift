@@ -49,6 +49,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
    // let user = UserVM.checkUserLogin() // +++ wail
     
     let topController = UIApplication.topViewController()
+    var advType: AdvType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,7 +151,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         
         let viewHight = adView.getViewHight()
                 
-        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
+        //self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
+        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!))
         scrollView2.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight + 30)
         
 //        if intAdIndex == index {
@@ -174,7 +176,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     func changePage(){
         let adsRecord = self.ads[intAdIndex]
         
-        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
+        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!)) // +++ wail
         
         self.SetView()
     }
@@ -613,7 +615,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         let adsRecord = self.ads[intAdIndex]
         // +++ wail
-        let favoriteFlag = AppUtils.markAdAsFavorite(ad: adsRecord)
+        let favoriteFlag = AppUtils.markAdAsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!)
         self.setFavoriteImageBy(flag: favoriteFlag)
     }
     
@@ -686,7 +688,5 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
             // present the view controller
             self.present(activityViewController, animated: true, completion: nil)
         }
-
     }
-    
 }

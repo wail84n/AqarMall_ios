@@ -15,6 +15,7 @@ struct ExchangeAds {
     let date:String?
     let description:String?
     let provinceID:Int?
+    let phone : String?
     let whatsApp:String?
     var isBanner : Bool? = false
     var banner : BannersData? = nil
@@ -30,6 +31,7 @@ struct ExchangeAds {
         self.description = ""
         self.provinceID = 0
         self.whatsApp = ""
+        self.phone = ""
     }
     
     public init?(object: AnyObject?) {
@@ -41,6 +43,7 @@ struct ExchangeAds {
             let _date = _object["Date"] as? String,
             let _description = _object["Description"] as? String,
             let _provinceID = _object["ProvinceID"] as? Int,
+            let _phone = _object["Phone"] as? String,
             let _whatsApp = _object["WhatsApp"] as? String
             else{
                 return nil
@@ -53,6 +56,7 @@ struct ExchangeAds {
         self.description = _description
         self.provinceID = _provinceID
         self.whatsApp = _whatsApp
+        self.phone = _phone
     }
 }
 

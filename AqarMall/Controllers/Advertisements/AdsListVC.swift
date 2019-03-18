@@ -43,6 +43,7 @@ class AdsListVC: ViewController, AdDetailsDelegate {
     var bannerIndex = 0
     var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -295,8 +296,13 @@ class AdsListVC: ViewController, AdDetailsDelegate {
         var category = ""
         if sectionSegment.selectedSegmentIndex == 2 || sectionSegment.selectedSegmentIndex == 3{
             if self.segmentedControl.selectedSegmentIndex != self.categories.count {
-                let item = self.categories[self.segmentedControl.selectedSegmentIndex]
-                category = item.name ?? ""
+                print("index : \(self.segmentedControl.selectedSegmentIndex)")
+                if self.segmentedControl.selectedSegmentIndex > 0 {
+                    let item = self.categories[self.segmentedControl.selectedSegmentIndex - 1]
+                    print("index : \(item.name ?? "")")
+                    category = item.name ?? ""
+                }
+
             }
         }
         
@@ -416,6 +422,17 @@ class AdsListVC: ViewController, AdDetailsDelegate {
 
             navPlace.proccessType = 2
             
+            
+            switch sectionSegment.selectedSegmentIndex
+            {
+            case 2:
+                navPlace.advType = .rent
+            case 3:
+                navPlace.advType = .sale
+            default:
+                break
+            }
+            
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
             if let _adDetails = adDetails {
@@ -427,10 +444,19 @@ class AdsListVC: ViewController, AdDetailsDelegate {
                 navPlace.bannerDetails = banner
             }
         }else if let navPlace = segue.destination as? exchangeDetailsViewController {
-            let exchangeAds = sender as?  ExchangeAds
-            if let _exchangeAds = exchangeAds {
-                navPlace.exchangeAds = _exchangeAds
+
+            let indexPath = tableView.indexPathForSelectedRow
+            navPlace.intAdIndex = indexPath?.row ?? 0
+            switch sectionSegment.selectedSegmentIndex
+            {
+            case 0:
+                navPlace.advType = .for_exchange
+            case 1:
+                navPlace.advType = .required
+            default:
+                break
             }
+            navPlace.ads = arrExchangeAdve
         }
     }
     
