@@ -9,7 +9,7 @@
 import UIKit
 
 struct ExchangeAds {
-    let entryID:Int?
+    let entryID:Int64?
     let countryID:Int?
     let title:String?
     let date:String?
@@ -34,10 +34,24 @@ struct ExchangeAds {
         self.phone = ""
     }
     
+    public init?(favorateExchangeAdsData :FavorateExchangeAdsData) {
+        self.isBanner = false
+        self.banner = nil
+        
+        self.entryID = favorateExchangeAdsData.entryID
+        self.countryID = 0
+        self.title = favorateExchangeAdsData.title
+        self.date = favorateExchangeAdsData.date
+        self.description = favorateExchangeAdsData.details
+        self.provinceID = 0
+        self.whatsApp = favorateExchangeAdsData.whatsApp
+        self.phone = favorateExchangeAdsData.phone
+    }
+    
     public init?(object: AnyObject?) {
         guard
             let _object = object,
-            let _entryID = _object["EntryID"] as? Int,
+            let _entryID = _object["EntryID"] as? Int64,
             let _countryID = _object["CountryID"] as? Int,
             let _title = _object["Title"] as? String,
             let _date = _object["Date"] as? String,

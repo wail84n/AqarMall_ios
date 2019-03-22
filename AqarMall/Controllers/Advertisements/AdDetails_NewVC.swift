@@ -151,8 +151,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         
         let viewHight = adView.getViewHight()
                 
-        //self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(ad: adsRecord)) // +++ wail
-        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!))
+      //  self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
+        self.setFavoriteImageBy(flag: DB_FavorateAdv.validateRecord(Id: adsRecord.entryID ?? 0))
         scrollView2.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight + 30)
         
 //        if intAdIndex == index {
@@ -176,7 +176,9 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     func changePage(){
         let adsRecord = self.ads[intAdIndex]
         
-        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!)) // +++ wail
+       // self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)) // +++ wail
+        
+        self.setFavoriteImageBy(flag: DB_FavorateAdv.validateRecord(Id: adsRecord.entryID ?? 0))
         
         self.SetView()
     }
@@ -603,20 +605,31 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     func setFavoriteImageBy(flag: Bool) {
         if flag {
             self.favoriteImageView.setImage(UIImage(named: "adDetailsFavorate_on"), for: .normal)
+            favoriteImageView.tag = 1
             // self.googleAnalyticsEventForSpecialAds(title: "اعجاب")
             //self.googleAnalyticsEventForNormalAds(title: "اضافة الى المفضلة")
         }else {
             self.favoriteImageView.setImage(UIImage(named: "adDetailsFavorate_off"), for: .normal)
+            favoriteImageView.tag = 0
             //self.favoriteImageView.image = UIImage(named: "btnFavorateAds2")
             // self.googleAnalyticsEventForNormalAds(title: "حذف من المفضلة")
         }
     }
     
     @IBAction func favoriteButtonPressed(_ sender: Any) {
-        let adsRecord = self.ads[intAdIndex]
-        // +++ wail
-        let favoriteFlag = AppUtils.markAdAsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!)
-        self.setFavoriteImageBy(flag: favoriteFlag)
+        let adsRecord = self.ads[intAdIndex]        
+        if favoriteImageView.tag == 1{
+            if  DB_FavorateAdv.deleteRecord(Id: adsRecord.entryID ?? 0) == true {
+                print("the favorate record has been deleted.")
+                self.setFavoriteImageBy(flag: false)
+            }
+        }else{
+            DB_FavorateAdv.saveRecord(adv: adsRecord, advType: advType!)
+            self.setFavoriteImageBy(flag: true)
+        }
+        
+       // let favoriteFlag = AppUtils.markAdAsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)
+       // self.setFavoriteImageBy(flag: favoriteFlag)
     }
     
     func CallPhone(AdDetails: AdvertisementInfo) {

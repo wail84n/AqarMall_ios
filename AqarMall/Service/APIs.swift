@@ -62,10 +62,11 @@ class APIs: NSObject {
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
 
-            if let error = json["error"] as AnyObject? {
-                return .failure(APIError.with(error))
-            }
-            else if let result = json as AnyObject? {
+//            if let error = json["error"] as AnyObject? {
+//                return .failure(APIError.with(error))
+//            }
+//            else
+            if let result = json as AnyObject? {
                 return .success
             }
 //            else if let result = json["result"] as AnyObject? {
@@ -109,7 +110,7 @@ class APIs: NSObject {
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
-        case getAdvtDetails(Id:Int?)
+        case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
         case getSponsors(lastchange:Int, countryId:Int)
@@ -320,20 +321,21 @@ class APIs: NSObject {
     typealias bannersCallback = (_ users:[Banners]?, _ error:Error?) -> Void
     typealias AdvtsCallback = (_ users:[AdvertisementInfo]?, _ error:Error?) -> Void
     typealias AdvtDetailsCallback = (_ users:AdvertisementInfo?, _ error:Error?) -> Void
+    typealias FullUserCallback = (_ users:FullUser?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     
-    func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping categoriesCallback) {
+    func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
                 let result = self.result(with: response),
-                let categories = (result as? [AnyObject])?.compactMap({ Categories(object: $0) })
+                let user = FullUser(object: result as AnyObject)
                 else {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
-            callback(categories, nil)
+            callback(user, nil)
         }
     }
     

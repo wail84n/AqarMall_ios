@@ -316,28 +316,22 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="jF8-ge-QoZ" kind="relationship" relationship="rootViewController" id="pJt-C2-FVI"/>
+                        <segue destination="kQj-3i-HhZ" kind="relationship" relationship="rootViewController" id="K4h-ow-Or0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Mf-Bg-G6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="294" y="-266"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="hfV-yd-EVP">
+        <!--FavorateViewController-->
+        <scene sceneID="eQa-e3-b9E">
             <objects>
-                <viewController id="jF8-ge-QoZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZCZ-l7-1Wy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Ssf-Sh-cGP"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="UQU-fP-aPX"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cSR-JQ-UQo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Advertisements" referencedIdentifier="FavorateViewController" id="kQj-3i-HhZ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lsa-65-n0f"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uL7-I6-ris" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="-244"/>
+            <point key="canvasLocation" x="1010" y="-267"/>
         </scene>
     </scenes>
     <resources>

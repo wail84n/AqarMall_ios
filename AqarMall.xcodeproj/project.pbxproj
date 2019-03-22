@@ -62,6 +62,9 @@
 		5281D8A021F3652300A177B0 /* DB_GeneralPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */; };
 		5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D8A121F3A1F400A177B0 /* Banners.swift */; };
 		5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D8A321F3A3A300A177B0 /* DB_Banners.swift */; };
+		528313E122417D6C00D4A1C0 /* DB_FavorateAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */; };
+		528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */; };
+		528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E4224416B000D4A1C0 /* FavorateViewController.swift */; };
 		52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76A21DBF33400FE1D70 /* Phone.swift */; };
 		52AFE76D21DBF35700FE1D70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76C21DBF35700FE1D70 /* User.swift */; };
 		52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */; };
@@ -176,6 +179,9 @@
 		5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_GeneralPages.swift; sourceTree = "<group>"; };
 		5281D8A121F3A1F400A177B0 /* Banners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banners.swift; sourceTree = "<group>"; };
 		5281D8A321F3A3A300A177B0 /* DB_Banners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Banners.swift; sourceTree = "<group>"; };
+		528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_FavorateAdv.swift; sourceTree = "<group>"; };
+		528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_FavorateExchangeAds.swift; sourceTree = "<group>"; };
+		528313E4224416B000D4A1C0 /* FavorateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateViewController.swift; sourceTree = "<group>"; };
 		52AFE76A21DBF33400FE1D70 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		52AFE76C21DBF35700FE1D70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierSubscription.swift; sourceTree = "<group>"; };
@@ -316,6 +322,8 @@
 				5281D89F21F3652300A177B0 /* DB_GeneralPages.swift */,
 				5281D8A321F3A3A300A177B0 /* DB_Banners.swift */,
 				526143502236F22D00339882 /* DB_Countries.swift */,
+				528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */,
+				528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -566,6 +574,7 @@
 				52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */,
 				52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */,
 				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
+				528313E4224416B000D4A1C0 /* FavorateViewController.swift */,
 				52614362223D208A00339882 /* exchangeDetailsViewController.swift */,
 			);
 			path = Advertisements;
@@ -863,6 +872,7 @@
 				526143552237038C00339882 /* ChooseCountryViewController.swift in Sources */,
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
+				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
@@ -874,10 +884,12 @@
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
 				52614361223C20DC00339882 /* SponsorDetailsViewController.swift in Sources */,
 				5204DD6F2233A69100319A58 /* postAdv.swift in Sources */,
+				528313E122417D6C00D4A1C0 /* DB_FavorateAdv.swift in Sources */,
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
 				52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */,
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
+				528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
 				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
 				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,

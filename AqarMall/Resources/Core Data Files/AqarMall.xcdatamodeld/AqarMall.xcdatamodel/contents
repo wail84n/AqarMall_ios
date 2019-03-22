@@ -45,6 +45,29 @@
         <attribute name="countryID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="FavorateAdsData" representedClassName="FavorateAdsData" syncable="YES" codeGenerationType="class">
+        <attribute name="areaID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="areaName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isRent" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="priceLabel" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provinceID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="provinceName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FavorateExchangeAdsData" representedClassName="FavorateExchangeAdsData" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isExchange" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="whatsApp" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="GeneralPagesData" representedClassName="GeneralPagesData" syncable="YES" codeGenerationType="class">
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -58,18 +81,24 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
-    <entity name="Users" representedClassName="Users" syncable="YES" codeGenerationType="class">
+    <entity name="UsersData" representedClassName="UsersData" syncable="YES" codeGenerationType="class">
+        <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="smsCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="verificationStatus" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="AreasData" positionX="-45" positionY="126" width="128" height="120"/>
         <element name="BannersData" positionX="-18" positionY="144" width="128" height="180"/>
         <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="330"/>
+        <element name="CountriesData" positionX="-36" positionY="135" width="128" height="105"/>
         <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
         <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
-        <element name="Users" positionX="-54" positionY="108" width="128" height="90"/>
-        <element name="CountriesData" positionX="-36" positionY="135" width="128" height="105"/>
+        <element name="UsersData" positionX="-54" positionY="108" width="128" height="150"/>
+        <element name="FavorateAdsData" positionX="-36" positionY="135" width="128" height="225"/>
+        <element name="FavorateExchangeAdsData" positionX="-27" positionY="144" width="128" height="150"/>
     </elements>
 </model>

@@ -34,7 +34,8 @@ class exchangeDetailsViewController: ViewController {
         title = "تفاصيل الإعلان"
         
         let adsRecord = self.ads[intAdIndex]
-        self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!))
+        self.setFavoriteImageBy(flag: DB_FavorateExchangeAds.validateRecord(Id: adsRecord.entryID ?? 0))
+     //   self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
         
         dateLabel.text = adsRecord.date
         titleLabel.text = adsRecord.title
@@ -102,22 +103,41 @@ class exchangeDetailsViewController: ViewController {
     
     func setFavoriteImageBy(flag: Bool) {
         if flag {
-            self.favorateButton.setImage(UIImage(named: "btnFavorate"), for: .normal)
+            self.favorateButton.setImage(UIImage(named: "btnFavorate_off"), for: .normal)
+            favorateButton.tag = 1
             // self.googleAnalyticsEventForSpecialAds(title: "اعجاب")
             //self.googleAnalyticsEventForNormalAds(title: "اضافة الى المفضلة")
         }else {
-            self.favorateButton.setImage(UIImage(named: "btnFavorate_off"), for: .normal)
+            self.favorateButton.setImage(UIImage(named: "btnFavorate"), for: .normal)
+            favorateButton.tag = 0
             //self.favoriteImageView.image = UIImage(named: "btnFavorateAds2")
             // self.googleAnalyticsEventForNormalAds(title: "حذف من المفضلة")
         }
     }
     
+//    @IBAction func favoriteButtonPressed(_ sender: Any) {
+//        let adsRecord = self.ads[intAdIndex]
+//        // +++ wail
+//        let favoriteFlag = AppUtils.markAdAsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)
+//        self.setFavoriteImageBy(flag: favoriteFlag)
+//    }
+    
     @IBAction func favoriteButtonPressed(_ sender: Any) {
         let adsRecord = self.ads[intAdIndex]
-        // +++ wail
-        let favoriteFlag = AppUtils.markAdAsFavorite(entryID: adsRecord.entryID ?? 0, advType: advType!)
-        self.setFavoriteImageBy(flag: favoriteFlag)
+        if favorateButton.tag == 1{
+            if  DB_FavorateExchangeAds.deleteRecord(Id: adsRecord.entryID ?? 0) == true {
+                print("the favorate record has been deleted.")
+                self.setFavoriteImageBy(flag: false)
+            }
+        }else{
+            DB_FavorateExchangeAds.saveRecord(adv: adsRecord, advType: advType!)
+            self.setFavoriteImageBy(flag: true)
+        }
+        
+        // let favoriteFlag = AppUtils.markAdAsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)
+        // self.setFavoriteImageBy(flag: favoriteFlag)
     }
+    
     
     
     /*

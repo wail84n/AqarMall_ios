@@ -214,6 +214,7 @@
                 <outlet property="adsTitleLabel" destination="LDz-hH-BSA" id="96T-Md-Ul0"/>
                 <outlet property="curencyLabel" destination="Dah-Oa-izc" id="xlA-My-ixo"/>
                 <outlet property="detailsLable" destination="QOa-vx-qnW" id="VCF-a1-OW3"/>
+                <outlet property="favorateButton" destination="Ine-eF-UvH" id="7a2-5v-i2f"/>
                 <outlet property="priceLabel" destination="neI-CO-d4s" id="RXW-wE-9jy"/>
                 <outlet property="priceTitleLabel" destination="Cqv-do-MWP" id="ynb-ku-AaI"/>
                 <outlet property="sizeLabel" destination="GBm-43-VhI" id="CPB-A7-wxj"/>

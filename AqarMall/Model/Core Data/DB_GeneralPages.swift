@@ -35,6 +35,7 @@ struct DB_GeneralPages {
         userFetch.predicate = NSPredicate(format: "entryID = %@", "\(Id)")
         do {
             let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [GeneralPagesData]
+            
             if  result?.count ?? 0 > 0 {
                 return true
             }

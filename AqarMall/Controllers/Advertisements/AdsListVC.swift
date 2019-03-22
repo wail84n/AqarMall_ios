@@ -346,28 +346,6 @@ class AdsListVC: ViewController, AdDetailsDelegate {
         
         clearTableView()
         callAdvAPI()
-//        let item = allEntries.object(at: sender.selectedSegmentIndex) as! CategoryRecord
-//        CatRecord = item
-//
-//        ads.removeAll()
-//        self.adsCollectionView.reloadData()
-//        currentPage = 1
-//        nextpage = 0
-//        intNumberOfRows = 0
-//
-//        self.GetAds_Count(record: CatRecord)
-//
-//        // Utility.ShowLoading(View: self.view, title: "", details: "")
-//        Utility.ShowLoading()
-//        if adsSegment.selectedSegmentIndex == 1 {
-//            self.GetAds_MyCity(callType: CallType.firstPage, record: CatRecord)
-//        }
-//        if adsSegment.selectedSegmentIndex == 2 {
-//            self.GetAds_List(callType: CallType.firstPage, record: CatRecord)
-//        }
-//        if adsSegment.selectedSegmentIndex == 0 {
-//            self.GetAds_MyLocation(callType: CallType.firstPage, record: CatRecord)
-//        }
     }
     
     @IBAction func showFilterList(_ sender: Any) {
@@ -479,6 +457,37 @@ extension AdsListVC: UITableViewDataSource {
         return arrAdve.count
     }
     
+    @objc func removeAdvFavorate(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        let record = arrAdve[btnsendtag.tag]
+        
+        let indexPath = IndexPath(item: btnsendtag.tag, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as? AdsCell
+
+        if let btnfavorte = btnsendtag.currentImage {
+            if btnfavorte.isEqual(UIImage(named: "favorateList_on")) {
+                if  DB_FavorateAdv.deleteRecord(Id: record.entryID ?? 0) == true {
+                    print("the favorate record has been deleted.")
+                    cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+                }
+            }else{
+                switch sectionSegment.selectedSegmentIndex
+                {
+                case 2:
+                    if DB_FavorateAdv.saveRecord(adv: record, advType: .rent){
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                case 3:
+                    if DB_FavorateAdv.saveRecord(adv: record, advType: .sale) {
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
@@ -490,7 +499,16 @@ extension AdsListVC: UITableViewDataSource {
             cell.priceLabel.text = "\(record.price ?? 0)"
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
-          //  cell.update(with: arrUserNotifications[indexPath.row])
+            
+            if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+            }else{
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+            }
+            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+            cell.favorateButton.tag = indexPath.row
+            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
+            
         }else if let cell = cell as? bannerCell {
             if sectionSegment.selectedSegmentIndex < 2 {
                 let record = arrExchangeAdve[indexPath.row]

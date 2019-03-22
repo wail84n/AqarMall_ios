@@ -9,7 +9,7 @@
 import UIKit
 
 class AdvertisementInfo : NSObject {
-    var entryID:Int?
+    var entryID:Int32?
     var title:String?
     var provinceName:String?
     var areaName:String?
@@ -115,7 +115,7 @@ class AdvertisementInfo : NSObject {
     public init?(object: AnyObject?) {
         guard
             let _object = object,
-            let _entryID = _object["EntryID"] as? Int,
+            let _entryID = _object["EntryID"] as? Int32,
             let _title = _object["Title"] as? String,
             let _provinceName = _object["ProvinceName"] as? String,
             let _areaName = _object["AreaName"] as? String,

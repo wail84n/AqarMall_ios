@@ -17,6 +17,7 @@ class AdsCell: UITableViewCell {
     @IBOutlet weak var curencyLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     
+    @IBOutlet weak var favorateButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
