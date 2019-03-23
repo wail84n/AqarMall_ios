@@ -8,6 +8,7 @@
 
 import UIKit
 import RSLoadingView
+import SwiftKeychainWrapper
 
 enum AdvType : String {
     case rent = "rent"
@@ -41,6 +42,7 @@ class AppUtils: NSObject {
         case user_id = "user_id"
         case sponsor = "sponsorData"
         case sponsorLastChange = "sponsorLastChange"
+        case sms_attempts = "smsAttempts"
     }
     
     class func LoadData(key: AppVariables)  -> String
@@ -51,6 +53,22 @@ class AppUtils: NSObject {
             let strValue = userDefaults.value(forKey: key.rawValue) as? String
             
             return strValue!
+        }
+        return ""
+    }
+    
+    class func getUuid()-> String{
+        if let user_uuid = KeychainWrapper.standard.string(forKey: "user_uuid"){
+            print(user_uuid)
+            return user_uuid
+        }else{
+            let uuid = UIDevice.current.identifierForVendor?.uuidString
+            if let _uuid = uuid {
+                print("uuid \(_uuid)")
+                if KeychainWrapper.standard.set(_uuid, forKey: "user_uuid"){
+                    return _uuid
+                }
+            }
         }
         return ""
     }

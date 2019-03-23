@@ -147,7 +147,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         adView.tag = Int(intAdIndex)
         adView.delegate = self
         let adsRecord = self.ads[intAdIndex]
-        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds)
+        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: advType!)
         
         let viewHight = adView.getViewHight()
                 
@@ -204,7 +204,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 
         scrollView.addSubview(view!)
         
-        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds)
+        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds, advType: advType!)
         adView.delegate = self
         let viewHight = adView.getViewHight()
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight)
@@ -231,6 +231,10 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
             self.LoadMoreAdsInCondetion()
         }
         //self.SetAdValue()
+    }
+    
+    func goToBidViewController() {
+        performSegue(withIdentifier: "GoToBids", sender: self)
     }
     
     func LoadMoreAdsInCondetion(){
@@ -525,6 +529,10 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 //            let Ad_Details = sender as! MyAd
 //            editMyPostAdVC.myAd = Ad_Details
 //        }
+        
+        if let navPlace = segue.destination as? BidsViewController{
+            navPlace.adDetails = self.ads[intAdIndex]
+        }
     }
     
     private func ShowNoCreditMessaege(){

@@ -20,6 +20,7 @@ public enum appURLs: String{
     case apiURL = "http://test.imallkw.com/Api.svc/"
 }
 
+
 class APIs: NSObject {
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
     
@@ -113,6 +114,8 @@ class APIs: NSObject {
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
+        case activeUserAccount(userId : Int)
+        
         case getSponsors(lastchange:Int, countryId:Int)
         
         var contentType:ContentType {
@@ -151,7 +154,8 @@ class APIs: NSObject {
         
         var method:HTTPMethod {
             switch self {
-            case .userRegister(_ , _, _, _):
+            case .userRegister(_ , _, _, _),
+                 .activeUserAccount(_):
                 return .post
             default:
                 return .get
@@ -184,6 +188,8 @@ class APIs: NSObject {
                 return "getInnerCountries"
             case .userRegister(_ , _, _, _):
                 return "postRegister"
+            case .activeUserAccount(_):
+                return "postVerify"
             case .getSponsors(_, _):
                 return "getSponsors"
             }
@@ -290,6 +296,8 @@ class APIs: NSObject {
             switch self {
             case .userRegister(let email, let name, let phone, let SMSCode):
                 return ["Email":email ?? "", "Name":name, "Phone":phone, "SMSCode":SMSCode]
+            case .activeUserAccount(let userId):
+                return ["userId":userId]
             default:
                 return nil
             }
@@ -323,6 +331,7 @@ class APIs: NSObject {
     typealias AdvtDetailsCallback = (_ users:AdvertisementInfo?, _ error:Error?) -> Void
     typealias FullUserCallback = (_ users:FullUser?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
+    typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
     
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
@@ -336,6 +345,19 @@ class APIs: NSObject {
                     return
             }
             callback(user, nil)
+        }
+    }
+    
+    func activeUserAccount(userId : Int, callback: @escaping isSuccessCallback) {
+        let route = Router.activeUserAccount(userId: userId)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(true, nil)
         }
     }
     

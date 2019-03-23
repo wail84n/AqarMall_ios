@@ -20,6 +20,7 @@
 		5204DD722235A12600319A58 /* NeedToLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD712235A12600319A58 /* NeedToLoginViewController.swift */; };
 		521CCAAC2245649900841505 /* DB_UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAB2245649900841505 /* DB_UserInfo.swift */; };
 		521CCAAE22456D4700841505 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAD22456D4700841505 /* UIViewController.swift */; };
+		521CCAB1224622F200841505 /* BidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAB0224622F200841505 /* BidsViewController.swift */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -81,6 +82,7 @@
 		52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */; };
 		52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */; };
 		52DC5255220C065D009F2B88 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC5254220C065D009F2B88 /* UIButton.swift */; };
+		52DE986E2246D389001DE2DF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE986D2246D389001DE2DF /* Notification.swift */; };
 		52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523721D9DB6700E66AA2 /* AppDelegate.swift */; };
 		52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523921D9DB6700E66AA2 /* FirstViewController.swift */; };
 		52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */; };
@@ -139,6 +141,7 @@
 		5204DD712235A12600319A58 /* NeedToLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedToLoginViewController.swift; sourceTree = "<group>"; };
 		521CCAAB2245649900841505 /* DB_UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_UserInfo.swift; sourceTree = "<group>"; };
 		521CCAAD22456D4700841505 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		521CCAB0224622F200841505 /* BidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidsViewController.swift; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 		52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAdsCell.swift; sourceTree = "<group>"; };
 		52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeAdsCell.xib; sourceTree = "<group>"; };
 		52DC5254220C065D009F2B88 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		52DE986D2246D389001DE2DF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		52E6523421D9DB6700E66AA2 /* AqarMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AqarMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523721D9DB6700E66AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6523921D9DB6700E66AA2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -289,6 +293,14 @@
 				5204DD6022339DB400319A58 /* UIImage+Crop.swift */,
 			);
 			path = CropViewController;
+			sourceTree = "<group>";
+		};
+		521CCAAF224622D700841505 /* Bids */ = {
+			isa = PBXGroup;
+			children = (
+				521CCAB0224622F200841505 /* BidsViewController.swift */,
+			);
+			path = Bids;
 			sourceTree = "<group>";
 		};
 		5261435A22382F0E00339882 /* UserAccount */ = {
@@ -576,6 +588,7 @@
 		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				521CCAAF224622D700841505 /* Bids */,
 				52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */,
 				52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */,
 				52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */,
@@ -615,6 +628,7 @@
 				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 				5204DD6E2233A69100319A58 /* postAdv.swift */,
 				5261435B2239F41800339882 /* Sponsor.swift */,
+				52DE986D2246D389001DE2DF /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -812,6 +826,7 @@
 				"${BUILT_PRODUCTS_DIR}/RSLoadingView/RSLoadingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftKeychainWrapper/SwiftKeychainWrapper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -824,6 +839,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSLoadingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftKeychainWrapper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -881,6 +897,7 @@
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
+				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
@@ -924,6 +941,7 @@
 				527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */,
 				526143532236F2A300339882 /* Countries.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
+				52DE986E2246D389001DE2DF /* Notification.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
 				5204DD6722339DB600319A58 /* UIImage+Crop.swift in Sources */,
@@ -1127,7 +1145,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1144,7 +1165,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1161,7 +1185,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1179,7 +1207,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1196,7 +1228,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1213,7 +1249,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

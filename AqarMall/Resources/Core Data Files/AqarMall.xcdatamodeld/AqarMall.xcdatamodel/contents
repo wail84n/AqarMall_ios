@@ -85,6 +85,8 @@
         <attribute name="deviceId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="entryID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isActiveOnSarver" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isSkipped" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="smsCode" optional="YES" attributeType="String" syncable="YES"/>
@@ -99,6 +101,6 @@
         <element name="FavorateExchangeAdsData" positionX="-27" positionY="144" width="128" height="150"/>
         <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
         <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
-        <element name="UsersData" positionX="-54" positionY="108" width="128" height="150"/>
+        <element name="UsersData" positionX="-54" positionY="108" width="128" height="180"/>
     </elements>
 </model>

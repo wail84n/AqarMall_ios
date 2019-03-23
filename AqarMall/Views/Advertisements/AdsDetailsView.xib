@@ -897,6 +897,9 @@
                                     <state key="normal" title="للسوم على العقار">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
+                                    <connections>
+                                        <action selector="goToBids:" destination="iN0-l3-epB" eventType="touchUpInside" id="mux-iQ-FDw"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -939,6 +942,7 @@
                 <outlet property="ageOfBuildingView" destination="Cr6-gL-oT2" id="xcW-0v-Lit"/>
                 <outlet property="bathroomNoLabel" destination="mDo-QZ-7Wd" id="keu-75-qz6"/>
                 <outlet property="bathroomNoView" destination="0VX-Ta-8Jd" id="9Eu-LS-TOt"/>
+                <outlet property="bidsButton" destination="XrR-qy-xTW" id="B83-wf-bB7"/>
                 <outlet property="buildingSizeLabel" destination="Cw5-cg-bBp" id="DM2-zJ-Fbi"/>
                 <outlet property="buildingSizeView" destination="Ehb-KA-don" id="8N9-xa-fUN"/>
                 <outlet property="changeAdStatusStackView" destination="Adg-Ke-Mb3" id="c33-Jm-D3j"/>

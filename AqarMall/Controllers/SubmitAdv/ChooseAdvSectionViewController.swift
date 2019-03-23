@@ -22,17 +22,31 @@ class ChooseAdvSectionViewController: ViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if AppUtils.LoadData(key: .user_id).isEmpty {
-            let popOverVC = UIStoryboard(name: "UserAccount", bundle: nil).instantiateViewController(withIdentifier: "NeedToLoginViewController") as! NeedToLoginViewController
-            self.addChild(popOverVC)
-            popOverVC.view.frame = self.view.frame
-            self.view.addSubview(popOverVC.view)
-            popOverVC.didMove(toParent: self)
-        }
+
+//        if AppUtils.LoadData(key: .user_id).isEmpty {
+//        }
     }
     
     func configureView(){
         title = "أضف اعلانك"
+      //  DB_UserInfo.deleteRecord()
+        let userInfo = DB_UserInfo.callRecords()
+        
+        if let _userInfo = userInfo {
+            if _userInfo.isSkippedVerification == false && _userInfo.verificationStatus == false{
+                createAccount()
+            }
+        }else{
+            createAccount()
+        }
+    }
+    
+    func createAccount(){
+        let popOverVC = UIStoryboard(name: "UserAccount", bundle: nil).instantiateViewController(withIdentifier: "UserInformationViewController") as! UserInformationViewController
+        self.addChild(popOverVC)
+        popOverVC.view.frame = self.view.frame
+        self.view.addSubview(popOverVC.view)
+        popOverVC.didMove(toParent: self)
     }
     
     @IBAction func forSaleAction(_ sender: UILongPressGestureRecognizer) {

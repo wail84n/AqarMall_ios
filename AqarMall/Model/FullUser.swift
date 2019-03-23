@@ -16,6 +16,7 @@ struct FullUser {
     let SMSCode:String
     let verificationStatus:Bool
     var deviceId:String? = ""
+    var isSkippedVerification = false
     
     public init?(user: UsersData?) {
         guard let _user = user,
@@ -35,6 +36,7 @@ struct FullUser {
         self.SMSCode = _smsCode
         self.deviceId = _deviceId
         self.verificationStatus = _user.verificationStatus
+        self.isSkippedVerification = _user.isSkipped
         
     }
     

@@ -22,6 +22,7 @@ protocol AdDetailsViewDelegate {
     func RemoveAd(AdDetails: AdvertisementInfo)
     func EditAd(AdDetails: AdvertisementInfo)
     func showHideDetails()
+    func goToBidViewController()
     func showHideHeaderView(isHide :Bool)
     func contactByWhatsApp(AdDetails: AdvertisementInfo)
 }
@@ -74,6 +75,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var licenseLabel: UILabel!
     @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var bidsButton: UIButton!
     
     @IBOutlet weak var moreDetailsButton: UIButton!
     
@@ -98,13 +100,22 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     
   //  let user = UserVM.checkUserLogin()
     
-    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool)  {
+    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType)  {
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
-        
+    
         self.changeAdStatusStackView.isHidden = !isFromMyAds
         self.loadImages()
         
+        switch advType{
+        case .rent:
+            bidsButton.isHidden = true
+        case .sale:
+            bidsButton.isHidden = false
+        default:
+            break
+        }
+
         adImagesSV.delegate = self
         
 //        self.dateLabel.text = myAd2.regDate!
@@ -245,6 +256,12 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }else{
             roomsNoView.isHidden = false
             roomNoLabel.text = AdDetails.properties?.numberOfRooms
+        }
+    }
+    
+    @IBAction func goToBids(_ sender: Any) {
+        if let _delegate = delegate {
+            _delegate.goToBidViewController()
         }
     }
     

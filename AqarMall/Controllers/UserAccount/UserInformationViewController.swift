@@ -13,9 +13,9 @@ enum phoneNumberStatus {
     case enter_phone
     case send_code
     case verify_code
-    
 }
-class UserInformationViewController: ViewController {
+
+class UserInformationViewController: ViewController, PhoneNumberVerificationDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -39,8 +39,20 @@ class UserInformationViewController: ViewController {
     func configureView(){
         title = "معلومات الحساب"
         self.setBack()
+        print(AppUtils.getUuid())
     }
-    
+
+    func dismisView() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            self.view.alpha = 0.0;
+        }, completion:{(finished : Bool)  in
+            if (finished)
+            {
+                self.view.removeFromSuperview()
+            }
+        });
+    }
     
     @IBAction func phoneNumberTextFieldDidChangeValue(_ sender: UITextField) {
         //temp solution for simulation
@@ -90,28 +102,53 @@ class UserInformationViewController: ViewController {
             return false
         }
 
+        if viewStatus == .enter_phone{
+            self.showAlert(withTitle: .Missing, text: "الرجاء ادخال رقم الهاتف بشكل صحيح")
+            return false
+        }
         return true
     }
     
+    func hideKeyboard(){
+        userNameTextField.resignFirstResponder()
+        phoneNumberTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
+    
     func postRegister() {
+        hideKeyboard()
+        guard let _email = emailTextField.text,
+        let _userName = userNameTextField.text,
+        let _phone = phoneNumberTextField.text else {
+            return
+        }
         var randomCode : String = ""
         for _ in 0 ..< 5{
             randomCode.append("\(Int.random(in: 1 ... 9))")
         }
-        print(randomCode)
-        APIs.shared.postRegister(email: emailTextField.text, name: userNameTextField.text ?? "", phone: phoneNumberTextField.text ?? "", SMSCode: randomCode) { (result, error) in
+        
+        let phoneText = currentRegionCode + _phone
+        AppUtils.ShowLoading()
+        APIs.shared.postRegister(email: _email, name: _userName, phone: phoneText, SMSCode: randomCode) { (userInfo, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 return
             }
-            
-            if DB_UserInfo.
+            if let _userInfo = userInfo{
+                if DB_UserInfo.saveRecord(user: _userInfo){
+                    print("user record has been saved.")
+                    self.performSegue(withIdentifier: "ToVerificationPhoneNumber", sender: self)
+                }
+            }
+
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChooseCountryViewController {
+            vc.delegate = self
+        }else if let vc = segue.destination as? PhoneNumberVerificationViewController {
             vc.delegate = self
         }
     }

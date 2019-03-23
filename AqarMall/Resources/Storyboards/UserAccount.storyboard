@@ -46,11 +46,24 @@
                                     <segue destination="5kt-tJ-ONL" kind="show" id="yyV-y5-pgR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2f-LY-apw">
+                                <rect key="frame" x="164" y="282" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="3EO-RX-zPF"/>
+                                    <constraint firstAttribute="height" constant="30" id="fis-Nf-ElE"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="goBack:" destination="ror-Qe-j9F" eventType="touchUpInside" id="7IE-O9-2Hc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="s2f-LY-apw" firstAttribute="leading" secondItem="jgp-MU-IB8" secondAttribute="leading" constant="164" id="4ki-ab-xSA"/>
                             <constraint firstItem="aeX-3a-cDd" firstAttribute="top" secondItem="RI8-JG-BkY" secondAttribute="bottom" constant="40" id="HJp-Ax-tAp"/>
                             <constraint firstItem="RI8-JG-BkY" firstAttribute="top" secondItem="jgp-MU-IB8" secondAttribute="top" constant="100" id="KhF-ID-GxI"/>
+                            <constraint firstItem="s2f-LY-apw" firstAttribute="top" secondItem="aeX-3a-cDd" secondAttribute="bottom" constant="27" id="Khu-uF-BVt"/>
                             <constraint firstItem="jgp-MU-IB8" firstAttribute="trailing" secondItem="aeX-3a-cDd" secondAttribute="trailing" constant="100" id="NNc-q9-QR5"/>
                             <constraint firstItem="RI8-JG-BkY" firstAttribute="centerX" secondItem="jgp-MU-IB8" secondAttribute="centerX" id="Ppi-dw-T1P"/>
                             <constraint firstItem="jgp-MU-IB8" firstAttribute="trailing" secondItem="RI8-JG-BkY" secondAttribute="trailing" constant="15" id="SAw-AB-8Pl"/>
@@ -197,7 +210,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98O-zk-O8B">
                                 <rect key="frame" x="50" y="238" width="275" height="45"/>
-                                <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="fyF-wV-zD3"/>
                                 </constraints>
@@ -289,12 +302,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7la-V9-5Kl">
-                                <rect key="frame" x="50" y="230" width="275" height="45"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7la-V9-5Kl">
+                                <rect key="frame" x="50" y="230" width="275" height="155"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRQ-4n-5uv">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="45"/>
-                                        <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="fYQ-af-apa"/>
                                         </constraints>
@@ -307,9 +320,12 @@
                                                 <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="activeAccount:" destination="RTy-sb-eHn" eventType="touchUpInside" id="Rx6-16-Mgz"/>
+                                        </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vo4-zp-PP7">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="45"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vo4-zp-PP7">
+                                        <rect key="frame" x="0.0" y="55" width="275" height="45"/>
                                         <color key="backgroundColor" red="1" green="0.20499674479999999" blue="0.43218315969999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="wEh-Ca-09q"/>
@@ -323,6 +339,28 @@
                                                 <real key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="reSendAction:" destination="RTy-sb-eHn" eventType="touchUpInside" id="HgP-UD-Ugo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu1-bm-vUB">
+                                        <rect key="frame" x="0.0" y="110" width="275" height="45"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="bTT-fq-B3Z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="تفعيل من قبل الإدارة">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="skipAction:" destination="RTy-sb-eHn" eventType="touchUpInside" id="9xQ-bb-8B5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -345,19 +383,28 @@
                                 <color key="textColor" red="1" green="0.20499674479999999" blue="0.43218315969999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Jma-Nf-BAh">
+                                <rect key="frame" x="15" y="400" width="345" height="50.5"/>
+                                <string key="text">بامكانك الآن اختيار زر "تفعيل من قبل الإدارة" والذي سيتيح لك اتمام كافة عملياتك في التطبيق وسيقوم احد موظفينا بالتواصل معك في اقرب وقت لتفعيل الحساب</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ERv-s7-9Q6" firstAttribute="trailing" secondItem="DKi-nO-gF1" secondAttribute="trailing" constant="30" id="0q2-Kx-cfW"/>
                             <constraint firstItem="i7Q-g2-iOv" firstAttribute="leading" secondItem="ERv-s7-9Q6" secondAttribute="leading" id="7zp-Ys-LlH"/>
                             <constraint firstItem="DKi-nO-gF1" firstAttribute="leading" secondItem="VBS-8D-4sq" secondAttribute="trailing" constant="15" id="CdZ-aD-Krq"/>
+                            <constraint firstItem="Jma-Nf-BAh" firstAttribute="top" secondItem="7la-V9-5Kl" secondAttribute="bottom" constant="15" id="DSE-d1-dpc"/>
                             <constraint firstItem="diX-TZ-QHQ" firstAttribute="leading" secondItem="ERv-s7-9Q6" secondAttribute="leading" constant="16" id="FKy-Fs-4CU"/>
                             <constraint firstItem="i7Q-g2-iOv" firstAttribute="top" secondItem="diX-TZ-QHQ" secondAttribute="bottom" constant="20" id="FP5-Na-4fL"/>
+                            <constraint firstItem="Jma-Nf-BAh" firstAttribute="leading" secondItem="ERv-s7-9Q6" secondAttribute="leading" constant="15" id="HmL-a8-GYM"/>
                             <constraint firstItem="VBS-8D-4sq" firstAttribute="top" secondItem="i7Q-g2-iOv" secondAttribute="bottom" constant="20" id="LyS-Is-DRy"/>
                             <constraint firstItem="7la-V9-5Kl" firstAttribute="top" secondItem="DKi-nO-gF1" secondAttribute="bottom" constant="20" id="QoG-Xd-R0k"/>
                             <constraint firstItem="diX-TZ-QHQ" firstAttribute="top" secondItem="ERv-s7-9Q6" secondAttribute="top" constant="20" id="cgz-rx-2nJ"/>
                             <constraint firstItem="ERv-s7-9Q6" firstAttribute="trailing" secondItem="diX-TZ-QHQ" secondAttribute="trailing" constant="16" id="ejg-gN-eZg"/>
                             <constraint firstItem="7la-V9-5Kl" firstAttribute="leading" secondItem="ERv-s7-9Q6" secondAttribute="leading" constant="50" id="iO6-zW-jSF"/>
+                            <constraint firstAttribute="trailing" secondItem="Jma-Nf-BAh" secondAttribute="trailing" constant="15" id="nEf-OJ-kSM"/>
                             <constraint firstItem="VBS-8D-4sq" firstAttribute="leading" secondItem="ERv-s7-9Q6" secondAttribute="leading" constant="30" id="oXV-fc-nUA"/>
                             <constraint firstItem="DKi-nO-gF1" firstAttribute="top" secondItem="i7Q-g2-iOv" secondAttribute="bottom" constant="10" id="tPc-jt-dJG"/>
                             <constraint firstItem="ERv-s7-9Q6" firstAttribute="trailing" secondItem="7la-V9-5Kl" secondAttribute="trailing" constant="50" id="vKu-fC-lru"/>
@@ -366,12 +413,17 @@
                         <viewLayoutGuide key="safeArea" id="ERv-s7-9Q6"/>
                     </view>
                     <connections>
+                        <outlet property="activationButton" destination="ZRQ-4n-5uv" id="9fE-LD-DXq"/>
+                        <outlet property="activeByAdminLabel" destination="Jma-Nf-BAh" id="7CV-d5-0a4"/>
                         <outlet property="counterLabel" destination="VBS-8D-4sq" id="Zen-0s-6VK"/>
+                        <outlet property="reSendButton" destination="vo4-zp-PP7" id="u3a-Y1-Ld6"/>
+                        <outlet property="skipActivationButton" destination="fu1-bm-vUB" id="KKM-Le-fdt"/>
+                        <outlet property="verificationTextView" destination="xFS-cL-ClY" id="Hhj-AL-kn2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAp-2p-0WK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-127" y="-1707"/>
+            <point key="canvasLocation" x="-42" y="-1697"/>
         </scene>
     </scenes>
 </document>

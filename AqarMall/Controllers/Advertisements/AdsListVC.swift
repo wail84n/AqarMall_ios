@@ -182,7 +182,6 @@ class AdsListVC: ViewController, AdDetailsDelegate {
     
     func getBannersData(){
       //  banners
-        
         if let _banners = DB_Banners.callBanners(){
             banners = _banners
         }
@@ -191,7 +190,6 @@ class AdsListVC: ViewController, AdDetailsDelegate {
     func getCategoriesData(isRent : Bool)
     {
         let screenBound_width = UIScreen.main.bounds.width
-        
         if let _ = segmentedControl {
             segmentedControl.removeFromSuperview()
         }
@@ -422,7 +420,6 @@ class AdsListVC: ViewController, AdDetailsDelegate {
                 navPlace.bannerDetails = banner
             }
         }else if let navPlace = segue.destination as? exchangeDetailsViewController {
-
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
             switch sectionSegment.selectedSegmentIndex
@@ -436,6 +433,8 @@ class AdsListVC: ViewController, AdDetailsDelegate {
             }
             navPlace.ads = arrExchangeAdve
         }
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
