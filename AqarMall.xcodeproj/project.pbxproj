@@ -18,6 +18,8 @@
 		5204DD6D22339E8300319A58 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD6C22339E8300319A58 /* UIImage.swift */; };
 		5204DD6F2233A69100319A58 /* postAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD6E2233A69100319A58 /* postAdv.swift */; };
 		5204DD722235A12600319A58 /* NeedToLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5204DD712235A12600319A58 /* NeedToLoginViewController.swift */; };
+		521CCAAC2245649900841505 /* DB_UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAB2245649900841505 /* DB_UserInfo.swift */; };
+		521CCAAE22456D4700841505 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAD22456D4700841505 /* UIViewController.swift */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -135,6 +137,8 @@
 		5204DD6E2233A69100319A58 /* postAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postAdv.swift; sourceTree = "<group>"; };
 		5204DD702233ACA900319A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5204DD712235A12600319A58 /* NeedToLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedToLoginViewController.swift; sourceTree = "<group>"; };
+		521CCAAB2245649900841505 /* DB_UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_UserInfo.swift; sourceTree = "<group>"; };
+		521CCAAD22456D4700841505 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 				526143502236F22D00339882 /* DB_Countries.swift */,
 				528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */,
 				528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */,
+				521CCAAB2245649900841505 /* DB_UserInfo.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				52E6528121D9EB6700E66AA2 /* String.swift */,
 				52E6528321D9EBCB00E66AA2 /* UIDevice.swift */,
 				5204DD6C22339E8300319A58 /* UIImage.swift */,
+				521CCAAD22456D4700841505 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -802,6 +808,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/OpalImagePicker/OpalImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RSLoadingView/RSLoadingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
@@ -813,6 +820,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpalImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSLoadingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
@@ -894,6 +902,7 @@
 				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
 				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
+				521CCAAE22456D4700841505 /* UIViewController.swift in Sources */,
 				5204DD6D22339E8300319A58 /* UIImage.swift in Sources */,
 				5261435F223A012D00339882 /* SponsorViewController.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
@@ -903,6 +912,7 @@
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
 				5204DD6922339DB600319A58 /* CropView.swift in Sources */,
 				527E0AA8222DBFF1005934DC /* SubmitAdvFormViewController.swift in Sources */,
+				521CCAAC2245649900841505 /* DB_UserInfo.swift in Sources */,
 				5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */,
 				527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */,
 				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
@@ -1117,10 +1127,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1137,10 +1144,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1157,11 +1161,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1179,11 +1179,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1200,11 +1196,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1221,11 +1213,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

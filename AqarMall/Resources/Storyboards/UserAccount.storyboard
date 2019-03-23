@@ -160,6 +160,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                        <connections>
+                                            <action selector="phoneNumberTextFieldDidChangeValue:" destination="5kt-tJ-ONL" eventType="editingChanged" id="Yrj-dG-ikJ"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UnW-33-gDj">
                                         <rect key="frame" x="20" y="3.5" width="80" height="43"/>
@@ -368,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAp-2p-0WK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-132" y="-1728"/>
+            <point key="canvasLocation" x="-127" y="-1707"/>
         </scene>
     </scenes>
 </document>

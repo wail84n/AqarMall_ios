@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import PhoneNumberKit
 
-class UserInformationViewController: ViewController, ChooseCountryDelegate {
+enum phoneNumberStatus {
+    case enter_phone
+    case send_code
+    case verify_code
+    
+}
+class UserInformationViewController: ViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -16,6 +23,13 @@ class UserInformationViewController: ViewController, ChooseCountryDelegate {
     @IBOutlet weak var countryButton: UIButton!
     
     var selectedCountry : Countries? = nil
+    
+    var viewStatus: phoneNumberStatus = .enter_phone {
+        didSet { updateView() }
+    }
+    var currentRegionCode = "965"
+    let phoneNumberKit = PhoneNumberKit()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -28,9 +42,55 @@ class UserInformationViewController: ViewController, ChooseCountryDelegate {
     }
     
     
+    @IBAction func phoneNumberTextFieldDidChangeValue(_ sender: UITextField) {
+        //temp solution for simulation
+        if let text = sender.text?.replacedArabicDigitsWithEnglish, text.count > 0, viewStatus == .enter_phone, let _ = currentPhoneNumber() {
+            viewStatus = .send_code
+        } else {
+            //   print(phoneNumber)
+            viewStatus = .enter_phone
+        }
+    }
+    
+//    @IBAction func verificationCodeTextFieldDidChangeValue(_ sender: UITextField) {
+//        //temp solution for simulation
+//        if let text = sender.text?.replacedArabicDigitsWithEnglish, text.count > 0, viewStatus == .send_code {
+//            viewStatus = .verify_code
+//        }
+//    }
+    
     @IBAction func sendUserInformation(_ sender: Any) {
-        postRegister()
+        if validateEntry(){
+            postRegister()
+        }
         //performSegue(withIdentifier: "ToVerificationPhoneNumber", sender: self)
+    }
+    
+    
+    func updateView() {
+        switch viewStatus {
+        case .enter_phone:
+            //  codeHintLabel.isHidden = true
+            sendButton.backgroundColor = UIColor.lightGray
+        case .send_code:
+            sendButton.backgroundColor = UIColor.greenButtonColor()
+        case .verify_code:
+            break
+        }
+    }
+    
+    func validateEntry()-> Bool{
+        if let userName = userNameTextField.text, userName.isEmpty {
+            self.showAlert(withTitle: .Missing, text: "الرجاء ادخال اسم المستخدم")
+            return false
+        }
+        
+        if let phoneNumber = phoneNumberTextField.text, phoneNumber.isEmpty {
+            self.showAlert(withTitle: .Missing, text: "الرجاء ادخال رقم الهاتف")
+            return false
+        }
+
+        return true
     }
     
     func postRegister() {
@@ -46,6 +106,7 @@ class UserInformationViewController: ViewController, ChooseCountryDelegate {
                 return
             }
             
+            if DB_UserInfo.
         }
     }
     
@@ -55,19 +116,34 @@ class UserInformationViewController: ViewController, ChooseCountryDelegate {
         }
     }
     
+    func currentPhoneNumber() -> PhoneNumber? {
+        guard let value = phoneNumberTextField.text?.replacedArabicDigitsWithEnglish, value.count > 0 else {
+            return nil
+        }
+        do {
+            let phoneText = currentRegionCode + value
+            print(phoneText)
+            let phoneNumber = try phoneNumberKit.parse(phoneText)
+            return phoneNumber
+        }
+        catch {
+            return nil
+        }
+    }
+}
+
+extension UserInformationViewController: ChooseCountryDelegate {
     func ChooseCountry(country: Countries) {
         selectedCountry = country
         countryButton.setTitle(selectedCountry?.code, for: .normal)
+        
+        currentRegionCode = country.code
+        if let text = phoneNumberTextField.text?.replacedArabicDigitsWithEnglish, text.count > 0, viewStatus == .enter_phone, let _ = currentPhoneNumber() {
+            viewStatus = .send_code
+        } else {
+            //   print(phoneNumber)
+            viewStatus = .enter_phone
+        }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

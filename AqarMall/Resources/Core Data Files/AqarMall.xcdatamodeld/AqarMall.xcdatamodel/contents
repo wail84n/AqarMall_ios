@@ -95,10 +95,10 @@
         <element name="BannersData" positionX="-18" positionY="144" width="128" height="180"/>
         <element name="CategoriesData" positionX="-63" positionY="-18" width="128" height="330"/>
         <element name="CountriesData" positionX="-36" positionY="135" width="128" height="105"/>
+        <element name="FavorateAdsData" positionX="-36" positionY="135" width="128" height="225"/>
+        <element name="FavorateExchangeAdsData" positionX="-27" positionY="144" width="128" height="150"/>
         <element name="GeneralPagesData" positionX="-36" positionY="135" width="128" height="105"/>
         <element name="ProvincesData" positionX="-54" positionY="117" width="128" height="120"/>
         <element name="UsersData" positionX="-54" positionY="108" width="128" height="150"/>
-        <element name="FavorateAdsData" positionX="-36" positionY="135" width="128" height="225"/>
-        <element name="FavorateExchangeAdsData" positionX="-27" positionY="144" width="128" height="150"/>
     </elements>
 </model>

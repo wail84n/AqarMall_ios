@@ -15,6 +15,29 @@ struct FullUser {
     let phone:String
     let SMSCode:String
     let verificationStatus:Bool
+    var deviceId:String? = ""
+    
+    public init?(user: UsersData?) {
+        guard let _user = user,
+        let _name = _user.name,
+        let _phone = _user.phone,
+        let _smsCode = _user.smsCode,
+        let _email = _user.email,
+        let _deviceId = _user.deviceId
+            else{
+                return nil
+        }
+
+        self.entryID = _user.entryID
+        self.name = _name
+        self.email = _email
+        self.phone = _phone
+        self.SMSCode = _smsCode
+        self.deviceId = _deviceId
+        self.verificationStatus = _user.verificationStatus
+        
+    }
+    
     public init?(object: AnyObject?) {
         guard
             let _object = object,

@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 struct DB_FavorateExchangeAds {
-    //isExchange
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     static func saveRecord(adv : ExchangeAds, advType : AdvType){
         if validateRecord(Id: adv.entryID ?? 0) == false {
@@ -75,7 +74,6 @@ struct DB_FavorateExchangeAds {
         }
         return nil
     }
-    
     
     static func deleteRecord(Id : Int64)-> Bool{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
