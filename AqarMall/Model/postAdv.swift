@@ -8,9 +8,9 @@
 
 import UIKit
 struct postAdv {
-    var userid: Int = 0
+    var userid: Int32 = 0
     var sectionID: Int16 = 0
-    var catID: Int16 = 0
+    var catID: Int32 = 0
     var areaID: Int16 = 0
     var countryType: Int16 = 0
     var provinceID: Int16 = 0

@@ -337,7 +337,7 @@ class APIs: NSObject {
     typealias FullUserCallback = (_ users:FullUser?, _ error:Error?) -> Void
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
-    
+    typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -353,18 +353,22 @@ class APIs: NSObject {
         }
     }
     
-    func postAdvt(parameters : [String:Any], callback: @escaping FullUserCallback) {
+    func postAdvt(parameters : [String:Any], callback: @escaping IntegerCallback) {
         let route = Router.postAdvt(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
-                let result = self.result(with: response),
-                let user = FullUser(object: result as AnyObject)
+                let result = self.result(with: response)
                 else {
-                    callback(nil, response.error ?? APIError.unknown)
+                    callback(-1, response.error ?? APIError.unknown)
                     return
             }
-            callback(user, nil)
+            
+            print(result["code"])
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }
+            callback(0, nil)
         }
     }
     

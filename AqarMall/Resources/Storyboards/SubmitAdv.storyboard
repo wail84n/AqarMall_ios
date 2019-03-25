@@ -312,7 +312,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1070"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nlh-EI-115">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1070"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="1120"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ano-Q9-6eT">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -436,7 +436,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3wT-3h-Wsp">
-                                                        <rect key="frame" x="0.0" y="420" width="375" height="500"/>
+                                                        <rect key="frame" x="0.0" y="420" width="375" height="550"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jmG-cG-Gtv">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -448,7 +448,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.5"/>
@@ -480,7 +480,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.5"/>
@@ -512,7 +512,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.5"/>
@@ -759,18 +759,51 @@
                                                                     <constraint firstAttribute="trailing" secondItem="Dla-Ng-lCR" secondAttribute="trailing" constant="15" id="egT-t7-Nj8"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ddx-oe-DcQ">
+                                                                <rect key="frame" x="0.0" y="500" width="375" height="50"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="السعر" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWE-gL-kV2">
+                                                                        <rect key="frame" x="15" y="5" width="345" height="40"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="40" id="Nh4-DX-2Yv"/>
+                                                                        </constraints>
+                                                                        <nil key="textColor"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                                <real key="value" value="0.5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="oWE-gL-kV2" secondAttribute="trailing" constant="15" id="2lX-Y3-3sc"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="oWE-gL-kV2" secondAttribute="bottom" constant="5" id="Dti-5Z-rbZ"/>
+                                                                    <constraint firstItem="oWE-gL-kV2" firstAttribute="centerY" secondItem="ddx-oe-DcQ" secondAttribute="centerY" id="gqU-tq-UHP"/>
+                                                                    <constraint firstItem="oWE-gL-kV2" firstAttribute="leading" secondItem="ddx-oe-DcQ" secondAttribute="leading" constant="15" id="uwc-MK-VIm"/>
+                                                                    <constraint firstAttribute="height" constant="50" id="zTJ-kP-b61"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="Vk7-k7-FCh" firstAttribute="top" secondItem="jmG-cG-Gtv" secondAttribute="bottom" id="0Ts-se-7mA"/>
                                                             <constraint firstItem="Vk7-k7-FCh" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" id="HLK-IM-Lkf"/>
                                                             <constraint firstAttribute="trailing" secondItem="jmG-cG-Gtv" secondAttribute="trailing" id="avn-cH-mf4"/>
-                                                            <constraint firstAttribute="height" constant="500" id="f50-Wj-9b7"/>
+                                                            <constraint firstAttribute="height" constant="550" id="f50-Wj-9b7"/>
                                                             <constraint firstItem="jmG-cG-Gtv" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" id="iPj-3Z-Bxb"/>
                                                             <constraint firstAttribute="trailing" secondItem="Vk7-k7-FCh" secondAttribute="trailing" id="oZp-ae-vyf"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38R-8c-3kC">
-                                                        <rect key="frame" x="0.0" y="920" width="375" height="150"/>
+                                                        <rect key="frame" x="0.0" y="970" width="375" height="150"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNs-6L-11H">
                                                                 <rect key="frame" x="0.0" y="4" width="375" height="30"/>
@@ -797,7 +830,7 @@
                                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImageCell" reuseIdentifier="MyImageCell" id="fZF-0P-371" customClass="MyImageCell" customModule="ShamelApp" customModuleProvider="target">
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="ImageCell" reuseIdentifier="MyImageCell" id="fZF-0P-371" customClass="MyImageCell" customModule="AqarMall" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="104" height="104"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -870,7 +903,7 @@
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="38R-8c-3kC" firstAttribute="top" secondItem="3wT-3h-Wsp" secondAttribute="bottom" id="N3f-cG-Hjy"/>
-                                                    <constraint firstAttribute="height" constant="1070" id="W9W-o4-4Bz"/>
+                                                    <constraint firstAttribute="height" constant="1120" id="W9W-o4-4Bz"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -907,6 +940,9 @@
                                         <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitAdv:" destination="eAm-2d-udV" eventType="touchUpInside" id="egX-gu-DxH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -944,11 +980,13 @@
                         <outlet property="licenseTypeTextField" destination="i8k-OK-e6u" id="IXj-LF-XAZ"/>
                         <outlet property="licenseTypeView" destination="OzK-mf-MXe" id="nJZ-l5-Dnv"/>
                         <outlet property="optionsHeightConstraint" destination="f50-Wj-9b7" id="7Ig-3a-myi"/>
+                        <outlet property="priceTextField" destination="oWE-gL-kV2" id="xaH-F0-CGA"/>
                         <outlet property="roomsNoTextField" destination="Dvs-A4-HwJ" id="UJQ-tk-8At"/>
                         <outlet property="roomsNoView" destination="jmG-cG-Gtv" id="dFu-8Y-VSS"/>
                         <outlet property="scrollView" destination="G03-qf-o1s" id="f8U-tg-Ojm"/>
                         <outlet property="sizeTextField" destination="Dla-Ng-lCR" id="zlC-HV-c4M"/>
                         <outlet property="sizeView" destination="Bmw-QK-yoT" id="bEt-53-Dye"/>
+                        <outlet property="submitButton" destination="QsQ-ea-vHp" id="ZVH-oW-eU8"/>
                         <outlet property="titleCounterLabel" destination="uYZ-NJ-45J" id="wk4-FF-igh"/>
                         <outlet property="viewHeightConstraint" destination="W9W-o4-4Bz" id="rjg-Vw-3AC"/>
                     </connections>

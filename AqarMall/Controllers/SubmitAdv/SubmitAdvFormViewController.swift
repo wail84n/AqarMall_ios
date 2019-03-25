@@ -21,6 +21,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     @IBOutlet weak var advTitleTextField: UITextField!
     @IBOutlet weak var adDetailsTextView: UITextView!
     
+    @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var roomsNoTextField: UITextField!
     @IBOutlet weak var roomsNoView: UIView!
     @IBOutlet weak var bathRoomNoView: UIView!
@@ -41,16 +42,18 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     @IBOutlet weak var licenseTypeTextField: UITextField!
     @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var sizeTextField: UITextField!
+    @IBOutlet weak var priceTextField: UITextField!
     
     @IBOutlet weak var optionsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
     
-    var selectedArea = AreasData()
+    var selectedArea : AreasData? = nil
+    
     var category : CategoriesData? = nil
     var isRent = false
     
     var postAd = postAdv()
-    
+     
     var selectedImages : NSMutableArray!
     let imagePicker = UIImagePickerController()
     var selectedImagePickerButton = UIButton()
@@ -111,7 +114,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     }
     
     func  getCatPropertiesCount()-> Int {
-        var counter = 0
+        var counter = 1 // +++ strat from 1 because the price is fixed textFeild
         if let _category = category{
             if _category.ageOfBuilding == true{
                 counter += 1
@@ -140,6 +143,9 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             if _category.numberOfRooms == true{
                 counter += 1
             }
+            if _category.size == true{
+                counter += 1
+            }
         }
         return counter
     }
@@ -161,6 +167,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             bathRoomNoView.isHidden = !_category.numberOfBathrooms
             floorsNoView.isHidden = !_category.numberOfFloors
             roomsNoView.isHidden = !_category.numberOfRooms
+            sizeView.isHidden = !_category.size
         }
    }
     
@@ -621,15 +628,101 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         imagesCollection.reloadData()
     }
     
+    
+    @IBAction func submitAdv(_ sender: Any) {
+        SubmitAdv()
+    }
+    
     func SubmitAdv() {
         
+        if let _selectedArea = selectedArea {
+            postAd.areaID = Int16(_selectedArea.entryID)
+            postAd.provinceID = Int16(_selectedArea.provinceID)
+        }else{
+            self.showAlert(withTitle: .Missing, text: "الرجاء تحديد العنوان")
+            return
+        }
+       
+        if isRent == true{
+            postAd.sectionID = 1
+        }else{
+            postAd.sectionID = 2
+        }
         
-        SubmitAdsVM.postAd(_postAd: <#T##[String : Any]#>, isEditMode: false) { (result, error) in
+        if let _catId = category?.id {
+            postAd.catID = _catId
+        }else{
+            self.showAlert(withTitle: .Missing, text: "الرجاء اختر الفئة المطلوبة")
+            return
+        }
+       
+        if let _userId = DB_UserInfo.getUserId() {
+            postAd.userid = _userId
+        }else{
+            self.showAlert(withTitle: .Missing, text: "لا يوجد حساب معتمد الرجاء التسجيل")
+            return
+        }
+        
+        postAd.countryType = 1
+        if let _title = advTitleTextField.text {
+            postAd.title = _title
+        }
+        
+        if let _description = adDetailsTextView.text {
+            postAd.Description =  _description
+        }
+        
+        if let _numberOfRooms = roomsNoTextField.text {
+            postAd.NumberOfRooms =  _numberOfRooms
+        }
+        
+        if let _numberOfBathrooms = bathRoomNoTextField.text {
+            postAd.NumberOfBathrooms = _numberOfBathrooms
+        }
+        
+        if let _numberOfFloors = floorsNoTextField.text {
+            postAd.NumberOfFloors = _numberOfFloors
+        }
+        
+        if let _finishing = finishingTextField.text {
+            postAd.Finishing = _finishing
+        }
+        
+//        if let aaa = interfaceField.text {
+//            pos
+//        }
+        if let _ageOfBuilding = buildingAgeTextfield.text {
+            postAd.AgeOfBuilding = _ageOfBuilding
+        }
+        
+        if let _buildingSize = buildingSizeTextField.text {
+            postAd.BuildingSize = _buildingSize
+        }
+        
+        if let _landSize = landSizeTextField.text {
+            postAd.LandSize = _landSize
+        }
+        
+        if let _licenseType = licenseTypeTextField.text {
+            postAd.LicenseType = _licenseType
+        }
+        
+        if let _size = sizeTextField.text {
+            postAd.Size = _size
+        }
+
+        if let _price = priceTextField.text {
+            postAd.Price =  Double(_price) ?? 0
+        }
+        
+        SubmitAdsVM.postAd(_postAd: postAd, isEditMode: false) { (result, error) in
             
         }
     }
     
 }
+
+
 
 extension UIImage {
     

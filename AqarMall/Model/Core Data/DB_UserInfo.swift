@@ -66,6 +66,24 @@ struct DB_UserInfo {
         return nil
     }
     
+    
+    static func getUserId()-> Int32?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "UsersData")
+        userFetch.fetchLimit = 1
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [UsersData]
+            var userId : Int32 = 0
+            if let _result = result, !_result.isEmpty{
+                userId = _result[0].entryID
+            }
+            return userId
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
     static func deleteRecord()-> Bool{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
