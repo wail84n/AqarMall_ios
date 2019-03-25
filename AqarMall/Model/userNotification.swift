@@ -1,14 +1,14 @@
 //
-//  Notification.swift
+//  userNotification.swift
 //  AqarMall
 //
-//  Created by Macbookpro on 3/23/19.
+//  Created by Macbookpro on 3/24/19.
 //  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
 import UIKit
 
-struct Notification {
+struct userNotification {
     let id:Int
     let lastChange:Int64
     let parameters:String

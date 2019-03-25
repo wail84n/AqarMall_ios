@@ -18,17 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KO-ry-FQV">
-                                <rect key="frame" x="143" y="322" width="88" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ehm-OR-tMU">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="W7P-pd-h0z" id="GSX-97-IlP"/>
+                                    <outlet property="delegate" destination="W7P-pd-h0z" id="KOh-iw-6sJ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TNP-nB-Uvv" firstAttribute="trailing" secondItem="Ehm-OR-tMU" secondAttribute="trailing" id="J8L-00-E4q"/>
+                            <constraint firstItem="TNP-nB-Uvv" firstAttribute="bottom" secondItem="Ehm-OR-tMU" secondAttribute="bottom" id="NbK-t9-KnX"/>
+                            <constraint firstItem="Ehm-OR-tMU" firstAttribute="top" secondItem="TNP-nB-Uvv" secondAttribute="top" id="ePr-l0-LPa"/>
+                            <constraint firstItem="Ehm-OR-tMU" firstAttribute="leading" secondItem="TNP-nB-Uvv" secondAttribute="leading" id="s0j-Ln-wVD"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="TNP-nB-Uvv"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Ehm-OR-tMU" id="e4z-uo-s3v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSW-P2-Ht2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

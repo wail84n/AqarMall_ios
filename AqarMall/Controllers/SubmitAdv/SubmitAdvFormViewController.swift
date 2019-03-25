@@ -619,9 +619,15 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         
         selectedImages.insert(editedImage, at: index.row)
         imagesCollection.reloadData()
-        
     }
     
+    func SubmitAdv() {
+        
+        
+        SubmitAdsVM.postAd(_postAd: <#T##[String : Any]#>, isEditMode: false) { (result, error) in
+            
+        }
+    }
     
 }
 

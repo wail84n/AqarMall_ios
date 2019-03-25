@@ -29,6 +29,11 @@
 		52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3321FCB54700F52A0B /* AdsCell.swift */; };
 		52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52389F3421FCB54700F52A0B /* AdsCell.xib */; };
 		52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */; };
+		524422A82247FA2000B2DC7F /* userNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422A72247FA2000B2DC7F /* userNotification.swift */; };
+		524422AB2247FFD600B2DC7F /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422A92247FFD600B2DC7F /* NotificationCell.swift */; };
+		524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524422AA2247FFD600B2DC7F /* NotificationCell.xib */; };
+		524422AE224819D500B2DC7F /* SubmitAdsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422AD224819D500B2DC7F /* SubmitAdsVM.swift */; };
+		524422B022481C2B00B2DC7F /* SubmitAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422AF22481C2B00B2DC7F /* SubmitAdv.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
 		5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */; };
 		526143512236F22D00339882 /* DB_Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143502236F22D00339882 /* DB_Countries.swift */; };
@@ -82,7 +87,6 @@
 		52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */; };
 		52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */; };
 		52DC5255220C065D009F2B88 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC5254220C065D009F2B88 /* UIButton.swift */; };
-		52DE986E2246D389001DE2DF /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE986D2246D389001DE2DF /* Notification.swift */; };
 		52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523721D9DB6700E66AA2 /* AppDelegate.swift */; };
 		52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523921D9DB6700E66AA2 /* FirstViewController.swift */; };
 		52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */; };
@@ -150,6 +154,11 @@
 		52389F3321FCB54700F52A0B /* AdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCell.swift; sourceTree = "<group>"; };
 		52389F3421FCB54700F52A0B /* AdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCell.xib; sourceTree = "<group>"; };
 		52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementInfo.swift; sourceTree = "<group>"; };
+		524422A72247FA2000B2DC7F /* userNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userNotification.swift; sourceTree = "<group>"; };
+		524422A92247FFD600B2DC7F /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		524422AA2247FFD600B2DC7F /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		524422AD224819D500B2DC7F /* SubmitAdsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdsVM.swift; sourceTree = "<group>"; };
+		524422AF22481C2B00B2DC7F /* SubmitAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdv.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewController.swift; sourceTree = "<group>"; };
 		526143502236F22D00339882 /* DB_Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Countries.swift; sourceTree = "<group>"; };
@@ -204,7 +213,6 @@
 		52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAdsCell.swift; sourceTree = "<group>"; };
 		52CEE224220B5F8C00ADDC8B /* ExchangeAdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeAdsCell.xib; sourceTree = "<group>"; };
 		52DC5254220C065D009F2B88 /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
-		52DE986D2246D389001DE2DF /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		52E6523421D9DB6700E66AA2 /* AqarMall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AqarMall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E6523721D9DB6700E66AA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E6523921D9DB6700E66AA2 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -361,6 +369,7 @@
 				527E0A9E222C540A005934DC /* ChooseAdvCatedoryViewController.swift */,
 				527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */,
 				527E0AA7222DBFF1005934DC /* SubmitAdvFormViewController.swift */,
+				524422AD224819D500B2DC7F /* SubmitAdsVM.swift */,
 			);
 			path = SubmitAdv;
 			sourceTree = "<group>";
@@ -395,6 +404,8 @@
 		52AFE77321DD5E1B00FE1D70 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				524422A92247FFD600B2DC7F /* NotificationCell.swift */,
+				524422AA2247FFD600B2DC7F /* NotificationCell.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -628,7 +639,8 @@
 				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 				5204DD6E2233A69100319A58 /* postAdv.swift */,
 				5261435B2239F41800339882 /* Sponsor.swift */,
-				52DE986D2246D389001DE2DF /* Notification.swift */,
+				524422A72247FA2000B2DC7F /* userNotification.swift */,
+				524422AF22481C2B00B2DC7F /* SubmitAdv.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -766,6 +778,7 @@
 				52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */,
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
+				524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
 				5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */,
 				527E0A912225C881005934DC /* bannerCell.xib in Resources */,
@@ -893,10 +906,12 @@
 				5281D8A021F3652300A177B0 /* DB_GeneralPages.swift in Sources */,
 				5281D89A21F3513E00A177B0 /* Provinces.swift in Sources */,
 				5261435822382E5600339882 /* ChooseCountryCell.swift in Sources */,
+				524422AB2247FFD600B2DC7F /* NotificationCell.swift in Sources */,
 				526143552237038C00339882 /* ChooseCountryViewController.swift in Sources */,
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
+				524422B022481C2B00B2DC7F /* SubmitAdv.swift in Sources */,
 				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,
@@ -907,6 +922,7 @@
 				5261435C2239F41800339882 /* Sponsor.swift in Sources */,
 				52614363223D208A00339882 /* exchangeDetailsViewController.swift in Sources */,
 				52AFE77821DD5EAC00FE1D70 /* NotificationsVC.swift in Sources */,
+				524422AE224819D500B2DC7F /* SubmitAdsVM.swift in Sources */,
 				52614361223C20DC00339882 /* SponsorDetailsViewController.swift in Sources */,
 				5204DD6F2233A69100319A58 /* postAdv.swift in Sources */,
 				528313E122417D6C00D4A1C0 /* DB_FavorateAdv.swift in Sources */,
@@ -934,6 +950,7 @@
 				527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */,
 				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
 				5204DD6A22339DB600319A58 /* ResizeControl.swift in Sources */,
+				524422A82247FA2000B2DC7F /* userNotification.swift in Sources */,
 				5204DD6822339DB600319A58 /* CropRectView.swift in Sources */,
 				527E0A9B222B1FE2005934DC /* SubmitAdvViewController.swift in Sources */,
 				52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */,
@@ -941,7 +958,6 @@
 				527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */,
 				526143532236F2A300339882 /* Countries.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
-				52DE986E2246D389001DE2DF /* Notification.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
 				5204DD6722339DB600319A58 /* UIImage+Crop.swift in Sources */,

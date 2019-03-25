@@ -115,7 +115,7 @@ class APIs: NSObject {
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
         case activeUserAccount(userId : Int)
-        
+        case postAdvt(parameters : [String:Any])
         case getSponsors(lastchange:Int, countryId:Int)
         
         var contentType:ContentType {
@@ -155,7 +155,8 @@ class APIs: NSObject {
         var method:HTTPMethod {
             switch self {
             case .userRegister(_ , _, _, _),
-                 .activeUserAccount(_):
+                 .activeUserAccount(_),
+                 .postAdvt(_):
                 return .post
             default:
                 return .get
@@ -192,6 +193,8 @@ class APIs: NSObject {
                 return "postVerify"
             case .getSponsors(_, _):
                 return "getSponsors"
+            case .postAdvt(_):
+                return "postAdvt"
             }
         }
         
@@ -298,6 +301,8 @@ class APIs: NSObject {
                 return ["Email":email ?? "", "Name":name, "Phone":phone, "SMSCode":SMSCode]
             case .activeUserAccount(let userId):
                 return ["userId":userId]
+            case .postAdvt(let parameters):
+                return parameters
             default:
                 return nil
             }
@@ -335,6 +340,21 @@ class APIs: NSObject {
     
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let user = FullUser(object: result as AnyObject)
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(user, nil)
+        }
+    }
+    
+    func postAdvt(parameters : [String:Any], callback: @escaping FullUserCallback) {
+        let route = Router.postAdvt(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
