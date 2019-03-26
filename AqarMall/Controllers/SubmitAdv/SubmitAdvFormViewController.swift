@@ -23,24 +23,14 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var roomsNoTextField: UITextField!
-    @IBOutlet weak var roomsNoView: UIView!
-    @IBOutlet weak var bathRoomNoView: UIView!
     @IBOutlet weak var bathRoomNoTextField: UITextField!
-    @IBOutlet weak var floorsNoView: UIView!
     @IBOutlet weak var floorsNoTextField: UITextField!
-    @IBOutlet weak var finishingView: UIView!
     @IBOutlet weak var finishingTextField: UITextField!
-    @IBOutlet weak var interfaceView: UIView!
     @IBOutlet weak var interfaceField: UITextField!
-    @IBOutlet weak var buildingAgeView: UIView!
     @IBOutlet weak var buildingAgeTextfield: UITextField!
-    @IBOutlet weak var buildingSizeView: UIView!
     @IBOutlet weak var buildingSizeTextField: UITextField!
-    @IBOutlet weak var landSizeView: UIView!
     @IBOutlet weak var landSizeTextField: UITextField!
-    @IBOutlet weak var licenseTypeView: UIView!
     @IBOutlet weak var licenseTypeTextField: UITextField!
-    @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var sizeTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     
@@ -54,7 +44,6 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     
     var postAd = postAdv()
      
-    var selectedImages : NSMutableArray!
     let imagePicker = UIImagePickerController()
     var selectedImagePickerButton = UIButton()
     
@@ -66,15 +55,18 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     }
     
     func configureView(){
-        title = "اضف اعلان - \(category?.name ?? "")"
+        if isRent == true {
+            title = "اضف اعلان - \(category?.name ?? "") للإيجار"
+        }else{
+            title = "اضف اعلان - \(category?.name ?? "") للبيع"
+        }
+        
         self.setBack()
         
         adDetailsTextView.text = "وصف الإعلان"
         adDetailsTextView.textColor = UIColor.lightGray
         advTitleTextField.delegate = self
-        
-        selectedImages = NSMutableArray()
-        
+
         setCatProperties()
     }
     
@@ -158,16 +150,16 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             optionsHeightConstraint.constant = CGFloat(counter * 50)
             viewHeightConstraint.constant = CGFloat(570 + (counter * 50))
             
-            buildingAgeView.isHidden = !_category.ageOfBuilding
-            buildingSizeView.isHidden = !_category.buildingSize
-            finishingView.isHidden = !_category.finishing
-            interfaceView.isHidden = !_category.interfaceType
-            landSizeView.isHidden = !_category.landSize
-            licenseTypeView.isHidden = !_category.licenseType
-            bathRoomNoView.isHidden = !_category.numberOfBathrooms
-            floorsNoView.isHidden = !_category.numberOfFloors
-            roomsNoView.isHidden = !_category.numberOfRooms
-            sizeView.isHidden = !_category.size
+            buildingAgeTextfield.isHidden = !_category.ageOfBuilding
+            buildingSizeTextField.isHidden = !_category.buildingSize
+            finishingTextField.isHidden = !_category.finishing
+            interfaceField.isHidden = !_category.interfaceType
+            landSizeTextField.isHidden = !_category.landSize
+            licenseTypeTextField.isHidden = !_category.licenseType
+            bathRoomNoTextField.isHidden = !_category.numberOfBathrooms
+            floorsNoTextField.isHidden = !_category.numberOfFloors
+            roomsNoTextField.isHidden = !_category.numberOfRooms
+            sizeTextField.isHidden = !_category.size
         }
    }
     
@@ -204,7 +196,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     }
     
     @IBAction func uploadImageBtn(_ sender: Any) {
-        if selectedImages.count >= 9{
+        if self.postAd.images.count >= 9{
             let alertController = UIAlertController(title: "", message: "لقد قمت برفع الحد الأقصى من الصور", preferredStyle: .alert)
             
             let cancelAction = UIAlertAction(title: "موافق", style: .cancel) { action in
@@ -262,9 +254,9 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             //Example Instantiating OpalImagePickerController with Closures
             let imagePicker = OpalImagePickerController()
             
-            print(self.selectedImages.count)
-            print(9 - self.selectedImages.count)
-            imagePicker.maximumSelectionsAllowed = 9 - self.selectedImages.count
+            print(self.postAd.images.count)
+            print(9 - self.postAd.images.count)
+            imagePicker.maximumSelectionsAllowed = 9 - self.postAd.images.count
             imagePicker.allowedMediaTypes = Set([PHAssetMediaType.image])
             //Present Image Picker
             self.presentOpalImagePickerController(imagePicker, animated: true, select: { (images) in
@@ -322,168 +314,16 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     
     func showSelectedImageNew(editedImage: UIImage) {
         print("New Image added")
-        selectedImages.add(editedImage)
-        imagesCollection.reloadData()
+        let imageData = (editedImage).jpeg(.lowest)
         
+        if let _imageData = imageData{
+            self.postAd.images.append(postImages(image: _imageData)!)
+            imagesCollection.reloadData()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if  selectedImages.count == 0{
-        }
-        else if  selectedImages.count == 1{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            self.postAd.image2 = nil
-            self.postAd.image3 = nil
-            self.postAd.image4 = nil
-            self.postAd.image5 = nil
-            self.postAd.image6 = nil
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-        }
-        else if  selectedImages.count == 2{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            self.postAd.image3 = nil
-            self.postAd.image4 = nil
-            self.postAd.image5 = nil
-            self.postAd.image6 = nil
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 3{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            self.postAd.image4 = nil
-            self.postAd.image5 = nil
-            self.postAd.image6 = nil
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 4{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            self.postAd.image5 = nil
-            self.postAd.image6 = nil
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 5{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            let imageDat4 = (selectedImages[4] as! UIImage).jpeg(.lowest)
-            self.postAd.image5 = imageDat4
-            self.postAd.image6 = nil
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-        }
-        else if  selectedImages.count == 6{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            let imageDat4 = (selectedImages[4] as! UIImage).jpeg(.lowest)
-            self.postAd.image5 = imageDat4
-            let imageDat5 = (selectedImages[5] as! UIImage).jpeg(.lowest)
-            self.postAd.image6 = imageDat5
-            self.postAd.image7 = nil
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 7{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            let imageDat4 = (selectedImages[4] as! UIImage).jpeg(.lowest)
-            self.postAd.image5 = imageDat4
-            let imageDat5 = (selectedImages[5] as! UIImage).jpeg(.lowest)
-            self.postAd.image6 = imageDat5
-            let imageDat6 = (selectedImages[6] as! UIImage).jpeg(.lowest)
-            self.postAd.image7 = imageDat6
-            self.postAd.image8 = nil
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 8{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            let imageDat4 = (selectedImages[4] as! UIImage).jpeg(.lowest)
-            self.postAd.image5 = imageDat4
-            let imageDat5 = (selectedImages[5] as! UIImage).jpeg(.lowest)
-            self.postAd.image6 = imageDat5
-            let imageDat6 = (selectedImages[6] as! UIImage).jpeg(.lowest)
-            self.postAd.image7 = imageDat6
-            let imageDat7 = (selectedImages[7] as! UIImage).jpeg(.lowest)
-            self.postAd.image8 = imageDat7
-            self.postAd.image9 = nil
-            
-        }
-        else if  selectedImages.count == 9{
-            let imageData = (selectedImages[0] as! UIImage).jpeg(.lowest)
-            self.postAd.image1 = imageData
-            let imageDat1 = (selectedImages[1] as! UIImage).jpeg(.lowest)
-            self.postAd.image2 = imageDat1
-            let imageDat2 = (selectedImages[2] as! UIImage).jpeg(.lowest)
-            self.postAd.image3 = imageDat2
-            let imageDat3 = (selectedImages[3] as! UIImage).jpeg(.lowest)
-            self.postAd.image4 = imageDat3
-            let imageDat4 = (selectedImages[4] as! UIImage).jpeg(.lowest)
-            self.postAd.image5 = imageDat4
-            let imageDat5 = (selectedImages[5] as! UIImage).jpeg(.lowest)
-            self.postAd.image6 = imageDat5
-            let imageDat6 = (selectedImages[6] as! UIImage).jpeg(.lowest)
-            self.postAd.image7 = imageDat6
-            let imageDat7 = (selectedImages[7] as! UIImage).jpeg(.lowest)
-            self.postAd.image8 = imageDat7
-            let imageDat8 = (selectedImages[8] as! UIImage).jpeg(.lowest)
-            self.postAd.image9 = imageDat8
-            
-        }
-        
-        return selectedImages.count
-        
+        return postAd.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -496,9 +336,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         cell?.myImageView.layer.cornerRadius = 5
         cell?.myImageView.layer.masksToBounds = true
         
-        cell?.myImageView.image =  (selectedImages[indexPath.row] as! UIImage)
-        
-        
+        cell?.myImageView.image = UIImage(data: postAd.images[indexPath.row].image!)
         return cell!
     }
     
@@ -513,26 +351,14 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         
         let libraryActionButton: UIAlertAction = UIAlertAction(title: "اجعلها الصورة الرئيسية", style: .default)
         { action -> Void in
-            
-            self.selectedImages.exchangeObject(at: 0, withObjectAt: indexPath.row)
             self.imagesCollection.reloadData()
-            
-            
-            //            let libraryViewController = CameraViewController.imagePickerViewController(croppingEnabled: true) { image, asset in
-            //                if image != nil {
-            //                    self.updateImageAtIndex(editedImage: image!, index: indexPath)
-            //
-            //                }
-            //                self.dismiss(animated: true, completion: nil)
-            //            }
-            //            self.present(libraryViewController, animated: true, completion: nil)
         }
         actionSheetController.addAction(libraryActionButton)
         
         let cameraActionButton: UIAlertAction = UIAlertAction(title: "حذف الصورة", style: .default)
         { action -> Void in
             
-            self.selectedImages.removeObject(at: indexPath.row)
+            self.postAd.images.remove(at: indexPath.row)
             self.imagesCollection.reloadData()
         }
         actionSheetController.addAction(cameraActionButton)
@@ -543,10 +369,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             self.imageIndex = indexPath.row
             let controller = CropViewController()
             controller.delegate = self
-            controller.image = self.selectedImages[indexPath.row] as? UIImage
-            
-            
-            
+            controller.image = UIImage(data: self.postAd.images[indexPath.row].image!)
             let navController = UINavigationController(rootViewController: controller)
             self.present(navController, animated: true, completion: nil)
             
@@ -590,21 +413,13 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
         controller.dismiss(animated: true, completion: nil)
         
-        self.selectedImages[self.imageIndex] = image
+        self.postAd.images[self.imageIndex].image = image.jpeg(.lowest)
         imagesCollection.reloadData()
-        //        imageView.image = image
-        //        updateEditButtonEnabled()
     }
     
     func cropViewControllerDidCancel(_ controller: CropViewController) {
         controller.dismiss(animated: true, completion: nil)
-        // updateEditButtonEnabled()
     }
-    //    func collectionView(_ collectionView: UICollectionView,
-    //                        layout collectionViewLayout: UICollectionViewLayout,
-    //                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //
-    //    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -620,11 +435,13 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     
     func updateImageAtIndex(editedImage: UIImage , index :IndexPath) {
         print("New Image added")
-        //        selectedImages.removeAtIndex(index.row)
-        //  selectedImages.remove(at: index.row)
-        selectedImages.removeObject(at: index.row)
+        self.postAd.images.remove(at: index.row)
+        if let imageData = editedImage.jpeg(.lowest){
+            print(self.postAd.images.count)
+            self.postAd.images.insert(postImages(image: imageData)!, at: index.row)
+            print(self.postAd.images.count)
+        }
         
-        selectedImages.insert(editedImage, at: index.row)
         imagesCollection.reloadData()
     }
     
@@ -715,8 +532,14 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             postAd.Price =  Double(_price) ?? 0
         }
         
-        SubmitAdsVM.postAd(_postAd: postAd, isEditMode: false) { (result, error) in
+        SubmitAdsVM.postAd(_postAd: postAd, isEditMode: false) { (result, advId, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
             
+            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+
         }
     }
     

@@ -30,25 +30,16 @@ struct postAdv {
     var AgeOfBuilding : String = ""
     var BuildingSize : String = ""
     var VideoLink : String = ""
+        
+    var images = [postImages]()
+}
+
+struct postImages {
+    var image: Data? = nil
+    var status: Bool? = false
     
-    
-    var image1: Data? = nil
-    var image2: Data? = nil
-    var image3: Data? = nil
-    var image4: Data? = nil
-    var image5: Data? = nil
-    var image6: Data? = nil
-    var image7: Data? = nil
-    var image8: Data? = nil
-    var image9: Data? = nil
-//    var image1 : String?
-//    var image2 : String?
-//    var image3 : String?
-//    var image4 : String?
-//    var image5 : String?
-//    var image6 : String?
-//    var image7 : String?
-//    var image8 : String?
-//    var image9 : String?
-    
+    public init?(image: Data) {
+        self.image = image
+        self.status = false
+    }
 }

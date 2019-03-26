@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 struct SubmitAdsVM {
 
-    static func postAd(_postAd:postAdv, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ postAd:String) -> Void) {
-
+    static func postAd(_postAd:postAdv, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ advId:Int, _ error:Error?) -> Void) {
+        var postAd = _postAd
         let params = ["UserID": _postAd.userid,
                       "SectionID": _postAd.sectionID,
                       "CatID": _postAd.catID,
@@ -36,15 +37,61 @@ struct SubmitAdsVM {
                       "VideoLink": _postAd.VideoLink
             ] as [String: Any]
         
-        APIs.shared.postAdvt(parameters: params) { (userInfo, error) in
+        APIs.shared.postAdvt(parameters: params) { (advId, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
+                completion(true, 0, error)
                 return
             }
 
             
+            if let _advId = advId{
+                if postAd.images.count == 0 {completion(true, _advId, nil)} // +++ if there is no and image return direct
+                
+                for i in 0 ..< postAd.images.count  {
+                    uploadImage(imageObj: postAd.images[i], advId: _advId, imageNo: "\(i + 1)"){ (result) in
+                        postAd.images[i].status = true
+                        if validateIsAllImagesUploaded(_images: postAd) == true{
+                            // +++ this mean that all imagas are loaded.
+                            completion(true, _advId, nil)
+                        }
+                    }
+                }
+            }
         }
+    }
+    
+    static func validateIsAllImagesUploaded(_images:postAdv) -> Bool{
+        // +++ validate if all images are uploaded.
+        for (index, imageObj) in _images.images.enumerated() {
+            if imageObj.status == false {
+                return false
+            }
+            print("-------index :\(index) status: \(imageObj.status ?? false)")
+        }
+        return true
+    }
+    
+    static func uploadImage(imageObj: postImages, advId : Int, imageNo: String, completion:@escaping (_ isSuccess:Bool) -> Void){
+       let params = ["ID": advId,
+        "Image": imageObj.image ,
+            "ImageNo": imageNo,
+            ] as [String: Any]
 
+
+        APIs.shared.postImagesAdRequest(params: params) { (isSuccess, postAd) in
+            if (isSuccess ?? false) {
+                print("isSuccess")
+            }
+            else {
+                // completion(false, postAd)
+            }
+            if let _isSuccess = isSuccess {
+                completion(_isSuccess)
+            }else{
+                completion(false)
+            }
+        }
     }
 }

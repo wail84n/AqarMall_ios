@@ -33,7 +33,6 @@
 		524422AB2247FFD600B2DC7F /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422A92247FFD600B2DC7F /* NotificationCell.swift */; };
 		524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524422AA2247FFD600B2DC7F /* NotificationCell.xib */; };
 		524422AE224819D500B2DC7F /* SubmitAdsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422AD224819D500B2DC7F /* SubmitAdsVM.swift */; };
-		524422B022481C2B00B2DC7F /* SubmitAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422AF22481C2B00B2DC7F /* SubmitAdv.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
 		5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */; };
 		526143512236F22D00339882 /* DB_Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143502236F22D00339882 /* DB_Countries.swift */; };
@@ -158,7 +157,6 @@
 		524422A92247FFD600B2DC7F /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		524422AA2247FFD600B2DC7F /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		524422AD224819D500B2DC7F /* SubmitAdsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdsVM.swift; sourceTree = "<group>"; };
-		524422AF22481C2B00B2DC7F /* SubmitAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdv.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewController.swift; sourceTree = "<group>"; };
 		526143502236F22D00339882 /* DB_Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Countries.swift; sourceTree = "<group>"; };
@@ -640,7 +638,6 @@
 				5204DD6E2233A69100319A58 /* postAdv.swift */,
 				5261435B2239F41800339882 /* Sponsor.swift */,
 				524422A72247FA2000B2DC7F /* userNotification.swift */,
-				524422AF22481C2B00B2DC7F /* SubmitAdv.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -911,7 +908,6 @@
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
-				524422B022481C2B00B2DC7F /* SubmitAdv.swift in Sources */,
 				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,

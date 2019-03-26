@@ -20,7 +20,6 @@ public enum appURLs: String{
     case apiURL = "http://test.imallkw.com/Api.svc/"
 }
 
-
 class APIs: NSObject {
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
     
@@ -117,22 +116,28 @@ class APIs: NSObject {
         case activeUserAccount(userId : Int)
         case postAdvt(parameters : [String:Any])
         case getSponsors(lastchange:Int, countryId:Int)
-        
+        case uploadImage()
         var contentType:ContentType {
             switch self {
+            case .uploadImage():
+                return .multipartFormData
             default:
                 return .applicationJson
             }
         }
         
         var headers:HTTPHeaders {
-            var dict:HTTPHeaders = [
-                "X-Api-Key":Router.apiKey,
-                "Content-Type":self.contentType.rawValue
-            ]
+            var dict:HTTPHeaders = [:]
+            
             
             switch self {
+            case .uploadImage():
+                break
             default:
+                dict = [
+                    "X-Api-Key":Router.apiKey,
+                    "Content-Type":self.contentType.rawValue
+                ]
                 if let t = Router.auth?.token { dict["Authorization"] = t }
             }
             return dict
@@ -141,7 +146,8 @@ class APIs: NSObject {
         
         var serverUrl:appURLs {
             switch self {
-//            case .xportContact(_, _),
+            case .uploadImage():
+                return .mainServer
 //                 .getActiveContacts(_, _, _):
 //                return .contactsNumberServer
 //            // return .mainServer
@@ -156,6 +162,7 @@ class APIs: NSObject {
             switch self {
             case .userRegister(_ , _, _, _),
                  .activeUserAccount(_),
+                 .uploadImage(),
                  .postAdvt(_):
                 return .post
             default:
@@ -195,6 +202,8 @@ class APIs: NSObject {
                 return "getSponsors"
             case .postAdvt(_):
                 return "postAdvt"
+            case .uploadImage():
+                return "/Services/frmUploadImages.aspx"
             }
         }
         
@@ -367,8 +376,99 @@ class APIs: NSObject {
             print(result["code"])
             if let advIda = result["code"] as? Int {
                 callback(advIda, nil)
+            }else{
+                callback(0, nil)
             }
-            callback(0, nil)
+
+        }
+    }
+    
+    
+    func postImagesAdRequest(params:[String: Any], completion:@escaping isSuccessCallback) {
+        let route = Router.uploadImage()
+        print(route.serverUrl.rawValue)
+        let url = "\(APIs.Router.uploadImage().serverUrl.rawValue)/Services/frmUploadImages.aspx"
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        Alamofire.upload(multipartFormData: { (MultipartFormData) in
+            
+            for (key, value) in params {
+                
+                if (key == "Image") && value as? Data != nil {
+                    
+                    let imageData = value as! Data
+                    MultipartFormData.append(imageData, withName: key, fileName: "swift_file.jpeg", mimeType: "image/jpeg")
+                }
+                else {
+                    MultipartFormData.append(String(describing: value).data(using: String.Encoding.utf8)!, withName: key)
+                }
+            }
+            
+            
+        }, to: url, method: .post, headers: nil, encodingCompletion: { (result) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseJSON(completionHandler: { (dataResponse) in
+                    if dataResponse.result.error != nil {
+                        completion(false, dataResponse.error ?? APIError.unknown)
+                    }
+                    else {
+                     //   let result = self.result(with: dataResponse)
+                        completion(true, nil)
+
+                    }
+                })
+            case .failure(let encodingError):
+                print(encodingError)
+                //postAd.errorMsg = encodingError.localizedDescription
+                completion(false, encodingError.localizedDescription as? Error)
+            }
+        })
+    }
+    
+    
+    func uploadImage(advId:Int?, ImageNo:Int?, Image:Data?, IsMain :Bool ,callback: @escaping IntegerCallback) {
+        let route = Router.uploadImage()
+        let formData:(MultipartFormData) -> Void = { data in
+            var myInt = advId
+            var dtData = Data(bytes: &myInt, count: MemoryLayout.size(ofValue: myInt))
+            if let advId = advId { data.append(dtData, withName: "ID") }
+            
+            myInt = ImageNo
+            dtData = Data(bytes: &myInt, count: MemoryLayout.size(ofValue: myInt))
+            if let ImageNo = ImageNo { data.append(dtData, withName: "ImageNo") }
+            
+            if let picture = Image {
+                // TODO: Resize to standard size
+                guard let imgData = Image else {
+                    return callback(-1, APIError.unknown)
+                }
+                data.append(imgData, withName: "Image", fileName: "file.jpg", mimeType: "image/jpeg")
+            }
+        }
+        
+        Alamofire.upload(multipartFormData: formData, with: route) { (encodingResult) in
+            switch encodingResult {
+            case .success(let request, _, _):
+                request.validate(self.responseValidator).responseJSON(completionHandler: { (response) in
+                    guard
+                        response.result.isSuccess,
+                        let result = self.result(with: response),
+                        let user = FullUser(object: result)
+                        else {
+                            // self.showAlert(withTitle: MessageTitle.Validation.errorDescription!, text: String(describing: error.localizedDescription))
+                            //  print(response.error?.localizedDescription)
+                            callback(-1, response.error ?? APIError.unknown)
+                            return
+                    }
+                    
+                    Router.auth?.user = user
+                    callback(10, nil)
+                })
+            case .failure(_):
+                callback(-1, APIError.unknown)
+            }
         }
     }
     
