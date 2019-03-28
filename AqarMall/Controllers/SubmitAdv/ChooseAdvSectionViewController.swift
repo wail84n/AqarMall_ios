@@ -109,7 +109,13 @@ class ChooseAdvSectionViewController: ViewController {
                 self.forExchangeView.alpha = 1
                 self.forExchangeView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
-
+                let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitExchangeRequiredAdv") as! SubmitExchangeRequiredAdv
+                vc.isExchange = true
+                
+                self.tabBarController?.tabBar.isHidden = true
+                self.tabBarController?.tabBar.isTranslucent = true
+                
+                self.navigationController?.pushViewController(vc, animated: true)
 
             })
         default:
@@ -133,7 +139,9 @@ class ChooseAdvSectionViewController: ViewController {
                 self.RequiredView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
 
-                
+                let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitExchangeRequiredAdv") as! SubmitExchangeRequiredAdv
+                vc.isExchange = false
+                self.navigationController?.pushViewController(vc, animated: true)
             })
         default:
             break

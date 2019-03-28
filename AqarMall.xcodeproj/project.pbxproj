@@ -33,6 +33,7 @@
 		524422AB2247FFD600B2DC7F /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422A92247FFD600B2DC7F /* NotificationCell.swift */; };
 		524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 524422AA2247FFD600B2DC7F /* NotificationCell.xib */; };
 		524422AE224819D500B2DC7F /* SubmitAdsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422AD224819D500B2DC7F /* SubmitAdsVM.swift */; };
+		524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422B1224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
 		5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */; };
 		526143512236F22D00339882 /* DB_Countries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526143502236F22D00339882 /* DB_Countries.swift */; };
@@ -157,6 +158,7 @@
 		524422A92247FFD600B2DC7F /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		524422AA2247FFD600B2DC7F /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		524422AD224819D500B2DC7F /* SubmitAdsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitAdsVM.swift; sourceTree = "<group>"; };
+		524422B1224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitExchangeRequiredAdv.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
 		5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberVerificationViewController.swift; sourceTree = "<group>"; };
 		526143502236F22D00339882 /* DB_Countries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Countries.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				527E0A9E222C540A005934DC /* ChooseAdvCatedoryViewController.swift */,
 				527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */,
 				527E0AA7222DBFF1005934DC /* SubmitAdvFormViewController.swift */,
+				524422B1224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift */,
 				524422AD224819D500B2DC7F /* SubmitAdsVM.swift */,
 			);
 			path = SubmitAdv;
@@ -960,6 +963,7 @@
 				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
 				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
 				52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */,
+				524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */,
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				5204DD6622339DB600319A58 /* CropViewController.swift in Sources */,

@@ -64,6 +64,10 @@ class ViewController: UIViewController {
         _ = navigationController?.popViewController(animated: true)
     }
     
+    func backActionToRoot() {
+        _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
     
     @objc func leftAction() {
         dismiss(animated: true)

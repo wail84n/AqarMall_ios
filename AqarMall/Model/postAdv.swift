@@ -30,7 +30,8 @@ struct postAdv {
     var AgeOfBuilding : String = ""
     var BuildingSize : String = ""
     var VideoLink : String = ""
-        
+    var CallMe : Bool = false
+    
     var images = [postImages]()
 }
 

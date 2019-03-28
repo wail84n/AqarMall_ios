@@ -38,7 +38,6 @@ struct SubmitAdsVM {
             ] as [String: Any]
         
         APIs.shared.postAdvt(parameters: params) { (advId, error) in
-            AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 completion(true, 0, error)

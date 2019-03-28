@@ -11,7 +11,7 @@ import OpalImagePicker
 import ALCameraViewController
 import Photos
 
-class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate, UITextFieldDelegate {
+class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var scrollView : UIScrollView!
@@ -36,6 +36,8 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
     
     @IBOutlet weak var optionsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var directAdvButton: UIButton!
+    @IBOutlet weak var notDirectAdvButton: UIButton!
     
     var selectedArea : AreasData? = nil
     
@@ -74,6 +76,18 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         print(getCatPropertiesCount() )
         print(CGFloat(570 + (getCatPropertiesCount() * 50)))
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: CGFloat(1100 + (getCatPropertiesCount() * 50)))
+    }
+    
+    @IBAction func directAdvChanged(_ sender: UIButton) {
+        notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
+        directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
+        postAd.CallMe = true
+    }
+    
+    @IBAction func notDirectAdvChanged(_ sender: UIButton) {
+        directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
+        notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
+        postAd.CallMe = false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -363,7 +377,6 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
         }
         actionSheetController.addAction(cameraActionButton)
         
-        
         let EditActionButton: UIAlertAction = UIAlertAction(title: "معالجة الصوره", style: .default)
         { action -> Void in
             self.imageIndex = indexPath.row
@@ -372,18 +385,9 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             controller.image = UIImage(data: self.postAd.images[indexPath.row].image!)
             let navController = UINavigationController(rootViewController: controller)
             self.present(navController, animated: true, completion: nil)
-            
         }
         actionSheetController.addAction(EditActionButton)
-        
-        
-        //        let leftActionButton: UIAlertAction = UIAlertAction(title: "لف الصورة لليسار", style: .default)
-        //        { action -> Void in
-        //            self.selectedImages[indexPath.row] = ((self.selectedImages[indexPath.row] as? UIImage)?.imageUpMirror())!
-        //            self.imagesCollection.reloadData()
-        //        }
-        //        actionSheetController.addAction(leftActionButton)
-        
+
         self.present(actionSheetController, animated: true, completion: nil)
     }
     
@@ -532,14 +536,16 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate,CropVie
             postAd.Price =  Double(_price) ?? 0
         }
         
+        AppUtils.ShowLoading()
         SubmitAdsVM.postAd(_postAd: postAd, isEditMode: false) { (result, advId, error) in
+            AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 return
             }
             
+            self.backActionToRoot()
             self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
-
         }
     }
     
