@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func setBack(){
+    func setBack(isDismiss : Bool = false){
         let buttonImage = #imageLiteral(resourceName: "back")
         let button = UIButton(type: .system)
         button.setImage(buttonImage, for: .normal)
@@ -55,7 +55,12 @@ class ViewController: UIViewController {
         button.contentMode = .scaleAspectFit
         button.frame = CGRect(x: 0, y: 0, width: 45, height: 35)
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
-        button.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        if isDismiss == false {
+            button.addTarget(self, action: #selector(backAction), for: .touchUpInside)
+        }else{
+            button.addTarget(self, action: #selector(leftAction), for: .touchUpInside)
+        }
+        
         let barButtonItem: UIBarButtonItem = UIBarButtonItem(customView: button)
         navigationItem.leftBarButtonItem = barButtonItem
     }

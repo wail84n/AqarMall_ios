@@ -9,7 +9,7 @@
 import UIKit
 import ScrollableSegmentedControl
 
-class AdsListVC: ViewController, AdDetailsDelegate {
+class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subHeaderHeightConstraint: NSLayoutConstraint!
@@ -95,6 +95,37 @@ class AdsListVC: ViewController, AdDetailsDelegate {
 //        bannerIndex += 1
 //        return banner
 //    }
+    
+    @IBAction func selectProvince(_ sender: Any) {
+        
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
+            else { return }
+        let navController = UINavigationController(rootViewController: myVC)
+        myVC.provincesId = 0
+        myVC.delegate = self
+        self.navigationController?.present(navController, animated: true, completion: nil)
+        
+      //  performSegue(withIdentifier: "selectAddressSB", sender: true)
+    }
+    
+    @IBAction func selectArea(_ sender: Any) {
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
+            else { return }
+        let navController = UINavigationController(rootViewController: myVC)
+        myVC.provincesId = 1 // +++ need to change
+        myVC.delegate = self
+        self.navigationController?.present(navController, animated: true, completion: nil)
+      //  performSegue(withIdentifier: "selectAddressSB", sender: false)
+    }
+    
+    
+    func setArea(with area: AreasData) {
+        
+    }
+    
+    func setProvince(with province: ProvincesData) {
+        print(province.name)
+    }
     
     func addBanner()-> BannersData?{
         if bannerIndex >= banners.count{
@@ -432,9 +463,15 @@ class AdsListVC: ViewController, AdDetailsDelegate {
                 break
             }
             navPlace.ads = arrExchangeAdve
+        }else if let navPlace = segue.destination as? SelectAddressViewController {
+            let isProvince = sender as? Bool
+            
+            if isProvince == true {
+                navPlace.provincesId = 0
+            }else{
+                navPlace.provincesId = 1
+            }
         }
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

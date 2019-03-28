@@ -117,6 +117,9 @@ class APIs: NSObject {
         case postAdvt(parameters : [String:Any])
         case getSponsors(lastchange:Int, countryId:Int)
         case uploadImage()
+        case postBuyerRequiredAdvt(parameters : [String:Any])
+        case postExchangeProperty(parameters : [String:Any])
+        
         var contentType:ContentType {
             switch self {
             case .uploadImage():
@@ -163,6 +166,8 @@ class APIs: NSObject {
             case .userRegister(_ , _, _, _),
                  .activeUserAccount(_),
                  .uploadImage(),
+                 .postBuyerRequiredAdvt(_),
+                 .postExchangeProperty(_),
                  .postAdvt(_):
                 return .post
             default:
@@ -204,6 +209,10 @@ class APIs: NSObject {
                 return "postAdvt"
             case .uploadImage():
                 return "/Services/frmUploadImages.aspx"
+            case .postBuyerRequiredAdvt(_):
+                return "/postBuyerRequiredAdvt"
+            case .postExchangeProperty(_):
+                return "/postExchangeProperty"
             }
         }
         
@@ -312,6 +321,10 @@ class APIs: NSObject {
                 return ["userId":userId]
             case .postAdvt(let parameters):
                 return parameters
+            case .postBuyerRequiredAdvt(let parameters):
+                return parameters
+            case .postExchangeProperty(let parameters):
+                return parameters
             default:
                 return nil
             }
@@ -379,7 +392,46 @@ class APIs: NSObject {
             }else{
                 callback(0, nil)
             }
-
+        }
+    }
+    
+    func postBuyerRequiredAdvt(parameters : [String:Any], callback: @escaping IntegerCallback) {
+        let route = Router.postBuyerRequiredAdvt(parameters: parameters)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            print(result["code"])
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    func postExchangeProperty(parameters : [String:Any], callback: @escaping IntegerCallback) {
+        let route = Router.postExchangeProperty(parameters: parameters)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            print(result["code"])
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
         }
     }
     

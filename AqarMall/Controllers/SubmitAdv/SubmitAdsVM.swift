@@ -60,6 +60,45 @@ struct SubmitAdsVM {
             }
         }
     }
+
+    static func postBuyerRequiredAdvt(_postAd:PostExchangeRequiredAds, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ advId:Int, _ error:Error?) -> Void) {
+        
+        let params = ["CountryID":_postAd.countryID, "Description":_postAd.description, "Title":_postAd.title, "Phone":_postAd.phone, "UserID":_postAd.userID, "CallMe":_postAd.callMe]  as [String: Any]
+   
+        
+        APIs.shared.postBuyerRequiredAdvt(parameters: params) { (advId, error) in
+            guard error == nil else {
+                print(error ?? "")
+                completion(true, 0, error)
+                return
+            }
+            
+            if let _advId = advId{
+                completion(true, _advId, nil)
+                
+            }
+        }
+    }
+    
+    static func postExchangeProperty(_postAd:PostExchangeRequiredAds, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ advId:Int, _ error:Error?) -> Void) {
+        
+        let params = ["CountryID":_postAd.countryID, "Description":_postAd.description, "Title":_postAd.title, "Phone":_postAd.phone, "UserID":_postAd.userID, "CallMe":_postAd.callMe]  as [String: Any]
+        
+        
+        APIs.shared.postExchangeProperty(parameters: params) { (advId, error) in
+            guard error == nil else {
+                print(error ?? "")
+                completion(true, 0, error)
+                return
+            }
+            
+            if let _advId = advId{
+                completion(true, _advId, nil)
+                
+            }
+        }
+        
+    }
     
     static func validateIsAllImagesUploaded(_images:postAdv) -> Bool{
         // +++ validate if all images are uploaded.

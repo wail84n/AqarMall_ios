@@ -508,10 +508,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         if let _finishing = finishingTextField.text {
             postAd.Finishing = _finishing
         }
-        
-//        if let aaa = interfaceField.text {
-//            pos
-//        }
+
         if let _ageOfBuilding = buildingAgeTextfield.text {
             postAd.AgeOfBuilding = _ageOfBuilding
         }

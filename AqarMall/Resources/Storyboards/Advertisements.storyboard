@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -69,6 +70,9 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="selectProvince:" destination="A3h-kp-3KN" eventType="touchUpInside" id="C2J-Fv-iND"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-cr-ObE">
                                                         <rect key="frame" x="15" y="4" width="165" height="37"/>
@@ -86,6 +90,9 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="selectArea:" destination="A3h-kp-3KN" eventType="touchUpInside" id="rd8-wa-mas"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -212,11 +219,12 @@
                         <segue destination="8B0-ey-Q44" kind="show" identifier="adsListToDetails" id="3aq-kA-p9g"/>
                         <segue destination="SE5-VO-1Kr" kind="show" identifier="fromAdsListToBannerDetails" id="Imb-cq-NBa"/>
                         <segue destination="zY5-Hx-OAU" kind="show" identifier="ToexchangeDetailsSB" id="xd2-Uk-jZg"/>
+                        <segue destination="iFd-Er-Lfs" kind="presentation" identifier="selectAddressSB" id="81O-wL-cxf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiG-JB-1vD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="23"/>
+            <point key="canvasLocation" x="-599" y="-164"/>
         </scene>
         <!--Exchange Details View Controller-->
         <scene sceneID="Qmv-9X-8DJ">
@@ -1156,6 +1164,40 @@
             </objects>
             <point key="canvasLocation" x="1765.5999999999999" y="-11.244377811094454"/>
         </scene>
+        <!--Select Address View Controller-->
+        <scene sceneID="n3d-bd-AvT">
+            <objects>
+                <viewController storyboardIdentifier="SelectAddressViewController" id="iFd-Er-Lfs" customClass="SelectAddressViewController" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Cu-3W-jGg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="il4-Zl-VeX">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="iFd-Er-Lfs" id="IiI-Vr-aPl"/>
+                                    <outlet property="delegate" destination="iFd-Er-Lfs" id="tdL-IM-Zu8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="il4-Zl-VeX" firstAttribute="top" secondItem="YNB-lW-kcg" secondAttribute="top" id="4Aq-Xe-jkD"/>
+                            <constraint firstItem="YNB-lW-kcg" firstAttribute="trailing" secondItem="il4-Zl-VeX" secondAttribute="trailing" id="K6K-lQ-9cR"/>
+                            <constraint firstItem="il4-Zl-VeX" firstAttribute="leading" secondItem="YNB-lW-kcg" secondAttribute="leading" id="jLx-jx-IH7"/>
+                            <constraint firstItem="YNB-lW-kcg" firstAttribute="bottom" secondItem="il4-Zl-VeX" secondAttribute="bottom" id="nLA-fE-OfO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YNB-lW-kcg"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="il4-Zl-VeX" id="QPq-J8-fcx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="20E-BL-l0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2033" y="642"/>
+        </scene>
     </scenes>
     <resources>
         <image name="adDetailsBack" width="85" height="83"/>
@@ -1172,7 +1214,7 @@
         <image name="wrongCategory" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wDs-KB-XIt"/>
-        <segue reference="2V6-BF-a8b"/>
+        <segue reference="3aq-kA-p9g"/>
+        <segue reference="xd2-Uk-jZg"/>
     </inferredMetricsTieBreakers>
 </document>

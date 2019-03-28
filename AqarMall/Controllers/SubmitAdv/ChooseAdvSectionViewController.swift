@@ -141,6 +141,8 @@ class ChooseAdvSectionViewController: ViewController {
 
                 let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitExchangeRequiredAdv") as! SubmitExchangeRequiredAdv
                 vc.isExchange = false
+                self.tabBarController?.tabBar.isHidden = true
+                self.tabBarController?.tabBar.isTranslucent = true
                 self.navigationController?.pushViewController(vc, animated: true)
             })
         default:

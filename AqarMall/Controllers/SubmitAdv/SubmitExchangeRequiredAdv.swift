@@ -16,6 +16,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
     @IBOutlet weak var adDetailsTextView: UITextView!
     
     var isExchange = false
+    var postAdv = PostExchangeRequiredAds()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,33 +69,84 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
     @IBAction func directAdvChanged(_ sender: UIButton) {
         notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
         directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
-    //    postAd.CallMe = true
+        postAdv.callMe = true
     }
     
     @IBAction func notDirectAdvChanged(_ sender: UIButton) {
         directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
         notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
-      //  postAd.CallMe = false
+        postAdv.callMe = false
     }
     
     
+    @IBAction func submitAdv(_ sender: Any) {
+        SubmitAdv()
+    }
     
     func SubmitAdv() {
-//        if let _userId = DB_UserInfo.getUserId() {
-//            postAd.userid = _userId
-//        }else{
-//            self.showAlert(withTitle: .Missing, text: "لا يوجد حساب معتمد الرجاء التسجيل")
-//            return
-//        }
-//        
-//        if let _title = advTitleTextField.text {
-//            postAd.title = _title
-//        }
-//        
-//        if let _description = adDetailsTextView.text {
-//            postAd.Description =  _description
-//        }
+        if let _user = DB_UserInfo.callRecords() {
+            postAdv.userID = _user.entryID
+            postAdv.phone = _user.phone
+        }else{
+            self.showAlert(withTitle: .Missing, text: "لا يوجد حساب معتمد الرجاء التسجيل")
+            return
+        }
+        
+        postAdv.countryID = 1
+        if let _title = advTitleTextField.text {
+            postAdv.title = _title
+        }
+        
+        if let _description = adDetailsTextView.text {
+            postAdv.description =  _description
+        }
+        
+        AppUtils.ShowLoading()
+
+        if isExchange == true{
+            postExchangeProperty()
+        }else{
+            postBuyerRequiredAdvt()
+        }
     }
+    
+    
+    func postBuyerRequiredAdvt(){
+        SubmitAdsVM.postBuyerRequiredAdvt(_postAd: postAdv, isEditMode: false) { (result, advId, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.backActionToRoot()
+            })
+        }
+    }
+    
+    func postExchangeProperty(){
+        SubmitAdsVM.postExchangeProperty(_postAd: postAdv, isEditMode: false) { (result, advId, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.backActionToRoot()
+            })
+        }
+    }
+    
+    
+
     /*
     // MARK: - Navigation
 
