@@ -22,7 +22,8 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     @IBOutlet weak var sectionSegment: UISegmentedControl!
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var areaButton: UIButton!
-
+    @IBOutlet weak var provinceButton: UIButton!
+    
     var segmentedControl: ScrollableSegmentedControl!
     
     var segmentedControl222: ScrollableSegmentedControl!
@@ -32,17 +33,18 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     var previousScrollOffset: CGFloat = 0;
     var categories = [CategoriesData]()
     var banners = [BannersData]()
-    var intProvince = 0
-    var intArea = 0
     var intCat = 0
     
-    var currentPage = 1
+    var currentPage : Int16 = 1
     var nextpage = 0
     var isLastCall = true
     var orderBy = 0
     var bannerIndex = 0
     var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
+    
+    var selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
+    var selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +60,20 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
 
     func callAdvAPI() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: intProvince, _areaId: intArea, _pageNumber: 1, _orderBy: 4, _orderType: "DESC") { (result, error) in
+        print("currentPage \(currentPage)")
+        APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: selectedProvince?.entryID, _areaId: selectedArea?.entryID, _pageNumber: currentPage, _orderBy: 4, _orderType: "DESC") { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
                 return
             }
+            
             if let _result = result{
+                
+                print("isLastCall \(self.isLastCall)")
+                self.isLastCall = _result.count > 0 ? false : true
+                print("isLastCall \(self.isLastCall)")
+                
                 var counter = 0
                 for (index, record) in _result.enumerated() {
                     print(index)
@@ -97,7 +106,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
 //    }
     
     @IBAction func selectProvince(_ sender: Any) {
-        
         guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
             else { return }
         let navController = UINavigationController(rootViewController: myVC)
@@ -109,22 +117,39 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     }
     
     @IBAction func selectArea(_ sender: Any) {
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
-            else { return }
-        let navController = UINavigationController(rootViewController: myVC)
-        myVC.provincesId = 1 // +++ need to change
-        myVC.delegate = self
-        self.navigationController?.present(navController, animated: true, completion: nil)
-      //  performSegue(withIdentifier: "selectAddressSB", sender: false)
+        if selectedProvince?.entryID == 0 {
+            self.showAlert(withTitle: .Missing, text: "الرجاء اختر المحافظة اولاً")
+        }else{
+            guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
+                else { return }
+            let navController = UINavigationController(rootViewController: myVC)
+            print("provincesId \(selectedProvince?.entryID ?? 0)")
+            myVC.provincesId = selectedProvince?.entryID ?? 0
+            myVC.delegate = self
+            self.navigationController?.present(navController, animated: true, completion: nil)
+        }
     }
     
     
-    func setArea(with area: AreasData) {
-        
-    }
-    
-    func setProvince(with province: ProvincesData) {
+    func setProvince(with province: Provinces) {
         print(province.name)
+        if province.entryID == 0 {
+            selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
+            areaButton.setTitle(selectedArea!.name, for: .normal)
+        }
+        provinceButton.setTitle(province.name, for: .normal)
+        selectedProvince = province
+        
+        clearTableView()
+        callAdvAPI()
+    }
+    
+    func setArea(with area: Areas) {
+        areaButton.setTitle(area.name, for: .normal)
+        selectedArea = area
+        
+        clearTableView()
+        callAdvAPI()
     }
     
     func addBanner()-> BannersData?{
@@ -144,7 +169,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     func getExchangeAds() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: 1, _keyword: "") { (result, error) in
+        APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: currentPage, _keyword: "") { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -152,6 +177,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             }
 
             if let _result = result{
+                self.isLastCall = _result.count > 0 ? false : true
                 var counter = 0
                 for (index, record) in _result.enumerated() {
                     print(index)
@@ -172,7 +198,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     func getRequiredAds() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        APIs.shared.getRequiredAds(_areaId: 0, _pageNumber: 1, _keyword: "") { (result, error) in
+        APIs.shared.getRequiredAds(_areaId: 0, _pageNumber: currentPage, _keyword: "") { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -180,6 +206,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             }
             
             if let _result = result{
+                self.isLastCall = _result.count > 0 ? false : true
                 var counter = 0
                 for (index, record) in _result.enumerated() {
                     print(index)
@@ -260,6 +287,9 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     func clearTableView(){
         self.arrExchangeAdve.removeAll()
+        isLastCall = true
+        currentPage = 1
+        nextpage = 0
         self.arrAdve.removeAll()
         tableView.reloadData()
     }
@@ -336,13 +366,13 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         }
         
         var province = ""
-        if intProvince != 0 {
-            province = "مبارك الكبير"
+        if selectedProvince?.entryID != 0 {
+            province = selectedProvince?.name ?? ""
         }
         
         var area = ""
-        if intArea != 0 {
-            area = "العدان"
+        if selectedArea?.entryID != 0 {
+            area = selectedArea?.name ?? ""
         }
         
         if category.isEmpty {
@@ -535,7 +565,7 @@ extension AdsListVC: UITableViewDataSource {
             cell.priceLabel.text = "\(record.price ?? 0)"
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
-            
+            cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
             if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
                 cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
             }else{
@@ -563,6 +593,55 @@ extension AdsListVC: UITableViewDataSource {
             cell.adsTitleLabel.text = record.title
             cell.detailsLable.text = record.description
         }
+        
+        
+        if indexPath.row >= 9{
+            switch sectionSegment.selectedSegmentIndex
+            {
+            case 0,1:
+                if indexPath.row == (arrExchangeAdve.count - 1){
+                    print("last cell reached")
+                    // Do something
+                    if isLastCall != true {
+                        print((indexPath as NSIndexPath).row)
+                        nextpage = (arrExchangeAdve.count - 1)
+                        print(nextpage)
+                        if ((indexPath as NSIndexPath).row) == nextpage  {
+                            currentPage += 1
+                            nextpage = (arrExchangeAdve.count / 2) - 5
+                            
+                            if sectionSegment.selectedSegmentIndex == 0 {
+                                getExchangeAds()
+                            }else{
+                                getRequiredAds()
+                            }
+                        }
+                    }
+                }
+                break
+            case 2, 3:
+                if indexPath.row == (arrAdve.count - 1){
+                    print("last cell reached")
+                    // Do something
+                    if isLastCall != true {
+                        print((indexPath as NSIndexPath).row)
+                        nextpage = (arrAdve.count - 1)
+                        print(nextpage)
+                        if ((indexPath as NSIndexPath).row) == nextpage  {
+                            currentPage += 1
+                            nextpage = (arrAdve.count / 2) - 5
+                            callAdvAPI()
+                        }
+                    }
+                }
+            default:
+                break
+            }
+            
+
+        }
+
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -712,7 +791,7 @@ extension AdsListVC: UITableViewDelegate {
         let openAmount = self.headerHeightConstraint.constant - self.minHeaderHeight
         let percentage = openAmount / range
         
-        if intProvince == 0 {
+        if selectedProvince?.entryID == 0 {
             self.titleTopConstraint.constant = -openAmount + 20
         }else{
             self.titleTopConstraint.constant = -openAmount + 15

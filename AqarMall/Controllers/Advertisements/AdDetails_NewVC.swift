@@ -35,7 +35,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     
     var latitude: Double = 0.0
     var longtitude: Double = 0.0
-    var currentPage = 1
+    var currentPage : Int16 = 1
     var nextpage = 0
     var isLastCall = true
     var strKeywordSearch : String? = ""

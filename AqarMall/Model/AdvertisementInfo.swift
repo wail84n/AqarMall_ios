@@ -13,6 +13,8 @@ class AdvertisementInfo : NSObject {
     var title:String?
     var provinceName:String?
     var areaName:String?
+    var provinceId:Int32?
+    var areaId:Int32?
     var details:String?
     var price:Double?
     var priceLabel:String?
@@ -117,8 +119,8 @@ class AdvertisementInfo : NSObject {
             let _object = object,
             let _entryID = _object["EntryID"] as? Int32,
             let _title = _object["Title"] as? String,
-            let _provinceName = _object["ProvinceName"] as? String,
-            let _areaName = _object["AreaName"] as? String,
+            let _provinceId = _object["ProvinceID"] as? Int32,
+            let _areaId = _object["AreaID"] as? Int32,
             let _details = _object["Description"] as? String,
             let _price = _object["Price"] as? Double,
             let _priceLabel = _object["PriceLabel"] as? String,
@@ -130,6 +132,8 @@ class AdvertisementInfo : NSObject {
         
         self.entryID = _entryID
         self.title = _title
+        self.provinceId = _provinceId
+        self.areaId = _areaId
         self.provinceName = _provinceName
         self.areaName = _areaName
         self.details = _details

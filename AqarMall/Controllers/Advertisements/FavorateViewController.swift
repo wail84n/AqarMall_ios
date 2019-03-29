@@ -20,7 +20,7 @@ class FavorateViewController: ViewController, AdDetailsDelegate {
     var intArea = 0
     var intCat = 0
     
-    var currentPage = 1
+    var currentPage : Int16 = 1
     var nextpage = 0
     var isLastCall = true
     var orderBy = 0

@@ -15,6 +15,14 @@ struct Provinces {
     let colourCode:String
     let type:Int16
     
+    public init?(_entryID: Int32, _name: String) {
+        self.entryID = _entryID
+        self.lastChange = 0
+        self.name = _name
+        self.colourCode = ""
+        self.type = 0
+    }
+    
     public init?(object: AnyObject?) {
         guard
             let _object = object,

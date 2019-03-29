@@ -165,6 +165,12 @@
                                 </constraints>
                                 <state key="normal" image="favorateList"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IwJ-Sd-UGn">
+                                <rect key="frame" x="133" y="8" width="167" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -179,12 +185,15 @@
                             <constraint firstItem="Ine-eF-UvH" firstAttribute="leading" secondItem="UDa-i4-oob" secondAttribute="leading" constant="4" id="FXP-o9-p6U"/>
                             <constraint firstItem="Ine-eF-UvH" firstAttribute="top" secondItem="DMf-to-b7c" secondAttribute="bottom" constant="11" id="G5r-ir-Fgt"/>
                             <constraint firstItem="Rv4-ih-cKA" firstAttribute="top" secondItem="QOa-vx-qnW" secondAttribute="bottom" constant="8" id="M8a-tq-CAf"/>
+                            <constraint firstItem="IwJ-Sd-UGn" firstAttribute="leading" secondItem="DMf-to-b7c" secondAttribute="trailing" constant="5" id="OsH-4p-53x"/>
                             <constraint firstItem="Rv4-ih-cKA" firstAttribute="width" secondItem="cCy-ez-cta" secondAttribute="width" id="TPC-aq-XFf"/>
                             <constraint firstItem="cCy-ez-cta" firstAttribute="top" secondItem="QOa-vx-qnW" secondAttribute="bottom" constant="8" id="VRO-vB-f2M"/>
                             <constraint firstAttribute="trailing" secondItem="LDz-hH-BSA" secondAttribute="trailing" constant="8" id="Zxm-LI-c2A"/>
                             <constraint firstItem="DMf-to-b7c" firstAttribute="top" secondItem="UDa-i4-oob" secondAttribute="top" constant="8" id="bQZ-rz-5J6"/>
+                            <constraint firstItem="IwJ-Sd-UGn" firstAttribute="top" secondItem="UDa-i4-oob" secondAttribute="top" constant="8" id="c76-1d-WIV"/>
                             <constraint firstItem="DMf-to-b7c" firstAttribute="leading" secondItem="UDa-i4-oob" secondAttribute="leading" constant="8" id="heh-0R-P2P"/>
                             <constraint firstItem="LDz-hH-BSA" firstAttribute="leading" secondItem="DMf-to-b7c" secondAttribute="trailing" constant="5" id="wgP-Ny-NbQ"/>
+                            <constraint firstAttribute="trailing" secondItem="IwJ-Sd-UGn" secondAttribute="trailing" constant="4" id="y0Q-53-t04"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -210,6 +219,7 @@
             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="AdvIdLabel" destination="IwJ-Sd-UGn" id="Kau-Yz-4fh"/>
                 <outlet property="addressLabel" destination="DMf-to-b7c" id="ogr-g2-TJV"/>
                 <outlet property="adsTitleLabel" destination="LDz-hH-BSA" id="96T-Md-Ul0"/>
                 <outlet property="curencyLabel" destination="Dah-Oa-izc" id="xlA-My-ixo"/>

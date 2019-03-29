@@ -8,10 +8,9 @@
 
 import UIKit
 
-
 protocol SelectAddressDelegate : class {
-    func setArea(with area:AreasData)
-    func setProvince(with province:ProvincesData)
+    func setProvince(with province:Provinces)
+    func setArea(with area:Areas)
 }
 
 class SelectAddressViewController: ViewController {
@@ -19,23 +18,21 @@ class SelectAddressViewController: ViewController {
     
     var delegate: SelectAddressDelegate? = nil
     var provincesId : Int32 = 0
-    var provinces = [ProvincesData]()
-    var areas = [AreasData]()
+    var provinces = [Provinces]()
+    var areas = [Areas]()
     
-    var objProvince = ProvincesData()
-    var objArea = AreasData()
+    var objProvince : Provinces? = nil
+    var objArea : Areas? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         configureView()
     }
     
     func configureView(){
         self.setBack(isDismiss: true)
         tableView.register(UINib(nibName: "ChooseAddressCell", bundle: nil), forCellReuseIdentifier: "ChooseAddressCell")
-        
+        print("provincesId \(provincesId)")
         if provincesId == 0 {
             getProvincesData()
             title = "اختر المحافظة"
@@ -46,61 +43,34 @@ class SelectAddressViewController: ViewController {
     }
     
     func getProvincesData(){
-        if let _provinces = DB_Provinces.callProvinces(){
-            provinces = _provinces
-            
+        if let _provincesData = DB_Provinces.callProvinces(){
+            if let _province = Provinces(_entryID: 0, _name: "جميع المحافظات"){
+                provinces.append(_province)
+            }
+            for obj in _provincesData {
+                if let _province = Provinces(_entryID: obj.entryID, _name: obj.name ?? ""){
+                    provinces.append(_province)
+                }
+            }
             self.tableView.reloadData()
         }
     }
     
     func getAreasData(provId : Int32){
         if let _areas = DB_Areas.callAreas(provinceID: provId){
-            areas = _areas
+            if let _area = Areas(_entryID: 0, _name: "جميع المناطق"){
+                areas.append(_area)
+            }
+            
+            for obj in _areas {
+                if let _area = Areas(_entryID: obj.entryID, _name: obj.name ?? ""){
+                    areas.append(_area)
+                }
+            }
             self.tableView.reloadData()
         }
     }
-    
-    
-    func animatTableViewLeft() {
-        UIView.animate(withDuration: 0.5, animations: {
-            var frame = self.tableView.frame
-            frame.origin.x = -UIScreen.main.bounds.size.width
-            self.tableView.frame = frame
-        },completion: { (finished: Bool) in
-            
-            self.tableView.reloadData()
-            var frame = self.tableView.frame
-            frame.origin.x = 0
-            self.tableView.frame = frame
-        })
-    }
-    
-    func animatTableViewRight() {
-        UIView.animate(withDuration: 0.5, animations: {
-            var frame = self.tableView.frame
-            frame.origin.x = UIScreen.main.bounds.size.width
-            self.tableView.frame = frame
-        },completion: { (finished: Bool) in
-            
-            self.tableView.reloadData()
-            var frame = self.tableView.frame
-            frame.origin.x = 0
-            self.tableView.frame = frame
-        })
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
-
 
 extension SelectAddressViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -113,15 +83,14 @@ extension SelectAddressViewController: UITableViewDelegate, UITableViewDataSourc
         }else{
             return areas.count
         }
-        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? ChooseAddressCell {
             if provincesId == 0 {
-                cell.update(with: provinces[indexPath.row].name ?? "")
+                cell.update(with: provinces[indexPath.row].name)
             }else{
-                cell.update(with: areas[indexPath.row].name ?? "")
+                cell.update(with: areas[indexPath.row].name)
             }
         }
     }
@@ -134,17 +103,17 @@ extension SelectAddressViewController: UITableViewDelegate, UITableViewDataSourc
         if provincesId == 0{
             objProvince = provinces[indexPath.row]
             
-            if let _delegate = delegate{
-                _delegate.setProvince(with: objProvince)
+            if let _delegate = delegate, let _objProvince = objProvince{
+                _delegate.setProvince(with: _objProvince)
             }
-            _ = self.navigationController?.popViewController(animated: true)
+            self.leftAction()
         }else{
             objArea = areas[indexPath.row]
             
-            if let _delegate = delegate {
-                _delegate.setArea(with: objArea)
+            if let _delegate = delegate, let _objArea = objArea {
+                _delegate.setArea(with: _objArea)
             }
-            _ = self.navigationController?.popViewController(animated: true)
+            self.leftAction()
         }
         
     }

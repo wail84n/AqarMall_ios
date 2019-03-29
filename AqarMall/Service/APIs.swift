@@ -109,7 +109,7 @@ class APIs: NSObject {
         case getBanners(lastchange : Int?)
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
-        case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int?, areaId: Int?, pageNumber: Int?, orderBy: Int16?, orderType : String?)
+        case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
@@ -190,7 +190,7 @@ class APIs: NSObject {
             case .getBanners(_):
                 return "getBanners"
             case .getAdvts(_, _, _, _, _, _, _, _):
-                return "getAdvts"
+                return "getAdvts_iOS"
             case .getExchangeAds(_, _, _):
                 return "getExchangePropertyAds"
             case .getRequiredAds(_, _, _):
@@ -552,7 +552,6 @@ class APIs: NSObject {
         }
     }
     
-    
     func getSponsor(lastchange : Int, countryId : Int,callback: @escaping sponsorCallback) {
         let route = Router.getSponsors(lastchange: lastchange, countryId: countryId)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -649,7 +648,7 @@ class APIs: NSObject {
         }
     }
     
-    func getAdvts(_provinceType : Int?, _sectionId: Int?, _catId: Int?, _provinceId: Int?, _areaId: Int?, _pageNumber: Int?, _orderBy: Int16?, _orderType : String?, callback: @escaping AdvtsCallback) {
+    func getAdvts(_provinceType : Int?, _sectionId: Int?, _catId: Int?, _provinceId: Int32?, _areaId: Int32?, _pageNumber: Int16?, _orderBy: Int16?, _orderType : String?, callback: @escaping AdvtsCallback) {
         let route = Router.getAdvts(provinceType: _provinceType, sectionId: _sectionId, catId: _catId, provinceId: _provinceId, areaId: _areaId, pageNumber: _pageNumber, orderBy: _orderBy, orderType: _orderType)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard

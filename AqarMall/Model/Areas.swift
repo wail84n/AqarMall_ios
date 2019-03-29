@@ -15,6 +15,14 @@ struct Areas {
     let provinceID:Int32
     let colourCode:String
     
+    public init?(_entryID: Int32, _name: String) {
+        self.entryID = _entryID
+        self.lastChange = 0
+        self.name = _name
+        self.colourCode = ""
+        self.provinceID = 0
+    }
+    
     public init?(object: AnyObject?) {
         guard
             let _object = object,

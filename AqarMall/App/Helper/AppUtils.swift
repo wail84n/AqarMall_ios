@@ -33,6 +33,9 @@ enum AdvType : String {
 }
 
 class AppUtils: NSObject {
+    static var staticProvinces = [Provinces]()
+    static var staticAreas = [Areas]()
+    
     enum AppVariables : String {
         case categories_last_change = "categories_last_change"
         case provinces_last_change = "provinces_last_change"
@@ -55,6 +58,40 @@ class AppUtils: NSObject {
             return strValue!
         }
         return ""
+    }
+    
+    class func getAllProvinces()  -> [Provinces]?{
+        if staticProvinces.isEmpty {
+            if let _provincesData = DB_Provinces.callProvinces(){
+                if let _province = Provinces(_entryID: 0, _name: "جميع المحافظات"){
+                    staticProvinces.append(_province)
+                }
+                for obj in _provincesData {
+                    if let _province = Provinces(_entryID: obj.entryID, _name: obj.name ?? ""){
+                        staticProvinces.append(_province)
+                    }
+                }
+                return staticProvinces
+            }
+        }else{
+            return staticProvinces
+        }
+        
+        return nil
+    }
+    
+    class func getProvince(provinceId: Int32)  -> Provinces?
+    {
+        if let _staticProvinces = getAllProvinces() {
+        
+            if let foo = _staticProvinces.first(where: {$0.entryID == provinceId}) {
+                // do something with foo
+                return foo
+            } else {
+                return nil
+            }
+        }
+        return nil
     }
     
     class func getUuid()-> String{

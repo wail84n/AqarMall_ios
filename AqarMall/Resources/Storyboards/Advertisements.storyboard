@@ -55,7 +55,7 @@
                                                 <rect key="frame" x="0.0" y="93" width="375" height="45"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prx-4i-enw">
-                                                        <rect key="frame" x="195" y="4" width="165" height="37"/>
+                                                        <rect key="frame" x="195" y="2" width="165" height="41"/>
                                                         <state key="normal" title="المحافظة">
                                                             <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -75,7 +75,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzS-cr-ObE">
-                                                        <rect key="frame" x="15" y="4" width="165" height="37"/>
+                                                        <rect key="frame" x="15" y="2" width="165" height="41"/>
                                                         <state key="normal" title="المنطقة">
                                                             <color key="titleColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
@@ -98,14 +98,14 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Prx-4i-enw" secondAttribute="trailing" constant="15" id="4MQ-Zi-SsX"/>
-                                                    <constraint firstItem="Prx-4i-enw" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="4" id="6zp-57-S3v"/>
-                                                    <constraint firstItem="ZzS-cr-ObE" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="4" id="8xG-uU-Uyc"/>
+                                                    <constraint firstItem="Prx-4i-enw" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="2" id="6zp-57-S3v"/>
+                                                    <constraint firstItem="ZzS-cr-ObE" firstAttribute="top" secondItem="Hth-Ny-ANL" secondAttribute="top" constant="2" id="8xG-uU-Uyc"/>
                                                     <constraint firstItem="ZzS-cr-ObE" firstAttribute="leading" secondItem="Hth-Ny-ANL" secondAttribute="leading" constant="15" id="JWp-B6-l7d"/>
                                                     <constraint firstAttribute="height" constant="45" id="NVX-s0-JTz"/>
                                                     <constraint firstItem="Prx-4i-enw" firstAttribute="leading" secondItem="ZzS-cr-ObE" secondAttribute="trailing" constant="15" id="kAi-eH-dhy"/>
                                                     <constraint firstItem="Prx-4i-enw" firstAttribute="width" secondItem="ZzS-cr-ObE" secondAttribute="width" id="l98-8N-Hgb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Prx-4i-enw" secondAttribute="bottom" constant="4" id="rX4-8p-E4S"/>
-                                                    <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="4" id="sSO-j9-4Do"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Prx-4i-enw" secondAttribute="bottom" constant="2" id="rX4-8p-E4S"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="2" id="sSO-j9-4Do"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -211,6 +211,7 @@
                         <outlet property="headerTitleView" destination="E30-Ac-EO2" id="7DA-w7-zS1"/>
                         <outlet property="headerView" destination="SmB-kK-26F" id="X6E-o6-Ein"/>
                         <outlet property="mainHeaderView" destination="7wR-vC-n1P" id="dIy-TI-FJW"/>
+                        <outlet property="provinceButton" destination="Prx-4i-enw" id="h2s-AQ-9ox"/>
                         <outlet property="sectionSegment" destination="QUe-Ot-EMV" id="oPV-Nt-QfM"/>
                         <outlet property="subHeaderHeightConstraint" destination="vSl-aY-k3C" id="TDu-jN-8yK"/>
                         <outlet property="tableView" destination="K0e-24-eNF" id="LXe-kB-fAJ"/>
@@ -875,7 +876,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="882" y="-101"/>
+            <point key="canvasLocation" x="564" y="163"/>
         </scene>
         <!--Favorate View Controller-->
         <scene sceneID="B4x-es-Ovk">
