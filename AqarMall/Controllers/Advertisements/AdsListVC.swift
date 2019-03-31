@@ -26,7 +26,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     var segmentedControl: ScrollableSegmentedControl!
     
-    var segmentedControl222: ScrollableSegmentedControl!
     var maxHeaderHeight: CGFloat = 200;
     let minHeaderHeight: CGFloat = 64;
     
@@ -130,16 +129,16 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         }
     }
     
-    
-    @IBAction func AdvancedSearch(_ sender: Any) {
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AdvancedSearchViewController") as? AdvancedSearchViewController
-            else { return }
-        let navController = UINavigationController(rootViewController: myVC)
-        print("provincesId \(selectedProvince?.entryID ?? 0)")
-      //  myVC.provincesId = selectedProvince?.entryID ?? 0
-       // myVC.delegate = self
-        self.navigationController?.present(navController, animated: true, completion: nil)
-    }
+//
+//    @IBAction func AdvancedSearch(_ sender: Any) {
+//        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AdvancedSearchViewController") as? AdvancedSearchViewController
+//            else { return }
+//        let navController = UINavigationController(rootViewController: myVC)
+//        print("provincesId \(selectedProvince?.entryID ?? 0)")
+//      //  myVC.provincesId = selectedProvince?.entryID ?? 0
+//       // myVC.delegate = self
+//        self.navigationController?.present(navController, animated: true, completion: nil)
+//    }
     
     
     
