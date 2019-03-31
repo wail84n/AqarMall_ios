@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UDa-i4-oob">
-                        <rect key="frame" x="8" y="8" width="304" height="126.5"/>
+                        <rect key="frame" x="8" y="3" width="304" height="126.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="بيت بالفنطاس" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDz-hH-BSA">
                                 <rect key="frame" x="133" y="8" width="163" height="20.5"/>
@@ -200,7 +200,7 @@
                                 <real key="value" value="6"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.86129838199999997" green="0.86129838199999997" blue="0.86129838199999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="1"/>
@@ -210,10 +210,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="UDa-i4-oob" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4X2-xg-czV"/>
+                    <constraint firstItem="UDa-i4-oob" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="4X2-xg-czV"/>
                     <constraint firstAttribute="trailing" secondItem="UDa-i4-oob" secondAttribute="trailing" constant="8" id="QDM-7S-Wlb"/>
                     <constraint firstItem="UDa-i4-oob" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="pPk-23-EBz"/>
-                    <constraint firstAttribute="bottom" secondItem="UDa-i4-oob" secondAttribute="bottom" id="t85-A9-enP"/>
+                    <constraint firstAttribute="bottom" secondItem="UDa-i4-oob" secondAttribute="bottom" constant="5" id="t85-A9-enP"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,6 +222,7 @@
                 <outlet property="AdvIdLabel" destination="IwJ-Sd-UGn" id="Kau-Yz-4fh"/>
                 <outlet property="addressLabel" destination="DMf-to-b7c" id="ogr-g2-TJV"/>
                 <outlet property="adsTitleLabel" destination="LDz-hH-BSA" id="96T-Md-Ul0"/>
+                <outlet property="cellView" destination="UDa-i4-oob" id="phE-Zg-C2F"/>
                 <outlet property="curencyLabel" destination="Dah-Oa-izc" id="xlA-My-ixo"/>
                 <outlet property="detailsLable" destination="QOa-vx-qnW" id="VCF-a1-OW3"/>
                 <outlet property="favorateButton" destination="Ine-eF-UvH" id="7a2-5v-i2f"/>
@@ -229,7 +230,7 @@
                 <outlet property="priceTitleLabel" destination="Cqv-do-MWP" id="ynb-ku-AaI"/>
                 <outlet property="sizeLabel" destination="GBm-43-VhI" id="CPB-A7-wxj"/>
             </connections>
-            <point key="canvasLocation" x="132.80000000000001" y="108.84557721139431"/>
+            <point key="canvasLocation" x="-19" y="78"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -94,6 +94,41 @@ class AppUtils: NSObject {
         return nil
     }
     
+    
+    class func getAllAreas()  -> [Areas]?{
+        if staticAreas.isEmpty {
+            if let _areasData = DB_Areas.callAllAreas(){
+                if let _area = Areas(_entryID: 0, _name: "جميع المناطق"){
+                    staticAreas.append(_area)
+                }
+                for obj in _areasData {
+                    if let _area = Areas(_entryID: obj.entryID, _name: obj.name ?? ""){
+                        staticAreas.append(_area)
+                    }
+                }
+                return staticAreas
+            }
+        }else{
+            return staticAreas
+        }
+        
+        return nil
+    }
+    
+    class func getArea(areaId: Int32)  -> Areas?
+    {
+        if getAllAreas() != nil {
+            
+            if let foo = staticAreas.first(where: {$0.entryID == areaId}) {
+                // do something with foo
+                return foo
+            } else {
+                return nil
+            }
+        }
+        return nil
+    }
+    
     class func getUuid()-> String{
         if let user_uuid = KeychainWrapper.standard.string(forKey: "user_uuid"){
             print(user_uuid)

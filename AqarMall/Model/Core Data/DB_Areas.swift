@@ -60,4 +60,18 @@ struct DB_Areas {
         return nil
     }
     
+    static func callAllAreas()-> [AreasData]?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "AreasData")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [AreasData]
+            if  result?.count ?? 0 > 0 {
+                return result
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
 }

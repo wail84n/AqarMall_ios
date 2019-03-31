@@ -430,28 +430,26 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-5H-3Zv">
+                                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRX-5H-3Zv">
                                                                         <rect key="frame" x="115" y="30.5" width="220" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="220" id="qaQ-cs-WNF"/>
                                                                         </constraints>
+                                                                        <color key="tintColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                                        <state key="normal" title="اعلان مباشر من المالك" image="icon_radio_on_small">
-                                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
+                                                                        <state key="normal" title="اعلان مباشر من المالك" image="icon_radio_on_small"/>
                                                                         <connections>
                                                                             <action selector="directAdvChanged:" destination="eAm-2d-udV" eventType="touchUpInside" id="vvD-4x-tAQ"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button opaque="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oO-pb-9cw">
+                                                                    <button opaque="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oO-pb-9cw">
                                                                         <rect key="frame" x="115" y="70.5" width="220" height="39.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="220" id="xQV-U2-R6b"/>
                                                                         </constraints>
+                                                                        <color key="tintColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                         <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                                        <state key="normal" title="اعلان من مكتب عقار" image="icon_radio_off_small">
-                                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        </state>
+                                                                        <state key="normal" title="اعلان من مكتب عقار" image="icon_radio_off_small"/>
                                                                         <connections>
                                                                             <action selector="notDirectAdvChanged:" destination="eAm-2d-udV" eventType="touchUpInside" id="Mq3-u5-TMH"/>
                                                                         </connections>
@@ -481,7 +479,7 @@
                                                         <rect key="frame" x="0.0" y="475" width="375" height="595"/>
                                                         <subviews>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الغرف" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dvs-A4-HwJ">
-                                                                <rect key="frame" x="10" y="0.0" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="0.0" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="par-Ri-nmP"/>
                                                                 </constraints>
@@ -501,7 +499,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الحمامات" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gKG-NY-svj">
-                                                                <rect key="frame" x="10" y="55" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="55" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="ttf-XP-t6i"/>
                                                                 </constraints>
@@ -521,7 +519,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عدد الطوابق" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O0r-by-UeU">
-                                                                <rect key="frame" x="10" y="110" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="110" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="9J3-Cv-GMV"/>
                                                                 </constraints>
@@ -541,7 +539,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="التشطيب" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zFE-7c-gGf">
-                                                                <rect key="frame" x="10" y="165" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="165" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="jSJ-FU-fyB"/>
                                                                 </constraints>
@@ -561,7 +559,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="الواجهة" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3WF-pR-3QO">
-                                                                <rect key="frame" x="10" y="220" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="220" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="tmy-yv-OYW"/>
                                                                 </constraints>
@@ -581,7 +579,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="عمر البناء" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LBy-a9-1gz">
-                                                                <rect key="frame" x="10" y="275" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="275" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="76S-mA-FCd"/>
                                                                 </constraints>
@@ -601,7 +599,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="مساحة البناء" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lr9-cb-gpO">
-                                                                <rect key="frame" x="10" y="330" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="330" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="d8s-in-wfL"/>
                                                                 </constraints>
@@ -621,7 +619,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="مساحة الارض" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EVp-km-ayf">
-                                                                <rect key="frame" x="10" y="385" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="385" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="0L8-X0-aAx"/>
                                                                 </constraints>
@@ -641,7 +639,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="نوع الترخيص" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i8k-OK-e6u">
-                                                                <rect key="frame" x="10" y="440" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="440" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="6gH-zI-8ik"/>
                                                                 </constraints>
@@ -661,7 +659,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="المساحة" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dla-Ng-lCR">
-                                                                <rect key="frame" x="10" y="495" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="495" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="8Je-qA-lEu"/>
                                                                 </constraints>
@@ -681,7 +679,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="السعر" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oWE-gL-kV2">
-                                                                <rect key="frame" x="10" y="550" width="355" height="45"/>
+                                                                <rect key="frame" x="15" y="550" width="345" height="45"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="45" id="Nh4-DX-2Yv"/>
                                                                 </constraints>
@@ -702,29 +700,29 @@
                                                             </textField>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="i8k-OK-e6u" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="16E-B5-qSA"/>
-                                                            <constraint firstAttribute="trailing" secondItem="O0r-by-UeU" secondAttribute="trailing" constant="10" id="1DN-R5-Cod"/>
-                                                            <constraint firstItem="3WF-pR-3QO" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="7PH-Qc-mRE"/>
-                                                            <constraint firstAttribute="trailing" secondItem="lr9-cb-gpO" secondAttribute="trailing" constant="10" id="9Nq-ic-It0"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Dvs-A4-HwJ" secondAttribute="trailing" constant="10" id="AGP-ee-9LG"/>
-                                                            <constraint firstItem="oWE-gL-kV2" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="Aph-rg-96M"/>
-                                                            <constraint firstItem="EVp-km-ayf" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="ObY-34-INH"/>
-                                                            <constraint firstAttribute="trailing" secondItem="LBy-a9-1gz" secondAttribute="trailing" constant="10" id="Qax-kp-GZy"/>
-                                                            <constraint firstAttribute="trailing" secondItem="i8k-OK-e6u" secondAttribute="trailing" constant="10" id="RIv-Mp-FoB"/>
-                                                            <constraint firstAttribute="trailing" secondItem="gKG-NY-svj" secondAttribute="trailing" constant="10" id="Rdu-NS-aR8"/>
-                                                            <constraint firstItem="O0r-by-UeU" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="RsC-OF-GHl"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Dla-Ng-lCR" secondAttribute="trailing" constant="10" id="TiT-j5-35v"/>
-                                                            <constraint firstItem="gKG-NY-svj" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="U0S-AZ-HNi"/>
+                                                            <constraint firstItem="i8k-OK-e6u" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="16E-B5-qSA"/>
+                                                            <constraint firstAttribute="trailing" secondItem="O0r-by-UeU" secondAttribute="trailing" constant="15" id="1DN-R5-Cod"/>
+                                                            <constraint firstItem="3WF-pR-3QO" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="7PH-Qc-mRE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="lr9-cb-gpO" secondAttribute="trailing" constant="15" id="9Nq-ic-It0"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Dvs-A4-HwJ" secondAttribute="trailing" constant="15" id="AGP-ee-9LG"/>
+                                                            <constraint firstItem="oWE-gL-kV2" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="Aph-rg-96M"/>
+                                                            <constraint firstItem="EVp-km-ayf" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="ObY-34-INH"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LBy-a9-1gz" secondAttribute="trailing" constant="15" id="Qax-kp-GZy"/>
+                                                            <constraint firstAttribute="trailing" secondItem="i8k-OK-e6u" secondAttribute="trailing" constant="15" id="RIv-Mp-FoB"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gKG-NY-svj" secondAttribute="trailing" constant="15" id="Rdu-NS-aR8"/>
+                                                            <constraint firstItem="O0r-by-UeU" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="RsC-OF-GHl"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Dla-Ng-lCR" secondAttribute="trailing" constant="15" id="TiT-j5-35v"/>
+                                                            <constraint firstItem="gKG-NY-svj" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="U0S-AZ-HNi"/>
                                                             <constraint firstAttribute="height" constant="595" id="WAH-O0-yCr"/>
-                                                            <constraint firstAttribute="trailing" secondItem="oWE-gL-kV2" secondAttribute="trailing" constant="10" id="Yu3-hL-iqe"/>
-                                                            <constraint firstAttribute="trailing" secondItem="3WF-pR-3QO" secondAttribute="trailing" constant="10" id="Yz0-11-Roj"/>
-                                                            <constraint firstAttribute="trailing" secondItem="zFE-7c-gGf" secondAttribute="trailing" constant="10" id="bPS-e5-hIo"/>
-                                                            <constraint firstItem="zFE-7c-gGf" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="jhp-AF-0uE"/>
-                                                            <constraint firstItem="LBy-a9-1gz" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="nqS-v3-gg4"/>
-                                                            <constraint firstItem="Dla-Ng-lCR" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="qKy-IL-ilj"/>
-                                                            <constraint firstAttribute="trailing" secondItem="EVp-km-ayf" secondAttribute="trailing" constant="10" id="wjJ-Zl-HWQ"/>
-                                                            <constraint firstItem="lr9-cb-gpO" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="zBu-pq-KAS"/>
-                                                            <constraint firstItem="Dvs-A4-HwJ" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="10" id="zXW-6L-KG7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="oWE-gL-kV2" secondAttribute="trailing" constant="15" id="Yu3-hL-iqe"/>
+                                                            <constraint firstAttribute="trailing" secondItem="3WF-pR-3QO" secondAttribute="trailing" constant="15" id="Yz0-11-Roj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="zFE-7c-gGf" secondAttribute="trailing" constant="15" id="bPS-e5-hIo"/>
+                                                            <constraint firstItem="zFE-7c-gGf" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="jhp-AF-0uE"/>
+                                                            <constraint firstItem="LBy-a9-1gz" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="nqS-v3-gg4"/>
+                                                            <constraint firstItem="Dla-Ng-lCR" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="qKy-IL-ilj"/>
+                                                            <constraint firstAttribute="trailing" secondItem="EVp-km-ayf" secondAttribute="trailing" constant="15" id="wjJ-Zl-HWQ"/>
+                                                            <constraint firstItem="lr9-cb-gpO" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="zBu-pq-KAS"/>
+                                                            <constraint firstItem="Dvs-A4-HwJ" firstAttribute="leading" secondItem="3wT-3h-Wsp" secondAttribute="leading" constant="15" id="zXW-6L-KG7"/>
                                                         </constraints>
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38R-8c-3kC">
@@ -853,7 +851,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsQ-ea-vHp">
                                 <rect key="frame" x="15" y="1140" width="345" height="45"/>
-                                <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cqb-CA-Xke"/>
                                 </constraints>
@@ -986,28 +984,26 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" tag="1" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-by-U8O">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xsS-by-U8O">
                                                 <rect key="frame" x="115" y="23" width="220" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="220" id="TLL-Tu-NmF"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                <state key="normal" title="اعلان مباشر من المالك" image="icon_radio_on_small">
-                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
+                                                <state key="normal" title="اعلان مباشر من المالك" image="icon_radio_on_small"/>
                                                 <connections>
                                                     <action selector="directAdvChanged:" destination="WaW-r5-USV" eventType="touchUpInside" id="Xd1-Kk-IEZ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9i-ce-zg6">
+                                            <button opaque="NO" contentMode="right" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9i-ce-zg6">
                                                 <rect key="frame" x="115" y="53" width="220" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="220" id="557-3Y-6RS"/>
                                                 </constraints>
+                                                <color key="tintColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                                <state key="normal" title="اعلان من مكتب عقار" image="icon_radio_off_small">
-                                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
+                                                <state key="normal" title="اعلان من مكتب عقار" image="icon_radio_off_small"/>
                                                 <connections>
                                                     <action selector="notDirectAdvChanged:" destination="WaW-r5-USV" eventType="touchUpInside" id="1qu-Wd-XCP"/>
                                                 </connections>
@@ -1034,7 +1030,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sqy-dp-7fx">
                                 <rect key="frame" x="15" y="595" width="345" height="45"/>
-                                <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="uKO-4m-647"/>
                                 </constraints>

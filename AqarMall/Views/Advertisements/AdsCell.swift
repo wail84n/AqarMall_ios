@@ -16,6 +16,7 @@ class AdsCell: UITableViewCell {
     @IBOutlet weak var priceTitleLabel: UILabel!
     @IBOutlet weak var curencyLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var cellView: UIView!
     
     @IBOutlet weak var AdvIdLabel: UILabel!
     @IBOutlet weak var favorateButton: UIButton!

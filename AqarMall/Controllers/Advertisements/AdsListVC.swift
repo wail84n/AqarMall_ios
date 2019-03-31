@@ -131,6 +131,18 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     }
     
     
+    @IBAction func AdvancedSearch(_ sender: Any) {
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "AdvancedSearchViewController") as? AdvancedSearchViewController
+            else { return }
+        let navController = UINavigationController(rootViewController: myVC)
+        print("provincesId \(selectedProvince?.entryID ?? 0)")
+      //  myVC.provincesId = selectedProvince?.entryID ?? 0
+       // myVC.delegate = self
+        self.navigationController?.present(navController, animated: true, completion: nil)
+    }
+    
+    
+    
     func setProvince(with province: Provinces) {
         print(province.name)
         if province.entryID == 0 {
@@ -566,6 +578,8 @@ extension AdsListVC: UITableViewDataSource {
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
             cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
+           // cell.cellView.dropShadow(scale: true)
+
             if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
                 cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
             }else{

@@ -134,8 +134,8 @@ class AdvertisementInfo : NSObject {
         self.title = _title
         self.provinceId = _provinceId
         self.areaId = _areaId
-        self.provinceName = _provinceName
-        self.areaName = _areaName
+        self.provinceName = AppUtils.getProvince(provinceId: _provinceId)?.name // _provinceName
+        self.areaName = AppUtils.getArea(areaId: _areaId)?.name  //_areaName
         self.details = _details
         self.price = _price
         self.priceLabel = _priceLabel
