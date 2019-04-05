@@ -119,6 +119,7 @@ class APIs: NSObject {
         case uploadImage()
         case postBuyerRequiredAdvt(parameters : [String:Any])
         case postExchangeProperty(parameters : [String:Any])
+        case postSearch(parameters : [String:Any])
         
         var contentType:ContentType {
             switch self {
@@ -132,7 +133,6 @@ class APIs: NSObject {
         var headers:HTTPHeaders {
             var dict:HTTPHeaders = [:]
             
-            
             switch self {
             case .uploadImage():
                 break
@@ -145,7 +145,6 @@ class APIs: NSObject {
             }
             return dict
         }
-        
         
         var serverUrl:appURLs {
             switch self {
@@ -168,7 +167,8 @@ class APIs: NSObject {
                  .uploadImage(),
                  .postBuyerRequiredAdvt(_),
                  .postExchangeProperty(_),
-                 .postAdvt(_):
+                 .postAdvt(_),
+                 .postSearch(_):
                 return .post
             default:
                 return .get
@@ -213,6 +213,8 @@ class APIs: NSObject {
                 return "/postBuyerRequiredAdvt"
             case .postExchangeProperty(_):
                 return "/postExchangeProperty"
+            case .postSearch(_):
+                return "/postSearch"
             }
         }
         
@@ -248,8 +250,6 @@ class APIs: NSObject {
                 if let _Id = Id{
                     dict["id"] = _Id
                 }
-              //  dict["id"] = Id
-                
             case .getAdvts(let provinceType, let sectionId, let catId, let provinceId, let areaId, let pageNumber, let orderBy, let orderType):
                 if let _provinceType = provinceType{
                     dict["provinceType"] = _provinceType
@@ -325,6 +325,8 @@ class APIs: NSObject {
                 return parameters
             case .postExchangeProperty(let parameters):
                 return parameters
+            case .postSearch(let parameters):
+                return parameters
             default:
                 return nil
             }
@@ -360,6 +362,7 @@ class APIs: NSObject {
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
+    
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -563,7 +566,6 @@ class APIs: NSObject {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
-            
             var body:NSDictionary
             
             body = ["SponsorID": sponsor[0].sponsorID,"Name": sponsor[0].name , "FileName":sponsor[0].fileName, "Details":sponsor[0].details, "LastChange": sponsor[0].lastChange, "LastChangeType": sponsor[0].lastChangeType]
@@ -650,6 +652,21 @@ class APIs: NSObject {
     
     func getAdvts(_provinceType : Int?, _sectionId: Int?, _catId: Int?, _provinceId: Int32?, _areaId: Int32?, _pageNumber: Int16?, _orderBy: Int16?, _orderType : String?, callback: @escaping AdvtsCallback) {
         let route = Router.getAdvts(provinceType: _provinceType, sectionId: _sectionId, catId: _catId, provinceId: _provinceId, areaId: _areaId, pageNumber: _pageNumber, orderBy: _orderBy, orderType: _orderType)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ AdvertisementInfo(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    func getAdvts_AdvancedSearch(parameters : [String:Any], callback: @escaping AdvtsCallback) {
+        let route = Router.postSearch(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,

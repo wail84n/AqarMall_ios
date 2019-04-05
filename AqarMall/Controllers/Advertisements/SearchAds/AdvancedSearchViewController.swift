@@ -9,6 +9,11 @@
 import UIKit
 import ScrollableSegmentedControl
 
+protocol AdvancedSearchDelegate : class {
+    func textSearch(with parameters:[String:Any])
+    func advancedSearch(with parameters:[String:Any])
+}
+
 class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     @IBOutlet weak var textSearchView: UIView!
     @IBOutlet weak var advancedSearchView: UIView!
@@ -18,12 +23,19 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     @IBOutlet weak var provinceView: UIView!
     @IBOutlet weak var areaView: UIView!
     
+    @IBOutlet weak var fromPriceTextField: UITextField!
+    @IBOutlet weak var toPriceTextField: UITextField!
+    @IBOutlet weak var fromSizeTextField: UITextField!
+    @IBOutlet weak var toSizeTextField: UITextField!
+    
+    var delegate: AdvancedSearchDelegate? = nil
     var segmentedControl: ScrollableSegmentedControl!
     var categories = [CategoriesData]()
     
     var selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
     var selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
-    
+    var sectionId : Int16 = 0
+    var advancedSearch = AdvancedSearch()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +45,7 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     
     func configureView(){
         getCategoriesData(isRent: true)
+        advancedSearch.sectionID = sectionId
         textSearchView.dropShadow(color: .gray, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
         advancedSearchView.dropShadow(color: .gray, opacity: 1, offSet: CGSize(width: -1, height: 1), radius: 3, scale: true)
     }
@@ -53,7 +66,7 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     
     func setProvince(with province: Provinces) {
         print(province.name)
-        if province.entryID == 0 {
+        if province.entryID == 0 || selectedProvince?.entryID != province.entryID{
             selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
             areaLabel.text = selectedArea!.name
         }
@@ -79,6 +92,32 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
         default:
             break
         }
+    }
+    
+    @IBAction func StartAdvancesSearch(_ sender: Any) {
+        
+    }
+    
+    func validateEntry()-> Bool{
+        fromPriceTextField.borderColor = UIColor.clear
+        toPriceTextField.borderColor = UIColor.clear
+        if fromPriceTextField.text?.isEmpty == false && toPriceTextField.text?.isEmpty == false {
+            
+            guard let fromPrice = Int(fromPriceTextField.text ?? "0"),
+                let toPrice = Int(toPriceTextField.text ?? "0")
+                else{
+                    return false
+            }
+            
+            if toPrice > fromPrice {
+                fromPriceTextField.borderColor = UIColor.red.withAlphaComponent(0.7)
+                toPriceTextField.borderColor = UIColor.red.withAlphaComponent(0.7)
+                showAlert(withTitle: .Missing, text: "يجب ان يكون سعر البداية اقل من سعر النهاية")
+            }
+
+        }
+        
+        return true
     }
     
     func getCategoriesData(isRent : Bool)

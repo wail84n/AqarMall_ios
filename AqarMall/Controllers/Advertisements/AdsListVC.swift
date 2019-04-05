@@ -9,7 +9,7 @@
 import UIKit
 import ScrollableSegmentedControl
 
-class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
+class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFilterDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subHeaderHeightConstraint: NSLayoutConstraint!
@@ -419,42 +419,45 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     }
     
     @IBAction func showFilterList(_ sender: Any) {
-        let alertController = UIAlertController(title: "تصنيف الإعلانات", message: "الرجاء اختر احد التصنيفات التالية:", preferredStyle: .actionSheet)
-        let higherPriceAction = UIAlertAction(title: "الأعلى سعر", style: .destructive) { action in
-            self.clearTableView()
-            self.currentPage = 1
-            self.nextpage = 0
-            
-            self.orderBy = 1
-//            Utility.ShowLoading(View: self.view, title: "الرجاء الانتظار", details: "جاري تحديث البيانات")
-//            self.GetAds_List(record: self.CatRecord)
-        }
-        alertController.addAction(higherPriceAction)
         
-        let lowerPriceAction = UIAlertAction(title: "الأقل سعر", style: .destructive) { action in
-            self.clearTableView()
-            self.currentPage = 1
-            self.nextpage = 0
-            
-            self.orderBy = 0
-        }
-        alertController.addAction(lowerPriceAction)
+        performSegue(withIdentifier: "AdvFilterSB", sender: self)
         
-        let newestAction = UIAlertAction(title: "الأحدث", style: .destructive) { action in
-            self.clearTableView()
-            self.currentPage = 1
-            self.nextpage = 0
-            self.orderBy = -1
-        }
-        alertController.addAction(newestAction)
-        
-        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
-            
-        }
-        
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "تصنيف الإعلانات", message: "الرجاء اختر احد التصنيفات التالية:", preferredStyle: .actionSheet)
+//        let higherPriceAction = UIAlertAction(title: "الأعلى سعر", style: .destructive) { action in
+//            self.clearTableView()
+//            self.currentPage = 1
+//            self.nextpage = 0
+//            
+//            self.orderBy = 1
+////            Utility.ShowLoading(View: self.view, title: "الرجاء الانتظار", details: "جاري تحديث البيانات")
+////            self.GetAds_List(record: self.CatRecord)
+//        }
+//        alertController.addAction(higherPriceAction)
+//        
+//        let lowerPriceAction = UIAlertAction(title: "الأقل سعر", style: .destructive) { action in
+//            self.clearTableView()
+//            self.currentPage = 1
+//            self.nextpage = 0
+//            
+//            self.orderBy = 0
+//        }
+//        alertController.addAction(lowerPriceAction)
+//        
+//        let newestAction = UIAlertAction(title: "الأحدث", style: .destructive) { action in
+//            self.clearTableView()
+//            self.currentPage = 1
+//            self.nextpage = 0
+//            self.orderBy = -1
+//        }
+//        alertController.addAction(newestAction)
+//        
+//        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+//            
+//        }
+//        
+//        alertController.addAction(cancelAction)
+//        
+//        self.present(alertController, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
