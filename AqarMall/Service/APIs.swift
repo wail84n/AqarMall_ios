@@ -214,7 +214,7 @@ class APIs: NSObject {
             case .postExchangeProperty(_):
                 return "/postExchangeProperty"
             case .postSearch(_):
-                return "/postSearch"
+                return "/postSearch_iOS"
             }
         }
         
@@ -296,9 +296,9 @@ class APIs: NSObject {
                     dict["pageNumber"] = _pageNumber
                 }
                 
-                if let _areaId = areaId{
-                    dict["areaId"] = _areaId
-                }
+//                if let _areaId = areaId{
+//                    dict["areaId"] = _areaId
+//                }
                 
                 if let _keyword = keyword{
                     dict["keyword"] = _keyword
@@ -665,7 +665,7 @@ class APIs: NSObject {
         }
     }
     
-    func getAdvts_AdvancedSearch(parameters : [String:Any], callback: @escaping AdvtsCallback) {
+    func getAdvts_AdvancedSearch(parameters : [String:Any], pageNumber: Int16?, callback: @escaping AdvtsCallback) {
         let route = Router.postSearch(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard

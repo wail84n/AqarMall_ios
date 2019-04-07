@@ -71,22 +71,23 @@ class AdvFilterViewController: ViewController {
             case .lowerPrices:
                 _delegate.advFilter(with: 1, orderType: "Asc")
             case .HigherPrice:
-                _delegate.advFilter(with: 1, orderType: "Dec")
+                _delegate.advFilter(with: 1, orderType: "DESC")
             case .smallestSize:
                 _delegate.advFilter(with: 2, orderType: "Asc")
             case .biggerSize:
-                _delegate.advFilter(with: 2, orderType: "Dec")
+                _delegate.advFilter(with: 2, orderType: "DESC")
             case .newAdv:
-                _delegate.advFilter(with: 3, orderType: "Dec")
+                _delegate.advFilter(with: 3, orderType: "DESC")
             case .oldAdv:
                 _delegate.advFilter(with: 3, orderType: "Asc")
             case .mostViews:
-                _delegate.advFilter(with: 4, orderType: "Dec")
+                _delegate.advFilter(with: 4, orderType: "DESC")
             case .lowerViews:
                 _delegate.advFilter(with: 3, orderType: "Asc")
             }
         }
         
+        self.leftAction()
 // 1 = Price 2 = Size 3 = Entry date 4 = Most viewed
         //order_type: (Asc,Dec).
     }

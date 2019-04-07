@@ -9,7 +9,10 @@
 import UIKit
 import ScrollableSegmentedControl
 
-class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFilterDelegate {
+class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
+    
+    @IBOutlet weak var searchTextSearchBar: UISearchBar!
+    @IBOutlet weak var AdvancedSearchButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var subHeaderHeightConstraint: NSLayoutConstraint!
@@ -37,30 +40,40 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
     var currentPage : Int16 = 1
     var nextpage = 0
     var isLastCall = true
-    var orderBy = 0
+    var orderBy : Int16 = 3
+    var orderType : String = "DESC"
     var bannerIndex = 0
     var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
     
     var selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
     var selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
-    
+   // var parameters : [String : Any] = [:]
+    var advancedSearch = AdvancedSearch()
+    var isFormAdvancedSearch = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        configureView()
+    }
+
+    func configureView(){
+        AdvancedSearchButton.isHidden = false
+        searchTextSearchBar.delegate = self
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        advancedSearch.sectionID = 1
         getCategoriesData(isRent: true)
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
         tableView.register(UINib(nibName: "bannerCell", bundle: nil), forCellReuseIdentifier: "bannerCell")
     }
-
+    
     func callAdvAPI() {
         print(sectionSegment.selectedSegmentIndex - 1)
         print("currentPage \(currentPage)")
-        APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: selectedProvince?.entryID, _areaId: selectedArea?.entryID, _pageNumber: currentPage, _orderBy: 4, _orderType: "DESC") { (result, error) in
+
+        APIs.shared.getAdvts(_provinceType: 1, _sectionId: sectionSegment.selectedSegmentIndex - 1, _catId: intCat, _provinceId: selectedProvince?.entryID, _areaId: selectedArea?.entryID, _pageNumber: currentPage, _orderBy: orderBy, _orderType: orderType) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -150,7 +163,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
         }
         provinceButton.setTitle(province.name, for: .normal)
         selectedProvince = province
-        
+        advancedSearch.selectedProvince = selectedProvince
         clearTableView()
         callAdvAPI()
     }
@@ -158,7 +171,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
     func setArea(with area: Areas) {
         areaButton.setTitle(area.name, for: .normal)
         selectedArea = area
-        
+        advancedSearch.selectedArea = selectedArea
         clearTableView()
         callAdvAPI()
     }
@@ -180,7 +193,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
     
     func getExchangeAds() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: currentPage, _keyword: "") { (result, error) in
+        APIs.shared.getExchangeAds(_areaId: 0, _pageNumber: currentPage, _keyword: searchTextSearchBar.text ?? "") { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -290,8 +303,14 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
                 self.segmentedControl.insertSegment(withTitle: item.name ?? "", at: i + 1)
             }
             
-            self.segmentedControl.selectedSegmentIndex = 0
-            
+            if isFormAdvancedSearch == true {
+                
+                self.segmentedControl.selectedSegmentIndex = advancedSearch.catIndex
+            }else{
+                self.segmentedControl.selectedSegmentIndex = 0
+                advancedSearch.catIndex = 0
+            }
+
             headerView.addSubview(segmentedControl)
         }
     }
@@ -301,6 +320,9 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
         isLastCall = true
         currentPage = 1
         nextpage = 0
+        orderBy = 3
+        
+        orderType = "DESC"
         self.arrAdve.removeAll()
         tableView.reloadData()
     }
@@ -308,35 +330,51 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
     @IBAction func changeSection(_ sender: Any) {
         intCat = 0
         AppUtils.ShowLoading()
+        advancedSearch = AdvancedSearch()// +++ remove all parameters from advanced search
+       // parameters.removeAll()
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
-            maxHeaderHeight = 110
-            self.subHeaderHeightConstraint.constant = 50
-            self.headerHeightConstraint.constant = 110
+            maxHeaderHeight = 160
+            segmentedControl.isHidden = true
+            searchTextSearchBar.isHidden = false
+            self.subHeaderHeightConstraint.constant = 100
+            self.headerHeightConstraint.constant = 160
             addressView.isHidden = true
+            AdvancedSearchButton.isHidden = true
             clearTableView()
             getExchangeAds()
             break
         case 1:
-            maxHeaderHeight = 110
-            self.subHeaderHeightConstraint.constant = 50
-            self.headerHeightConstraint.constant = 110
+            maxHeaderHeight = 160
+            segmentedControl.isHidden = true
+            searchTextSearchBar.isHidden = false
+            self.subHeaderHeightConstraint.constant = 100
+            self.headerHeightConstraint.constant = 160
             addressView.isHidden = true
+            AdvancedSearchButton.isHidden = true
             clearTableView()
             getRequiredAds()
             break
         case 2:
             maxHeaderHeight = 200
+            segmentedControl.isHidden = false
+            searchTextSearchBar.isHidden = true
             self.subHeaderHeightConstraint.constant = 140
             self.headerHeightConstraint.constant = 200
             addressView.isHidden = false
+            AdvancedSearchButton.isHidden = false
+            advancedSearch.sectionID = 1
             getCategoriesData(isRent: true)
         case 3:
             maxHeaderHeight = 200
+            segmentedControl.isHidden = false
+            searchTextSearchBar.isHidden = true
             self.subHeaderHeightConstraint.constant = 140
             self.headerHeightConstraint.constant = 200
+            AdvancedSearchButton.isHidden = false
             addressView.isHidden = false
+            advancedSearch.sectionID = 2
             getCategoriesData(isRent: false)
         default:
             break
@@ -404,6 +442,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
     
     @objc func segmentSelected(sender:ScrollableSegmentedControl) {
        print("Segment at index \(sender.selectedSegmentIndex)  selected")
+        advancedSearch.catIndex = sender.selectedSegmentIndex
         AppUtils.ShowLoading()
         if (sender.selectedSegmentIndex  == 0) { // self.categories.count)
             intCat = 0
@@ -414,8 +453,12 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
         
         self.setNavigationTitle()
         
-        clearTableView()
-        callAdvAPI()
+        if isFormAdvancedSearch == false {
+            // +++ no need to call this code if the user came from advanced search.
+            clearTableView()
+            callAdvAPI()
+        }
+
     }
     
     @IBAction func showFilterList(_ sender: Any) {
@@ -515,6 +558,15 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate, AdvFi
             }else{
                 navPlace.provincesId = 1
             }
+        }else if let navPlace = segue.destination as? AdvFilterViewController {
+            navPlace.delegate = self
+        }else if let navPlace = segue.destination as? AdvancedSearchViewController {
+            navPlace.delegate = self
+//            navPlace.selectedArea = selectedArea
+//            navPlace.selectedProvince = selectedProvince
+            navPlace.sectionId = sectionSegment.selectedSegmentIndex - 1
+            navPlace.intCat =  intCat
+            navPlace.advancedSearch = advancedSearch
         }
     }
     
@@ -646,18 +698,21 @@ extension AdsListVC: UITableViewDataSource {
                         if ((indexPath as NSIndexPath).row) == nextpage  {
                             currentPage += 1
                             nextpage = (arrAdve.count / 2) - 5
-                            callAdvAPI()
+                            
+                            if advancedSearch.isOn == true{
+                                // +++ there is no pagination in Advanced Search right now.
+                              //  getAdvancedSearch(_parameters: parameters)
+                            }else{
+                                callAdvAPI()
+                            }
+                            
                         }
                     }
                 }
             default:
                 break
             }
-            
-
         }
-
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
@@ -816,5 +871,160 @@ extension AdsListVC: UITableViewDelegate {
         self.tileLabel.alpha = 1 - percentage
         self.headerView.alpha = percentage
         self.headerTitleView.alpha = percentage
+    }
+}
+
+
+extension AdsListVC: AdvFilterDelegate {
+    func advFilter(with orderBy: Int16, orderType: String) {
+        print("orderBy \(orderBy) :: orderType \(orderType)")
+        clearTableView()
+        self.orderBy = orderBy
+        self.orderType = orderType
+        callAdvAPI()
+    }
+}
+
+
+extension AdsListVC: AdvancedSearchDelegate {
+    
+    func textSearch(with _advancedSearch:AdvancedSearch) {
+        // AppUtils.getUuid()
+        advancedSearch = _advancedSearch
+        advancedSearch.isOn = true
+        isFormAdvancedSearch = true
+        let parameters : [String : Any] = ["UserID": 0, "SectionID": sectionSegment.selectedSegmentIndex - 1, "CatID":intCat, "ProvinceID":selectedProvince?.entryID ?? 0, "AreaID":selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":-1, "ToPrice":-1, "FromSize":-1, "ToSize":-1]
+        getAdvancedSearch(_parameters: parameters)
+    }
+    
+    func advancedSearch(with _advancedSearch:AdvancedSearch) {
+        setProvince_Search(with: _advancedSearch.selectedProvince!)
+        setArea_Search(with: _advancedSearch.selectedArea!)
+        advancedSearch = _advancedSearch
+        
+        advancedSearch.isOn = true
+        isFormAdvancedSearch = true
+        sectionSegment.selectedSegmentIndex = advancedSearch.sectionID + 1
+       // self.segmentedControl.selectedSegmentIndex = _advancedSearch.catIndex
+        
+        changeSection()
+        intCat = Int(_advancedSearch.catID)
+
+        
+        
+        let parameters : [String : Any] = ["UserID": 0, "SectionID": advancedSearch.sectionID, "CatID":intCat, "ProvinceID":advancedSearch.selectedProvince?.entryID ?? 0, "AreaID":advancedSearch.selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":advancedSearch.fromPrice, "ToPrice":advancedSearch.toPrice, "FromSize":advancedSearch.fromSize, "ToSize":advancedSearch.toSize]
+        
+        getAdvancedSearch(_parameters: parameters)
+    }
+    
+    func setProvince_Search(with province: Provinces) {
+        print(province.name)
+        if province.entryID == 0 {
+            selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
+            areaButton.setTitle(selectedArea!.name, for: .normal)
+        }
+        provinceButton.setTitle(province.name, for: .normal)
+        selectedProvince = province
+        advancedSearch.selectedProvince = selectedProvince
+    }
+    
+    func setArea_Search(with area: Areas) {
+        areaButton.setTitle(area.name, for: .normal)
+        selectedArea = area
+        advancedSearch.selectedArea = selectedArea
+    }
+    
+    
+    func changeSection() {
+        intCat = 0
+        AppUtils.ShowLoading()
+        switch sectionSegment.selectedSegmentIndex
+        {
+        case 2:
+            maxHeaderHeight = 200
+            self.subHeaderHeightConstraint.constant = 140
+            self.headerHeightConstraint.constant = 200
+            addressView.isHidden = false
+            AdvancedSearchButton.isHidden = false
+            advancedSearch.sectionID = 1
+            getCategoriesData(isRent: true)
+        case 3:
+            maxHeaderHeight = 200
+            self.subHeaderHeightConstraint.constant = 140
+            self.headerHeightConstraint.constant = 200
+            AdvancedSearchButton.isHidden = false
+            addressView.isHidden = false
+            advancedSearch.sectionID = 2
+            getCategoriesData(isRent: false)
+        default:
+            break
+        }
+        self.setNavigationTitle()
+    }
+    
+    func getAdvancedSearch(_parameters: [String : Any]) {
+        print(sectionSegment.selectedSegmentIndex - 1)
+        clearTableView()
+        APIs.shared.getAdvts_AdvancedSearch(parameters: _parameters, pageNumber: currentPage) { (result, error) in
+            AppUtils.HideLoading()
+            self.isFormAdvancedSearch = false
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            print(self.arrAdve.count)
+            if let _result = result{
+                
+                print("isLastCall \(self.isLastCall)")
+                self.isLastCall = _result.count > 0 ? false : true
+                print("isLastCall \(self.isLastCall)")
+                
+                var counter = 0
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    
+                    if counter == 4 {
+                        counter = 0
+                        let banner = AdvertisementInfo()
+                        banner.isBanner = true
+                        banner.banner = self.addBanner()
+                        self.arrAdve.append(banner)
+                    }
+                    counter += 1
+                    self.arrAdve.append(record)
+                    print(self.arrAdve.count)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+}
+
+
+extension AdsListVC: UISearchBarDelegate {
+    // MARK: - UISearchBar Delegate
+//    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+//        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+//    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+       // searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+       // searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+       // searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        clearTableView()
+        searchTextSearchBar.resignFirstResponder()
+        AppUtils.ShowLoading()
+        getExchangeAds()
+      //  self.configureView()
     }
 }

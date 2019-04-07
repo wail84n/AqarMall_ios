@@ -78,6 +78,9 @@
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="StartTextSearch:" destination="PD1-zC-q3J" eventType="touchUpInside" id="J2Z-oa-w8C"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -366,7 +369,6 @@
                                                 <color key="tintColor" red="0.0" green="0.27450980390000002" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="changeSection:" destination="PD1-zC-q3J" eventType="valueChanged" id="2m5-PU-6MM"/>
-                                                    <action selector="changeSection:" destination="A3h-kp-3KN" eventType="valueChanged" id="63e-7I-hqg"/>
                                                 </connections>
                                             </segmentedControl>
                                         </subviews>
@@ -462,6 +464,7 @@
                         <outlet property="provinceView" destination="zMk-sK-wKw" id="4Zc-gk-Rfu"/>
                         <outlet property="sectionSegment" destination="lyG-wa-bku" id="uba-kt-Lv4"/>
                         <outlet property="textSearchView" destination="xIp-UN-7LH" id="GQe-XC-oL5"/>
+                        <outlet property="textSearechTextField" destination="5QV-mW-bZG" id="eaW-x2-g6D"/>
                         <outlet property="toPriceTextField" destination="VT0-Cu-2yN" id="1Ad-Te-fp8"/>
                         <outlet property="toSizeTextField" destination="TTL-Re-aiZ" id="adC-5u-QRl"/>
                     </connections>
@@ -568,6 +571,19 @@
                                                     <constraint firstAttribute="bottom" secondItem="ZzS-cr-ObE" secondAttribute="bottom" constant="2" id="sSO-j9-4Do"/>
                                                 </constraints>
                                             </view>
+                                            <searchBar hidden="YES" contentMode="redraw" semanticContentAttribute="forceRightToLeft" searchBarStyle="minimal" placeholder="ابحث عن نص معين" showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogk-KS-2Ti">
+                                                <rect key="frame" x="10" y="43" width="355" height="56"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="mHr-yT-uXg"/>
+                                                </constraints>
+                                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                <scopeButtonTitles>
+                                                    <string>Title</string>
+                                                    <string>Title</string>
+                                                </scopeButtonTitles>
+                                            </searchBar>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -576,9 +592,12 @@
                                             <constraint firstItem="RIl-i2-wcG" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" id="7dv-Cj-rZB"/>
                                             <constraint firstItem="QUe-Ot-EMV" firstAttribute="top" secondItem="SmB-kK-26F" secondAttribute="top" constant="8" id="AqN-fl-8aJ"/>
                                             <constraint firstAttribute="bottom" secondItem="Hth-Ny-ANL" secondAttribute="bottom" constant="2" id="QgP-O4-8fL"/>
+                                            <constraint firstAttribute="trailing" secondItem="ogk-KS-2Ti" secondAttribute="trailing" constant="10" id="ROJ-TW-Y0b"/>
                                             <constraint firstItem="QUe-Ot-EMV" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="8" id="Y6o-fp-pDq"/>
+                                            <constraint firstItem="ogk-KS-2Ti" firstAttribute="top" secondItem="QUe-Ot-EMV" secondAttribute="bottom" id="bb1-3K-hg7"/>
                                             <constraint firstItem="Hth-Ny-ANL" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" id="ckF-X4-SPa"/>
                                             <constraint firstAttribute="trailing" secondItem="Hth-Ny-ANL" secondAttribute="trailing" id="j2M-31-gaX"/>
+                                            <constraint firstItem="ogk-KS-2Ti" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="10" id="p4K-6D-tVA"/>
                                             <constraint firstAttribute="height" constant="140" id="vSl-aY-k3C"/>
                                             <constraint firstAttribute="trailing" secondItem="QUe-Ot-EMV" secondAttribute="trailing" constant="8" id="zCc-q4-D0Q"/>
                                         </constraints>
@@ -667,6 +686,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aKV-e6-4mr"/>
                     <connections>
+                        <outlet property="AdvancedSearchButton" destination="a2i-C1-KJL" id="GSa-Dq-PAF"/>
                         <outlet property="addressLabel" destination="cYy-t6-7kf" id="IYc-fX-eXl"/>
                         <outlet property="addressView" destination="Hth-Ny-ANL" id="m3g-8K-DIC"/>
                         <outlet property="areaButton" destination="ZzS-cr-ObE" id="tDv-6x-2SB"/>
@@ -675,6 +695,7 @@
                         <outlet property="headerView" destination="SmB-kK-26F" id="X6E-o6-Ein"/>
                         <outlet property="mainHeaderView" destination="7wR-vC-n1P" id="dIy-TI-FJW"/>
                         <outlet property="provinceButton" destination="Prx-4i-enw" id="h2s-AQ-9ox"/>
+                        <outlet property="searchTextSearchBar" destination="ogk-KS-2Ti" id="o7f-R3-kz0"/>
                         <outlet property="sectionSegment" destination="QUe-Ot-EMV" id="oPV-Nt-QfM"/>
                         <outlet property="subHeaderHeightConstraint" destination="vSl-aY-k3C" id="TDu-jN-8yK"/>
                         <outlet property="tableView" destination="K0e-24-eNF" id="LXe-kB-fAJ"/>
