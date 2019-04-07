@@ -16,8 +16,22 @@ class MoreVC: ViewController {
         title = "المزيد"
         // Do any additional setup after loading the view.
     }
-    
 
+    @IBAction func goToAccount(_ sender: Any) {
+        let userInfo = DB_UserInfo.callRecords()
+        if let _userInfo = userInfo {
+            if _userInfo.isSkippedVerification == false && _userInfo.verificationStatus == false{
+                self.performSegue(withIdentifier: "fromMoreToReg", sender: self)
+            }else{
+                self.performSegue(withIdentifier: "fromMoreToMyAccount", sender: self)
+            }
+        }else{
+            self.performSegue(withIdentifier: "fromMoreToReg", sender: self)
+        }
+        
+    }
+    
+    
     /*
     // MARK: - Navigation
 

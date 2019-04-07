@@ -222,7 +222,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     func getRequiredAds() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        APIs.shared.getRequiredAds(_areaId: 0, _pageNumber: currentPage, _keyword: "") { (result, error) in
+        APIs.shared.getRequiredAds(_areaId: 0, _pageNumber: currentPage, _keyword: searchTextSearchBar.text ?? "") { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -321,7 +321,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         currentPage = 1
         nextpage = 0
         orderBy = 3
-        
+        searchTextSearchBar.resignFirstResponder()
         orderType = "DESC"
         self.arrAdve.removeAll()
         tableView.reloadData()
@@ -336,6 +336,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         {
         case 0:
             maxHeaderHeight = 160
+            searchTextSearchBar.text = ""
             segmentedControl.isHidden = true
             searchTextSearchBar.isHidden = false
             self.subHeaderHeightConstraint.constant = 100
@@ -347,6 +348,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             break
         case 1:
             maxHeaderHeight = 160
+            searchTextSearchBar.text = ""
             segmentedControl.isHidden = true
             searchTextSearchBar.isHidden = false
             self.subHeaderHeightConstraint.constant = 100
@@ -1022,9 +1024,18 @@ extension AdsListVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         clearTableView()
-        searchTextSearchBar.resignFirstResponder()
+        
         AppUtils.ShowLoading()
-        getExchangeAds()
-      //  self.configureView()
+        
+        switch sectionSegment.selectedSegmentIndex
+        {
+        case 0:
+            getExchangeAds()
+        case 1:
+            getRequiredAds()
+        default:
+            break
+        }
     }
+    
 }

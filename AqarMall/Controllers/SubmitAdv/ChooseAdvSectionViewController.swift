@@ -46,6 +46,7 @@ class ChooseAdvSectionViewController: ViewController {
         self.addChild(popOverVC)
         popOverVC.view.frame = self.view.frame
         self.view.addSubview(popOverVC.view)
+        popOverVC.isFromAddAdv = true
         popOverVC.didMove(toParent: self)
     }
     

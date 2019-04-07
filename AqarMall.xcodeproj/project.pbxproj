@@ -36,6 +36,8 @@
 		524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422B1224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift */; };
 		524422B4224D51E000B2DC7F /* PostExchangeRequiredAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422B3224D51E000B2DC7F /* PostExchangeRequiredAds.swift */; };
 		524422B7224D68FE00B2DC7F /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422B6224D68FE00B2DC7F /* SelectAddressViewController.swift */; };
+		524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */; };
+		524519E5225A8F0E0034CD69 /* ContactUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E4225A8F0E0034CD69 /* ContactUs.swift */; };
 		525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */; };
 		52603859224F6F4E001F3A1B /* AdvancedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
@@ -166,6 +168,8 @@
 		524422B1224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitExchangeRequiredAdv.swift; sourceTree = "<group>"; };
 		524422B3224D51E000B2DC7F /* PostExchangeRequiredAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostExchangeRequiredAds.swift; sourceTree = "<group>"; };
 		524422B6224D68FE00B2DC7F /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
+		524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		524519E4225A8F0E0034CD69 /* ContactUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUs.swift; sourceTree = "<group>"; };
 		525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchViewController.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -613,6 +617,7 @@
 				5261434C2236E7DB00339882 /* UserInformationViewController.swift */,
 				5261434E2236E87100339882 /* PhoneNumberVerificationViewController.swift */,
 				526143542237038C00339882 /* ChooseCountryViewController.swift */,
+				524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */,
 			);
 			path = UserAccount;
 			sourceTree = "<group>";
@@ -664,6 +669,7 @@
 				524422A72247FA2000B2DC7F /* userNotification.swift */,
 				524422B3224D51E000B2DC7F /* PostExchangeRequiredAds.swift */,
 				525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */,
+				524519E4225A8F0E0034CD69 /* ContactUs.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -967,6 +973,7 @@
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,
 				52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */,
+				524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
 				5204DD6922339DB600319A58 /* CropView.swift in Sources */,
 				527E0AA8222DBFF1005934DC /* SubmitAdvFormViewController.swift in Sources */,
@@ -998,6 +1005,7 @@
 				5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */,
 				5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */,
 				527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */,
+				524519E5225A8F0E0034CD69 /* ContactUs.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
 				526143512236F22D00339882 /* DB_Countries.swift in Sources */,

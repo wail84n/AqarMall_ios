@@ -23,6 +23,7 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     @IBOutlet weak var countryButton: UIButton!
     
     var selectedCountry : Countries? = nil
+    var isFromAddAdv = false
     
     var viewStatus: phoneNumberStatus = .enter_phone {
         didSet { updateView() }
@@ -43,15 +44,20 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     }
 
     func dismisView() {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            self.view.alpha = 0.0;
-        }, completion:{(finished : Bool)  in
-            if (finished)
-            {
-                self.view.removeFromSuperview()
-            }
-        });
+        if isFromAddAdv == true{
+            UIView.animate(withDuration: 0.25, animations: {
+                self.view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                self.view.alpha = 0.0;
+            }, completion:{(finished : Bool)  in
+                if (finished)
+                {
+                    self.view.removeFromSuperview()
+                }
+            });
+        }else{
+            self.backActionToRoot()
+        }
+
     }
     
     @IBAction func phoneNumberTextFieldDidChangeValue(_ sender: UITextField) {

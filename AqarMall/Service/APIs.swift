@@ -120,7 +120,7 @@ class APIs: NSObject {
         case postBuyerRequiredAdvt(parameters : [String:Any])
         case postExchangeProperty(parameters : [String:Any])
         case postSearch(parameters : [String:Any])
-        
+        case getContactDetails(countryId : Int16)
         var contentType:ContentType {
             switch self {
             case .uploadImage():
@@ -215,6 +215,8 @@ class APIs: NSObject {
                 return "/postExchangeProperty"
             case .postSearch(_):
                 return "/postSearch_iOS"
+            case .getContactDetails(_):
+                return "/getContactDetails"
             }
         }
         
@@ -305,6 +307,8 @@ class APIs: NSObject {
                 }
             case .getSponsors(let lastchange, let countryId):
                 dict["lastchange"] = lastchange
+                dict["countryId"] = countryId
+            case .getContactDetails(let countryId):
                 dict["countryId"] = countryId
             default:
                 return nil

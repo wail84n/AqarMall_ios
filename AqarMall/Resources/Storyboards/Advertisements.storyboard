@@ -572,7 +572,7 @@
                                                 </constraints>
                                             </view>
                                             <searchBar hidden="YES" contentMode="redraw" semanticContentAttribute="forceRightToLeft" searchBarStyle="minimal" placeholder="ابحث عن نص معين" showsSearchResultsButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogk-KS-2Ti">
-                                                <rect key="frame" x="10" y="43" width="355" height="56"/>
+                                                <rect key="frame" x="10" y="45" width="355" height="56"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="56" id="mHr-yT-uXg"/>
@@ -594,7 +594,7 @@
                                             <constraint firstAttribute="bottom" secondItem="Hth-Ny-ANL" secondAttribute="bottom" constant="2" id="QgP-O4-8fL"/>
                                             <constraint firstAttribute="trailing" secondItem="ogk-KS-2Ti" secondAttribute="trailing" constant="10" id="ROJ-TW-Y0b"/>
                                             <constraint firstItem="QUe-Ot-EMV" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="8" id="Y6o-fp-pDq"/>
-                                            <constraint firstItem="ogk-KS-2Ti" firstAttribute="top" secondItem="QUe-Ot-EMV" secondAttribute="bottom" id="bb1-3K-hg7"/>
+                                            <constraint firstItem="ogk-KS-2Ti" firstAttribute="top" secondItem="QUe-Ot-EMV" secondAttribute="bottom" constant="2" id="bb1-3K-hg7"/>
                                             <constraint firstItem="Hth-Ny-ANL" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" id="ckF-X4-SPa"/>
                                             <constraint firstAttribute="trailing" secondItem="Hth-Ny-ANL" secondAttribute="trailing" id="j2M-31-gaX"/>
                                             <constraint firstItem="ogk-KS-2Ti" firstAttribute="leading" secondItem="SmB-kK-26F" secondAttribute="leading" constant="10" id="p4K-6D-tVA"/>
