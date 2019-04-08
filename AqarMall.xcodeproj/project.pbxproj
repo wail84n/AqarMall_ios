@@ -38,6 +38,7 @@
 		524422B7224D68FE00B2DC7F /* SelectAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524422B6224D68FE00B2DC7F /* SelectAddressViewController.swift */; };
 		524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */; };
 		524519E5225A8F0E0034CD69 /* ContactUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E4225A8F0E0034CD69 /* ContactUs.swift */; };
+		524519E8225BD6AC0034CD69 /* UrlWebviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */; };
 		525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */; };
 		52603859224F6F4E001F3A1B /* AdvancedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
@@ -170,6 +171,7 @@
 		524422B6224D68FE00B2DC7F /* SelectAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectAddressViewController.swift; sourceTree = "<group>"; };
 		524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		524519E4225A8F0E0034CD69 /* ContactUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUs.swift; sourceTree = "<group>"; };
+		524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlWebviewVC.swift; sourceTree = "<group>"; };
 		525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchViewController.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -333,6 +335,14 @@
 				52EF62A12255310500463B60 /* AdvFilterViewController.swift */,
 			);
 			path = SearchAds;
+			sourceTree = "<group>";
+		};
+		524519E6225BD67E0034CD69 /* GeneralWebView */ = {
+			isa = PBXGroup;
+			children = (
+				524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */,
+			);
+			path = GeneralWebView;
 			sourceTree = "<group>";
 		};
 		5261435A22382F0E00339882 /* UserAccount */ = {
@@ -554,6 +564,7 @@
 		52E6526C21D9E41600E66AA2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				524519E6225BD67E0034CD69 /* GeneralWebView */,
 				5261435D223A00F600339882 /* Sponsor */,
 				527E0A99222B1FC4005934DC /* SubmitAdv */,
 				527E0A9222278DF5005934DC /* Banner */,
@@ -862,9 +873,14 @@
 				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/OpalImagePicker/OpalImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/RSLoadingView/RSLoadingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/ScrollableSegmentedControl/ScrollableSegmentedControl.framework",
@@ -875,9 +891,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpalImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSLoadingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableSegmentedControl.framework",
@@ -981,6 +1002,7 @@
 				5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */,
 				527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */,
 				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
+				524519E8225BD6AC0034CD69 /* UrlWebviewVC.swift in Sources */,
 				5204DD6A22339DB600319A58 /* ResizeControl.swift in Sources */,
 				524422A82247FA2000B2DC7F /* userNotification.swift in Sources */,
 				5204DD6822339DB600319A58 /* CropRectView.swift in Sources */,
@@ -1197,10 +1219,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1217,10 +1236,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMall/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1237,11 +1253,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1259,11 +1271,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1280,11 +1288,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1301,11 +1305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B55QK7P86R;
 				INFOPLIST_FILE = AqarMallUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMallUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

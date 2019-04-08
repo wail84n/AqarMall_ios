@@ -46,6 +46,7 @@ class AppUtils: NSObject {
         case sponsor = "sponsorData"
         case sponsorLastChange = "sponsorLastChange"
         case sms_attempts = "smsAttempts"
+        case contact_us = "ContactUs"
     }
     
     class func LoadData(key: AppVariables)  -> String

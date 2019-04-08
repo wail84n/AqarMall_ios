@@ -38,7 +38,7 @@ struct ContactUs {
             let _snapchat = _object["Snapchat"] as? String,
             let _twitter = _object["Twitter"] as? String,
             let _website = _object["Website"] as? String,
-            let _whatsApp = _object["whatsApp"] as? String,
+            let _whatsApp = _object["WhatsApp"] as? String,
             let _youtube = _object["Youtube"] as? String
             
             else{

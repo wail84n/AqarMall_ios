@@ -7,16 +7,35 @@
 //
 
 import UIKit
+import Social
+import MessageUI
 
-class MoreVC: ViewController {
-
+class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate  {
+    @IBOutlet weak var instagramButton: UIButton!
+    
+    @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var snapChatButton: UIButton!
+    @IBOutlet weak var twitterButton: UIButton!
+    @IBOutlet weak var websiteButton: UIButton!
+    @IBOutlet weak var youtubeButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "المزيد"
-        // Do any additional setup after loading the view.
+        configureView()
     }
 
+    func configureView(){
+        title = "المزيد"
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            facebookButton.isEnabled = !_contact_us.facebook.isEmpty
+            snapChatButton.isEnabled = !_contact_us.snapchat.isEmpty
+            twitterButton.isEnabled = !_contact_us.twitter.isEmpty
+            websiteButton.isEnabled = !_contact_us.website.isEmpty
+            youtubeButton.isEnabled = !_contact_us.youtube.isEmpty
+            instagramButton.isEnabled = !_contact_us.instagram.isEmpty
+        }
+    }
+    
     @IBAction func goToAccount(_ sender: Any) {
         let userInfo = DB_UserInfo.callRecords()
         if let _userInfo = userInfo {
@@ -28,9 +47,153 @@ class MoreVC: ViewController {
         }else{
             self.performSegue(withIdentifier: "fromMoreToReg", sender: self)
         }
-        
     }
     
+    @IBAction func CallPhone(_ sender: Any) {
+        
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            print(_contact_us.email)
+            let phoneNumber = _contact_us.phone1
+            if #available(iOS 10.0, *) {
+                guard let number = URL(string: "telprompt://" + phoneNumber) else { return }
+                UIApplication.shared.open(number, options: [:], completionHandler: nil)
+            } else {
+                // Fallback on earlier versions
+                guard let number = URL(string: "tel://" + phoneNumber) else { return }
+                UIApplication.shared.openURL(number)
+            }
+        }
+        
+//        let alertController = UIAlertController(title: "اتصل بنا", message: "هل انت متأكد من عملية الإتصال؟", preferredStyle: .alert)
+//
+//        let logoutAction = UIAlertAction(title: "اتصل الآن", style: .destructive) { action in
+//            self.doCallPhone()
+//        }
+//        alertController.addAction(logoutAction)
+//
+//        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+//        }
+//        alertController.addAction(cancelAction)
+//
+//        self.present(alertController, animated: true) {
+//            // ...
+//        }
+    }
+    @IBAction func Send_SMS(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            let messageVC = MFMessageComposeViewController()
+            messageVC.recipients = [_contact_us.SMS]
+            messageVC.messageComposeDelegate = self;
+            self.present(messageVC, animated: true, completion: nil)
+        }
+       
+        
+        //self.googleAnalyticsEventTrack(category: "\(self.selectedPlace.Name) \(AdDetails.title!) ID: \(AdDetails.id!)", actionName: "SMS ارسال")
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func sendEmail(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            if MFMailComposeViewController.canSendMail() {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setToRecipients([_contact_us.email])
+                mail.setMessageBody("<p></p>", isHTML: true)
+                
+                present(mail, animated: true)
+            } else {
+                // show failure alert
+            }
+        }
+
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+    
+    
+    @IBAction func contactByWhatsApp(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            if #available(iOS 10.0, *) {
+                guard let number = URL(string: _contact_us.whatsApp) else { return }
+                UIApplication.shared.open(number, options: [:], completionHandler: nil)
+            } else {
+                // Fallback on earlier versions
+                guard let number = URL(string: _contact_us.whatsApp) else { return }
+                UIApplication.shared.openURL(number)
+            }
+        }
+    }
+    
+    
+    @IBAction func followUs_facebook(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.facebook
+            vc.title = "فيسبوك"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    @IBAction func followUs_instagram(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.instagram
+            vc.title = "انستغرام"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func followUs_snapchat(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.snapchat
+            vc.title = "سناب شات"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+
+    @IBAction func followUs_twitter(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.twitter
+            vc.title = "تويتر"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    @IBAction func followUs_website(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.website
+            vc.title = "الموقع"
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func followUs_youtube(_ sender: Any) {
+        if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
+            vc.strURL = _contact_us.youtube
+            vc.title = "يوتيوب"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     /*
     // MARK: - Navigation

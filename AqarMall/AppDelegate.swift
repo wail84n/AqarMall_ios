@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
       //  callSponsoreAPI()
+        callContactUs_API()
         SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
             print("Categories No : \(recordNo ?? 0)")
             
@@ -75,6 +76,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         self.goToSponsorPage()
                     })
                 }
+            }
+        }
+    }
+    
+    func callContactUs_API(){
+        APIs.shared.getContactUs() { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
             }
         }
     }

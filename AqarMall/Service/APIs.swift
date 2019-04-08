@@ -579,6 +579,27 @@ class APIs: NSObject {
         }
     }
     
+    
+    func getContactUs(callback: @escaping isSuccessCallback) {
+        let route = Router.getContactDetails(countryId: 1)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let contactUs = ContactUs(object: result)
+                else {
+                    callback(false, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            var body:NSDictionary
+            body = ["Email": contactUs.email ,"Facebook": contactUs.facebook,"Instagram": contactUs.instagram,"Phone1": contactUs.phone1,"Phone2": contactUs.phone2,"Phone3": contactUs.phone3,"Phone4": contactUs.phone4,"SMS": contactUs.SMS,"Snapchat": contactUs.snapchat,"Twitter": contactUs.twitter,"Website": contactUs.website,"WhatsApp": contactUs.whatsApp,"Youtube": contactUs.youtube]
+
+            AppUtils.SaveDictionary(key: .contact_us, value: body)
+            callback(true, nil)
+        }
+    }
+    
     func getCategories(callback: @escaping categoriesCallback) {
         let route = Router.getCategories(lastchange: Int(AppUtils.LoadData(key: .categories_last_change)) ?? 0)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
