@@ -356,8 +356,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-qQ-Faw">
                                                         <rect key="frame" x="0.0" y="460" width="375" height="370"/>
                                                         <subviews>
-                                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqj-zF-YLN">
-                                                                <rect key="frame" x="-1" y="0.0" width="377" height="50"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iqj-zF-YLN">
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="iGf-lL-AZP"/>
@@ -378,6 +378,9 @@
                                                                         <real key="value" value="1"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="ShareApp" destination="fyF-bV-CnQ" eventType="touchUpInside" id="aCH-Mx-HgJ"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBF-rB-Cl8">
                                                                 <rect key="frame" x="-1" y="65" width="377" height="50"/>
@@ -532,7 +535,7 @@
                                                             <constraint firstAttribute="height" constant="370" id="GlY-Tw-3l9"/>
                                                             <constraint firstItem="scp-pL-24Q" firstAttribute="top" secondItem="dBF-rB-Cl8" secondAttribute="bottom" constant="-1" id="IBI-b6-LCB"/>
                                                             <constraint firstItem="0pE-GM-IW1" firstAttribute="leading" secondItem="zBP-qQ-Faw" secondAttribute="leading" constant="-1" id="KZ1-UP-ayH"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Iqj-zF-YLN" secondAttribute="trailing" constant="-1" id="Ms2-sn-rle"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Iqj-zF-YLN" secondAttribute="trailing" id="Ms2-sn-rle"/>
                                                             <constraint firstItem="scp-pL-24Q" firstAttribute="leading" secondItem="zBP-qQ-Faw" secondAttribute="leading" constant="-1" id="OCW-Ft-cOj"/>
                                                             <constraint firstItem="0pE-GM-IW1" firstAttribute="top" secondItem="jVI-Sg-LDk" secondAttribute="bottom" constant="-1" id="R1b-Vu-zpL"/>
                                                             <constraint firstItem="yZf-BM-Mq6" firstAttribute="top" secondItem="scp-pL-24Q" secondAttribute="bottom" constant="-1" id="YWD-pP-g99"/>
@@ -549,7 +552,7 @@
                                                             <constraint firstAttribute="trailing" secondItem="30a-Zk-zv3" secondAttribute="trailing" constant="10" id="sXt-CJ-ovy"/>
                                                             <constraint firstItem="Iqj-zF-YLN" firstAttribute="top" secondItem="zBP-qQ-Faw" secondAttribute="top" id="t8q-W4-eaT"/>
                                                             <constraint firstItem="yZf-BM-Mq6" firstAttribute="leading" secondItem="zBP-qQ-Faw" secondAttribute="leading" constant="-1" id="y6q-wr-SwT"/>
-                                                            <constraint firstItem="Iqj-zF-YLN" firstAttribute="leading" secondItem="zBP-qQ-Faw" secondAttribute="leading" constant="-1" id="yiH-ng-sPd"/>
+                                                            <constraint firstItem="Iqj-zF-YLN" firstAttribute="leading" secondItem="zBP-qQ-Faw" secondAttribute="leading" id="yiH-ng-sPd"/>
                                                             <constraint firstItem="5h7-fW-BXW" firstAttribute="top" secondItem="0pE-GM-IW1" secondAttribute="bottom" constant="-1" id="zn5-rs-Csw"/>
                                                         </constraints>
                                                     </view>
@@ -612,8 +615,8 @@
         <!--UserInformationViewController-->
         <scene sceneID="EYS-F7-V1S">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mjz-3u-AHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="UserAccount" referencedIdentifier="UserInformationViewController" id="6mc-jZ-yDE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mjz-3u-AHB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="880" y="-147"/>
         </scene>
@@ -628,7 +631,7 @@
         <!--Url WebviewVC-->
         <scene sceneID="Fti-H9-acZ">
             <objects>
-                <viewController storyboardIdentifier="UrlWebviewVC" hidesBottomBarWhenPushed="YES" id="140-Ty-7ma" customClass="UrlWebviewVC" customModule="ShamelApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UrlWebviewVC" hidesBottomBarWhenPushed="YES" id="140-Ty-7ma" customClass="UrlWebviewVC" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D42-2n-4g0"/>
                         <viewControllerLayoutGuide type="bottom" id="Flr-zD-XKV"/>

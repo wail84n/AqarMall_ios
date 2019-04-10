@@ -19,6 +19,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var youtubeButton: UIButton!
     
+    var generalPages = [GeneralPagesData]()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -33,6 +34,10 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             websiteButton.isEnabled = !_contact_us.website.isEmpty
             youtubeButton.isEnabled = !_contact_us.youtube.isEmpty
             instagramButton.isEnabled = !_contact_us.instagram.isEmpty
+        }
+        
+        if let _generalPages = DB_GeneralPages.callGeneralPages() {
+            generalPages = _generalPages
         }
     }
     
@@ -192,6 +197,15 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             vc.strURL = _contact_us.youtube
             vc.title = "يوتيوب"
             self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func ShareApp() {
+        let shareText = "حمل تطبيق عقار مول وشاهد افضل العروض العقارية  \n\n https://imallrs.page.link/share"
+        
+        if let image = UIImage(named: "PlaceHolder") {
+            let vc = UIActivityViewController(activityItems: [shareText, image], applicationActivities: [])
+            present(vc, animated: true)
         }
     }
     

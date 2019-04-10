@@ -28,6 +28,23 @@ struct DB_GeneralPages {
         }
     }
     
+    static func callGeneralPages()-> [GeneralPagesData]?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "GeneralPagesData")
+
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [GeneralPagesData]
+            
+            if  result?.count ?? 0 > 0 {
+                return result
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
     static func validateRecord(Id : Int32)-> Bool{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
