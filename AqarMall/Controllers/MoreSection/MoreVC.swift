@@ -19,6 +19,11 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var youtubeButton: UIButton!
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var generalPagesView: UIView!
+    
+    @IBOutlet weak var generalPagesViewConstraint_Height: NSLayoutConstraint!
+    @IBOutlet weak var mainViewConstraint_Height: NSLayoutConstraint!
     var generalPages = [GeneralPagesData]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +41,13 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             instagramButton.isEnabled = !_contact_us.instagram.isEmpty
         }
         
+        tableView.register(UINib(nibName: "generalPagesCell", bundle: nil), forCellReuseIdentifier: "generalPagesCell")
         if let _generalPages = DB_GeneralPages.callGeneralPages() {
             generalPages = _generalPages
+            tableView.reloadData()
+            
+            mainViewConstraint_Height.constant = generalPagesView.frame.origin.y + CGFloat((100 + (generalPages.count * 50)))
+            generalPagesViewConstraint_Height.constant = CGFloat(100 + (generalPages.count * 50))
         }
     }
     
@@ -220,3 +230,35 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     */
 
 }
+
+
+extension MoreVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70.0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return generalPages.count
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? generalPagesCell {
+            cell.update(with: generalPages[indexPath.row].title ?? "")
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "generalPagesCell")!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = UIStoryboard(name: "MoreSection", bundle: nil).instantiateViewController(withIdentifier: "GeneralPagesDetailsVC") as! GeneralPagesDetailsVC
+        
+        vc.record = generalPages[indexPath.row]
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+

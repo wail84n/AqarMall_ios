@@ -39,6 +39,9 @@
 		524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */; };
 		524519E5225A8F0E0034CD69 /* ContactUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E4225A8F0E0034CD69 /* ContactUs.swift */; };
 		524519E8225BD6AC0034CD69 /* UrlWebviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */; };
+		5247F661225EE7AA002ECD33 /* generalPagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247F65F225EE7AA002ECD33 /* generalPagesCell.swift */; };
+		5247F662225EE7AA002ECD33 /* generalPagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5247F660225EE7AA002ECD33 /* generalPagesCell.xib */; };
+		5247F664225EE97A002ECD33 /* GeneralPagesDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */; };
 		525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */; };
 		52603859224F6F4E001F3A1B /* AdvancedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
@@ -172,6 +175,9 @@
 		524519E2225A7BEE0034CD69 /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		524519E4225A8F0E0034CD69 /* ContactUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUs.swift; sourceTree = "<group>"; };
 		524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlWebviewVC.swift; sourceTree = "<group>"; };
+		5247F65F225EE7AA002ECD33 /* generalPagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generalPagesCell.swift; sourceTree = "<group>"; };
+		5247F660225EE7AA002ECD33 /* generalPagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = generalPagesCell.xib; sourceTree = "<group>"; };
+		5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPagesDetailsVC.swift; sourceTree = "<group>"; };
 		525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchViewController.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +349,15 @@
 				524519E7225BD6AB0034CD69 /* UrlWebviewVC.swift */,
 			);
 			path = GeneralWebView;
+			sourceTree = "<group>";
+		};
+		5247F65E225EE6BB002ECD33 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				5247F65F225EE7AA002ECD33 /* generalPagesCell.swift */,
+				5247F660225EE7AA002ECD33 /* generalPagesCell.xib */,
+			);
+			path = More;
 			sourceTree = "<group>";
 		};
 		5261435A22382F0E00339882 /* UserAccount */ = {
@@ -579,6 +594,7 @@
 		52E6526D21D9E41F00E66AA2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5247F65E225EE6BB002ECD33 /* More */,
 				5261435A22382F0E00339882 /* UserAccount */,
 				527E0AA0222C56CC005934DC /* SubmitAdv */,
 				52AFE77321DD5E1B00FE1D70 /* Notifications */,
@@ -651,6 +667,7 @@
 		52E6528921D9ECC400E66AA2 /* MoreSection */ = {
 			isa = PBXGroup;
 			children = (
+				5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */,
 				52AFE77921DD5F4400FE1D70 /* MoreVC.swift */,
 			);
 			path = MoreSection;
@@ -820,6 +837,7 @@
 				527E0AAE223041D1005934DC /* ChooseAddressCell.xib in Resources */,
 				52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */,
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
+				5247F662225EE7AA002ECD33 /* generalPagesCell.xib in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
@@ -962,6 +980,7 @@
 				524422AB2247FFD600B2DC7F /* NotificationCell.swift in Sources */,
 				526143552237038C00339882 /* ChooseCountryViewController.swift in Sources */,
 				52641B5521F27710005480C2 /* DB_Categories.swift in Sources */,
+				5247F664225EE97A002ECD33 /* GeneralPagesDetailsVC.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
 				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
@@ -1042,6 +1061,7 @@
 				524422B4224D51E000B2DC7F /* PostExchangeRequiredAds.swift in Sources */,
 				5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */,
 				52E6527A21D9E8F000E66AA2 /* UIColor.swift in Sources */,
+				5247F661225EE7AA002ECD33 /* generalPagesCell.swift in Sources */,
 				52EC44E121E139DF00A3E8C0 /* aqarMallErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
