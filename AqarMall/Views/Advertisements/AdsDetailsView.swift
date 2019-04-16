@@ -327,6 +327,20 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 //            (views) in
 //        })
         
+        
+        APIs.shared.updateAdvtViewCount(id: AdDetails.entryID ?? 0, type: "1" ){ (advViews, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            self.viewsLabel.text = "\(advViews ?? 0)"
+//            if let _advId = advId{
+//                completion(true, _advId, nil)
+//
+//            }
+        }
+        
         self.loadImages()
     }
     

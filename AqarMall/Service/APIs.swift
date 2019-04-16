@@ -121,6 +121,8 @@ class APIs: NSObject {
         case postExchangeProperty(parameters : [String:Any])
         case postSearch(parameters : [String:Any])
         case getContactDetails(countryId : Int16)
+        case updateAdvtViewCount(id: Int32, type: String)
+        
         var contentType:ContentType {
             switch self {
             case .uploadImage():
@@ -168,6 +170,7 @@ class APIs: NSObject {
                  .postBuyerRequiredAdvt(_),
                  .postExchangeProperty(_),
                  .postAdvt(_),
+                 .updateAdvtViewCount(_, _),
                  .postSearch(_):
                 return .post
             default:
@@ -217,6 +220,8 @@ class APIs: NSObject {
                 return "/postSearch_iOS"
             case .getContactDetails(_):
                 return "/getContactDetails"
+            case .updateAdvtViewCount(_, _):
+                return "/updateAdvtViewCount"
             }
         }
         
@@ -331,6 +336,8 @@ class APIs: NSObject {
                 return parameters
             case .postSearch(let parameters):
                 return parameters
+            case .updateAdvtViewCount(let id, let type):
+                return ["id":id, "type":type, "addOne":1]
             default:
                 return nil
             }
@@ -442,6 +449,25 @@ class APIs: NSObject {
         }
     }
     
+    func updateAdvtViewCount(id: Int32, type : String, callback: @escaping IntegerCallback) {
+        let route = Router.updateAdvtViewCount(id: id, type: type)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            print(result)
+            if let advViews = result as? Int {
+                callback(advViews, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
     
     func postImagesAdRequest(params:[String: Any], completion:@escaping isSuccessCallback) {
         let route = Router.uploadImage()

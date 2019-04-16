@@ -46,8 +46,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             generalPages = _generalPages
             tableView.reloadData()
             
-            mainViewConstraint_Height.constant = generalPagesView.frame.origin.y + CGFloat((100 + (generalPages.count * 50)))
-            generalPagesViewConstraint_Height.constant = CGFloat(100 + (generalPages.count * 50))
+            mainViewConstraint_Height.constant = generalPagesView.frame.origin.y + CGFloat((80 + (generalPages.count * 50)))
+            generalPagesViewConstraint_Height.constant = CGFloat(80 + (generalPages.count * 50))
         }
     }
     
@@ -195,7 +195,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.website
             vc.title = "الموقع"
-            vc.hidesBottomBarWhenPushed = true
+         //   vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -235,7 +235,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
 extension MoreVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70.0
+        return 55.0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -256,8 +256,8 @@ extension MoreVC: UITableViewDelegate, UITableViewDataSource {
         let vc = UIStoryboard(name: "MoreSection", bundle: nil).instantiateViewController(withIdentifier: "GeneralPagesDetailsVC") as! GeneralPagesDetailsVC
         
         vc.record = generalPages[indexPath.row]
-        self.tabBarController?.tabBar.isHidden = true
-        self.tabBarController?.tabBar.isTranslucent = true
+//        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isTranslucent = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
