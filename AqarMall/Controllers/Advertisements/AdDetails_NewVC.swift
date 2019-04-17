@@ -15,6 +15,10 @@ protocol AdDetailsDelegate {
 }
 
 class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
+    func showRelatedAdv(adDetails: AdvertisementInfo) {
+        
+    }
+    
 
     func share_Ad(AdDetails: AdvertisementInfo) {
         

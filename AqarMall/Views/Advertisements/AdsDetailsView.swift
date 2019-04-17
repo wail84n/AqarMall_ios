@@ -25,6 +25,7 @@ protocol AdDetailsViewDelegate {
     func goToBidViewController()
     func showHideHeaderView(isHide :Bool)
     func contactByWhatsApp(AdDetails: AdvertisementInfo)
+    func showRelatedAdv(adDetails: AdvertisementInfo)
 }
 
 
@@ -90,14 +91,17 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var advDateLabel: UILabel!
     @IBOutlet weak var advIdLabel: UILabel!
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let placeholderImage = UIImage(named: "PlaceHolder")!
     var sourceSegueId = String()
     var intImagesCount = 0
     var delegate : AdDetailsViewDelegate? = nil
     
     var AdDetails = AdvertisementInfo()
-    var viewHeight : CGFloat = 1160
-    
+    var viewHeight : CGFloat = 1835
+    var arrAdve = [AdvertisementInfo]()
+    var isRent = false
   //  let user = UserVM.checkUserLogin()
     
     func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType)  {
@@ -110,8 +114,10 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         switch advType{
         case .rent:
             bidsButton.isHidden = true
+            isRent = true
         case .sale:
             bidsButton.isHidden = false
+            isRent = false
         default:
             break
         }
@@ -546,5 +552,86 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 //            }
 //        })
 //    }
+    
+}
+
+
+extension AdsDetailsView: UITableViewDataSource {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrAdve.count
+    }
+    
+    @objc func removeAdvFavorate(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        let record = arrAdve[btnsendtag.tag]
+        
+        let indexPath = IndexPath(item: btnsendtag.tag, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as? AdsCell
+        
+        if let btnfavorte = btnsendtag.currentImage {
+            if btnfavorte.isEqual(UIImage(named: "favorateList_on")) {
+                if  DB_FavorateAdv.deleteRecord(Id: record.entryID ?? 0) == true {
+                    print("the favorate record has been deleted.")
+                    cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+                }
+            }else{
+                if isRent == true {
+                    if DB_FavorateAdv.saveRecord(adv: record, advType: .rent){
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                }else{
+                    if DB_FavorateAdv.saveRecord(adv: record, advType: .sale) {
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let cell = cell as? AdsCell {
+            let record = arrAdve[indexPath.row]
+            
+            print(record.isBanner)
+            cell.adsTitleLabel.text = record.title
+            cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
+            cell.detailsLable.text = record.details
+            cell.priceLabel.text = "\(record.price ?? 0)"
+            cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
+            cell.sizeLabel.text = "\(record.size ?? "")"
+            cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
+            // cell.cellView.dropShadow(scale: true)
+            
+            if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+            }else{
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+            }
+            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+            cell.favorateButton.tag = indexPath.row
+            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 135
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableView.dequeueReusableCell(withIdentifier: "AdsCell")!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        if let _delegate = delegate {
+            _delegate.showRelatedAdv(adDetails: self.arrAdve[indexPath.item])
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }
