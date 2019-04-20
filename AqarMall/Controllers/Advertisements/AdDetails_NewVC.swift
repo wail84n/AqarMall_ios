@@ -16,9 +16,8 @@ protocol AdDetailsDelegate {
 
 class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
     func showRelatedAdv(adDetails: AdvertisementInfo) {
-        
+        self.performSegue(withIdentifier: "ShowRelatedAdvSB", sender: adDetails)
     }
-    
 
     func share_Ad(AdDetails: AdvertisementInfo) {
         
@@ -110,6 +109,10 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                 print(result?.properties?.availableNo)
                 if let _delegate = self.delegate, let _result = result  {
                     _delegate.updateAdvInAdsList(myAd: _result, index: self.intAdIndex)
+
+                }
+                
+                if  let _result = result  {
                     if (self.ads.count - 1) >= self.intAdIndex {
                         self.ads[self.intAdIndex] = _result
                     }
@@ -151,14 +154,16 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         adView.tag = Int(intAdIndex)
         adView.delegate = self
         let adsRecord = self.ads[intAdIndex]
-        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: advType!)
+        
+        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: advType!, catId: catId)
         
         let viewHight = adView.getViewHight()
-                
+        adView.frame.size.height = viewHight
       //  self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
         self.setFavoriteImageBy(flag: DB_FavorateAdv.validateRecord(Id: adsRecord.entryID ?? 0))
         scrollView2.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight + 30)
         
+       // scrollView2.backgroundColor = UIColor.red
 //        if intAdIndex == index {
 //            adView.UpdateViews()
 //        }
@@ -204,12 +209,12 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         frame.size = self.scrollView.frame.size
         let scrollView = UIScrollView(frame: frame)
         adView.frame.size = frame.size
-        //    scrollView.backgroundColor = colors[index]
 
         scrollView.addSubview(view!)
         
-        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds, advType: advType!)
+        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds, advType: advType!, catId: catId)
         adView.delegate = self
+        
         let viewHight = adView.getViewHight()
         scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: viewHight)
         
@@ -465,7 +470,13 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     }
     
     @IBAction func back(){
-        self.navigationController!.popViewController(animated: true)
+        if self.navigationController!.viewControllers.count == 2 {
+            // +++ if the user backed from main Adv Details
+            self.navigationController!.popViewController(animated: true)
+        }else{
+            // +++ if the user backed from related Adv Details
+            self.navigationController!.popToViewController(self.navigationController!.viewControllers[1] as! AdDetails_NewVC, animated: true)
+        }
     }
     
     func reNewAd(AdDetails: AdvertisementInfo, result: Bool) {
@@ -536,6 +547,25 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         
         if let navPlace = segue.destination as? BidsViewController{
             navPlace.adDetails = self.ads[intAdIndex]
+        }else if let navPlace = segue.destination as? AdDetails_NewVC {
+            let adDetails = sender as? AdvertisementInfo
+            
+            var adv : [AdvertisementInfo] = []
+            adv.append(adDetails!)
+            navPlace.ads = adv
+            navPlace.currentPage = currentPage
+            print(isLastCall)
+            navPlace.isLastCall = isLastCall
+            
+            navPlace.catId = catId
+            
+            navPlace.proccessType = 2
+            
+            navPlace.advType = advType
+            navPlace.intAdIndex = 0
+            if let _adDetails = adDetails {
+                navPlace.adDetails = _adDetails
+            }
         }
     }
     

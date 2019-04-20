@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 
+import FirebaseAnalytics
+import FacebookCore
+
+//import Crashlytics
+
 let ReceivedPushNotification = "General_Notification"
 
 @UIApplicationMain
@@ -19,6 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         AppUtils.SaveData(key: .sms_attempts, value: "0")
         IQKeyboardManager.shared.enable = true
+        
+        FIRApp.configure()
+                
         return true
     }
     

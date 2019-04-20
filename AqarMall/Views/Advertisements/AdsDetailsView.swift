@@ -28,7 +28,6 @@ protocol AdDetailsViewDelegate {
     func showRelatedAdv(adDetails: AdvertisementInfo)
 }
 
-
 extension UIView {
     /** Loads instance from nib with the same name. */
     func loadNib() -> UIView {
@@ -38,7 +37,6 @@ extension UIView {
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
 }
-
 
 class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var titleLabel: UILabel!
@@ -78,6 +76,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var bidsButton: UIButton!
     
+    @IBOutlet weak var bidsView: UIView!
     @IBOutlet weak var moreDetailsButton: UIButton!
     
     @IBOutlet weak var descriptionConstraint_Height: NSLayoutConstraint!
@@ -90,7 +89,6 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     
     @IBOutlet weak var advDateLabel: UILabel!
     @IBOutlet weak var advIdLabel: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
     
     let placeholderImage = UIImage(named: "PlaceHolder")!
@@ -99,24 +97,32 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var delegate : AdDetailsViewDelegate? = nil
     
     var AdDetails = AdvertisementInfo()
-    var viewHeight : CGFloat = 1835
+    var viewHeight : CGFloat = 1950
     var arrAdve = [AdvertisementInfo]()
     var isRent = false
+    var catId  = 0
   //  let user = UserVM.checkUserLogin()
     
-    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType)  {
+    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType, catId : Int){
+        
+        self.catId = catId
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
     
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+
+        
+        tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         self.changeAdStatusStackView.isHidden = !isFromMyAds
         self.loadImages()
         
         switch advType{
         case .rent:
-            bidsButton.isHidden = true
+            bidsView.isHidden = true
             isRent = true
         case .sale:
-            bidsButton.isHidden = false
+            bidsView.isHidden = false
             isRent = false
         default:
             break
@@ -124,19 +130,10 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 
         adImagesSV.delegate = self
         
-//        self.dateLabel.text = myAd2.regDate!
-//        self.areaNameLabel.text = myAd2.area
-//
-//        self.priceView = CSSclass.setViewFrame(view: priceView, backGroundColor: priceView.backgroundColor!, borderColor: UIColor.gray, devid: 20, borderWidth: 1)
-//
-//        self.priceLabel.text = "\(myAd2.price!) \(Utility.GetCurrency())"
-        
         self.descriptionTxtView.text = myAd2.details
         descriptionTxtView.isScrollEnabled = false
-        
-        
-//        self.setFavoriteImageBy(flag: MyAdsVM.checkIsFavorite(ad: myAd2))
-//        self.catName.text = myAd2.CatName
+
+        callAdvAPI()
         advDateLabel.text = myAd2.date
         advIdLabel.text = "\(myAd2.entryID ?? 0)"
 
@@ -231,8 +228,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             landSizeView.isHidden = false
             landSizeLabel.text = AdDetails.properties?.landSize
         }
-        
-        
+
         if AdDetails.properties?.licenseType == "-1" {
             licenseView.isHidden = true
         }else{
@@ -306,7 +302,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     
     func getTextViewHight() -> CGRect{
         var frame = self.descriptionTxtView.frame;
-        frame.size.height = self.descriptionTxtView.contentSize.height
+        frame.size.height = self.descriptionTxtView.contentSize.height + 25
         return frame
     }
     
@@ -367,6 +363,11 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         if availableNo > 0 {
             _viewHeight -= CGFloat((availableNo * 40))
         }
+        
+        if isRent == true{
+            _viewHeight -= 100
+        }
+
         return _viewHeight
     }
     
@@ -556,8 +557,26 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 }
 
 
-extension AdsDetailsView: UITableViewDataSource {
+extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
 
+    func callAdvAPI() {
+        APIs.shared.getRelatedAdvts(advtId: AdDetails.entryID, catId: self.catId) { (result, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            if let _result = result{
+                for i in 0 ..< 5{
+                    self.arrAdve.append(_result[i])
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -614,6 +633,7 @@ extension AdsDetailsView: UITableViewDataSource {
             }
             //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
             cell.favorateButton.tag = indexPath.row
+            
             cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
         }
     }

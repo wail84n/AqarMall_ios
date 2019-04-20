@@ -110,6 +110,9 @@ class APIs: NSObject {
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
+        
+        case getRelatedAdvts(advtId : Int32?, catId: Int?)
+        
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
@@ -122,6 +125,7 @@ class APIs: NSObject {
         case postSearch(parameters : [String:Any])
         case getContactDetails(countryId : Int16)
         case updateAdvtViewCount(id: Int32, type: String)
+        case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int16)
         
         var contentType:ContentType {
             switch self {
@@ -222,6 +226,10 @@ class APIs: NSObject {
                 return "/getContactDetails"
             case .updateAdvtViewCount(_, _):
                 return "/updateAdvtViewCount"
+            case .getRelatedAdvts(_, _):
+                return "/getRelatedAdvts"
+            case .getMySellerAds(_, _, _):
+                return "/getSellerAds"
             }
         }
         
@@ -313,8 +321,16 @@ class APIs: NSObject {
             case .getSponsors(let lastchange, let countryId):
                 dict["lastchange"] = lastchange
                 dict["countryId"] = countryId
+            case .getRelatedAdvts(let advtId, let catId):
+                dict["advtId"] = advtId
+                dict["catId"] = catId
+                dict["pageNumber"] = 1
             case .getContactDetails(let countryId):
                 dict["countryId"] = countryId
+            case .getMySellerAds(let userId, let pageNumber, let sectionId):
+                dict["userId"] = userId
+                dict["pageNumber"] = pageNumber
+                dict["sectionId"] = sectionId
             default:
                 return nil
             }
@@ -715,6 +731,38 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+    
+    
+    func getRelatedAdvts(advtId : Int32?, catId: Int?, callback: @escaping AdvtsCallback) {
+        let route = Router.getRelatedAdvts(advtId: advtId, catId: catId)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ AdvertisementInfo(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    func getMySellerAds(userId : Int32, pageNumber: Int16, sectionId: Int16, callback: @escaping AdvtsCallback) {
+        let route = Router.getMySellerAds(userId: userId, pageNumber: pageNumber, sectionId: sectionId)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ AdvertisementInfo(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
     
     func getAdvts_AdvancedSearch(parameters : [String:Any], pageNumber: Int16?, callback: @escaping AdvtsCallback) {
         let route = Router.postSearch(parameters: parameters)

@@ -33,6 +33,7 @@ class AdvertisementInfo : NSObject {
     var bids : String?
     var date : String?
     var phone : String?
+    var catId : Int16 = 0
     var isCalledDetails : Bool = false
     var isBanner : Bool = false
     var banner : BannersData? = nil

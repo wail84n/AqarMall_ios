@@ -21,6 +21,8 @@
 		521CCAAC2245649900841505 /* DB_UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAB2245649900841505 /* DB_UserInfo.swift */; };
 		521CCAAE22456D4700841505 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAAD22456D4700841505 /* UIViewController.swift */; };
 		521CCAB1224622F200841505 /* BidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CCAB0224622F200841505 /* BidsViewController.swift */; };
+		521DAA7C226A67D00082305C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521DAA7B226A67D00082305C /* GoogleService-Info.plist */; };
+		521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA7E226AF5850082305C /* MyAdvViewController.swift */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -157,6 +159,8 @@
 		521CCAAB2245649900841505 /* DB_UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_UserInfo.swift; sourceTree = "<group>"; };
 		521CCAAD22456D4700841505 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		521CCAB0224622F200841505 /* BidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidsViewController.swift; sourceTree = "<group>"; };
+		521DAA7B226A67D00082305C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		521DAA7E226AF5850082305C /* MyAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdvViewController.swift; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -331,6 +335,14 @@
 				521CCAB0224622F200841505 /* BidsViewController.swift */,
 			);
 			path = Bids;
+			sourceTree = "<group>";
+		};
+		521DAA7D226AF55F0082305C /* MyAdv */ = {
+			isa = PBXGroup;
+			children = (
+				521DAA7E226AF5850082305C /* MyAdvViewController.swift */,
+			);
+			path = MyAdv;
 			sourceTree = "<group>";
 		};
 		524422B5224D68C000B2DC7F /* SearchAds */ = {
@@ -531,6 +543,7 @@
 		52E6526721D9E39900E66AA2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				521DAA7B226A67D00082305C /* GoogleService-Info.plist */,
 				52641B0A21F23564005480C2 /* Core Data Files */,
 				52E6526A21D9E3EA00E66AA2 /* Fonts */,
 				52E6526921D9E3D400E66AA2 /* Images */,
@@ -652,6 +665,7 @@
 		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				521DAA7D226AF55F0082305C /* MyAdv */,
 				524422B5224D68C000B2DC7F /* SearchAds */,
 				521CCAAF224622D700841505 /* Bids */,
 				52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */,
@@ -839,6 +853,7 @@
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
 				5247F662225EE7AA002ECD33 /* generalPagesCell.xib in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
+				521DAA7C226A67D00082305C /* GoogleService-Info.plist in Resources */,
 				524422AC2247FFD600B2DC7F /* NotificationCell.xib in Resources */,
 				52CEE226220B5F8C00ADDC8B /* ExchangeAdsCell.xib in Resources */,
 				5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */,
@@ -1041,6 +1056,7 @@
 				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
 				52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */,
 				524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */,
+				521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */,
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				5204DD6622339DB600319A58 /* CropViewController.swift in Sources */,
