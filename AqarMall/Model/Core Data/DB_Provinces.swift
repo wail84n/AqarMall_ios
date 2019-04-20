@@ -43,6 +43,23 @@ struct DB_Provinces {
         return false
     }
     
+    static func callOneProvince(id : Int32)-> ProvincesData?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "ProvincesData")
+        userFetch.predicate = NSPredicate(format: "entryID = %@", "\(id)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [ProvincesData]
+            if  result?.count ?? 0 > 0 {
+                return result?[0]
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
+    
     static func callProvinces()-> [ProvincesData]?{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         

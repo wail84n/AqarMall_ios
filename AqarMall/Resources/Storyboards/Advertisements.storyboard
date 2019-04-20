@@ -1414,7 +1414,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHP-iY-nzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599.20000000000005" y="786.65667166416802"/>
+            <point key="canvasLocation" x="-1276" y="1104"/>
         </scene>
         <!--Banner Details View Controller-->
         <scene sceneID="mr9-bX-1QM">
@@ -1662,6 +1662,7 @@
                         <outlet property="scrollView" destination="Sie-Oh-adn" id="qsH-qW-r4G"/>
                         <segue destination="37s-Xn-Wf6" kind="show" identifier="GoToBids" id="JvY-dv-Y68"/>
                         <segue destination="teL-Et-hkE" kind="show" identifier="ShowRelatedAdvSB" id="Obx-MC-CVw"/>
+                        <segue destination="Ou3-jF-gSk" kind="show" identifier="EditMyAd" id="IJM-od-tJw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGA-HB-BqI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1774,6 +1775,14 @@
             </objects>
             <point key="canvasLocation" x="1080" y="-392"/>
         </scene>
+        <!--SubmitAdvFormViewController-->
+        <scene sceneID="g6D-Pz-pme">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SubmitAdv" referencedIdentifier="SubmitAdvFormViewController" id="Ou3-jF-gSk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6d3-kK-HSv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="-40"/>
+        </scene>
         <!--Favorate View Controller-->
         <scene sceneID="B4x-es-Ovk">
             <objects>
@@ -1838,7 +1847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxm-D7-eR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="300" y="731"/>
+            <point key="canvasLocation" x="-297" y="673"/>
         </scene>
         <!--Bids View Controller-->
         <scene sceneID="LsG-0s-Ebv">
@@ -2059,7 +2068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekU-jR-OIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765.5999999999999" y="-11.244377811094454"/>
+            <point key="canvasLocation" x="1798" y="572"/>
         </scene>
         <!--Select Address View Controller-->
         <scene sceneID="n3d-bd-AvT">
@@ -2158,7 +2167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSN-bN-V9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="731"/>
+            <point key="canvasLocation" x="562" y="672"/>
         </scene>
     </scenes>
     <resources>

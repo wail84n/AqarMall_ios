@@ -137,8 +137,6 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
             }
             
             self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
-            
-            
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.backActionToRoot()
             })

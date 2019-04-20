@@ -101,7 +101,6 @@ class APIs: NSObject {
         static var auth:Auth?
         
         case getAds(catId:String)
-        
         case getCategories(lastchange : Int?)
         case getProvinces(lastchange : Int?)
         case getAreas(lastchange : Int?)
@@ -110,14 +109,13 @@ class APIs: NSObject {
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
-        
         case getRelatedAdvts(advtId : Int32?, catId: Int?)
-        
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
         case activeUserAccount(userId : Int)
         case postAdvt(parameters : [String:Any])
+        case updateAdvt(parameters : [String:Any])
         case getSponsors(lastchange:Int, countryId:Int)
         case uploadImage()
         case postBuyerRequiredAdvt(parameters : [String:Any])
@@ -125,7 +123,10 @@ class APIs: NSObject {
         case postSearch(parameters : [String:Any])
         case getContactDetails(countryId : Int16)
         case updateAdvtViewCount(id: Int32, type: String)
-        case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int16)
+        case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int8)
+        case getMyBuyerRequiredAds(userId: Int32, pageNumber: Int16)
+        case getMyExchangePropertyAds(userId: Int32, pageNumber: Int16)
+        case postRemoveAdvt(id: Int32, type: Int8)
         
         var contentType:ContentType {
             switch self {
@@ -174,7 +175,9 @@ class APIs: NSObject {
                  .postBuyerRequiredAdvt(_),
                  .postExchangeProperty(_),
                  .postAdvt(_),
+                 .updateAdvt(_),
                  .updateAdvtViewCount(_, _),
+                 .postRemoveAdvt(_, _),
                  .postSearch(_):
                 return .post
             default:
@@ -214,6 +217,8 @@ class APIs: NSObject {
                 return "getSponsors"
             case .postAdvt(_):
                 return "postAdvt"
+            case .updateAdvt(_):
+                return "updateAdvt"
             case .uploadImage():
                 return "/Services/frmUploadImages.aspx"
             case .postBuyerRequiredAdvt(_):
@@ -230,6 +235,12 @@ class APIs: NSObject {
                 return "/getRelatedAdvts"
             case .getMySellerAds(_, _, _):
                 return "/getSellerAds"
+            case .getMyBuyerRequiredAds(_, _):
+                return "/getMyBuyerRequiredAds"
+            case .getMyExchangePropertyAds(_, _):
+                return "/getMyExchangePropertyAds"
+            case .postRemoveAdvt(_, _):
+                return "/postRemoveAdvt"
             }
         }
         
@@ -331,12 +342,19 @@ class APIs: NSObject {
                 dict["userId"] = userId
                 dict["pageNumber"] = pageNumber
                 dict["sectionId"] = sectionId
+                
+            case .getMyBuyerRequiredAds(let userId, let pageNumber):
+                dict["userId"] = userId
+                dict["pageNumber"] = pageNumber
+            case .getMyExchangePropertyAds(let userId, let pageNumber):
+                dict["userId"] = userId
+                dict["pageNumber"] = pageNumber
+                
             default:
                 return nil
             }
             return dict.count > 0 ? dict:nil
         }
-        
         
         var body:[String:Any]? {
             switch self {
@@ -346,6 +364,8 @@ class APIs: NSObject {
                 return ["userId":userId]
             case .postAdvt(let parameters):
                 return parameters
+            case .updateAdvt(let parameters):
+                return parameters
             case .postBuyerRequiredAdvt(let parameters):
                 return parameters
             case .postExchangeProperty(let parameters):
@@ -354,6 +374,8 @@ class APIs: NSObject {
                 return parameters
             case .updateAdvtViewCount(let id, let type):
                 return ["id":id, "type":type, "addOne":1]
+            case .postRemoveAdvt(let id, let type):
+                return ["id":id, "type":type]
             default:
                 return nil
             }
@@ -415,7 +437,25 @@ class APIs: NSObject {
                     callback(-1, response.error ?? APIError.unknown)
                     return
             }
-            
+            print(result["code"])
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    func updateAdvt(parameters : [String:Any], callback: @escaping IntegerCallback) {
+        let route = Router.updateAdvt(parameters: parameters)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
             print(result["code"])
             if let advIda = result["code"] as? Int {
                 callback(advIda, nil)
@@ -479,6 +519,26 @@ class APIs: NSObject {
             print(result)
             if let advViews = result as? Int {
                 callback(advViews, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    func postRemoveAdvt(id: Int32, type : Int8, callback: @escaping IntegerCallback) {
+        let route = Router.postRemoveAdvt(id: id, type: type)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            print(result)
+            if let result = result as? Int {
+                callback(result, nil)
             }else{
                 callback(0, nil)
             }
@@ -748,7 +808,7 @@ class APIs: NSObject {
         }
     }
     
-    func getMySellerAds(userId : Int32, pageNumber: Int16, sectionId: Int16, callback: @escaping AdvtsCallback) {
+    func getMySellerAds(userId : Int32, pageNumber: Int16, sectionId: Int8, callback: @escaping AdvtsCallback) {
         let route = Router.getMySellerAds(userId: userId, pageNumber: pageNumber, sectionId: sectionId)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
@@ -809,6 +869,21 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+
+    func getMyExchangePropertyAds(_userId : Int32, _pageNumber: Int16, callback: @escaping ExchangeAdsCallback) {
+        let route = Router.getMyExchangePropertyAds(userId: _userId, pageNumber: _pageNumber)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ ExchangeAds(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
     
     func getRequiredAds(_areaId : Int?, _pageNumber: Int16?, _keyword: String?, callback: @escaping ExchangeAdsCallback) {
         let route = Router.getRequiredAds(areaId: _areaId, pageNumber: _pageNumber, keyword: _keyword)
@@ -824,4 +899,20 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+    
+    func getMyBuyerRequiredAds(_userId : Int32, _pageNumber: Int16, callback: @escaping ExchangeAdsCallback) {
+        let route = Router.getMyBuyerRequiredAds(userId: _userId, pageNumber: _pageNumber)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ ExchangeAds(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
 }

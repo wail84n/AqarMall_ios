@@ -90,6 +90,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var advDateLabel: UILabel!
     @IBOutlet weak var advIdLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var relatedView: UIView!
     
     let placeholderImage = UIImage(named: "PlaceHolder")!
     var sourceSegueId = String()
@@ -101,10 +102,11 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var arrAdve = [AdvertisementInfo]()
     var isRent = false
     var catId  = 0
+    var isFromMyAds = false
   //  let user = UserVM.checkUserLogin()
     
     func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType, catId : Int){
-        
+        self.isFromMyAds = isFromMyAds
         self.catId = catId
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
@@ -133,7 +135,10 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         self.descriptionTxtView.text = myAd2.details
         descriptionTxtView.isScrollEnabled = false
 
-        callAdvAPI()
+        if isFromMyAds == false {
+            callAdvAPI()
+        }
+        
         advDateLabel.text = myAd2.date
         advIdLabel.text = "\(myAd2.entryID ?? 0)"
 
@@ -368,6 +373,10 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             _viewHeight -= 100
         }
 
+        if isFromMyAds == true {
+            relatedView.isHidden = true
+            _viewHeight -= 675
+        }
         return _viewHeight
     }
     

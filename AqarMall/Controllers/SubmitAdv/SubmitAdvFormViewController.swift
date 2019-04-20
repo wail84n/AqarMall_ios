@@ -12,6 +12,7 @@ import ALCameraViewController
 import Photos
 
 class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITextViewDelegate, UITextFieldDelegate {
+    
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var scrollView : UIScrollView!
@@ -48,6 +49,8 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
      
     let imagePicker = UIImagePickerController()
     var selectedImagePickerButton = UIButton()
+    var isEditMode: Bool = false
+    var advInfo = AdvertisementInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +72,91 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         adDetailsTextView.textColor = UIColor.lightGray
         advTitleTextField.delegate = self
 
+        if isEditMode {
+            setEditMode()
+        }
+
+
+        roomsNoTextField.leftViewMode = .always
+        roomsNoTextField.leftView = setTitleLabel("عدد الغرف")
+        roomsNoTextField.placeholder = "...."
+        
+        bathRoomNoTextField.leftViewMode = .always
+        bathRoomNoTextField.leftView = setTitleLabel("عدد الحمامات")
+        bathRoomNoTextField.placeholder = "...."
+        
+        floorsNoTextField.leftViewMode = .always
+        floorsNoTextField.leftView = setTitleLabel("عدد الطوابق")
+        floorsNoTextField.placeholder = "...."
+        
+        finishingTextField.leftViewMode = .always
+        finishingTextField.leftView = setTitleLabel("التشـطيب")
+        finishingTextField.placeholder = "...."
+        
+        interfaceField.leftViewMode = .always
+        interfaceField.leftView = setTitleLabel("الواجـهة")
+        interfaceField.placeholder = "...."
+        
+        buildingAgeTextfield.leftViewMode = .always
+        buildingAgeTextfield.leftView = setTitleLabel("عمر البناء")
+        buildingAgeTextfield.placeholder = "...."
+        
+        buildingSizeTextField.leftViewMode = .always
+        buildingSizeTextField.leftView = setTitleLabel("مساحة البناء")
+        buildingSizeTextField.placeholder = "...."
+        
+        landSizeTextField.leftViewMode = .always
+        landSizeTextField.leftView = setTitleLabel("مساحة الأرض")
+        landSizeTextField.placeholder = "...."
+        
+        licenseTypeTextField.leftViewMode = .always
+        licenseTypeTextField.leftView = setTitleLabel("نوع الترخيص")
+        licenseTypeTextField.placeholder = "...."
+        
+        sizeTextField.leftViewMode = .always
+        sizeTextField.leftView = setTitleLabel("المساحة")
+        sizeTextField.placeholder = "...."
+        
+        priceTextField.leftViewMode = .always
+        priceTextField.leftView = setTitleLabel("السعر")
+        priceTextField.placeholder = "...."
+        
         setCatProperties()
+    }
+    
+    func setTitleLabel(_ title: String)-> UILabel{
+        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 45))
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.white
+        titleLabel.backgroundColor = UIColor.gray.withAlphaComponent(0.9)
+        titleLabel.text = title
+        
+        return titleLabel
+    }
+    
+    func setEditMode(){
+        let province = DB_Provinces.callOneProvince(id: advInfo.provinceId ?? 0)
+        let area = DB_Areas.callOneArea(id: advInfo.areaId ?? 0)
+        
+        selectedArea = area
+        addressLabel.text = "\(province?.name ?? "") - \(area?.name ?? "")"
+        
+        advTitleTextField.text = advInfo.title
+        adDetailsTextView.text = advInfo.details
+        adDetailsTextView.textColor = UIColor.black
+        
+        roomsNoTextField.text = advInfo.properties?.numberOfRooms
+        bathRoomNoTextField.text = advInfo.properties?.numberOfBathrooms
+        floorsNoTextField.text = advInfo.properties?.numberOfFloors
+        finishingTextField.text = advInfo.properties?.finishing
+        interfaceField.text = advInfo.properties?.interfaceType
+        buildingAgeTextfield.text = advInfo.properties?.ageOfBuilding
+        buildingSizeTextField.text = advInfo.properties?.buildingSize
+        landSizeTextField.text = advInfo.properties?.landSize
+        licenseTypeTextField.text = advInfo.properties?.licenseType
+        sizeTextField.text = advInfo.properties?.size
+        priceTextField.text = "\(advInfo.price ?? 0)"
     }
     
     override func viewDidAppear(_ animated: Bool) {

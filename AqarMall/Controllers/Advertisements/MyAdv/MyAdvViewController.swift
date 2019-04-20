@@ -27,42 +27,45 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
     var bannerIndex = 0
     var arrAdve = [AdvertisementInfo]()
     var arrExchangeAdve = [ExchangeAds]()
-    
+    var userInfo: FullUser? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        configureView()
+    }
+    
+    func configureView(){
         
+        userInfo = DB_UserInfo.callRecords()
         self.tableView.delegate = self
         self.tableView.dataSource = self
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
         tableView.register(UINib(nibName: "bannerCell", bundle: nil), forCellReuseIdentifier: "bannerCell")
+        getBannersData()
         
-        callAdvAPI(isRent: 1)
-        
-        title = "المفضلة"
+       // callAdvAPI(isRent: 1)
+      //  callAdvAPI()
+        setBack()
+        title = "اعلاناتي"
+    }
+    
+    func getBannersData(){
+        //  banners
+        if let _banners = DB_Banners.callBanners(){
+            banners = _banners
+        }
     }
     
     func callAdvAPI(isRent : Int8) {
-        self.arrAdve = [AdvertisementInfo]()
-        if let result = DB_FavorateAdv.callRecords(isRent: isRent) {
-            self.arrAdve = result
-        }
-        self.tableView.reloadData()
-    }
-    // getMySellerAds
-    
-    func callAdvAPI() {
         print(sectionSegment.selectedSegmentIndex - 1)
         print("currentPage \(currentPage)")
-        
-        let userInfo = DB_UserInfo.callRecords()
         
         guard let _userInfo = userInfo  else {
             return
         }
 
-        APIs.shared.getMySellerAds(userId: _userInfo.entryID, pageNumber: 1, sectionId: Int16(sectionSegment.selectedSegmentIndex - 1)) { (result, error) in
+        APIs.shared.getMySellerAds(userId: _userInfo.entryID, pageNumber: 1, sectionId: isRent) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
@@ -79,7 +82,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
-                    if counter == 4 {
+                    if counter == 4 && self.banners.count > 0 {
                         counter = 0
                         let banner = AdvertisementInfo()
                         banner.isBanner = true
@@ -88,6 +91,75 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
                     }
                     counter += 1
                     self.arrAdve.append(record)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+   // getMyExchangePropertyAds
+    //  case getMyBuyerRequiredAds(userId: Int32, pageNumber: Int16)
+    
+    func getMyExchangeAds() {
+        print(sectionSegment.selectedSegmentIndex - 1)
+        guard let _userInfo = userInfo  else {
+            return
+        }
+        
+        APIs.shared.getMyExchangePropertyAds(_userId: _userInfo.entryID, _pageNumber: 1) { (result, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            if let _result = result{
+                self.isLastCall = _result.count > 0 ? false : true
+                var counter = 0
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    
+                    if counter == 4 {
+                        counter = 0
+                        var banner = ExchangeAds(withBanner: self.addBanner())
+                        banner?.isBanner = true
+                        self.arrExchangeAdve.append(banner!)
+                    }
+                    counter += 1
+                    self.arrExchangeAdve.append(record)
+                }
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func getMyBuyerRequiredAds() {
+        print(sectionSegment.selectedSegmentIndex - 1)
+        guard let _userInfo = userInfo  else {
+            return
+        }
+        
+        APIs.shared.getMyBuyerRequiredAds(_userId: _userInfo.entryID, _pageNumber: 1) { (result, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            if let _result = result{
+                self.isLastCall = _result.count > 0 ? false : true
+                var counter = 0
+                for (index, record) in _result.enumerated() {
+                    print(index)
+                    
+                    if counter == 4 {
+                        counter = 0
+                        var banner = ExchangeAds(withBanner: self.addBanner())
+                        banner?.isBanner = true
+                        self.arrExchangeAdve.append(banner!)
+                    }
+                    counter += 1
+                    self.arrExchangeAdve.append(record)
                 }
                 self.tableView.reloadData()
             }
@@ -109,22 +181,6 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
         }
     }
     
-    func getExchangeAds() {
-        self.arrExchangeAdve = [ExchangeAds]()
-        if let result = DB_FavorateExchangeAds.callRecords(isExchange: 1) {
-            self.arrExchangeAdve = result
-        }
-        self.tableView.reloadData()
-    }
-    
-    func getRequiredAds() {
-        self.arrExchangeAdve = [ExchangeAds]()
-        if let result = DB_FavorateExchangeAds.callRecords(isExchange: 0) {
-            self.arrExchangeAdve = result
-        }
-        self.tableView.reloadData()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshView()
@@ -132,14 +188,6 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         
-    }
-    
-    func getBannersData(){
-        //  banners
-        
-        if let _banners = DB_Banners.callBanners(){
-            banners = _banners
-        }
     }
     
     func clearTableView(){
@@ -153,19 +201,22 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
     }
     
     func refreshView(){
+        AppUtils.ShowLoading()
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
             clearTableView()
-            getExchangeAds()
+            getMyExchangeAds()
             break
         case 1:
             clearTableView()
-            getRequiredAds()
+            getMyBuyerRequiredAds()
             break
         case 2:
+            clearTableView()
             callAdvAPI(isRent: 1)
         case 3:
+            clearTableView()
             callAdvAPI(isRent: 0)
         default:
             break
@@ -184,7 +235,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
             navPlace.catId = intCat
             
             navPlace.proccessType = 2
-            
+            navPlace.isFromMyAds = true
             
             switch sectionSegment.selectedSegmentIndex
             {

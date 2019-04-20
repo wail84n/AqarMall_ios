@@ -1038,6 +1038,7 @@
                 <outlet property="optionsStackView" destination="1Li-V4-scC" id="yl9-BO-NRB"/>
                 <outlet property="pageControl" destination="lnZ-hX-bzk" id="HPk-Yi-RLM"/>
                 <outlet property="priceLabel" destination="xSP-hI-J8q" id="z7H-GJ-Pqi"/>
+                <outlet property="relatedView" destination="i8q-wC-FWt" id="cr6-ie-5Xi"/>
                 <outlet property="roomNoLabel" destination="FJK-Ke-6aN" id="YuP-c4-0cw"/>
                 <outlet property="roomsNoView" destination="se3-te-sz6" id="AxS-mP-Vn2"/>
                 <outlet property="sizeLabel" destination="Czh-0Z-Plk" id="3hQ-9Y-edK"/>

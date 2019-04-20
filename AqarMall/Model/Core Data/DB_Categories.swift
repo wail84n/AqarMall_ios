@@ -80,6 +80,23 @@ struct DB_Categories {
         return nil
     }
     
+    static func callCategory(catId : Int)-> CategoriesData?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoriesData")
+        userFetch.predicate = NSPredicate(format: "id = \(catId)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
+            
+            if  result?.count ?? 0 > 0 {
+                return result?[0]
+            }
+        }catch{
+            print("Fiald")
+        }
+        return nil
+    }
+    
     static func callCategoriesWithAll(byType : CategoriesType)-> [CategoriesData]?{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         

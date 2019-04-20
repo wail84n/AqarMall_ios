@@ -48,7 +48,6 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     var isFromMyAds = false
     var catId : Int = 0
     var delegate: AdDetailsDelegate? = nil
-    
    // let user = UserVM.checkUserLogin() // +++ wail
     
     let topController = UIApplication.topViewController()
@@ -120,10 +119,6 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                 self.SetView()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
     }
     
     var adView = AdsDetailsView()
@@ -470,12 +465,16 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     }
     
     @IBAction func back(){
-        if self.navigationController!.viewControllers.count == 2 {
-            // +++ if the user backed from main Adv Details
+        if isFromMyAds {
             self.navigationController!.popViewController(animated: true)
         }else{
-            // +++ if the user backed from related Adv Details
-            self.navigationController!.popToViewController(self.navigationController!.viewControllers[1] as! AdDetails_NewVC, animated: true)
+            if self.navigationController!.viewControllers.count == 2 {
+                // +++ if the user backed from main Adv Details
+                self.navigationController!.popViewController(animated: true)
+            }else{
+                // +++ if the user backed from related Adv Details
+                self.navigationController!.popToViewController(self.navigationController!.viewControllers[1] as! AdDetails_NewVC, animated: true)
+            }
         }
     }
     
@@ -527,13 +526,67 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 //                })
 //            })
 //        })
+        
+        
+        let actionSheetController: UIAlertController = UIAlertController(title: "تأكيد الحذف", message: "هل انت متأكد من عملية حذف الإعلان؟", preferredStyle: .actionSheet)
+        
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: "الغاء", style: .cancel) { action -> Void in
+            //Just dismiss the action sheet
+        }
+        actionSheetController.addAction(cancelActionButton)
+        
+        let yesActionButton: UIAlertAction = UIAlertAction(title: "نعم", style: .destructive) { action -> Void in
+            self.doDeleteAdv(adDetails: AdDetails)
+        }
+        actionSheetController.addAction(yesActionButton)
+        
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+    
+    func doDeleteAdv(adDetails: AdvertisementInfo){
+        AppUtils.ShowLoading()
+        APIs.shared.postRemoveAdvt(id: adDetails.entryID ?? 0 , type: 1){ (result, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            if result == 1 {
+                self.navigationController?.popViewController(animated: true)
+            }
+            //  self.viewsLabel.text = "\(advViews ?? 0)"
+        }
     }
     
     func EditAd(AdDetails: AdvertisementInfo){
         // +++ wail
 //        self.googleAnalyticsEventTrack(category: "\(self.selectedPlace.Name) \(AdDetails.title!) ID: \(AdDetails.id!)", actionName: "تعديل")
         
-        self.performSegue(withIdentifier: "EditMyAd", sender: AdDetails)
+        
+        let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitAdvFormViewController") as! SubmitAdvFormViewController
+        
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isTranslucent = true
+        
+        vc.category = DB_Categories.callCategory(catId: Int(AdDetails.catId))
+        vc.advInfo = AdDetails
+        vc.isEditMode = true
+        
+        switch advType{
+        case .rent?:
+            vc.isRent = true
+        case .sale?:
+            vc.isRent = false
+        default:
+            break
+        }
+        
+        
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+       // self.performSegue(withIdentifier: "EditMyAd", sender: AdDetails)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -566,6 +619,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
             if let _adDetails = adDetails {
                 navPlace.adDetails = _adDetails
             }
+        }else if let navPlace = segue.destination as? SubmitAdvFormViewController{
+            
         }
     }
     

@@ -99,11 +99,20 @@ class AdvertisementInfo : NSObject {
             self.whatsApp = _whatsApp
         }
         
-        
+        if let _areaId = _object["AreaID"] as? Int32 {
+            self.areaId = _areaId
+        }
+        if let _provinceID = _object["ProvinceID"] as? Int32 {
+            self.provinceId = _provinceID
+        }
+        if let _catId = _object["CatID"] as? Int16 {
+            self.catId = _catId
+        }
 
         if let _properties = AdvertisementProperties(object: _object["properties"] as AnyObject?){
             self.properties = _properties
         }
+        
         self.entryID = shortDetails.entryID
         self.title = shortDetails.title
         self.provinceName = shortDetails.provinceName
