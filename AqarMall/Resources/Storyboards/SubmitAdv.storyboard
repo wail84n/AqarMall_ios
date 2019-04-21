@@ -849,6 +849,13 @@
                                     <constraint firstAttribute="bottom" secondItem="Tey-2f-mq7" secondAttribute="bottom" id="wKm-Ds-BTX"/>
                                 </constraints>
                             </scrollView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6HJ-qU-C2B">
+                                <rect key="frame" x="0.0" y="1125" width="375" height="75"/>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="7iG-j1-rie"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsQ-ea-vHp">
                                 <rect key="frame" x="15" y="1140" width="345" height="45"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -871,10 +878,13 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="trailing" secondItem="lVa-fw-qcL" secondAttribute="trailing" id="0L1-qO-e4W"/>
+                            <constraint firstItem="6HJ-qU-C2B" firstAttribute="bottom" secondItem="lVa-fw-qcL" secondAttribute="bottom" id="7Rl-iT-gpg"/>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="leading" secondItem="lVa-fw-qcL" secondAttribute="leading" id="9Gj-76-J87"/>
                             <constraint firstItem="lVa-fw-qcL" firstAttribute="trailing" secondItem="QsQ-ea-vHp" secondAttribute="trailing" constant="15" id="Bcw-Jx-Yga"/>
                             <constraint firstItem="G03-qf-o1s" firstAttribute="top" secondItem="Boh-Xk-7EY" secondAttribute="top" id="KbX-aU-5hL"/>
                             <constraint firstItem="QsQ-ea-vHp" firstAttribute="leading" secondItem="lVa-fw-qcL" secondAttribute="leading" constant="15" id="euk-66-7bH"/>
+                            <constraint firstItem="6HJ-qU-C2B" firstAttribute="leading" secondItem="lVa-fw-qcL" secondAttribute="leading" id="exl-hy-NGi"/>
+                            <constraint firstItem="6HJ-qU-C2B" firstAttribute="trailing" secondItem="lVa-fw-qcL" secondAttribute="trailing" id="vDO-Rv-Pzk"/>
                             <constraint firstItem="lVa-fw-qcL" firstAttribute="bottom" secondItem="QsQ-ea-vHp" secondAttribute="bottom" constant="15" id="xE0-cO-DUW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lVa-fw-qcL"/>
@@ -913,7 +923,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="839" y="34"/>
+            <point key="canvasLocation" x="837.60000000000002" y="33.283358320839582"/>
         </scene>
         <!--Submit Exchange Required Adv-->
         <scene sceneID="9kc-Sz-w3Y">

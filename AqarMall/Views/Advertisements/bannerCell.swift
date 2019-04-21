@@ -19,13 +19,13 @@ class bannerCell: UITableViewCell {
     func updateCell(banner: BannersData){
         if banner.fileName == ""
         {
-            bannerImageView.image = UIImage(named:"defaultImage")!
+            bannerImageView.image = UIImage(named:"defult_banner")!
         }else{
             let url = URL(string: "http://test.imallkw.com/Upload/Banner/\(banner.fileName ?? "")")!
             
             bannerImageView.af_setImage(
                 withURL:  url,
-                placeholderImage: UIImage(named: "defaultImage"),
+                placeholderImage: UIImage(named: "defult_banner"), // defaultImage
                 filter: nil,
                 imageTransition: UIImageView.ImageTransition.crossDissolve(0.7),
                 runImageTransitionIfCached: false) {

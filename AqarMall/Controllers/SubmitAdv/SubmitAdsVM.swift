@@ -61,6 +61,56 @@ struct SubmitAdsVM {
         }
     }
 
+    static func updateAdvt(_postAd:postAdv, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ advId:Int, _ error:Error?) -> Void) {
+        var postAd = _postAd
+        let params = ["UserID": _postAd.userid,
+                      "SectionID": _postAd.sectionID,
+                      "CatID": _postAd.catID,
+                      "AreaID": _postAd.areaID,
+                      "CountryType": _postAd.countryType,
+                      "ProvinceID": _postAd.provinceID,
+                      "CallMe": _postAd.callMe,
+                      "Title": _postAd.title,
+                      "Description": _postAd.Description ,
+                      "Price": _postAd.Price,
+                      "Size": _postAd.Size ,
+                      "Finishing": _postAd.Finishing,
+                      "NumberOfBathrooms": _postAd.NumberOfBathrooms,
+                      "NumberOfRooms": _postAd.NumberOfRooms,
+                      "FootPrice": _postAd.FootPrice,
+                      "LandSize": _postAd.LandSize,
+                      "LicenseType": _postAd.LicenseType,
+                      "MonthlyRent": _postAd.MonthlyRent,
+                      "NumberOfFloors": _postAd.NumberOfFloors,
+                      "AgeOfBuilding": _postAd.AgeOfBuilding,
+                      "BuildingSize": _postAd.BuildingSize,
+                      "VideoLink": _postAd.VideoLink
+            ] as [String: Any]
+        
+        APIs.shared.updateAdvt(parameters: params) { (advId, error) in
+            guard error == nil else {
+                print(error ?? "")
+                completion(true, 0, error)
+                return
+            }
+            
+            
+            if let _advId = advId{
+                if postAd.images.count == 0 {completion(true, _advId, nil)} // +++ if there is no and image return direct
+                
+                for i in 0 ..< postAd.images.count  {
+                    uploadImage(imageObj: postAd.images[i], advId: _advId, imageNo: "\(i + 1)"){ (result) in
+                        postAd.images[i].status = true
+                        if validateIsAllImagesUploaded(_images: postAd) == true{
+                            // +++ this mean that all imagas are loaded.
+                            completion(true, _advId, nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     static func postBuyerRequiredAdvt(_postAd:PostExchangeRequiredAds, isEditMode: Bool, completion:@escaping (_ isSuccess:Bool, _ advId:Int, _ error:Error?) -> Void) {
         
         let params = ["CountryID":_postAd.countryID, "Description":_postAd.description, "Title":_postAd.title, "Phone":_postAd.phone, "UserID":_postAd.userID, "CallMe":_postAd.callMe]  as [String: Any]

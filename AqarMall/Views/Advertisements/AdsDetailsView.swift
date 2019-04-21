@@ -392,6 +392,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         return "Advertisements/Advt\(AdDetails.entryID ?? 0)/\(image)"
         
     }
+    
     func loadImages() {
         var imageURLs : [URL] = []
         if let image1 = AdDetails.image1 {

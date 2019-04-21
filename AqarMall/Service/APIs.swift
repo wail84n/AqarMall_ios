@@ -851,7 +851,13 @@ class APIs: NSObject {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
-            callback(advDetails[0], nil)
+            
+            if advDetails.count > 0 {
+                callback(advDetails[0], nil)
+            }else{
+                callback(nil, nil)
+            }
+            
         }
     }
     

@@ -19,48 +19,46 @@ class ImageGalleryVC: UIViewController {
     let placeholderImage = UIImage(named: "PlaceHolder")!
     var currentPage = 0
     var imageURLs : [URL] = []
-    
+     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        if self.myAd.image1 != "" && self.myAd.image1 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image1 ?? "")")!
 
-            imageURLs.append(url)
+        var imageURLs : [URL] = []
+        if let image1 = myAd.image1 {
+            let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
+            imageURLs.append(picture1URL)
         }
-        if self.myAd.image2 != "" && self.myAd.image2 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image2 ?? "")")!
-
-            imageURLs.append(url)
+        if let image2 = myAd.image2 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image3 != "" && self.myAd.image3 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image3 ?? "")")!
-            imageURLs.append(url)
+        if let image3 = myAd.image3 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image4 != "" && self.myAd.image4 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image4 ?? "")")!
-            imageURLs.append(url)
+        if let image4 = myAd.image4 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image5 != "" && self.myAd.image5 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image5 ?? "")")!
-            imageURLs.append(url)
+        if let image5 = myAd.image5 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image6 != "" && self.myAd.image6 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image6 ?? "")")!
-            imageURLs.append(url)
+        if let image6 = myAd.image6 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image7 != "" && self.myAd.image7 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image7 ?? "")")!
-            imageURLs.append(url)
+        if let image7 = myAd.image7 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image8 != "" && self.myAd.image8 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image8 ?? "")")!
-            imageURLs.append(url)
+        if let image8 = myAd.image8 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
+            imageURLs.append(pictureURL)
         }
-        if self.myAd.image9 != "" && self.myAd.image9 != nil {
-            let url = URL(string: "http://shamelksa.com/CMSShamel/Upload/ads/\(self.myAd.image9 ?? "")")!
-            imageURLs.append(url)
+        if let image9 = myAd.image9 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
+            imageURLs.append(pictureURL)
         }
         
         let screenSize = UIScreen.main.bounds
@@ -75,6 +73,11 @@ class ImageGalleryVC: UIViewController {
         self.scrollView.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.scrollToPage(page: self.currentPage)
         self.manageButtonDisplay(imagesCount: imageURLs.count)
+    }
+    
+    func getImagePath(image : String)-> String {
+        return "Advertisements/Advt\(myAd.entryID ?? 0)/\(image)"
+        
     }
     
 //    override func viewWillAppear(_ animated: Bool) {

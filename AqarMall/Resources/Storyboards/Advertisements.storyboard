@@ -1847,7 +1847,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxm-D7-eR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-297" y="673"/>
+            <point key="canvasLocation" x="-431" y="402"/>
         </scene>
         <!--Bids View Controller-->
         <scene sceneID="LsG-0s-Ebv">
@@ -2163,11 +2163,12 @@
                         <outlet property="sectionSegment" destination="CbD-xg-IQ9" id="2o7-ne-4lt"/>
                         <outlet property="tableView" destination="JJa-WJ-zFv" id="12G-HQ-YDR"/>
                         <segue destination="8B0-ey-Q44" kind="show" identifier="adsListToDetails" id="Hzp-c7-fs5"/>
+                        <segue destination="zY5-Hx-OAU" kind="show" identifier="ToexchangeDetailsSB" id="QEM-8Y-M8R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSN-bN-V9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="562" y="672"/>
+            <point key="canvasLocation" x="-50" y="1072"/>
         </scene>
     </scenes>
     <resources>
@@ -2189,6 +2190,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="81O-wL-cxf"/>
         <segue reference="Hzp-c7-fs5"/>
-        <segue reference="2V6-BF-a8b"/>
+        <segue reference="QEM-8Y-M8R"/>
     </inferredMetricsTieBreakers>
 </document>

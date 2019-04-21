@@ -76,7 +76,6 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             setEditMode()
         }
 
-
         roomsNoTextField.leftViewMode = .always
         roomsNoTextField.leftView = setTitleLabel("عدد الغرف")
         roomsNoTextField.placeholder = "...."
@@ -136,6 +135,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
     }
     
     func setEditMode(){
+        submitButton.setTitle("تعديل الإعلان", for: .normal)
         let province = DB_Provinces.callOneProvince(id: advInfo.provinceId ?? 0)
         let area = DB_Areas.callOneArea(id: advInfo.areaId ?? 0)
         
@@ -157,6 +157,8 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         licenseTypeTextField.text = advInfo.properties?.licenseType
         sizeTextField.text = advInfo.properties?.size
         priceTextField.text = "\(advInfo.price ?? 0)"
+        
+        self.loadImages()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -245,7 +247,6 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
     
     func setCatProperties(){
         if let _category = category{
-
             let counter = getCatPropertiesCount()
             print(counter * 50)
             optionsHeightConstraint.constant = CGFloat(counter * 50)
@@ -304,19 +305,10 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             }
             alertController.addAction(cancelAction)
             
-            //            let destroyAction = UIAlertAction(title: "سجل الان", style: .default) { action in
-            //
-            //                let vc = self.storyboard?.instantiateViewController(withIdentifier: "UserVC")
-            //                self.navigationController?.pushViewController(vc!, animated: true)
-            //            }
-            //
-            //            alertController.addAction(destroyAction)
-            
             self.present(alertController, animated: true) {
                 // ...
                 print("wail al mohammad")
             }
-            
         }else
         {
             self.showImagePicker()
@@ -375,27 +367,12 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
                 //Cancel action?
                 
             })
-            
-            
-            //            //            self.imagePicker.allowsEditing = true
-            //            //            self.imagePicker.sourceType = .photoLibrary
-            //            //            self.present(self.imagePicker, animated: true, completion: nil)
-            //            let libraryViewController = CameraViewController.imagePickerViewController(croppingEnabled: false) { image, asset in
-            //                if image != nil {
-            //                    self.showSelectedImageNew(editedImage: image!)
-            //                }
-            //                self.dismiss(animated: true, completion: nil)
-            //            }
-            //            self.present(libraryViewController, animated: true, completion: nil)
         }
         actionSheetController.addAction(libraryActionButton)
         
         let cameraActionButton: UIAlertAction = UIAlertAction(title: "الكاميرا", style: .default)
         { action -> Void in
             if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
-                //                self.imagePicker.allowsEditing = true
-                //                self.imagePicker.sourceType = .camera
-                //                self.present(self.imagePicker, animated: true, completion: nil)
                 let cameraViewController = CameraViewController(croppingParameters: CroppingParameters(), allowsLibraryAccess: true) { [weak self] image, asset in
                     if let _image = image {
                         self?.showSelectedImageNew(editedImage: _image)
@@ -411,7 +388,6 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         
         self.present(actionSheetController, animated: true, completion: nil)
     }
-    
     
     func showSelectedImageNew(editedImage: UIImage) {
         print("New Image added")
@@ -477,24 +453,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
 
         self.present(actionSheetController, animated: true, completion: nil)
     }
-    
-    //    func flipImageLeftRight(_ image: UIImage) -> UIImage? {
-    //
-    //        UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
-    //        let context = UIGraphicsGetCurrentContext()!
-    //        context.translateBy(x: image.size.width, y: image.size.height)
-    //        context.scaleBy(x: -image.scale, y: -image.scale)
-    //
-    //        context.draw(image.cgImage!, in: CGRect(origin:CGPoint.zero, size: image.size))
-    //
-    //        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    //
-    //        UIGraphicsEndImageContext()
-    //
-    //        return newImage
-    //    }
-    
-    
+
     func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage) {
         //        controller.dismissViewControllerAnimated(true, completion: nil)
         //        imageView.image = image
@@ -532,17 +491,14 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             self.postAd.images.insert(postImages(image: imageData)!, at: index.row)
             print(self.postAd.images.count)
         }
-        
         imagesCollection.reloadData()
     }
-    
     
     @IBAction func submitAdv(_ sender: Any) {
         SubmitAdv()
     }
     
     func SubmitAdv() {
-        
         if let _selectedArea = selectedArea {
             postAd.areaID = Int16(_selectedArea.entryID)
             postAd.provinceID = Int16(_selectedArea.provinceID)
@@ -621,6 +577,16 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         }
         
         AppUtils.ShowLoading()
+        
+        if isEditMode == false{
+            postNewAdv()
+        }else{
+           EditAdv()
+        }
+
+    }
+    
+    func postNewAdv(){
         SubmitAdsVM.postAd(_postAd: postAd, isEditMode: false) { (result, advId, error) in
             AppUtils.HideLoading()
             guard error == nil else {
@@ -633,8 +599,86 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         }
     }
     
+    func EditAdv(){
+        SubmitAdsVM.updateAdvt(_postAd: postAd, isEditMode: false) { (result, advId, error) in
+            AppUtils.HideLoading()
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            self.backActionToRoot()
+            self.showAlert(withTitle: .Success, text: "تمت عملية التعديل على الإعلان بنجاح")
+        }
+    }
 }
 
+
+extension SubmitAdvFormViewController {
+    
+    func getImagePath(image : String)-> String {
+        return "Advertisements/Advt\(advInfo.entryID ?? 0)/\(image)"
+    }
+    
+    func loadImages() {
+        if let image1 = advInfo.image1 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
+            load(url: pictureURL)
+        }
+        if let image2 = advInfo.image2 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
+            load(url: pictureURL)
+        }
+        if let image3 = advInfo.image3 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
+            load(url: pictureURL)
+        }
+        if let image4 = advInfo.image4 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
+            load(url: pictureURL)
+        }
+        if let image5 = advInfo.image5 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
+            load(url: pictureURL)
+        }
+        if let image6 = advInfo.image6 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
+            load(url: pictureURL)
+        }
+        if let image7 = advInfo.image7 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
+            load(url: pictureURL)
+        }
+        if let image8 = advInfo.image8 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
+            load(url: pictureURL)
+        }
+        if let image9 = advInfo.image9 {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
+            load(url: pictureURL)
+        }
+    }
+    
+    
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    self?.postAd.images.append(postImages(image: data)!)
+                    
+                    self?.imagesCollection.reloadData()
+                }
+            }
+        }
+    }
+    
+    func refreshImages(){
+      //  imagesCollection.reloadData()
+//        DispatchQueue.main.sync {
+//
+//        }
+    }
+}
 
 
 extension UIImage {
