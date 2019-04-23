@@ -127,6 +127,8 @@ class APIs: NSObject {
         case getMyBuyerRequiredAds(userId: Int32, pageNumber: Int16)
         case getMyExchangePropertyAds(userId: Int32, pageNumber: Int16)
         case postRemoveAdvt(id: Int32, type: Int8)
+        case postPoints(actionType:Int8, areaID:Int32, catID:Int32, points:Int8, provinceID:Int32, sectionID:Int8, userID:Int32, deviceUDID:String)
+        case getMyBidAds(userId: Int32, pageNumber: Int16)
         
         var contentType:ContentType {
             switch self {
@@ -178,6 +180,7 @@ class APIs: NSObject {
                  .updateAdvt(_),
                  .updateAdvtViewCount(_, _),
                  .postRemoveAdvt(_, _),
+                 .postPoints(_, _, _, _, _, _, _, _),
                  .postSearch(_):
                 return .post
             default:
@@ -241,6 +244,10 @@ class APIs: NSObject {
                 return "/getMyExchangePropertyAds"
             case .postRemoveAdvt(_, _):
                 return "/postRemoveAdvt"
+            case .postPoints(_, _, _, _, _, _, _, _):
+                return "/postPoints"
+            case .getMyBidAds(_, _):
+                return "getMyBidAds"
             }
         }
         
@@ -322,10 +329,6 @@ class APIs: NSObject {
                     dict["pageNumber"] = _pageNumber
                 }
                 
-//                if let _areaId = areaId{
-//                    dict["areaId"] = _areaId
-//                }
-                
                 if let _keyword = keyword{
                     dict["keyword"] = _keyword
                 }
@@ -349,7 +352,9 @@ class APIs: NSObject {
             case .getMyExchangePropertyAds(let userId, let pageNumber):
                 dict["userId"] = userId
                 dict["pageNumber"] = pageNumber
-                
+            case .getMyBidAds(let userId, let pageNumber):
+                dict["userId"] = userId
+                dict["pageNumber"] = pageNumber
             default:
                 return nil
             }
@@ -376,6 +381,8 @@ class APIs: NSObject {
                 return ["id":id, "type":type, "addOne":1]
             case .postRemoveAdvt(let id, let type):
                 return ["id":id, "type":type]
+            case .postPoints(let actionType,let areaID,let catID,let points,let provinceID,let sectionID,let userID,let deviceUDID):
+                return ["ActionType":actionType, "AreaID":areaID, "CatID":catID, "Points":points, "ProvinceID":provinceID, "SectionID":sectionID, "UserID":userID, "DeviceUDID":deviceUDID]
             default:
                 return nil
             }
@@ -525,6 +532,28 @@ class APIs: NSObject {
         }
     }
     
+    func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping IntegerCallback) {
+        let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            print(result)
+            if let advViews = result as? Int {
+                callback(advViews, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    
+    
     func postRemoveAdvt(id: Int32, type : Int8, callback: @escaping IntegerCallback) {
         let route = Router.postRemoveAdvt(id: id, type: type)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -645,6 +674,20 @@ class APIs: NSObject {
             callback(true, nil)
         }
     }
+    
+    func postPoints(_actionType:Int8, _areaID:Int32, _catID:Int32, _points:Int8, _provinceID:Int32, _sectionID:Int8, _userID:Int32, _deviceUDID:String, callback: @escaping isSuccessCallback) {
+        let route = Router.postPoints(actionType: _actionType, areaID: _areaID, catID: _catID, points: _points, provinceID: _provinceID, sectionID: _sectionID, userID: _userID, deviceUDID: _deviceUDID)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(true, nil)
+        }
+    }
+    
     
     func getCountries(callback: @escaping countriesCallback) {
         let route = Router.getCountries()

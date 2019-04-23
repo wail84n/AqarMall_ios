@@ -121,6 +121,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
             
             self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
             
+            // AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.backActionToRoot()

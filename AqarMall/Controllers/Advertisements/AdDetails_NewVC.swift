@@ -86,6 +86,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
             
         }
+        
     }
     
     func showHideHeaderView(isHide: Bool) {
@@ -105,7 +106,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                     return
                 }
                 
-                print(result?.properties?.availableNo)
+              //  print(result?.properties?.availableNo)
                 if let _delegate = self.delegate, let _result = result  {
                     _delegate.updateAdvInAdsList(myAd: _result, index: self.intAdIndex)
 
@@ -113,6 +114,12 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                 
                 if  let _result = result  {
                     if (self.ads.count - 1) >= self.intAdIndex {
+                        var _sectionID : Int8 = 1
+                        if self.advType != .rent{
+                            _sectionID = 2
+                        }
+                        
+                        AppUtils.postPointsToServer(actionType: .viewAdv, areaID: _result.areaId ?? 0, catID: Int32(_result.catId), provinceID: _result.provinceId ?? 0, sectionID: _sectionID)
                         self.ads[self.intAdIndex] = _result
                     }
                 }
@@ -721,6 +728,12 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                 self.setFavoriteImageBy(flag: false)
             }
         }else{
+            var _sectionID : Int8 = 1
+            if self.advType != .rent{
+                _sectionID = 2
+            }
+            AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
+
             DB_FavorateAdv.saveRecord(adv: adsRecord, advType: advType!)
             self.setFavoriteImageBy(flag: true)
         }

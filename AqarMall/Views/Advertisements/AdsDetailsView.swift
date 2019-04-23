@@ -374,8 +374,8 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
 
         if isFromMyAds == true {
-            relatedView.isHidden = true
             _viewHeight -= 675
+            relatedView.isHidden = true
         }
         return _viewHeight
     }

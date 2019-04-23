@@ -161,6 +161,9 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
         }
         
         if let _delegate = delegate {
+            
+            AppUtils.postPointsToServer(actionType: .search, areaID: advancedSearch.selectedArea?.entryID ?? 0, catID: advancedSearch.catID, provinceID: advancedSearch.selectedProvince?.entryID ?? 0, sectionID: Int8(advancedSearch.sectionID))
+            
             _delegate.advancedSearch(with: advancedSearch)
             self.leftAction()
         }

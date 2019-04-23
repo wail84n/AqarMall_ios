@@ -32,6 +32,15 @@ enum AdvType : String {
     
 }
 
+enum pointsActionType : Int8 {
+    case viewAdv = 1
+    case favorate = 2
+    case search = 3
+    case view_adv_from_notification = 4
+    case add_requiredAdv = 5
+    
+}
+
 class AppUtils: NSObject {
     static var staticProvinces = [Provinces]()
     static var staticAreas = [Areas]()
@@ -114,6 +123,25 @@ class AppUtils: NSObject {
         }
         
         return nil
+    }
+    
+    class func postPointsToServer(actionType: pointsActionType, areaID:Int32, catID:Int32, provinceID:Int32, sectionID:Int8){
+        let userInfo = DB_UserInfo.callRecords()
+        var userId : Int32 = 0
+        if let _userInfo = userInfo {
+            userId = _userInfo.entryID
+        }
+        
+        if let user_uuid = KeychainWrapper.standard.string(forKey: "user_uuid"){
+            print(user_uuid)
+            
+            APIs.shared.postPoints(_actionType: actionType.rawValue, _areaID: areaID, _catID: catID, _points: actionType.rawValue, _provinceID: provinceID, _sectionID: sectionID, _userID: userId, _deviceUDID: user_uuid) { (result, error) in
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+            }
+        }
     }
     
     class func getArea(areaId: Int32)  -> Areas?

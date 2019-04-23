@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 
 import FirebaseAnalytics
 import FacebookCore
+import SwiftKeychainWrapper
 
 //import Crashlytics
 
@@ -24,6 +25,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         AppUtils.SaveData(key: .sms_attempts, value: "0")
         IQKeyboardManager.shared.enable = true
+        
+        
+        let uuid = UIDevice.current.identifierForVendor?.uuidString
+        print("uuid \(uuid)")
+        
+        if let user_uuid = KeychainWrapper.standard.string(forKey: "user_uuid"){
+            print(user_uuid)
+        }else{
+            if let _uuid = uuid {
+                let success2 = KeychainWrapper.standard.set(_uuid, forKey: "user_uuid")
+            }
+        }
         
         FIRApp.configure()
                 
