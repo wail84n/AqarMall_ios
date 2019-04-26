@@ -32,4 +32,9 @@ extension UIColor {
     static func greenButtonColor() -> UIColor{
         return UIColor(red: CGFloat(14/255.0), green: CGFloat(166/255.0), blue: CGFloat(135/255.0), alpha: 1)
     }
+    
+    static func darkGreenButtonColor() -> UIColor{
+        return UIColor(red: CGFloat(10/255.0), green: CGFloat(70/255.0), blue: CGFloat(86/255.0), alpha: 1)
+    }
+    
 }

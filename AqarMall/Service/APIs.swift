@@ -418,6 +418,7 @@ class APIs: NSObject {
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
+    typealias MyBidAdsCallback = (_ result:[MyBidAds]?, _ error:Error?) -> Void
     
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
@@ -532,23 +533,21 @@ class APIs: NSObject {
         }
     }
     
-    func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping IntegerCallback) {
-        let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
+    func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping MyBidAdsCallback) {
+        let route = Router.getMyBidAds(userId: 67, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+
             guard
                 response.result.isSuccess,
-                let result = self.result(with: response)
-                else {
-                    callback(-1, response.error ?? APIError.unknown)
-                    return
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ MyBidAds(object: $0) })
+            else {
+                callback(nil, response.error ?? APIError.unknown)
+                return
             }
             
-            print(result)
-            if let advViews = result as? Int {
-                callback(advViews, nil)
-            }else{
-                callback(0, nil)
-            }
+            callback(records, nil)
+
         }
     }
     

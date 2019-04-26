@@ -117,7 +117,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         self.changeAdStatusStackView.isHidden = !isFromMyAds
-        self.loadImages()
+        
         
         switch advType{
         case .rent:
@@ -139,48 +139,13 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             callAdvAPI()
         }
         
+        validateImages()
+        
         advDateLabel.text = myAd2.date
         advIdLabel.text = "\(myAd2.entryID ?? 0)"
 
         if sourceSegueId == "MyAdDetailsVC" {
             self.changeAdStatusStackView.isHidden = false
-        }
-        
-        intImagesCount = 0
-        if let image1 = myAd2.image1, image1.isEmpty == false {
-            intImagesCount += 1
-        }
-
-        if let image2 = myAd2.image2, image2.isEmpty == false {
-            intImagesCount += 1
-        }
-
-        if let image3 = myAd2.image3, image3.isEmpty == false {
-            intImagesCount += 1
-        }
-
-        if let image4 = myAd2.image4, image4.isEmpty == false {
-            intImagesCount += 1
-        }
-        
-        if let image5 = myAd2.image5, image5.isEmpty == false {
-            intImagesCount += 1
-        }
-        
-        if let image6 = myAd2.image6, image6.isEmpty == false {
-            intImagesCount += 1
-        }
-        
-        if let image7 = myAd2.image7, image7.isEmpty == false {
-            intImagesCount += 1
-        }
-        
-        if let image8 = myAd2.image8, image8.isEmpty == false {
-            intImagesCount += 1
-        }
-        
-        if let image9 = myAd2.image9, image9.isEmpty == false {
-            intImagesCount += 1
         }
         
         SetProperties()
@@ -196,6 +161,76 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             lblImageNo.text = ("\(0) / \(intImagesCount)")
         }
         
+    }
+    
+    func validateImages(){
+        var imageURLs : [URL] = []
+        intImagesCount = 0
+        if let image1 = AdDetails.image1, image1.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image1)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image2 = AdDetails.image2, image2.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image2)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image3 = AdDetails.image3, image3.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image3)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image4 = AdDetails.image4, image4.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image4)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image5 = AdDetails.image5, image5.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image5)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image6 = AdDetails.image6, image6.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image6)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image7 = AdDetails.image7, image7.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image7)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image8 = AdDetails.image8, image8.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image8)){
+                imageURLs.append(image)
+            }
+        }
+        
+        if let image9 = AdDetails.image9, image9.isEmpty == false {
+            intImagesCount += 1
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image9)){
+                imageURLs.append(image)
+            }
+        }
+        
+        
+        self.loadImages(_imageURLs: imageURLs)
     }
     
     func SetProperties(){
@@ -348,7 +383,8 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 //            }
         }
         
-        self.loadImages()
+        validateImages()
+        //self.loadImages()
     }
     
     func getActualViewHeight() -> CGFloat{
@@ -393,48 +429,9 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         
     }
     
-    func loadImages() {
-        var imageURLs : [URL] = []
-        if let image1 = AdDetails.image1 {
-            let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
-            imageURLs.append(picture1URL)
-        }
-        if let image2 = AdDetails.image2 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
-            imageURLs.append(pictureURL)
-        }
-        if let image3 = AdDetails.image3 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
-            imageURLs.append(pictureURL)
-        }
-        if let image4 = AdDetails.image4 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
-            imageURLs.append(pictureURL)
-        }
-        if let image5 = AdDetails.image5 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
-            imageURLs.append(pictureURL)
-        }
-        if let image6 = AdDetails.image6 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
-            imageURLs.append(pictureURL)
-        }
-        if let image7 = AdDetails.image7 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
-            imageURLs.append(pictureURL)
-        }
-        if let image8 = AdDetails.image8 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
-            imageURLs.append(pictureURL)
-        }
-        if let image9 = AdDetails.image9 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
-            imageURLs.append(pictureURL)
-        }
-
-        
+    func loadImages(_imageURLs : [URL]) {
         let screenSize = UIScreen.main.bounds
-        for index in (0..<imageURLs.count) {
+        for index in (0..<_imageURLs.count) {
             
             let imageView = UIImageView(frame: CGRect(x: screenSize.width * CGFloat(index) , y: 0, width: screenSize.width, height: self.adImagesSV.frame.size.height))
             imageView.tag = index
@@ -443,7 +440,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             imageView.clipsToBounds = true
 
             imageView.af_setImage(
-                withURL:  imageURLs[index],
+                withURL:  _imageURLs[index],
                 placeholderImage: placeholderImage,
                 filter: nil,
                 imageTransition: UIImageView.ImageTransition.crossDissolve(0.7),
@@ -462,12 +459,12 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             
             self.adImagesSV.addSubview(imageView)
         }
-        self.adImagesSV.contentSize = CGSize(width: screenSize.width * CGFloat(imageURLs.count), height: self.adImagesSV.frame.size.height)
+        self.adImagesSV.contentSize = CGSize(width: screenSize.width * CGFloat(_imageURLs.count), height: self.adImagesSV.frame.size.height)
         self.adImagesSV.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
-        self.pageControl.numberOfPages = imageURLs.count
+        self.pageControl.numberOfPages = _imageURLs.count
         let currentPage = self.scrollViewCurrentPage(self.adImagesSV)
         self.pageControl.currentPage = currentPage
-        if imageURLs.count <= 0 {
+        if _imageURLs.count <= 0 {
             self.pageControl.isHidden = true
         }
     }

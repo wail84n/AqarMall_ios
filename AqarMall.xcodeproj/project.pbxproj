@@ -45,6 +45,7 @@
 		5247F661225EE7AA002ECD33 /* generalPagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247F65F225EE7AA002ECD33 /* generalPagesCell.swift */; };
 		5247F662225EE7AA002ECD33 /* generalPagesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5247F660225EE7AA002ECD33 /* generalPagesCell.xib */; };
 		5247F664225EE97A002ECD33 /* GeneralPagesDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */; };
+		524A5C6C226FABC2008843F4 /* MyBidAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A5C6B226FABC2008843F4 /* MyBidAds.swift */; };
 		525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */; };
 		52603859224F6F4E001F3A1B /* AdvancedSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */; };
 		5261434D2236E7DB00339882 /* UserInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261434C2236E7DB00339882 /* UserInformationViewController.swift */; };
@@ -184,6 +185,7 @@
 		5247F65F225EE7AA002ECD33 /* generalPagesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = generalPagesCell.swift; sourceTree = "<group>"; };
 		5247F660225EE7AA002ECD33 /* generalPagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = generalPagesCell.xib; sourceTree = "<group>"; };
 		5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPagesDetailsVC.swift; sourceTree = "<group>"; };
+		524A5C6B226FABC2008843F4 /* MyBidAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidAds.swift; sourceTree = "<group>"; };
 		525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchViewController.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -707,6 +709,7 @@
 				5281D8A121F3A1F400A177B0 /* Banners.swift */,
 				526143522236F2A300339882 /* Countries.swift */,
 				52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */,
+				524A5C6B226FABC2008843F4 /* MyBidAds.swift */,
 				52CEE21F2209376900ADDC8B /* ExchangeAds.swift */,
 				52CEE2212209377F00ADDC8B /* RequiredAds.swift */,
 				5204DD6E2233A69100319A58 /* postAdv.swift */,
@@ -1001,6 +1004,7 @@
 				5247F664225EE97A002ECD33 /* GeneralPagesDetailsVC.swift in Sources */,
 				5281D89C21F352A900A177B0 /* DB_Provinces.swift in Sources */,
 				528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */,
+				524A5C6C226FABC2008843F4 /* MyBidAds.swift in Sources */,
 				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,

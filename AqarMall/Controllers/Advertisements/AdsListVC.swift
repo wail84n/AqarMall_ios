@@ -58,6 +58,24 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     }
 
     func configureView(){
+        let userInfo = DB_UserInfo.callRecords()
+        if let _userInfo = userInfo {
+            APIs.shared.getMyBidAds(userId: _userInfo.entryID, pageNumber: 1) { (result, error) in
+                AppUtils.HideLoading()
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+              //  result?[0].myBidsList?[0].
+                if let _countries = result {
+                    //self.countries = _countries
+                    self.tableView.reloadData()
+                }
+                
+            }
+        }
+
+        
         AdvancedSearchButton.isHidden = false
         searchTextSearchBar.delegate = self
         self.tableView.delegate = self

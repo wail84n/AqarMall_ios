@@ -78,47 +78,47 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
 
         roomsNoTextField.leftViewMode = .always
         roomsNoTextField.leftView = setTitleLabel("عدد الغرف")
-        roomsNoTextField.placeholder = "...."
+       // roomsNoTextField.placeholder = "...."
         
         bathRoomNoTextField.leftViewMode = .always
         bathRoomNoTextField.leftView = setTitleLabel("عدد الحمامات")
-        bathRoomNoTextField.placeholder = "...."
+      //  bathRoomNoTextField.placeholder = "...."
         
         floorsNoTextField.leftViewMode = .always
         floorsNoTextField.leftView = setTitleLabel("عدد الطوابق")
-        floorsNoTextField.placeholder = "...."
+       // floorsNoTextField.placeholder = "...."
         
         finishingTextField.leftViewMode = .always
         finishingTextField.leftView = setTitleLabel("التشـطيب")
-        finishingTextField.placeholder = "...."
+       // finishingTextField.placeholder = "...."
         
         interfaceField.leftViewMode = .always
         interfaceField.leftView = setTitleLabel("الواجـهة")
-        interfaceField.placeholder = "...."
+       // interfaceField.placeholder = "...."
         
         buildingAgeTextfield.leftViewMode = .always
         buildingAgeTextfield.leftView = setTitleLabel("عمر البناء")
-        buildingAgeTextfield.placeholder = "...."
+     //   buildingAgeTextfield.placeholder = "...."
         
         buildingSizeTextField.leftViewMode = .always
         buildingSizeTextField.leftView = setTitleLabel("مساحة البناء")
-        buildingSizeTextField.placeholder = "...."
+     //   buildingSizeTextField.placeholder = "...."
         
         landSizeTextField.leftViewMode = .always
         landSizeTextField.leftView = setTitleLabel("مساحة الأرض")
-        landSizeTextField.placeholder = "...."
+       // landSizeTextField.placeholder = "...."
         
         licenseTypeTextField.leftViewMode = .always
         licenseTypeTextField.leftView = setTitleLabel("نوع الترخيص")
-        licenseTypeTextField.placeholder = "...."
+       // licenseTypeTextField.placeholder = "...."
         
         sizeTextField.leftViewMode = .always
         sizeTextField.leftView = setTitleLabel("المساحة")
-        sizeTextField.placeholder = "...."
+       // sizeTextField.placeholder = "...."
         
         priceTextField.leftViewMode = .always
         priceTextField.leftView = setTitleLabel("السعر")
-        priceTextField.placeholder = "...."
+      //  priceTextField.placeholder = "...."
         
         setCatProperties()
     }
@@ -128,7 +128,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
-        titleLabel.backgroundColor = UIColor.gray.withAlphaComponent(0.9)
+        titleLabel.backgroundColor = UIColor.darkGreenButtonColor().withAlphaComponent(0.6)
         titleLabel.text = title
         
         return titleLabel
