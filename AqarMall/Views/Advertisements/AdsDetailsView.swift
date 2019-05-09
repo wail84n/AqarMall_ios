@@ -75,6 +75,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var sizeView: UIView!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var bidsButton: UIButton!
+    @IBOutlet weak var addressLabel: UILabel!
     
     @IBOutlet weak var bidsView: UIView!
     @IBOutlet weak var moreDetailsButton: UIButton!
@@ -114,6 +115,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
+        addressLabel.text = "\(myAd2.provinceName ?? "") - \(myAd2.areaName ?? "")"
         
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         self.changeAdStatusStackView.isHidden = !isFromMyAds
@@ -575,7 +577,13 @@ extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
             }
             
             if let _result = result{
-                for i in 0 ..< 5{
+                var intCounter = 0
+                if _result.count > 5 {
+                    intCounter = 5
+                }else{
+                    intCounter = _result.count
+                }
+                for i in 0 ..< intCounter{
                     self.arrAdve.append(_result[i])
                 }
                 

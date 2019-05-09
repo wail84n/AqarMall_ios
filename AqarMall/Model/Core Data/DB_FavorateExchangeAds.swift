@@ -11,7 +11,7 @@ import CoreData
 
 struct DB_FavorateExchangeAds {
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    static func saveRecord(adv : ExchangeAds, advType : AdvType){
+    static func saveRecord(adv : ExchangeAds, advType : AdvType)-> Bool{
         if validateRecord(Id: adv.entryID ?? 0) == false {
             let advObj = FavorateExchangeAdsData(context: appDelegate.persistentContainer.viewContext)
             advObj.entryID = adv.entryID ?? 0
@@ -31,12 +31,15 @@ struct DB_FavorateExchangeAds {
             }
             do{
                 try appDelegate.persistentContainer.viewContext.save()
+                return true
             }catch{
                 print("Failed saving")
+                return false
             }
         }
+        return false
     }
-    
+
     static func validateRecord(Id : Int64)-> Bool{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         

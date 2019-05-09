@@ -595,7 +595,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             }
             
             self.backActionToRoot()
-            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+            self.showAlert(withTitle: .Success, text: "تمت عملية اضافةالإعلان بنجاح")
         }
     }
     

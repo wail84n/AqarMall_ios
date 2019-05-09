@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
+class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var directAdvButton: UIButton!
     @IBOutlet weak var notDirectAdvButton: UIButton!
     @IBOutlet weak var advTitleTextField: UITextField!
     @IBOutlet weak var adDetailsTextView: UITextView!
+    @IBOutlet weak var titleCounterLabel: UILabel!
     
     var isExchange = false
     var postAdv = PostExchangeRequiredAds()
@@ -37,10 +38,22 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
         }
         
         self.setBack()
-        
+        advTitleTextField.delegate = self
         adDetailsTextView.text = "وصف الإعلان"
         adDetailsTextView.textColor = UIColor.lightGray
         
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 24
+        
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        
+        titleCounterLabel.text = "25/\(newString.length)"
+        print("newString.length \(newString.length)")
+        return newString.length <= maxLength
     }
 
     func clearFields() {
@@ -119,7 +132,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
                 return
             }
             
-            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+            self.showAlert(withTitle: .Success, text: "تمت عملية اضافةالإعلان بنجاح")
             
             // AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
             
@@ -137,7 +150,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate {
                 return
             }
             
-            self.showAlert(withTitle: .Success, text: "تمت علمية اضافة الإعلان رقم اعلانك هو : \(advId)")
+            self.showAlert(withTitle: .Success, text: "تمت عملية اضافةالإعلان بنجاح")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.backActionToRoot()
             })

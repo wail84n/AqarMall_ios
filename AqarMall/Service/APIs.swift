@@ -120,7 +120,7 @@ class APIs: NSObject {
         case uploadImage()
         case postBuyerRequiredAdvt(parameters : [String:Any])
         case postExchangeProperty(parameters : [String:Any])
-        case postSearch(parameters : [String:Any])
+        case postSearch(parameters : [String:Any], pageNumber: Int16)
         case getContactDetails(countryId : Int16)
         case updateAdvtViewCount(id: Int32, type: String)
         case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int8)
@@ -181,7 +181,7 @@ class APIs: NSObject {
                  .updateAdvtViewCount(_, _),
                  .postRemoveAdvt(_, _),
                  .postPoints(_, _, _, _, _, _, _, _),
-                 .postSearch(_):
+                 .postSearch(_, _):
                 return .post
             default:
                 return .get
@@ -228,7 +228,7 @@ class APIs: NSObject {
                 return "/postBuyerRequiredAdvt"
             case .postExchangeProperty(_):
                 return "/postExchangeProperty"
-            case .postSearch(_):
+            case .postSearch(_, _):
                 return "/postSearch_iOS"
             case .getContactDetails(_):
                 return "/getContactDetails"
@@ -355,6 +355,8 @@ class APIs: NSObject {
             case .getMyBidAds(let userId, let pageNumber):
                 dict["userId"] = userId
                 dict["pageNumber"] = pageNumber
+//            case .postSearch(_,  let pageNumber):
+//                dict["page"] = pageNumber
             default:
                 return nil
             }
@@ -375,7 +377,7 @@ class APIs: NSObject {
                 return parameters
             case .postExchangeProperty(let parameters):
                 return parameters
-            case .postSearch(let parameters):
+            case .postSearch(let parameters, _):
                 return parameters
             case .updateAdvtViewCount(let id, let type):
                 return ["id":id, "type":type, "addOne":1]
@@ -866,8 +868,8 @@ class APIs: NSObject {
     }
     
     
-    func getAdvts_AdvancedSearch(parameters : [String:Any], pageNumber: Int16?, callback: @escaping AdvtsCallback) {
-        let route = Router.postSearch(parameters: parameters)
+    func getAdvts_AdvancedSearch(parameters : [String:Any], pageNumber: Int16, callback: @escaping AdvtsCallback) {
+        let route = Router.postSearch(parameters: parameters, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,

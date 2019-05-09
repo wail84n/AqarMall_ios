@@ -640,6 +640,38 @@ extension AdsListVC: UITableViewDataSource {
         }
     }
     
+    
+    @objc func exchangeAdvFavorate(sender: UIButton!) {
+        let btnsendtag: UIButton = sender
+        let record = arrExchangeAdve[btnsendtag.tag]
+        
+        let indexPath = IndexPath(item: btnsendtag.tag, section: 0)
+        let cell = tableView.cellForRow(at: indexPath) as? AdsCell
+        
+        if let btnfavorte = btnsendtag.currentImage {
+            if btnfavorte.isEqual(UIImage(named: "favorateList_on")) {
+                if  DB_FavorateExchangeAds.deleteRecord(Id: record.entryID ?? 0) == true {
+                    print("the favorate record has been deleted.")
+                    cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+                }
+            }else{
+                switch sectionSegment.selectedSegmentIndex
+                {
+                case 0:
+                    if DB_FavorateExchangeAds.saveRecord(adv: record, advType: .for_exchange){
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                case 1:
+                    if DB_FavorateExchangeAds.saveRecord(adv: record, advType: .required) {
+                        cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                    }
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
@@ -680,6 +712,15 @@ extension AdsListVC: UITableViewDataSource {
             let record = arrExchangeAdve[indexPath.row]
             cell.adsTitleLabel.text = record.title
             cell.detailsLable.text = record.description
+            
+            if DB_FavorateExchangeAds.validateRecord(Id: record.entryID ?? 0){
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+            }else{
+                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+            }
+            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+            cell.favorateButton.tag = indexPath.row
+            cell.favorateButton.addTarget(self, action: #selector(exchangeAdvFavorate), for: .touchUpInside)
         }
         
         

@@ -41,7 +41,22 @@ struct SyncAPIData{
                     if index == 0 {
                         AppUtils.SaveData(key: .provinces_last_change, value: "\(record.lastChange)")
                     }
-                    DB_Provinces.saveRecord(provinces: record)
+                    
+                    switch record.lastChangeType {
+                    case 1:
+                        DB_Provinces.saveRecord(provinces: record)
+                    case 2:
+                        if DB_Provinces.deleteRecord(Id: record.entryID){
+                            print("the '\(record.name)' Province has been deleted")
+                        }
+                        DB_Provinces.saveRecord(provinces: record)
+                    case 3:
+                        if DB_Provinces.deleteRecord(Id: record.entryID){
+                            print("the '\(record.name)' Province has been deleted")
+                        }
+                    default:
+                        break
+                    }
                 }
             }
             completion(true, result?.count ?? 0 , nil)
@@ -60,7 +75,22 @@ struct SyncAPIData{
                     if index == 0 {
                         AppUtils.SaveData(key: .areas_last_change, value: "\(record.lastChange)")
                     }
-                    DB_Areas.saveRecord(area: record)
+                    
+                    switch record.lastChangeType {
+                    case 1:
+                        DB_Areas.saveRecord(area: record)
+                    case 2:
+                        if DB_Areas.deleteRecord(Id: record.entryID){
+                            print("the '\(record.name)' Area has been deleted")
+                        }
+                        DB_Areas.saveRecord(area: record)
+                    case 3:
+                        if DB_Areas.deleteRecord(Id: record.entryID){
+                            print("the '\(record.name)' Area has been deleted")
+                        }
+                    default:
+                        break
+                    }
                 }
             }
             completion(true, result?.count ?? 0 , nil)

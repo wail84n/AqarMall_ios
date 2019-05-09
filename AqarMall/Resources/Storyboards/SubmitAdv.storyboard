@@ -665,7 +665,7 @@
                                                                 </constraints>
                                                                 <nil key="textColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="5"/>
@@ -1073,6 +1073,7 @@
                         <outlet property="advTitleTextField" destination="nZU-5e-Ldr" id="hrT-ob-eSR"/>
                         <outlet property="directAdvButton" destination="xsS-by-U8O" id="gTv-jS-Ai8"/>
                         <outlet property="notDirectAdvButton" destination="m9i-ce-zg6" id="pNm-eH-1Iz"/>
+                        <outlet property="titleCounterLabel" destination="iSi-vA-TqS" id="mni-ya-i9l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vf4-3f-XjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
