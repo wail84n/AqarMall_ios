@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
     
     override func awakeFromNib() {
@@ -18,6 +19,7 @@ class NotificationCell: UITableViewCell {
     }
 
     func update(with notification: userNotification) {
+        titleLabel.text = notification.title
         detailsLabel.text = notification.text
     }
     

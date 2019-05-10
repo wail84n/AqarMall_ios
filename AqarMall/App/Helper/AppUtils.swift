@@ -16,7 +16,6 @@ enum AdvType : String {
     case required = "required"
     case for_exchange = "for_exchange"
     
-    
     var getFavorateSavedName: String? {
         switch self {
         case .rent:
@@ -29,7 +28,6 @@ enum AdvType : String {
             return "for_exchangeFavoriteAdIDs"
         }
     }
-    
 }
 
 enum pointsActionType : Int8 {

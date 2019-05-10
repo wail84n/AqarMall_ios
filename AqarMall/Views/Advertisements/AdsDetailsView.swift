@@ -79,6 +79,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     
     @IBOutlet weak var bidsView: UIView!
     @IBOutlet weak var moreDetailsButton: UIButton!
+    @IBOutlet weak var catNameLabel: UILabel!
     
     @IBOutlet weak var descriptionConstraint_Height: NSLayoutConstraint!
     @IBOutlet weak var descriptionViewConstraint_Height: NSLayoutConstraint!
@@ -93,6 +94,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var relatedView: UIView!
     
+    @IBOutlet weak var priceTitleLabel: UILabel!
     let placeholderImage = UIImage(named: "PlaceHolder")!
     var sourceSegueId = String()
     var intImagesCount = 0
@@ -102,13 +104,13 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var viewHeight : CGFloat = 1950
     var arrAdve = [AdvertisementInfo]()
     var isRent = false
-    var catId  = 0
+  //  var catId  = 0
     var isFromMyAds = false
   //  let user = UserVM.checkUserLogin()
     
-    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType, catId : Int){
+    func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType){
         self.isFromMyAds = isFromMyAds
-        self.catId = catId
+      //  self.catId = catId
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
     
@@ -120,18 +122,22 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         self.changeAdStatusStackView.isHidden = !isFromMyAds
         
-        
+        let cat = DB_Categories.callCategory(catId: Int(myAd2.catId))
         switch advType{
         case .rent:
             bidsView.isHidden = true
             isRent = true
+            catNameLabel.text = "\(cat?.name ?? "") للايجار"
         case .sale:
             bidsView.isHidden = false
             isRent = false
+            catNameLabel.text = "\(cat?.name ?? "") للبيع"
         default:
             break
         }
-
+        
+        priceTitleLabel.text = myAd2.priceLabel
+        
         adImagesSV.delegate = self
         
         self.descriptionTxtView.text = myAd2.details
@@ -569,7 +575,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
 
     func callAdvAPI() {
-        APIs.shared.getRelatedAdvts(advtId: AdDetails.entryID, catId: self.catId) { (result, error) in
+        APIs.shared.getRelatedAdvts(advtId: AdDetails.entryID, catId: AdDetails.catId) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")

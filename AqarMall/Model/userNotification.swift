@@ -10,30 +10,33 @@ import UIKit
 
 struct userNotification {
     let id:Int
-    let lastChange:Int64
-    let parameters:String
+    let title:String
     let text:String
+    let parameters:String
     let type:Int16
-    let userId:Int
+    let lastChange:Int
+    let createdAt:String
     
     public init?(object: AnyObject?) {
         guard
             let _object = object,
             let _id = _object["Id"] as? Int,
-            let _lastChange = _object["LastChange"] as? Int64,
-            let _parameters = _object["Parameters"] as? String,
+            let _title = _object["Title"] as? String,
             let _text = _object["Text"] as? String,
-            let _type = _object["type"] as? Int16,
-            let _userId = _object["UserId"] as? Int
+            let _parameters = _object["Parameters"] as? String,
+            let _type = _object["Type"] as? Int16,
+            let _lastChange = _object["LastChange"] as? Int,
+            let _createdAt = _object["CreatedAt"] as? String
             else{
                 return nil
         }
-        
         self.id = _id
-        self.lastChange = _lastChange
-        self.parameters = _parameters
+        self.title = _title
         self.text = _text
+        self.parameters = _parameters
         self.type = _type
-        self.userId = _userId
+        self.lastChange = _lastChange
+        self.createdAt = _createdAt
     }
 }
+

@@ -37,7 +37,7 @@ class AdvertisementInfo : NSObject {
     var isCalledDetails : Bool = false
     var isBanner : Bool = false
     var banner : BannersData? = nil
-    
+    var sectionID : Int8?
     var properties : AdvertisementProperties? = nil
     override init() {
         
@@ -109,6 +109,10 @@ class AdvertisementInfo : NSObject {
             self.catId = _catId
         }
 
+        if let _sectionID = _object["SectionID"] as? Int8 {
+            self.sectionID = _sectionID
+        }
+        
         if let _properties = AdvertisementProperties(object: _object["properties"] as AnyObject?){
             self.properties = _properties
         }

@@ -532,20 +532,19 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             print(isLastCall)
             navPlace.isLastCall = isLastCall
 
-            navPlace.catId = intCat
+          //  navPlace.catId = intCat
 
             navPlace.proccessType = 2
             
-            
-            switch sectionSegment.selectedSegmentIndex
-            {
-            case 2:
-                navPlace.advType = .rent
-            case 3:
-                navPlace.advType = .sale
-            default:
-                break
-            }
+//            switch sectionSegment.selectedSegmentIndex
+//            {
+//            case 2:
+//                navPlace.advType = .rent
+//            case 3:
+//                navPlace.advType = .sale
+//            default:
+//                break
+//            }
             
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
@@ -862,7 +861,6 @@ extension AdsListVC: UITableViewDelegate {
                 self.updateHeader()
                 self.setScrollPosition(self.previousScrollOffset)
             }
-            
             self.previousScrollOffset = scrollView.contentOffset.y
         }
     }
@@ -971,8 +969,6 @@ extension AdsListVC: AdvancedSearchDelegate {
         changeSection()
         intCat = Int(_advancedSearch.catID)
 
-        
-        
         let parameters : [String : Any] = ["UserID": 0, "SectionID": advancedSearch.sectionID, "CatID":intCat, "ProvinceID":advancedSearch.selectedProvince?.entryID ?? 0, "AreaID":advancedSearch.selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":advancedSearch.fromPrice, "ToPrice":advancedSearch.toPrice, "FromSize":advancedSearch.fromSize, "ToSize":advancedSearch.toSize]
         
         getAdvancedSearch(_parameters: parameters)

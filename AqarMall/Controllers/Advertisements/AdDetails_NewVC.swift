@@ -28,6 +28,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var favoriteImageView: UIButton!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var navigationTitleLabel: UILabel!
     
     //let scrollView = UIScrollView(frame: CGRect(x:0, y:0, width:320,height: 300))
     var colors:[UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
@@ -46,7 +47,9 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
     var ads : [AdvertisementInfo] = []
     var adDetails = AdvertisementInfo()
     var isFromMyAds = false
-    var catId : Int = 0
+    var isFromNotification = false
+    
+   // var catId : Int = 0
     var delegate: AdDetailsDelegate? = nil
    // let user = UserVM.checkUserLogin() // +++ wail
     
@@ -62,8 +65,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 //        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
 //        tracker.send(builder.build() as [NSObject : AnyObject])
         
+
         
-        title = "تفاصيل الإعلان"
         if ads.count == 0 || ads.count == 1 {
             btnNext.isEnabled = false
             btnBack.isEnabled = false
@@ -99,6 +102,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
             self.SetView()
         }else{
             AppUtils.ShowLoading()
+          //  self.title = adsRecord.
             APIs.shared.getAdvtDetails(adv: adsRecord) { (result, error) in
                 AppUtils.HideLoading()
                 guard error == nil else {
@@ -113,18 +117,31 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
                 }
                 
                 if  let _result = result  {
+                    
+                    self.isFormNotification(ad : _result)
                     if (self.ads.count - 1) >= self.intAdIndex {
-                        var _sectionID : Int8 = 1
-                        if self.advType != .rent{
-                            _sectionID = 2
+                        if _result.sectionID == 1 {
+                            self.advType = .rent
+                        }else{
+                            self.advType = .sale
                         }
                         
-                        AppUtils.postPointsToServer(actionType: .viewAdv, areaID: _result.areaId ?? 0, catID: Int32(_result.catId), provinceID: _result.provinceId ?? 0, sectionID: _sectionID)
+                        AppUtils.postPointsToServer(actionType: .viewAdv, areaID: _result.areaId ?? 0, catID: Int32(_result.catId), provinceID: _result.provinceId ?? 0, sectionID: _result.sectionID ?? 0)
                         self.ads[self.intAdIndex] = _result
                     }
                 }
+                
                 self.SetView()
             }
+        }
+    }
+    
+    func isFormNotification(ad : AdvertisementInfo){
+
+        
+        if isFromNotification {
+
+            
         }
     }
     
@@ -157,8 +174,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
         adView.delegate = self
         let adsRecord = self.ads[intAdIndex]
         
-        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: advType!, catId: catId)
-        
+        adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: advType!)
+
         let viewHight = adView.getViewHight()
         adView.frame.size.height = viewHight
       //  self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
@@ -214,7 +231,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 
         scrollView.addSubview(view!)
         
-        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds, advType: advType!, catId: catId)
+        adView.SetAdValue(myAd2: _adDetails, isFromMyAds: isFromMyAds, advType: advType!)
         adView.delegate = self
         
         let viewHight = adView.getViewHight()
@@ -617,11 +634,11 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
             print(isLastCall)
             navPlace.isLastCall = isLastCall
             
-            navPlace.catId = catId
+       //     navPlace.catId = catId
             
             navPlace.proccessType = 2
             
-            navPlace.advType = advType
+          //  navPlace.advType = advType
             navPlace.intAdIndex = 0
             if let _adDetails = adDetails {
                 navPlace.adDetails = _adDetails

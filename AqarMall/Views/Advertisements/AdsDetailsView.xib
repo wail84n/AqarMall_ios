@@ -461,26 +461,39 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="Aw6-ut-5hH">
-                                    <rect key="frame" x="8" y="5" width="359" height="95"/>
+                                    <rect key="frame" x="8" y="34.5" width="359" height="75.5"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="95" id="c71-Js-31C"/>
+                                        <constraint firstAttribute="height" constant="75.5" id="7vf-1K-QG7"/>
                                     </constraints>
                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                                 </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdX-h2-L5c">
+                                    <rect key="frame" x="10" y="9.5" width="355" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="pOU-IV-GwY"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="BAI-Qw-BR4" secondAttribute="trailing" id="31V-Iy-6WY"/>
-                                <constraint firstItem="Aw6-ut-5hH" firstAttribute="top" secondItem="je5-Cj-tjP" secondAttribute="top" constant="5" id="6Ef-Ft-vMi"/>
+                                <constraint firstItem="rdX-h2-L5c" firstAttribute="leading" secondItem="je5-Cj-tjP" secondAttribute="leading" constant="10" id="6xe-gR-wRM"/>
                                 <constraint firstItem="BAI-Qw-BR4" firstAttribute="leading" secondItem="je5-Cj-tjP" secondAttribute="leading" id="7IB-AE-nRd"/>
-                                <constraint firstItem="Aw6-ut-5hH" firstAttribute="leading" secondItem="je5-Cj-tjP" secondAttribute="leading" constant="8" id="HUE-Qv-ScP"/>
+                                <constraint firstAttribute="trailing" secondItem="Aw6-ut-5hH" secondAttribute="trailing" constant="8" id="EPq-0M-u6n"/>
+                                <constraint firstAttribute="trailing" secondItem="rdX-h2-L5c" secondAttribute="trailing" constant="10" id="G6m-Ub-jtG"/>
                                 <constraint firstAttribute="height" constant="100" id="L0m-Af-MD4"/>
-                                <constraint firstAttribute="trailing" secondItem="Aw6-ut-5hH" secondAttribute="trailing" constant="8" id="laG-vw-weO"/>
-                                <constraint firstAttribute="bottom" secondItem="Aw6-ut-5hH" secondAttribute="bottom" id="xBs-5p-w43"/>
+                                <constraint firstAttribute="bottom" secondItem="Aw6-ut-5hH" secondAttribute="bottom" constant="-10" id="agn-B3-XF6"/>
+                                <constraint firstItem="rdX-h2-L5c" firstAttribute="top" secondItem="BAI-Qw-BR4" secondAttribute="bottom" constant="5" id="d5p-Qz-Acb"/>
+                                <constraint firstItem="Aw6-ut-5hH" firstAttribute="top" secondItem="rdX-h2-L5c" secondAttribute="bottom" constant="4" id="dP3-cf-9Jd"/>
+                                <constraint firstItem="Aw6-ut-5hH" firstAttribute="leading" secondItem="je5-Cj-tjP" secondAttribute="leading" constant="8" id="ej7-qj-SkZ"/>
                                 <constraint firstItem="BAI-Qw-BR4" firstAttribute="top" secondItem="je5-Cj-tjP" secondAttribute="top" constant="4" id="z0a-dA-TuY"/>
                             </constraints>
                         </view>
@@ -488,11 +501,11 @@
                             <rect key="frame" x="0.0" y="649" width="375" height="30"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3If-aU-KFv">
-                                    <rect key="frame" x="15" y="0.0" width="45" height="30"/>
+                                    <rect key="frame" x="15" y="0.0" width="45" height="25"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="Tzv-Wz-cY6"/>
-                                        <constraint firstAttribute="height" constant="30" id="i9f-Wp-rF9"/>
+                                        <constraint firstAttribute="height" constant="25" id="i9f-Wp-rF9"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="المزيد"/>
@@ -1031,8 +1044,9 @@
                 <outlet property="bidsView" destination="Tl8-hy-Cxq" id="lv6-Hw-LSd"/>
                 <outlet property="buildingSizeLabel" destination="Cw5-cg-bBp" id="DM2-zJ-Fbi"/>
                 <outlet property="buildingSizeView" destination="Ehb-KA-don" id="8N9-xa-fUN"/>
+                <outlet property="catNameLabel" destination="rdX-h2-L5c" id="owE-jO-rN2"/>
                 <outlet property="changeAdStatusStackView" destination="Adg-Ke-Mb3" id="c33-Jm-D3j"/>
-                <outlet property="descriptionConstraint_Height" destination="c71-Js-31C" id="Qgf-jH-frq"/>
+                <outlet property="descriptionConstraint_Height" destination="7vf-1K-QG7" id="dcL-5A-Ch8"/>
                 <outlet property="descriptionTxtView" destination="Aw6-ut-5hH" id="QY6-Vc-7DI"/>
                 <outlet property="descriptionViewConstraint_Height" destination="L0m-Af-MD4" id="RWd-x2-JYo"/>
                 <outlet property="favoriteImageView" destination="4fR-p1-Z9b" id="Qmq-Jp-Oqo"/>
@@ -1052,6 +1066,7 @@
                 <outlet property="optionsStackView" destination="1Li-V4-scC" id="yl9-BO-NRB"/>
                 <outlet property="pageControl" destination="lnZ-hX-bzk" id="HPk-Yi-RLM"/>
                 <outlet property="priceLabel" destination="xSP-hI-J8q" id="z7H-GJ-Pqi"/>
+                <outlet property="priceTitleLabel" destination="qvG-xg-rQb" id="0Rl-kC-soY"/>
                 <outlet property="relatedView" destination="i8q-wC-FWt" id="cr6-ie-5Xi"/>
                 <outlet property="roomNoLabel" destination="FJK-Ke-6aN" id="YuP-c4-0cw"/>
                 <outlet property="roomsNoView" destination="se3-te-sz6" id="AxS-mP-Vn2"/>

@@ -232,7 +232,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
             print(isLastCall)
             navPlace.isLastCall = isLastCall
             
-            navPlace.catId = intCat
+           // navPlace.catId = intCat
             
             navPlace.proccessType = 2
             navPlace.isFromMyAds = true

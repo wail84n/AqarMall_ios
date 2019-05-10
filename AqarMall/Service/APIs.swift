@@ -109,7 +109,7 @@ class APIs: NSObject {
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
-        case getRelatedAdvts(advtId : Int32?, catId: Int?)
+        case getRelatedAdvts(advtId : Int32?, catId: Int16?)
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
@@ -129,7 +129,8 @@ class APIs: NSObject {
         case postRemoveAdvt(id: Int32, type: Int8)
         case postPoints(actionType:Int8, areaID:Int32, catID:Int32, points:Int8, provinceID:Int32, sectionID:Int8, userID:Int32, deviceUDID:String)
         case getMyBidAds(userId: Int32, pageNumber: Int16)
-        
+        case getNotifications(userId: Int32, lastchange: Int)
+
         var contentType:ContentType {
             switch self {
             case .uploadImage():
@@ -248,6 +249,8 @@ class APIs: NSObject {
                 return "/postPoints"
             case .getMyBidAds(_, _):
                 return "getMyBidAds"
+            case .getNotifications(_, _):
+                return "getNotifications"
             }
         }
         
@@ -355,6 +358,9 @@ class APIs: NSObject {
             case .getMyBidAds(let userId, let pageNumber):
                 dict["userId"] = userId
                 dict["pageNumber"] = pageNumber
+            case .getNotifications(let userId, let lastchange):
+                dict["userId"] = userId
+                dict["lastchange"] = lastchange
 //            case .postSearch(_,  let pageNumber):
 //                dict["page"] = pageNumber
             default:
@@ -421,7 +427,8 @@ class APIs: NSObject {
     typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
     typealias MyBidAdsCallback = (_ result:[MyBidAds]?, _ error:Error?) -> Void
-    
+    typealias NotificationsCallback = (_ result:[userNotification]?, _ error:Error?) -> Void
+
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -525,7 +532,6 @@ class APIs: NSObject {
                     callback(-1, response.error ?? APIError.unknown)
                     return
             }
-            
             print(result)
             if let advViews = result as? Int {
                 callback(advViews, nil)
@@ -536,7 +542,7 @@ class APIs: NSObject {
     }
     
     func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping MyBidAdsCallback) {
-        let route = Router.getMyBidAds(userId: 67, pageNumber: pageNumber)
+        let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
 
             guard
@@ -547,13 +553,24 @@ class APIs: NSObject {
                 callback(nil, response.error ?? APIError.unknown)
                 return
             }
-            
             callback(records, nil)
-
         }
     }
     
-    
+    func getNotifications(userId : Int32, lastchange: Int, callback: @escaping NotificationsCallback) {
+        let route = Router.getNotifications(userId: userId, lastchange: lastchange)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ userNotification(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
     
     func postRemoveAdvt(id: Int32, type : Int8, callback: @escaping IntegerCallback) {
         let route = Router.postRemoveAdvt(id: id, type: type)
@@ -837,7 +854,7 @@ class APIs: NSObject {
     }
     
     
-    func getRelatedAdvts(advtId : Int32?, catId: Int?, callback: @escaping AdvtsCallback) {
+    func getRelatedAdvts(advtId : Int32?, catId: Int16?, callback: @escaping AdvtsCallback) {
         let route = Router.getRelatedAdvts(advtId: advtId, catId: catId)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
@@ -964,5 +981,4 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
-    
 }

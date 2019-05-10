@@ -710,7 +710,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiG-JB-1vD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-599" y="-164"/>
+            <point key="canvasLocation" x="-599" y="-237"/>
         </scene>
         <!--Adv Filter View Controller-->
         <scene sceneID="aWx-0D-ggz">
@@ -1112,7 +1112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1e-kP-ShA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="397.60000000000002" y="-777.66116941529242"/>
+            <point key="canvasLocation" x="398" y="-542"/>
         </scene>
         <!--Exchange Details View Controller-->
         <scene sceneID="Qmv-9X-8DJ">
@@ -1414,12 +1414,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHP-iY-nzO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1276" y="1104"/>
+            <point key="canvasLocation" x="-1358" y="1366"/>
         </scene>
         <!--Banner Details View Controller-->
         <scene sceneID="mr9-bX-1QM">
             <objects>
-                <viewController id="SE5-VO-1Kr" customClass="BannerDetailsViewController" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="SE5-VO-1Kr" customClass="BannerDetailsViewController" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zXh-Iv-Okx"/>
                         <viewControllerLayoutGuide type="bottom" id="JfB-KK-0mO"/>
@@ -1435,22 +1435,88 @@
                                     <outlet property="delegate" destination="SE5-VO-1Kr" id="bj7-b4-Oyk"/>
                                 </connections>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bTD-S8-5Jj">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70u-M7-2we">
+                                        <rect key="frame" x="245" y="5" width="120" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="55z-k6-0Ub"/>
+                                            <constraint firstAttribute="height" constant="40" id="tEG-WW-vm9"/>
+                                        </constraints>
+                                        <state key="normal" title="اتصال هاتفي">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="callPhoneAction:" destination="SE5-VO-1Kr" eventType="touchUpInside" id="xWj-8p-Kvq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTF-eJ-NKf">
+                                        <rect key="frame" x="10" y="5" width="120" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="3Fg-uZ-bIj"/>
+                                            <constraint firstAttribute="height" constant="40" id="fUE-zn-hgT"/>
+                                        </constraints>
+                                        <state key="normal" title="الموقع الإلكتروني">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="goToWebsiteAction:" destination="SE5-VO-1Kr" eventType="touchUpInside" id="d0A-kH-bNh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="70u-M7-2we" secondAttribute="trailing" constant="10" id="95g-Rb-Ul4"/>
+                                    <constraint firstAttribute="height" constant="50" id="Adi-bJ-2oN"/>
+                                    <constraint firstItem="70u-M7-2we" firstAttribute="centerY" secondItem="bTD-S8-5Jj" secondAttribute="centerY" id="ZIT-aa-U9l"/>
+                                    <constraint firstItem="TTF-eJ-NKf" firstAttribute="centerY" secondItem="bTD-S8-5Jj" secondAttribute="centerY" id="iwF-W3-2yx"/>
+                                    <constraint firstItem="TTF-eJ-NKf" firstAttribute="leading" secondItem="bTD-S8-5Jj" secondAttribute="leading" constant="10" id="ow8-NA-LvG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bTD-S8-5Jj" secondAttribute="trailing" id="9W8-uG-3pC"/>
                             <constraint firstItem="nNP-ie-hWF" firstAttribute="top" secondItem="V9X-If-3Fz" secondAttribute="top" id="INH-86-q2c"/>
+                            <constraint firstItem="bTD-S8-5Jj" firstAttribute="leading" secondItem="V9X-If-3Fz" secondAttribute="leading" id="UeT-m6-kBy"/>
                             <constraint firstItem="nNP-ie-hWF" firstAttribute="leading" secondItem="V9X-If-3Fz" secondAttribute="leading" id="cbh-aP-JBu"/>
                             <constraint firstAttribute="trailing" secondItem="nNP-ie-hWF" secondAttribute="trailing" id="g3c-v0-POL"/>
+                            <constraint firstItem="JfB-KK-0mO" firstAttribute="top" secondItem="bTD-S8-5Jj" secondAttribute="bottom" id="n9G-RP-bX8"/>
                             <constraint firstItem="JfB-KK-0mO" firstAttribute="top" secondItem="nNP-ie-hWF" secondAttribute="bottom" id="ubw-Me-Gab"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="phoneCallButton" destination="70u-M7-2we" id="O7J-KC-DQr"/>
                         <outlet property="webView" destination="nNP-ie-hWF" id="asY-Xu-djc"/>
+                        <outlet property="websiteButton" destination="TTF-eJ-NKf" id="Vq6-AK-c4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ne-kI-6KA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="38" y="1048"/>
+            <point key="canvasLocation" x="398" y="960"/>
         </scene>
         <!--Ad Details NewVC-->
         <scene sceneID="fdk-Ef-ImC">
@@ -1659,6 +1725,7 @@
                         <outlet property="btnNext" destination="vJj-Y2-nII" id="PCV-O6-fEM"/>
                         <outlet property="favoriteImageView" destination="r4V-dn-sAp" id="r3c-vc-wlp"/>
                         <outlet property="headerView" destination="eDR-4O-5TS" id="tnp-Ur-iJu"/>
+                        <outlet property="navigationTitleLabel" destination="KdX-Zl-guC" id="Tgz-wg-SEl"/>
                         <outlet property="scrollView" destination="Sie-Oh-adn" id="qsH-qW-r4G"/>
                         <segue destination="37s-Xn-Wf6" kind="show" identifier="GoToBids" id="JvY-dv-Y68"/>
                         <segue destination="teL-Et-hkE" kind="show" identifier="ShowRelatedAdvSB" id="Obx-MC-CVw"/>
@@ -1765,7 +1832,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="479" y="-39"/>
+            <point key="canvasLocation" x="398" y="210"/>
         </scene>
         <!--AdDetails_NewVC-->
         <scene sceneID="5ip-QT-cyq">
@@ -1847,7 +1914,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nxm-D7-eR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-431" y="402"/>
+            <point key="canvasLocation" x="-599" y="572"/>
         </scene>
         <!--Bids View Controller-->
         <scene sceneID="LsG-0s-Ebv">
@@ -2168,7 +2235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSN-bN-V9o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-50" y="1072"/>
+            <point key="canvasLocation" x="-599" y="1366"/>
         </scene>
     </scenes>
     <resources>
@@ -2189,7 +2256,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="81O-wL-cxf"/>
-        <segue reference="Hzp-c7-fs5"/>
-        <segue reference="QEM-8Y-M8R"/>
+        <segue reference="3aq-kA-p9g"/>
+        <segue reference="xd2-Uk-jZg"/>
     </inferredMetricsTieBreakers>
 </document>
