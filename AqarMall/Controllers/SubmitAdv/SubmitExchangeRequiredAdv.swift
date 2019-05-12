@@ -123,7 +123,6 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate, UITextField
         }
     }
     
-    
     func postBuyerRequiredAdvt(){
         SubmitAdsVM.postBuyerRequiredAdvt(_postAd: postAdv, isEditMode: false) { (result, advId, error) in
             AppUtils.HideLoading()
@@ -132,7 +131,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate, UITextField
                 return
             }
             
-            self.showAlert(withTitle: .Success, text: "تمت عملية اضافةالإعلان بنجاح")
+            self.showAlert(withTitle: .Success, text: "تمت عملية اضافة الإعلان بنجاح")
             
             // AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
             
@@ -150,7 +149,7 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate, UITextField
                 return
             }
             
-            self.showAlert(withTitle: .Success, text: "تمت عملية اضافةالإعلان بنجاح")
+            self.showAlert(withTitle: .Success, text: "تمت عملية اضافة الإعلان بنجاح")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 self.backActionToRoot()
             })

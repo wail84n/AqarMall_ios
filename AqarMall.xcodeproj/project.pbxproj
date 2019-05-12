@@ -25,6 +25,8 @@
 		521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA7E226AF5850082305C /* MyAdvViewController.swift */; };
 		521DAA81226B928E0082305C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA80226B928E0082305C /* UILabel.swift */; };
 		5224FA9D228761A600DEABFB /* MyBidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9C228761A600DEABFB /* MyBidsViewController.swift */; };
+		5224FAA12288AB0100DEABFB /* myBidsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9F2288AB0100DEABFB /* myBidsCell.swift */; };
+		5224FAA22288AB0100DEABFB /* myBidsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224FAA02288AB0100DEABFB /* myBidsCell.xib */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -166,6 +168,8 @@
 		521DAA7E226AF5850082305C /* MyAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdvViewController.swift; sourceTree = "<group>"; };
 		521DAA80226B928E0082305C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		5224FA9C228761A600DEABFB /* MyBidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsViewController.swift; sourceTree = "<group>"; };
+		5224FA9F2288AB0100DEABFB /* myBidsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBidsCell.swift; sourceTree = "<group>"; };
+		5224FAA02288AB0100DEABFB /* myBidsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myBidsCell.xib; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -352,6 +356,15 @@
 			path = MyAdv;
 			sourceTree = "<group>";
 		};
+		5224FA9E2288AACC00DEABFB /* Bids */ = {
+			isa = PBXGroup;
+			children = (
+				5224FA9F2288AB0100DEABFB /* myBidsCell.swift */,
+				5224FAA02288AB0100DEABFB /* myBidsCell.xib */,
+			);
+			path = Bids;
+			sourceTree = "<group>";
+		};
 		524422B5224D68C000B2DC7F /* SearchAds */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +471,7 @@
 		52AFE77221DD5E1400FE1D70 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				5224FA9E2288AACC00DEABFB /* Bids */,
 				52389F3321FCB54700F52A0B /* AdsCell.swift */,
 				52389F3421FCB54700F52A0B /* AdsCell.xib */,
 				52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */,
@@ -854,6 +868,7 @@
 				527E0A98222B1FA9005934DC /* SubmitAdv.storyboard in Resources */,
 				52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */,
 				52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */,
+				5224FAA22288AB0100DEABFB /* myBidsCell.xib in Resources */,
 				52E6527321D9E55500E66AA2 /* UserAccount.storyboard in Resources */,
 				52E6527521D9E57800E66AA2 /* MoreSection.storyboard in Resources */,
 				52E6524121D9DB6A00E66AA2 /* Assets.xcassets in Resources */,
@@ -1039,6 +1054,7 @@
 				525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */,
 				5204DD6D22339E8300319A58 /* UIImage.swift in Sources */,
 				5261435F223A012D00339882 /* SponsorViewController.swift in Sources */,
+				5224FAA12288AB0100DEABFB /* myBidsCell.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,

@@ -130,7 +130,8 @@ class APIs: NSObject {
         case postPoints(actionType:Int8, areaID:Int32, catID:Int32, points:Int8, provinceID:Int32, sectionID:Int8, userID:Int32, deviceUDID:String)
         case getMyBidAds(userId: Int32, pageNumber: Int16)
         case getNotifications(userId: Int32, lastchange: Int)
-
+        case postBid(price: Int, userID: Int32, landID: Int32, message: String)
+        
         var contentType:ContentType {
             switch self {
             case .uploadImage():
@@ -182,6 +183,7 @@ class APIs: NSObject {
                  .updateAdvtViewCount(_, _),
                  .postRemoveAdvt(_, _),
                  .postPoints(_, _, _, _, _, _, _, _),
+                 .postBid(_, _, _, _),
                  .postSearch(_, _):
                 return .post
             default:
@@ -251,6 +253,8 @@ class APIs: NSObject {
                 return "getMyBidAds"
             case .getNotifications(_, _):
                 return "getNotifications"
+            case .postBid(_, _, _, _):
+                return "postBid"
             }
         }
         
@@ -391,6 +395,8 @@ class APIs: NSObject {
                 return ["id":id, "type":type]
             case .postPoints(let actionType,let areaID,let catID,let points,let provinceID,let sectionID,let userID,let deviceUDID):
                 return ["ActionType":actionType, "AreaID":areaID, "CatID":catID, "Points":points, "ProvinceID":provinceID, "SectionID":sectionID, "UserID":userID, "DeviceUDID":deviceUDID]
+            case .postBid(let price, let userID, let landID, let points):
+                return ["Price":price, "UserID":userID, "LandID":landID, "Message":points]
             default:
                 return nil
             }
@@ -428,7 +434,7 @@ class APIs: NSObject {
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
     typealias MyBidAdsCallback = (_ result:[MyBidAds]?, _ error:Error?) -> Void
     typealias NotificationsCallback = (_ result:[userNotification]?, _ error:Error?) -> Void
-
+    
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -494,6 +500,25 @@ class APIs: NSObject {
             }
             
             print(result["code"])
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    func postBid(_price: Int, _userID: Int32, _landID: Int32, _message: String, callback: @escaping IntegerCallback) {
+        let route = Router.postBid(price: _price, userID: _userID, landID: _landID, message: _message)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+
             if let advIda = result["code"] as? Int {
                 callback(advIda, nil)
             }else{

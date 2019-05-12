@@ -61,7 +61,45 @@ class BidsViewController: ViewController, UITextViewDelegate {
         textView.resignFirstResponder()
     }
     
+    
+    @IBAction func sendBid(_ sender: Any) {
+        let alertController = UIAlertController(title: "رسالة تأكيد", message: "هل انت متأكد من البيانات المدخلة ؟", preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "نعم", style: .destructive) { action in
+            self.postBid()
+        }
+        alertController.addAction(logoutAction)
+        
+        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true) {
+            print("wail al mohammad")
+        }
+    }
+    
+    func postBid(){
+        let userInfo = DB_UserInfo.callRecords()
+        if let _userInfo = userInfo {
+            AppUtils.ShowLoading()
+            APIs.shared.postBid(_price: Int(bidTextfield.text ?? "") ?? 0, _userID: _userInfo.entryID, _landID: adDetails.entryID ?? 0, _message: morInformationTextView.text) { (advId, error) in
+                
+                AppUtils.HideLoading()
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+                
+                if let _advId = advId{
 
+                    
+                }
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
