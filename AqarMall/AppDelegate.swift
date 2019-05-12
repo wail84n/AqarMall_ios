@@ -26,7 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppUtils.SaveData(key: .sms_attempts, value: "0")
         IQKeyboardManager.shared.enable = true
         
-        
         let uuid = UIDevice.current.identifierForVendor?.uuidString
         print("uuid \(uuid)")
         
@@ -39,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         FIRApp.configure()
-                
         return true
     }
     

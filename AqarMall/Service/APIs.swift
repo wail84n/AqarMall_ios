@@ -542,7 +542,7 @@ class APIs: NSObject {
     }
     
     func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping MyBidAdsCallback) {
-        let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
+        let route = Router.getMyBidAds(userId: 66, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
 
             guard

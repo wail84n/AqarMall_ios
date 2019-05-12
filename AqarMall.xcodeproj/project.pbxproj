@@ -24,6 +24,7 @@
 		521DAA7C226A67D00082305C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521DAA7B226A67D00082305C /* GoogleService-Info.plist */; };
 		521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA7E226AF5850082305C /* MyAdvViewController.swift */; };
 		521DAA81226B928E0082305C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA80226B928E0082305C /* UILabel.swift */; };
+		5224FA9D228761A600DEABFB /* MyBidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9C228761A600DEABFB /* MyBidsViewController.swift */; };
 		52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */; };
 		52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */; };
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
@@ -164,6 +165,7 @@
 		521DAA7B226A67D00082305C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		521DAA7E226AF5850082305C /* MyAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdvViewController.swift; sourceTree = "<group>"; };
 		521DAA80226B928E0082305C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		5224FA9C228761A600DEABFB /* MyBidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsViewController.swift; sourceTree = "<group>"; };
 		52290AA42213663A00EBEAA7 /* AdsDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsDetailsView.xib; sourceTree = "<group>"; };
 		52290AA62213671100EBEAA7 /* AdDetails_NewVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdDetails_NewVC.swift; sourceTree = "<group>"; };
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				521CCAB0224622F200841505 /* BidsViewController.swift */,
+				5224FA9C228761A600DEABFB /* MyBidsViewController.swift */,
 			);
 			path = Bids;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */,
 				52E6523821D9DB6700E66AA2 /* AppDelegate.swift in Sources */,
 				52603859224F6F4E001F3A1B /* AdvancedSearchViewController.swift in Sources */,
+				5224FA9D228761A600DEABFB /* MyBidsViewController.swift in Sources */,
 				52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */,
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */,

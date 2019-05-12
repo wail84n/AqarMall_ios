@@ -69,7 +69,25 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        let record = notifications[indexPath.row]
         
+        if record.type == 1 {
+            // +++ ads
+            self.prepareGoToAd(_notification: record)
+        }
+    }
+    
+    func prepareGoToAd(_notification : userNotification){
+        let vc = UIStoryboard(name: "Advertisements", bundle: nil).instantiateViewController(withIdentifier: "AdDetails_NewVC") as! AdDetails_NewVC
+        
+        let adv = AdvertisementInfo()
+        adv.entryID = Int32(_notification.parameters)
+        vc.adDetails = adv
+        vc.currentPage = 1
+        vc.isLastCall = true
+        vc.ads.append(adv)
+        print(vc.ads.count)
+        vc.intAdIndex = 0
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

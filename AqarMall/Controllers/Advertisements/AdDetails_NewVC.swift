@@ -66,30 +66,26 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, AdDetailsViewDelega
 //        tracker.send(builder.build() as [NSObject : AnyObject])
         
 
-        
-        if ads.count == 0 || ads.count == 1 {
-            btnNext.isEnabled = false
-            btnBack.isEnabled = false
+        if isFromNotification == false{
+            if ads.count == 0 || ads.count == 1 {
+                btnNext.isEnabled = false
+                btnBack.isEnabled = false
+                
+                btnNext.setTitleColor(UIColor.lightGray, for: .normal)
+                btnBack.setTitleColor(UIColor.lightGray, for: .normal)
+            }
             
-            btnNext.setTitleColor(UIColor.lightGray, for: .normal)
-            btnBack.setTitleColor(UIColor.lightGray, for: .normal)
+            if intAdIndex == 0  || intAdIndex == 1  {
+                btnBack.isEnabled = false
+                btnBack.setTitleColor(UIColor.lightGray, for: .normal)
+            }
+            
+            if intAdIndex == (ads.count - 1) {
+                self.btnNext.isEnabled = false
+            }
         }
         
-        if intAdIndex == 0  || intAdIndex == 1  {
-            btnBack.isEnabled = false
-            btnBack.setTitleColor(UIColor.lightGray, for: .normal)
-        }
-        
-        if intAdIndex == (ads.count - 1) {
-            self.btnNext.isEnabled = false
-        }
-
         self.callAdvDetailsAPI()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-            
-        }
-        
     }
     
     func showHideHeaderView(isHide: Bool) {
