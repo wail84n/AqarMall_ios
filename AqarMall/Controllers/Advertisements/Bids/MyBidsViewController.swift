@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyBidsViewController: UIViewController {
+class MyBidsViewController: UIViewController  {
     @IBOutlet weak var tableView: UITableView!
     var myBidAds = [MyBidAds]()
     
@@ -20,6 +20,7 @@ class MyBidsViewController: UIViewController {
     }
     
     func configureView(){
+        tableView.register(UINib(nibName: "myBidsCell", bundle: nil), forCellReuseIdentifier: "myBidsCell")
         callMyBidsAPI()
     }
     
@@ -65,7 +66,7 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
+        return 190
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,7 +77,10 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let cell = cell as? myBidsCell {
-            cell.update(with: myBidAds[indexPath.row])
+            if let bid = myBidAds[indexPath.section].myBidsList?[indexPath.row]{
+                cell.update(with: bid, _section: indexPath.section, _index: indexPath.row)
+                cell.delegate = self
+            }
         }
     }
     
@@ -130,3 +134,41 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
+
+
+extension MyBidsViewController: myBidsDelegate  {
+    func deleteBid(section: Int, index: Int) {
+        
+        let alertController = UIAlertController(title: "رسالة تأكيد", message: "هل انت متأكد من حذف السوم؟", preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "نعم", style: .destructive) { action in
+            self.doDeleteBid(section: section, index: index)
+        }
+        alertController.addAction(logoutAction)
+        
+        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true) {
+            print("wail al mohammad")
+        }
+    }
+    
+    func doDeleteBid(section: Int, index: Int){
+        AppUtils.ShowLoading()
+        if let bid = myBidAds[section].myBidsList?[index]{
+            APIs.shared.postCancelBid(_id: bid.entryID) { (advId, error) in
+                AppUtils.HideLoading()
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+                self.callMyBidsAPI()
+            }
+        }
+    }
+    
+}
+

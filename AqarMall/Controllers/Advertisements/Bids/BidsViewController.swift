@@ -92,9 +92,18 @@ class BidsViewController: ViewController, UITextViewDelegate {
                     return
                 }
                 
-                if let _advId = advId{
-
+                self.detailsTextView.text = ""
+                self.bidTextfield.text = ""
+                self.morInformationTextView.text = ""
+                
+                let alertController = UIAlertController(title: "عملية ناجحة", message: "تمت عملية ارسال السوم بنجاح", preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "تم", style: .cancel) { action in
                     
+                }
+                alertController.addAction(cancelAction)
+                
+                self.present(alertController, animated: true) {
+                    print("wail al mohammad")
                 }
             }
         }

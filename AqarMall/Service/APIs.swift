@@ -131,6 +131,7 @@ class APIs: NSObject {
         case getMyBidAds(userId: Int32, pageNumber: Int16)
         case getNotifications(userId: Int32, lastchange: Int)
         case postBid(price: Int, userID: Int32, landID: Int32, message: String)
+        case postCancelBid(id : Int)
         
         var contentType:ContentType {
             switch self {
@@ -184,7 +185,8 @@ class APIs: NSObject {
                  .postRemoveAdvt(_, _),
                  .postPoints(_, _, _, _, _, _, _, _),
                  .postBid(_, _, _, _),
-                 .postSearch(_, _):
+                 .postSearch(_, _),
+                 .postCancelBid(_):
                 return .post
             default:
                 return .get
@@ -255,6 +257,8 @@ class APIs: NSObject {
                 return "getNotifications"
             case .postBid(_, _, _, _):
                 return "postBid"
+            case .postCancelBid(_):
+                return "postCancelBid"
             }
         }
         
@@ -397,6 +401,8 @@ class APIs: NSObject {
                 return ["ActionType":actionType, "AreaID":areaID, "CatID":catID, "Points":points, "ProvinceID":provinceID, "SectionID":sectionID, "UserID":userID, "DeviceUDID":deviceUDID]
             case .postBid(let price, let userID, let landID, let points):
                 return ["Price":price, "UserID":userID, "LandID":landID, "Message":points]
+            case .postCancelBid(let id):
+                return ["id":id]
             default:
                 return nil
             }
@@ -527,6 +533,25 @@ class APIs: NSObject {
         }
     }
     
+    func postCancelBid(_id: Int, callback: @escaping IntegerCallback) {
+        let route = Router.postCancelBid(id: _id)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
     func postExchangeProperty(parameters : [String:Any], callback: @escaping IntegerCallback) {
         let route = Router.postExchangeProperty(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -567,7 +592,7 @@ class APIs: NSObject {
     }
     
     func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping MyBidAdsCallback) {
-        let route = Router.getMyBidAds(userId: 66, pageNumber: pageNumber)
+        let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
 
             guard
