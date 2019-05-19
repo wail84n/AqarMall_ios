@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyBidsViewController: UIViewController  {
+class MyBidsViewController: ViewController  {
     @IBOutlet weak var tableView: UITableView!
     var myBidAds = [MyBidAds]()
     
@@ -20,7 +20,12 @@ class MyBidsViewController: UIViewController  {
     }
     
     func configureView(){
+        title = "سوماتي"
+        setBack()
+        
         tableView.register(UINib(nibName: "myBidsCell", bundle: nil), forCellReuseIdentifier: "myBidsCell")
+        tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
+        
         callMyBidsAPI()
     }
     
@@ -38,7 +43,6 @@ class MyBidsViewController: UIViewController  {
                     self.myBidAds = _myBidAds
                     self.tableView.reloadData()
                 }
-                
             }
         }
     }
@@ -66,7 +70,7 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 190
+        return 170
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,25 +103,54 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20.0))
-        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.width-25.0, height: 20.0))
         
-        label.textAlignment = .right
-        label.font = UIFont.systemFont(ofSize: 11)
-        header.addSubview(label)
-        label.textColor = UIColor.white
-        if section == 0 {
-            header.backgroundColor = UIColor.red
-            label.text = "الفائزون لغاية هذه اللحظة"
+        let header = tableView.dequeueReusableCell(withIdentifier: "AdsCell") as! AdsCell
+        
+        //arrayOfArraysOfContacts is a 2D array of contacts by section
+        //Each contact has an accountID, and we pull the first one on each section
+        let record = myBidAds[section]
+
+        header.adsTitleLabel.text = record.title
+        header.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
+        header.detailsLable.text = record.details
+        header.priceLabel.text = "\(record.price ?? 0)"
+        header.priceTitleLabel.text = "\(record.priceLabel ?? "")"
+        header.sizeLabel.text = "\(record.size ?? "")"
+        header.AdvIdLabel.text = "\(record.entryID ?? 0)"
+        // cell.cellView.dropShadow(scale: true)
+        
+        if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
+            header.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
         }else{
-            header.backgroundColor = UIColor.red
-            label.text = "حظاً أوفر في المرات القادمة"
+            header.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
         }
+        //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+        header.favorateButton.tag = section
+      //  header.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
+        
         return header
+        
+        
+//
+//        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 20.0))
+//        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.width-25.0, height: 20.0))
+//
+//        label.textAlignment = .right
+//        label.font = UIFont.systemFont(ofSize: 11)
+//        header.addSubview(label)
+//        label.textColor = UIColor.white
+//        if section == 0 {
+//            header.backgroundColor = UIColor.red
+//            label.text = "الفائزون لغاية هذه اللحظة"
+//        }else{
+//            header.backgroundColor = UIColor.red
+//            label.text = "حظاً أوفر في المرات القادمة"
+//        }
+//        return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+        return 135
     }
     
     func prepareGoToAd(_notification : userNotification){

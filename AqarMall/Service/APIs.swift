@@ -132,6 +132,10 @@ class APIs: NSObject {
         case getNotifications(userId: Int32, lastchange: Int)
         case postBid(price: Int, userID: Int32, landID: Int32, message: String)
         case postCancelBid(id : Int)
+        case getBidsByAdID(Id : Int32)
+        case postApproveBid(Id : Int32, type : Int8)
+        
+        
         
         var contentType:ContentType {
             switch self {
@@ -186,7 +190,8 @@ class APIs: NSObject {
                  .postPoints(_, _, _, _, _, _, _, _),
                  .postBid(_, _, _, _),
                  .postSearch(_, _),
-                 .postCancelBid(_):
+                 .postCancelBid(_),
+                 .postApproveBid(_, _):
                 return .post
             default:
                 return .get
@@ -259,6 +264,10 @@ class APIs: NSObject {
                 return "postBid"
             case .postCancelBid(_):
                 return "postCancelBid"
+            case .getBidsByAdID(_):
+                return "getBidsByLandID"
+            case .postApproveBid(_, _):
+                return "postApproveBid"
             }
         }
         
@@ -369,8 +378,11 @@ class APIs: NSObject {
             case .getNotifications(let userId, let lastchange):
                 dict["userId"] = userId
                 dict["lastchange"] = lastchange
-//            case .postSearch(_,  let pageNumber):
-//                dict["page"] = pageNumber
+            case .getBidsByAdID(let Id):
+                dict["landId"] = Id
+            case .postApproveBid(let Id,let type):
+                dict["id"] = Id
+                dict["type"] = type
             default:
                 return nil
             }
@@ -440,6 +452,8 @@ class APIs: NSObject {
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
     typealias MyBidAdsCallback = (_ result:[MyBidAds]?, _ error:Error?) -> Void
     typealias NotificationsCallback = (_ result:[userNotification]?, _ error:Error?) -> Void
+    typealias ReceivedBidsCallback = (_ result:[ReceivedBids]?, _ error:Error?) -> Void
+    
     
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
@@ -466,7 +480,7 @@ class APIs: NSObject {
                     callback(-1, response.error ?? APIError.unknown)
                     return
             }
-            print(result["code"])
+
             if let advIda = result["code"] as? Int {
                 callback(advIda, nil)
             }else{
@@ -474,6 +488,27 @@ class APIs: NSObject {
             }
         }
     }
+    
+    
+    func postApproveBid(Id : Int32, type : Int8, callback: @escaping IntegerCallback) {
+        let route = Router.postApproveBid(Id: Id, type: type)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
     
     func updateAdvt(parameters : [String:Any], callback: @escaping IntegerCallback) {
         let route = Router.updateAdvt(parameters: parameters)
@@ -592,6 +627,7 @@ class APIs: NSObject {
     }
     
     func getMyBidAds(userId : Int32, pageNumber: Int16, callback: @escaping MyBidAdsCallback) {
+        // +++ this api for the Bids that the user send to other ads
         let route = Router.getMyBidAds(userId: userId, pageNumber: pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
 
@@ -606,6 +642,25 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+    
+    
+    func getReceivedBids(advId : Int32, callback: @escaping ReceivedBidsCallback) {
+        // +++ this api for the Bids that the user recived to his ads
+        let route = Router.getBidsByAdID(Id: advId)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ ReceivedBids(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
     
     func getNotifications(userId : Int32, lastchange: Int, callback: @escaping NotificationsCallback) {
         let route = Router.getNotifications(userId: userId, lastchange: lastchange)

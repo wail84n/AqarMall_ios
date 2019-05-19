@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReceivedBidsCell" id="KGk-i7-Jjw" customClass="ReceivedBidsCell" customModule="AqarMall" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="169.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEh-u9-8Lv">
+                        <rect key="frame" x="8" y="0.0" width="304" height="169.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUY-4W-9yT">
+                                <rect key="frame" x="181.5" y="8" width="32.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Vd2-12-Npu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="سعر السوم" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9b-07-1yA">
+                                <rect key="frame" x="222" y="12" width="62" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="7l2-RN-1yA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtP-Gg-td7">
+                                <rect key="frame" x="181.5" y="37" width="32.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="PzC-mV-D0G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="تاريخ السوم" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="hiO-L7-hM1">
+                                <rect key="frame" x="222" y="38" width="62" height="16"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="JvB-X5-5Aw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xC-hd-zsw">
+                                <rect key="frame" x="179.5" y="99" width="34.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="QrB-QB-s3A"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="الحالة" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAG-tM-ch3">
+                                <rect key="frame" x="222" y="102" width="62" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="O0x-DA-VhW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="oCi-FT-bqs">
+                                <rect key="frame" x="8" y="63" width="206" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="OTM-Od-Hm7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="رسالة" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N62-L3-7pm">
+                                <rect key="frame" x="222" y="72" width="62" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="62" id="OIU-2k-cIc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-X1-unk">
+                                <rect key="frame" x="8" y="128" width="130" height="35"/>
+                                <color key="backgroundColor" red="1" green="0.20499674479999999" blue="0.43218315969999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ksO-sY-Iwo"/>
+                                </constraints>
+                                <state key="normal" title="رفض السوم">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rejectBidAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z1E-Sw-DgR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="an8-D9-mf3">
+                                <rect key="frame" x="166" y="128" width="130" height="35"/>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="Mei-0f-330"/>
+                                </constraints>
+                                <state key="normal" title="قبول السوم">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="7"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="acceptBidAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0Uh-mM-9sx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="N62-L3-7pm" firstAttribute="leading" secondItem="oCi-FT-bqs" secondAttribute="trailing" constant="8" id="577-Hx-v3w"/>
+                            <constraint firstItem="an8-D9-mf3" firstAttribute="leading" secondItem="YVN-X1-unk" secondAttribute="trailing" constant="28" id="HgZ-S1-A2T"/>
+                            <constraint firstItem="zAG-tM-ch3" firstAttribute="top" secondItem="N62-L3-7pm" secondAttribute="bottom" constant="14" id="JHx-ff-EUz"/>
+                            <constraint firstItem="an8-D9-mf3" firstAttribute="width" secondItem="YVN-X1-unk" secondAttribute="width" id="LFE-xA-4Ko"/>
+                            <constraint firstItem="hiO-L7-hM1" firstAttribute="top" secondItem="F9b-07-1yA" secondAttribute="bottom" constant="10" id="LrP-kD-eQ6"/>
+                            <constraint firstAttribute="trailing" secondItem="an8-D9-mf3" secondAttribute="trailing" constant="8" id="MBn-Y6-7YI"/>
+                            <constraint firstAttribute="trailing" secondItem="N62-L3-7pm" secondAttribute="trailing" constant="20" id="NMK-ij-Pwd"/>
+                            <constraint firstAttribute="bottom" secondItem="YVN-X1-unk" secondAttribute="bottom" constant="6.5" id="ORU-W4-Msw"/>
+                            <constraint firstItem="wtP-Gg-td7" firstAttribute="top" secondItem="EUY-4W-9yT" secondAttribute="bottom" constant="8" id="PXx-8d-zZe"/>
+                            <constraint firstItem="6xC-hd-zsw" firstAttribute="top" secondItem="oCi-FT-bqs" secondAttribute="bottom" constant="1" id="Rq3-Le-psm"/>
+                            <constraint firstAttribute="trailing" secondItem="zAG-tM-ch3" secondAttribute="trailing" constant="20" id="Sff-az-fRK"/>
+                            <constraint firstAttribute="bottom" secondItem="an8-D9-mf3" secondAttribute="bottom" constant="6.5" id="SiV-Uy-2gN"/>
+                            <constraint firstItem="F9b-07-1yA" firstAttribute="leading" secondItem="EUY-4W-9yT" secondAttribute="trailing" constant="8" id="Xaj-wP-96A"/>
+                            <constraint firstAttribute="trailing" secondItem="F9b-07-1yA" secondAttribute="trailing" constant="20" id="ade-dV-qiH"/>
+                            <constraint firstItem="hiO-L7-hM1" firstAttribute="leading" secondItem="wtP-Gg-td7" secondAttribute="trailing" constant="8" id="h1R-1l-MLB"/>
+                            <constraint firstItem="oCi-FT-bqs" firstAttribute="top" secondItem="wtP-Gg-td7" secondAttribute="bottom" constant="5" id="h4h-4o-6Os"/>
+                            <constraint firstAttribute="trailing" secondItem="hiO-L7-hM1" secondAttribute="trailing" constant="20" id="k5e-Wy-bYd"/>
+                            <constraint firstItem="YVN-X1-unk" firstAttribute="leading" secondItem="nEh-u9-8Lv" secondAttribute="leading" constant="8" id="pNk-5h-me1"/>
+                            <constraint firstItem="oCi-FT-bqs" firstAttribute="leading" secondItem="nEh-u9-8Lv" secondAttribute="leading" constant="8" id="rD8-uF-Hb2"/>
+                            <constraint firstItem="zAG-tM-ch3" firstAttribute="leading" secondItem="6xC-hd-zsw" secondAttribute="trailing" constant="8" id="rjt-Mv-Jdd"/>
+                            <constraint firstItem="EUY-4W-9yT" firstAttribute="top" secondItem="nEh-u9-8Lv" secondAttribute="top" constant="8" id="uEY-SY-f3q"/>
+                            <constraint firstItem="N62-L3-7pm" firstAttribute="top" secondItem="hiO-L7-hM1" secondAttribute="bottom" constant="18" id="xaN-Op-UGo"/>
+                            <constraint firstItem="F9b-07-1yA" firstAttribute="top" secondItem="nEh-u9-8Lv" secondAttribute="top" constant="12" id="zTg-TU-4ei"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nEh-u9-8Lv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Egj-M3-mVc"/>
+                    <constraint firstItem="nEh-u9-8Lv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ivq-Hy-0KI"/>
+                    <constraint firstAttribute="bottom" secondItem="nEh-u9-8Lv" secondAttribute="bottom" id="l2Z-b3-jC6"/>
+                    <constraint firstAttribute="trailing" secondItem="nEh-u9-8Lv" secondAttribute="trailing" constant="8" id="raB-F4-Mzf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="isApprovedLabel" destination="6xC-hd-zsw" id="01L-mf-oZb"/>
+                <outlet property="messageLabel" destination="oCi-FT-bqs" id="THE-8s-BFq"/>
+                <outlet property="priceLable" destination="EUY-4W-9yT" id="M4p-Jb-bBD"/>
+                <outlet property="regDateLable" destination="wtP-Gg-td7" id="ghI-Jt-q1j"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

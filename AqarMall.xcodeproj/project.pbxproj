@@ -24,6 +24,12 @@
 		521DAA7C226A67D00082305C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521DAA7B226A67D00082305C /* GoogleService-Info.plist */; };
 		521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA7E226AF5850082305C /* MyAdvViewController.swift */; };
 		521DAA81226B928E0082305C /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521DAA80226B928E0082305C /* UILabel.swift */; };
+		521E68DF22903F0E00DAA470 /* myBidsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68DD22903F0E00DAA470 /* myBidsHeaderCell.swift */; };
+		521E68E022903F0E00DAA470 /* myBidsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E68DE22903F0E00DAA470 /* myBidsHeaderCell.xib */; };
+		521E68E62290FC9300DAA470 /* ReceivedBidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68E52290FC9300DAA470 /* ReceivedBidsViewController.swift */; };
+		521E68E92290FD5D00DAA470 /* ReceivedBidsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68E72290FD5D00DAA470 /* ReceivedBidsCell.swift */; };
+		521E68EA2290FD5D00DAA470 /* ReceivedBidsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */; };
+		521E68EC229100A200DAA470 /* ReceivedBids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68EB229100A200DAA470 /* ReceivedBids.swift */; };
 		5224FA9D228761A600DEABFB /* MyBidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9C228761A600DEABFB /* MyBidsViewController.swift */; };
 		5224FAA12288AB0100DEABFB /* myBidsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9F2288AB0100DEABFB /* myBidsCell.swift */; };
 		5224FAA22288AB0100DEABFB /* myBidsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224FAA02288AB0100DEABFB /* myBidsCell.xib */; };
@@ -167,6 +173,12 @@
 		521DAA7B226A67D00082305C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		521DAA7E226AF5850082305C /* MyAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAdvViewController.swift; sourceTree = "<group>"; };
 		521DAA80226B928E0082305C /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		521E68DD22903F0E00DAA470 /* myBidsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBidsHeaderCell.swift; sourceTree = "<group>"; };
+		521E68DE22903F0E00DAA470 /* myBidsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myBidsHeaderCell.xib; sourceTree = "<group>"; };
+		521E68E52290FC9300DAA470 /* ReceivedBidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBidsViewController.swift; sourceTree = "<group>"; };
+		521E68E72290FD5D00DAA470 /* ReceivedBidsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBidsCell.swift; sourceTree = "<group>"; };
+		521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceivedBidsCell.xib; sourceTree = "<group>"; };
+		521E68EB229100A200DAA470 /* ReceivedBids.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBids.swift; sourceTree = "<group>"; };
 		5224FA9C228761A600DEABFB /* MyBidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsViewController.swift; sourceTree = "<group>"; };
 		5224FA9F2288AB0100DEABFB /* myBidsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBidsCell.swift; sourceTree = "<group>"; };
 		5224FAA02288AB0100DEABFB /* myBidsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myBidsCell.xib; sourceTree = "<group>"; };
@@ -344,6 +356,7 @@
 			children = (
 				521CCAB0224622F200841505 /* BidsViewController.swift */,
 				5224FA9C228761A600DEABFB /* MyBidsViewController.swift */,
+				521E68E52290FC9300DAA470 /* ReceivedBidsViewController.swift */,
 			);
 			path = Bids;
 			sourceTree = "<group>";
@@ -361,6 +374,10 @@
 			children = (
 				5224FA9F2288AB0100DEABFB /* myBidsCell.swift */,
 				5224FAA02288AB0100DEABFB /* myBidsCell.xib */,
+				521E68DD22903F0E00DAA470 /* myBidsHeaderCell.swift */,
+				521E68DE22903F0E00DAA470 /* myBidsHeaderCell.xib */,
+				521E68E72290FD5D00DAA470 /* ReceivedBidsCell.swift */,
+				521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */,
 			);
 			path = Bids;
 			sourceTree = "<group>";
@@ -735,6 +752,7 @@
 				524422B3224D51E000B2DC7F /* PostExchangeRequiredAds.swift */,
 				525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */,
 				524519E4225A8F0E0034CD69 /* ContactUs.swift */,
+				521E68EB229100A200DAA470 /* ReceivedBids.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -865,6 +883,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521E68EA2290FD5D00DAA470 /* ReceivedBidsCell.xib in Resources */,
 				527E0A98222B1FA9005934DC /* SubmitAdv.storyboard in Resources */,
 				52E6524421D9DB6A00E66AA2 /* LaunchScreen.storyboard in Resources */,
 				52290AA52213663A00EBEAA7 /* AdsDetailsView.xib in Resources */,
@@ -875,6 +894,7 @@
 				527E0AAE223041D1005934DC /* ChooseAddressCell.xib in Resources */,
 				52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */,
 				52AFE77621DD5E6000FE1D70 /* Notifications.storyboard in Resources */,
+				521E68E022903F0E00DAA470 /* myBidsHeaderCell.xib in Resources */,
 				5247F662225EE7AA002ECD33 /* generalPagesCell.xib in Resources */,
 				52E6527721D9E5B600E66AA2 /* Advertisements.storyboard in Resources */,
 				521DAA7C226A67D00082305C /* GoogleService-Info.plist in Resources */,
@@ -1025,10 +1045,12 @@
 				524A5C6C226FABC2008843F4 /* MyBidAds.swift in Sources */,
 				521CCAB1224622F200841505 /* BidsViewController.swift in Sources */,
 				52AFE76D21DBF35700FE1D70 /* User.swift in Sources */,
+				521E68DF22903F0E00DAA470 /* myBidsHeaderCell.swift in Sources */,
 				527E0A9F222C540A005934DC /* ChooseAdvCatedoryViewController.swift in Sources */,
 				52E6523C21D9DB6700E66AA2 /* SecondViewController.swift in Sources */,
 				521DAA81226B928E0082305C /* UILabel.swift in Sources */,
 				524422B7224D68FE00B2DC7F /* SelectAddressViewController.swift in Sources */,
+				521E68E92290FD5D00DAA470 /* ReceivedBidsCell.swift in Sources */,
 				527E0A902225C881005934DC /* bannerCell.swift in Sources */,
 				52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */,
 				5281D89821F3494A00A177B0 /* Areas.swift in Sources */,
@@ -1056,9 +1078,11 @@
 				5261435F223A012D00339882 /* SponsorViewController.swift in Sources */,
 				5224FAA12288AB0100DEABFB /* myBidsCell.swift in Sources */,
 				52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */,
+				521E68EC229100A200DAA470 /* ReceivedBids.swift in Sources */,
 				52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */,
 				5281D8A221F3A1F400A177B0 /* Banners.swift in Sources */,
 				52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */,
+				521E68E62290FC9300DAA470 /* ReceivedBidsViewController.swift in Sources */,
 				524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
 				5204DD6922339DB600319A58 /* CropView.swift in Sources */,

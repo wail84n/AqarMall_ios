@@ -2138,7 +2138,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ekU-jR-OIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798" y="572"/>
+            <point key="canvasLocation" x="1809" y="136"/>
+        </scene>
+        <!--Received Bids View Controller-->
+        <scene sceneID="QPO-Js-Fde">
+            <objects>
+                <viewController storyboardIdentifier="ReceivedBidsViewController" id="Voh-iZ-HZQ" customClass="ReceivedBidsViewController" customModule="AqarMall" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TR2-Fr-pwT"/>
+                        <viewControllerLayoutGuide type="bottom" id="OTf-Bf-8Y9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7fL-Oy-Mpo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xPD-0I-4Eh">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Voh-iZ-HZQ" id="IBQ-7V-gNM"/>
+                                    <outlet property="delegate" destination="Voh-iZ-HZQ" id="EVx-O8-eV6"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xPD-0I-4Eh" firstAttribute="top" secondItem="TR2-Fr-pwT" secondAttribute="bottom" id="3t7-xc-X8p"/>
+                            <constraint firstItem="xPD-0I-4Eh" firstAttribute="leading" secondItem="7fL-Oy-Mpo" secondAttribute="leading" id="Bhi-bV-t5S"/>
+                            <constraint firstItem="OTf-Bf-8Y9" firstAttribute="top" secondItem="xPD-0I-4Eh" secondAttribute="bottom" id="jPc-5j-wgZ"/>
+                            <constraint firstAttribute="trailing" secondItem="xPD-0I-4Eh" secondAttribute="trailing" id="nGq-L7-4wP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="xPD-0I-4Eh" id="pxs-an-ZJ9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N7Z-Z1-PNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1482" y="869"/>
         </scene>
         <!--Select Address View Controller-->
         <scene sceneID="n3d-bd-AvT">

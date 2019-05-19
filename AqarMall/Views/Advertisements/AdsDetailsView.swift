@@ -26,6 +26,7 @@ protocol AdDetailsViewDelegate {
     func showHideHeaderView(isHide :Bool)
     func contactByWhatsApp(AdDetails: AdvertisementInfo)
     func showRelatedAdv(adDetails: AdvertisementInfo)
+    func showReceivedAds(adDetails: AdvertisementInfo, receivedBids: [ReceivedBids])
 }
 
 extension UIView {
@@ -80,6 +81,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var bidsView: UIView!
     @IBOutlet weak var moreDetailsButton: UIButton!
     @IBOutlet weak var catNameLabel: UILabel!
+    @IBOutlet weak var bidsCounterLabel: UILabel!
     
     @IBOutlet weak var descriptionConstraint_Height: NSLayoutConstraint!
     @IBOutlet weak var descriptionViewConstraint_Height: NSLayoutConstraint!
@@ -103,6 +105,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var AdDetails = AdvertisementInfo()
     var viewHeight : CGFloat = 1950
     var arrAdve = [AdvertisementInfo]()
+    var receivedBids = [ReceivedBids]()
     var isRent = false
   //  var catId  = 0
     var isFromMyAds = false
@@ -111,9 +114,16 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType){
         self.isFromMyAds = isFromMyAds
       //  self.catId = catId
+        bidsCounterLabel.isHidden = true
+        
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
     
+        if isFromMyAds{
+            bidsButton.setTitle("السومات الواردة", for: .normal)
+            self.callReceivedBidsAPI()
+        }
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
@@ -169,6 +179,35 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             lblImageNo.text = ("\(0) / \(intImagesCount)")
         }
         
+    }
+    
+    
+    func callReceivedBidsAPI(){
+        if let advId = AdDetails.entryID {
+            APIs.shared.getReceivedBids(advId: advId) { (result, error) in
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+                
+                if let _myBidAds = result {
+                    self.receivedBids = _myBidAds
+                    var counter = 0
+                    for bid in _myBidAds {
+                        if bid.approved == false {
+                            counter += 1
+                        }
+                    }
+                    
+                    if counter > 0 {
+                        self.bidsCounterLabel.isHidden = false
+                        self.bidsCounterLabel.text = "\(counter)"
+                    }
+                    
+                }
+            }
+        }
+
     }
     
     func validateImages(){
@@ -310,8 +349,14 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     }
     
     @IBAction func goToBids(_ sender: Any) {
-        if let _delegate = delegate {
-            _delegate.goToBidViewController()
+        if isFromMyAds {
+            if let _delegate = delegate {
+                _delegate.showReceivedAds(adDetails: AdDetails, receivedBids: receivedBids)
+            }
+        }else{
+            if let _delegate = delegate {
+                _delegate.goToBidViewController()
+            }
         }
     }
     
@@ -553,7 +598,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBAction func renewButtonPressed(_ sender: Any) {
      //   self.ValidateCredit()
     }
-    
+
 //    private func ValidateCredit() {
 //        PostAdsVM.getFreeAdsFor(userID: (self.user?.userID)!, completion: {
 //            (freeAdsCount, categoryIds) in

@@ -966,12 +966,36 @@
                                         <action selector="goToBids:" destination="iN0-l3-epB" eventType="touchUpInside" id="mux-iQ-FDw"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="a1i-KW-EkK">
+                                    <rect key="frame" x="99.5" y="8" width="25" height="25"/>
+                                    <color key="backgroundColor" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="PuG-cD-IXD"/>
+                                        <constraint firstAttribute="height" constant="25" id="RDZ-eb-1fN"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="0.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="XrR-qy-xTW" firstAttribute="centerX" secondItem="Tl8-hy-Cxq" secondAttribute="centerX" id="6mB-lh-qhg"/>
                                 <constraint firstAttribute="height" constant="80" id="NBx-3E-061"/>
                                 <constraint firstItem="XrR-qy-xTW" firstAttribute="top" secondItem="Tl8-hy-Cxq" secondAttribute="top" constant="20" id="ZIJ-Eu-xy4"/>
+                                <constraint firstItem="a1i-KW-EkK" firstAttribute="top" secondItem="Tl8-hy-Cxq" secondAttribute="top" constant="8" id="jjS-39-XZn"/>
+                                <constraint firstItem="a1i-KW-EkK" firstAttribute="leading" secondItem="XrR-qy-xTW" secondAttribute="leading" constant="-13" id="mBj-1N-BsU"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i8q-wC-FWt">
@@ -1041,6 +1065,7 @@
                 <outlet property="bathroomNoLabel" destination="mDo-QZ-7Wd" id="keu-75-qz6"/>
                 <outlet property="bathroomNoView" destination="0VX-Ta-8Jd" id="9Eu-LS-TOt"/>
                 <outlet property="bidsButton" destination="XrR-qy-xTW" id="B83-wf-bB7"/>
+                <outlet property="bidsCounterLabel" destination="a1i-KW-EkK" id="6h5-0u-vt4"/>
                 <outlet property="bidsView" destination="Tl8-hy-Cxq" id="lv6-Hw-LSd"/>
                 <outlet property="buildingSizeLabel" destination="Cw5-cg-bBp" id="DM2-zJ-Fbi"/>
                 <outlet property="buildingSizeView" destination="Ehb-KA-don" id="8N9-xa-fUN"/>
