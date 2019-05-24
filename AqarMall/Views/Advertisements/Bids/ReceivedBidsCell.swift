@@ -18,6 +18,8 @@ class ReceivedBidsCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var priceLable: UILabel!
     @IBOutlet weak var regDateLable: UILabel!
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var rejectButton: UIButton!
     
     var delegate : ReceivedBidsDelegate? = nil
     
@@ -33,8 +35,16 @@ class ReceivedBidsCell: UITableViewCell {
         
         if myBidAds.approved{
             isApprovedLabel.text = "مقبول"
+            acceptButton.isEnabled = false
+            rejectButton.isEnabled = false
+            acceptButton.alpha = 0.6
+            rejectButton.alpha = 0.6
         }else{
             isApprovedLabel.text = "لم يتم الرد عليها بعد"
+            acceptButton.isEnabled = true
+            rejectButton.isEnabled = true
+            acceptButton.alpha = 1
+            rejectButton.alpha = 1
         }
         messageLabel.text = myBidAds.message
         priceLable.text = "\(myBidAds.price)"

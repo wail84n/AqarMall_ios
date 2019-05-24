@@ -118,8 +118,6 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
                 }else{
                     self.showAlert(withTitle: .NoData, text: "لا توجد تفاصيل عن هذا الإعلان حالياً")
                 }
-                
-               
             }
         }
     }

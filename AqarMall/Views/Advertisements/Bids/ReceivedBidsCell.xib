@@ -174,10 +174,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="acceptButton" destination="an8-D9-mf3" id="J8R-9L-WLf"/>
                 <outlet property="isApprovedLabel" destination="6xC-hd-zsw" id="01L-mf-oZb"/>
                 <outlet property="messageLabel" destination="oCi-FT-bqs" id="THE-8s-BFq"/>
                 <outlet property="priceLable" destination="EUY-4W-9yT" id="M4p-Jb-bBD"/>
                 <outlet property="regDateLable" destination="wtP-Gg-td7" id="ghI-Jt-q1j"/>
+                <outlet property="rejectButton" destination="YVN-X1-unk" id="hdq-3s-Mvm"/>
             </connections>
         </tableViewCell>
     </objects>

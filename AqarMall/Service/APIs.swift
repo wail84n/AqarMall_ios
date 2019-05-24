@@ -267,7 +267,7 @@ class APIs: NSObject {
             case .getBidsByAdID(_):
                 return "getBidsByLandID"
             case .postApproveBid(_, _):
-                return "postApproveBid"
+                return "/postApproveBid"
             }
         }
         
@@ -380,9 +380,6 @@ class APIs: NSObject {
                 dict["lastchange"] = lastchange
             case .getBidsByAdID(let Id):
                 dict["landId"] = Id
-            case .postApproveBid(let Id,let type):
-                dict["id"] = Id
-                dict["type"] = type
             default:
                 return nil
             }
@@ -415,6 +412,8 @@ class APIs: NSObject {
                 return ["Price":price, "UserID":userID, "LandID":landID, "Message":points]
             case .postCancelBid(let id):
                 return ["id":id]
+            case .postApproveBid(let id,let type):
+                return ["id":id, "type":type]
             default:
                 return nil
             }

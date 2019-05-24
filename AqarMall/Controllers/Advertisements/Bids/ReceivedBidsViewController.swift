@@ -157,51 +157,65 @@ extension ReceivedBidsViewController: ReceivedBidsDelegate  {
     }
     
     func accept_reject_Bid(index: Int, type : Int8){
+        var message = ""
+        if type == 1 {
+            message = "هل انت متأكد من قبول السوم ؟"
+        }else{
+            message = "هل انت متأكد من رفض السوم ؟"
+        }
+        let alertController = UIAlertController(title: "رسالة تأكيد", message: message, preferredStyle: .alert)
+        
+        let logoutAction = UIAlertAction(title: "نعم", style: .destructive) { action in
+            self.doAccept_reject_Bid(index: index, type: type)
+        }
+        alertController.addAction(logoutAction)
+        
+        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true) {
+            print("wail al mohammad")
+        }
+
+    }
+
+    func doAccept_reject_Bid(index: Int, type : Int8){
+        AppUtils.ShowLoading()
         let bid = receivedBids[index]
         APIs.shared.postApproveBid(Id: Int32(bid.entryID), type: type) { (advId, error) in
+            AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")
+                self.showAlert(withTitle: .Error, text: "لم تتم العميلة ")
                 return
             }
             
             
             if let _advId = advId{
+                self.callReceivedBidsAPI()
+                self.showAlert(withTitle: .Success, text: "تمت العملية بنجاح")
                 
             }
         }
     }
-//    func deleteBid(section: Int, index: Int) {
-//
-//        let alertController = UIAlertController(title: "رسالة تأكيد", message: "هل انت متأكد من حذف السوم؟", preferredStyle: .alert)
-//
-//        let logoutAction = UIAlertAction(title: "نعم", style: .destructive) { action in
-//            self.doDeleteBid(section: section, index: index)
-//        }
-//        alertController.addAction(logoutAction)
-//
-//        let cancelAction = UIAlertAction(title: "إلغاء", style: .cancel) { action in
-//
-//        }
-//        alertController.addAction(cancelAction)
-//
-//        self.present(alertController, animated: true) {
-//            print("wail al mohammad")
-//        }
-//    }
-//
-//    func doDeleteBid(section: Int, index: Int){
-//        AppUtils.ShowLoading()
-//        if let bid = myBidAds[section].myBidsList?[index]{
-//            APIs.shared.postCancelBid(_id: bid.entryID) { (advId, error) in
-//                AppUtils.HideLoading()
-//                guard error == nil else {
-//                    print(error ?? "")
-//                    return
-//                }
-//                self.callMyBidsAPI()
-//            }
-//        }
-//    }
+    
+    func callReceivedBidsAPI(){
+        if let advId = adDetails.entryID {
+            APIs.shared.getReceivedBids(advId: advId) { (result, error) in
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+                
+                if let _myBidAds = result {
+                    self.receivedBids = _myBidAds
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
 }
 
