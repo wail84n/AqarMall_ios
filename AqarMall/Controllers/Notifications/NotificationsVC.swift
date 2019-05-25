@@ -12,6 +12,7 @@ class NotificationsVC: ViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var notifications = [userNotification]()
+    var isFromDetails = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,11 @@ class NotificationsVC: ViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         callNotificationAPI()
+        if isFromDetails == false{
+            AppUtils.SendGAIScreenName(screenName: "الإشعارات")
+        }else{
+            isFromDetails = false
+        }
     }
     
     func configureView(){
@@ -82,7 +88,7 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     
     func prepareGoToAd(_notification : userNotification){
         let vc = UIStoryboard(name: "Advertisements", bundle: nil).instantiateViewController(withIdentifier: "AdDetails_NewVC") as! AdDetails_NewVC
-        
+        isFromDetails = true
         let adv = AdvertisementInfo()
         adv.entryID = Int32(_notification.parameters)
         vc.adDetails = adv
@@ -96,7 +102,7 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     
     func prepareBid(_notification : userNotification){
         let vc = UIStoryboard(name: "Advertisements", bundle: nil).instantiateViewController(withIdentifier: "AdDetails_NewVC") as! AdDetails_NewVC
-        
+        isFromDetails = true
         let adv = AdvertisementInfo()
         adv.entryID = Int32(_notification.parameters)
         vc.adDetails = adv

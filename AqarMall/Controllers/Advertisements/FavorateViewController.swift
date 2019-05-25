@@ -84,7 +84,7 @@ class FavorateViewController: ViewController, AdDetailsDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
- 
+        AppUtils.SendGAIScreenName(screenName: "المفضلة")
         refreshView()
     }
     

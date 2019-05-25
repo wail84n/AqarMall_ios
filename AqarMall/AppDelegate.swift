@@ -38,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         FIRApp.configure()
+        
+        GAI.sharedInstance().dispatchInterval = 2
+                
         return true
     }
     

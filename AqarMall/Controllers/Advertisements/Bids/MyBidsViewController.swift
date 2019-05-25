@@ -22,7 +22,7 @@ class MyBidsViewController: ViewController  {
     func configureView(){
         title = "سوماتي"
         setBack()
-        
+        AppUtils.SendGAIScreenName(screenName: "سوماتي")
         tableView.register(UINib(nibName: "myBidsCell", bundle: nil), forCellReuseIdentifier: "myBidsCell")
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         

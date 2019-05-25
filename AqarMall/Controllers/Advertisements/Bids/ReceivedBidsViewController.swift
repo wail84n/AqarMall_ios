@@ -22,6 +22,7 @@ class ReceivedBidsViewController: ViewController {
     
     func configureView(){
         title = "السومات الواردة"
+        AppUtils.SendGAIScreenName(screenName: "السومات الواردة")
         setBack()
         
         tableView.register(UINib(nibName: "ReceivedBidsCell", bundle: nil), forCellReuseIdentifier: "ReceivedBidsCell")

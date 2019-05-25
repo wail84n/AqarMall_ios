@@ -51,10 +51,13 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
    // var parameters : [String : Any] = [:]
     var advancedSearch = AdvancedSearch()
     var isFormAdvancedSearch = false
+    var isFromAdvDetails = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         configureView()
+        AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
     }
 
     func configureView(){
@@ -272,6 +275,13 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         self.headerHeightConstraint.constant = self.maxHeaderHeight
         updateHeader()
         
+        if isFromAdvDetails == false {
+            AppUtils.SendGAIScreenName(screenName: "الرئيسية")
+        }else{
+            isFromAdvDetails = false
+        }
+        
+        
         getBannersData()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -363,6 +373,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             AdvancedSearchButton.isHidden = true
             clearTableView()
             getExchangeAds()
+            AppUtils.SendGAIScreenName(screenName: "عقار للبدل")
             break
         case 1:
             maxHeaderHeight = 160
@@ -375,6 +386,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             AdvancedSearchButton.isHidden = true
             clearTableView()
             getRequiredAds()
+            AppUtils.SendGAIScreenName(screenName: "مطلوب عقار")
             break
         case 2:
             maxHeaderHeight = 200
@@ -386,6 +398,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             AdvancedSearchButton.isHidden = false
             advancedSearch.sectionID = 1
             getCategoriesData(isRent: true)
+            AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
         case 3:
             maxHeaderHeight = 200
             segmentedControl.isHidden = false
@@ -396,6 +409,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             addressView.isHidden = false
             advancedSearch.sectionID = 2
             getCategoriesData(isRent: false)
+            AppUtils.SendGAIScreenName(screenName: "عقار للبيع")
         default:
             break
         }
@@ -532,25 +546,14 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             print(isLastCall)
             navPlace.isLastCall = isLastCall
 
-          //  navPlace.catId = intCat
-
             navPlace.proccessType = 2
-            
-//            switch sectionSegment.selectedSegmentIndex
-//            {
-//            case 2:
-//                navPlace.advType = .rent
-//            case 3:
-//                navPlace.advType = .sale
-//            default:
-//                break
-//            }
             
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
             if let _adDetails = adDetails {
                 navPlace.adDetails = _adDetails
             }
+            isFromAdvDetails = true
         }else if let navPlace = segue.destination as? BannerDetailsViewController {
             let bannerDetails = sender as?  BannersData
             if let banner = bannerDetails {
@@ -563,8 +566,10 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             {
             case 0:
                 navPlace.advType = .for_exchange
+                AppUtils.SendGAIScreenName(screenName: "تفاصيل عقار للبدل")
             case 1:
                 navPlace.advType = .required
+                AppUtils.SendGAIScreenName(screenName: "تفاصيل مطلوب عقار")
             default:
                 break
             }

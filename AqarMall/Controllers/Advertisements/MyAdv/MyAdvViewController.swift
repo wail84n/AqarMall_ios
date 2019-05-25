@@ -48,6 +48,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
       //  callAdvAPI()
         setBack()
         title = "اعلاناتي"
+        AppUtils.SendGAIScreenName(screenName: "اعلاناتي")
     }
     
     func getBannersData(){

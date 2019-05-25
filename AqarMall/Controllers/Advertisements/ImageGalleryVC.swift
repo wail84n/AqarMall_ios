@@ -22,7 +22,7 @@ class ImageGalleryVC: UIViewController {
      
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        AppUtils.SendGAIScreenName(screenName: "تكبير الصورة")
         var imageURLs : [URL] = []
         if let image1 = myAd.image1 {
             let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!

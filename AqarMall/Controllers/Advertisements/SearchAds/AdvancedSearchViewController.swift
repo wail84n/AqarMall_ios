@@ -41,7 +41,7 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     var advancedSearch = AdvancedSearch()
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        AppUtils.SendGAIScreenName(screenName: "البحث المتقدم")
         configureView()
         // Do any additional setup after loading the view.
     }

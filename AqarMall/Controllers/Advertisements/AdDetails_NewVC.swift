@@ -52,6 +52,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        AppUtils.SendGAIScreenName(screenName: "تفاصيل الإعلان")
         // +++ wail
 //        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
 //        tracker.set(kGAIScreenName, value: "\(self.adDetails.CatName ?? "" ) تفاصيل الإعلان")
