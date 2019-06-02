@@ -625,16 +625,28 @@ extension AdsListVC: UITableViewDataSource {
                 if  DB_FavorateAdv.deleteRecord(Id: record.entryID ?? 0) == true {
                     print("the favorate record has been deleted.")
                     cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+                    
+                    switch sectionSegment.selectedSegmentIndex
+                    {
+                    case 2:
+                        AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "ايجار", _label: record.title)
+                    case 3:
+                        AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "بيع", _label: record.title)
+                    default:
+                        break
+                    }
                 }
             }else{
                 switch sectionSegment.selectedSegmentIndex
                 {
                 case 2:
                     if DB_FavorateAdv.saveRecord(adv: record, advType: .rent){
+                        AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "ايجار", _label: record.title)
                         cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
                     }
                 case 3:
                     if DB_FavorateAdv.saveRecord(adv: record, advType: .sale) {
+                        AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "بيع", _label: record.title)
                         cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
                     }
                 default:
@@ -656,6 +668,16 @@ extension AdsListVC: UITableViewDataSource {
             if btnfavorte.isEqual(UIImage(named: "favorateList_on")) {
                 if  DB_FavorateExchangeAds.deleteRecord(Id: record.entryID ?? 0) == true {
                     print("the favorate record has been deleted.")
+                    switch sectionSegment.selectedSegmentIndex
+                    {
+                    case 0:
+                        AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبدل", _label: record.title)
+                    case 1:
+                        AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "مطلوب عقار", _label: record.title)
+                    default:
+                        break
+                    }
+                    
                     cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
                 }
             }else{
@@ -664,9 +686,11 @@ extension AdsListVC: UITableViewDataSource {
                 case 0:
                     if DB_FavorateExchangeAds.saveRecord(adv: record, advType: .for_exchange){
                         cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+                        AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبدل", _label: record.title)
                     }
                 case 1:
                     if DB_FavorateExchangeAds.saveRecord(adv: record, advType: .required) {
+                        AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "مطلوب عقار", _label: record.title)
                         cell?.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
                     }
                 default:

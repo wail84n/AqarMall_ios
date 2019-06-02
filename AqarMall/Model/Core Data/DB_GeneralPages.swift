@@ -60,4 +60,25 @@ struct DB_GeneralPages {
         }
         return false
     }
+    
+    static func deleteRecord(Id : Int32)-> Bool{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "GeneralPagesData")
+        userFetch.predicate = NSPredicate(format: "entryID = %@", "\(Id)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [GeneralPagesData]
+            if let _result = result {
+                for obj in _result{
+                    appDelegate.persistentContainer.viewContext.delete(obj)
+                }
+                try appDelegate.persistentContainer.viewContext.save()
+                return true
+            }
+        }catch{
+            print("Fiald")
+        }
+        return false
+    }
+
 }

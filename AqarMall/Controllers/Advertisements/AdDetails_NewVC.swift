@@ -589,15 +589,26 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
             if  DB_FavorateAdv.deleteRecord(Id: adsRecord.entryID ?? 0) == true {
                 print("the favorate record has been deleted.")
                 self.setFavoriteImageBy(flag: false)
+                
+                if self.advType != .rent{
+                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبيع", _label: adsRecord.title)
+                }else{
+                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "ايجار", _label: adsRecord.title)
+                }
             }
         }else{
             var _sectionID : Int8 = 1
             if self.advType != .rent{
                 _sectionID = 2
+                AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبيع", _label: adsRecord.title)
+            }else{
+                AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "ايجار", _label: adsRecord.title)
             }
+            
             AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
 
             DB_FavorateAdv.saveRecord(adv: adsRecord, advType: advType!)
+
             self.setFavoriteImageBy(flag: true)
         }
         

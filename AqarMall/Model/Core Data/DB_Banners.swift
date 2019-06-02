@@ -13,24 +13,27 @@ struct DB_Banners {
     static let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     static func saveRecord(banner : Banners){
-        if validateRecord(Id: banner.bannerID) == false {
-            let obj = BannersData(context: appDelegate.persistentContainer.viewContext)
-            obj.bannerID = banner.bannerID
-            obj.email = banner.email
-            obj.fileName = banner.fileName
-            obj.fullImage = banner.fullImage
-            obj.lastChange = banner.lastChange
-            obj.tel = banner.tel
-            obj.title = banner.title
-            obj.type = banner.type
-            obj.website = banner.website
-
-            do{
-                try appDelegate.persistentContainer.viewContext.save()
-            }catch{
-                print("Failed saving")
-            }
+        if deleteRecord(Id: banner.bannerID){
+            
         }
+        
+        let obj = BannersData(context: appDelegate.persistentContainer.viewContext)
+        obj.bannerID = banner.bannerID
+        obj.email = banner.email
+        obj.fileName = banner.fileName
+        obj.fullImage = banner.fullImage
+        obj.lastChange = banner.lastChange
+        obj.tel = banner.tel
+        obj.title = banner.title
+        obj.type = banner.type
+        obj.website = banner.website
+        
+        do{
+            try appDelegate.persistentContainer.viewContext.save()
+        }catch{
+            print("Failed saving")
+        }
+
     }
     
     static func validateRecord(Id : Int32)-> Bool{
@@ -63,6 +66,26 @@ struct DB_Banners {
             print("Fiald")
         }
         return nil
+    }
+    
+    static func deleteRecord(Id : Int32)-> Bool{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "BannersData")
+        userFetch.predicate = NSPredicate(format: "bannerID = %@", "\(Id)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [BannersData]
+            if let _result = result {
+                for obj in _result{
+                    appDelegate.persistentContainer.viewContext.delete(obj)
+                }
+                try appDelegate.persistentContainer.viewContext.save()
+                return true
+            }
+        }catch{
+            print("Fiald")
+        }
+        return false
     }
     
 }

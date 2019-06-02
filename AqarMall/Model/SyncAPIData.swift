@@ -109,7 +109,24 @@ struct SyncAPIData{
                     if index == 0 {
                         AppUtils.SaveData(key: .general_pages_last_change, value: "\(record.lastChange)")
                     }
-                    DB_GeneralPages.saveRecord(generalPage: record)
+                    
+                    switch record.lastChangeType {
+                    case 1:
+                        DB_GeneralPages.saveRecord(generalPage: record)
+                    case 2:
+                        if DB_GeneralPages.deleteRecord(Id: record.entryID){
+                            print("the '\(record.title)' General Pages has been deleted")
+                        }
+                        DB_GeneralPages.saveRecord(generalPage: record)
+                    case 3:
+                        if DB_GeneralPages.deleteRecord(Id: record.entryID){
+                            print("the '\(record.title)' General Pages has been deleted")
+                        }
+                    default:
+                        break
+                    }
+                    
+                  //  DB_GeneralPages.saveRecord(generalPage: record)
                 }
             }
             completion(true, result?.count ?? 0 , nil)

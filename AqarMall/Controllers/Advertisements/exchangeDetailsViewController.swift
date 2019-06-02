@@ -12,6 +12,7 @@ class exchangeDetailsViewController: ViewController {
 
     @IBOutlet weak var advIdLabel: UILabel!
     @IBOutlet weak var viewsNoLabel: UILabel!
+    @IBOutlet weak var viewsTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
@@ -33,6 +34,7 @@ class exchangeDetailsViewController: ViewController {
         self.setBack()
         title = "تفاصيل الإعلان"
         
+        UpdateViews()
         let adsRecord = self.ads[intAdIndex]
         self.setFavoriteImageBy(flag: DB_FavorateExchangeAds.validateRecord(Id: adsRecord.entryID ?? 0))
      //   self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
@@ -101,6 +103,38 @@ class exchangeDetailsViewController: ViewController {
     }
     
     
+    func UpdateViews(){
+        let adsRecord = self.ads[intAdIndex]
+        var _type = 0
+
+        if advType == .required {
+            _type = 2
+        }else{
+            _type = 3
+        }
+        
+        APIs.shared.updateAdvtViewCount(id: adsRecord.entryID ?? 0, type: "\(_type)" ){ (advViews, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+            if let _advViews = advViews {
+                if _advViews == 0 {
+                    self.viewsTitleLabel.isHidden = true
+                    self.viewsNoLabel.text = ""
+                }else{
+                    self.viewsTitleLabel.isHidden = false
+                    self.viewsNoLabel.text = "\(_advViews)"
+                }
+            }else{
+                self.viewsTitleLabel.isHidden = true
+                self.viewsNoLabel.text = ""
+            }
+        }
+    }
+
+    
     func setFavoriteImageBy(flag: Bool) {
         if flag {
             self.favorateButton.setImage(UIImage(named: "btnFavorate_off"), for: .normal)
@@ -128,9 +162,21 @@ class exchangeDetailsViewController: ViewController {
             if  DB_FavorateExchangeAds.deleteRecord(Id: adsRecord.entryID ?? 0) == true {
                 print("the favorate record has been deleted.")
                 self.setFavoriteImageBy(flag: false)
+                if self.advType != .for_exchange{
+                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبدل", _label: adsRecord.title)
+                }else{
+                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
+                }
             }
         }else{
-            DB_FavorateExchangeAds.saveRecord(adv: adsRecord, advType: advType!)
+            if DB_FavorateExchangeAds.saveRecord(adv: adsRecord, advType: advType!) {
+                if self.advType != .for_exchange{
+                    AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبدل", _label: adsRecord.title)
+                }else{
+                    AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
+                }
+                print("the record has been saved.")
+            }
             self.setFavoriteImageBy(flag: true)
         }
         

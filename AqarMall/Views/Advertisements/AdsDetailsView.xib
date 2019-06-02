@@ -1101,6 +1101,7 @@
                 <outlet property="tableView" destination="ydI-rW-crS" id="dUr-p8-Clk"/>
                 <outlet property="titleLabel" destination="ry3-8A-M1r" id="Qqf-fR-cGc"/>
                 <outlet property="viewsLabel" destination="wS4-uW-Mxh" id="2Y5-E7-l3d"/>
+                <outlet property="viewsTitleLabel" destination="Olm-nf-qCl" id="gAz-Sb-CrJ"/>
             </connections>
             <point key="canvasLocation" x="52" y="94.002998500749626"/>
         </view>

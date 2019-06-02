@@ -13,12 +13,14 @@ struct GeneralPages {
     let title:String
     let details:String
     let lastChange:Int64
+    let lastChangeType: Int8
 
     public init?(object: AnyObject?) {
         guard
             let _object = object,
             let _entryID = _object["EntryID"] as? Int32,
             let _lastChange = _object["LastChange"] as? Int64,
+            let _lastChangeType = _object["LastChangeType"] as? Int8,
             let _title = _object["Title"] as? String,
             let _details = _object["Details"] as? String
             else{
@@ -29,5 +31,7 @@ struct GeneralPages {
         self.title = _title
         self.details = _details
         self.lastChange = _lastChange
+        self.lastChangeType = _lastChangeType
+        
     }
 }

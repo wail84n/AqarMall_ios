@@ -19,6 +19,7 @@ class Categories: NSObject {
     let IsSale:Bool
     let LandSize:Bool
     let LastChange:Int
+    let LastChangeType: Int8
     let LicenseType:Bool
     let MonthlyRent:Bool
     let Name:String
@@ -40,6 +41,7 @@ class Categories: NSObject {
             let _ID = _object["ID"] as? Int,
             let _LandSize = _object["LandSize"] as? Bool,
             let _LastChange = _object["LastChange"] as? Int,
+            let _LastChangeType = _object["LastChangeType"] as? Int8,
             let _LicenseType = _object["LicenseType"] as? Bool,
             let _MonthlyRent = _object["MonthlyRent"] as? Bool,
             let _Name = _object["Name"] as? String,
@@ -75,6 +77,7 @@ class Categories: NSObject {
 //        self.IsSale = _IsSale
         self.LandSize = _LandSize
         self.LastChange = _LastChange
+        self.LastChangeType = _LastChangeType
         self.LicenseType = _LicenseType
         self.MonthlyRent = _MonthlyRent
         self.Name = _Name

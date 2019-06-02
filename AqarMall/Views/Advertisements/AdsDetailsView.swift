@@ -44,8 +44,10 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var adImagesSV: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet weak var viewsTitleLabel: UILabel!
     @IBOutlet weak var areaNameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+   
     @IBOutlet weak var descriptionTxtView: UITextView!
     @IBOutlet weak var favoriteImageView: UIButton!
     @IBOutlet weak var soldButton: UIButton!
@@ -115,6 +117,9 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         self.isFromMyAds = isFromMyAds
       //  self.catId = catId
         bidsCounterLabel.isHidden = true
+        
+        self.viewsTitleLabel.isHidden = true
+        self.viewsLabel.text = ""
         
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
@@ -423,17 +428,25 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 //        })
         
         
-        APIs.shared.updateAdvtViewCount(id: AdDetails.entryID ?? 0, type: "1" ){ (advViews, error) in
+        APIs.shared.updateAdvtViewCount(id: Int64(AdDetails.entryID ?? 0), type: "1" ){ (advViews, error) in
             guard error == nil else {
                 print(error ?? "")
                 return
             }
             
-            self.viewsLabel.text = "\(advViews ?? 0)"
-//            if let _advId = advId{
-//                completion(true, _advId, nil)
-//
-//            }
+            
+            if let _advViews = advViews {
+                if _advViews == 0 {
+                    self.viewsTitleLabel.isHidden = true
+                    self.viewsLabel.text = ""
+                }else{
+                    self.viewsTitleLabel.isHidden = false
+                    self.viewsLabel.text = "\(_advViews)"
+                }
+            }else{
+                self.viewsTitleLabel.isHidden = true
+                self.viewsLabel.text = ""
+            }
         }
         
         validateImages()

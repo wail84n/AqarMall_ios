@@ -606,8 +606,8 @@ class APIs: NSObject {
         }
     }
     
-    func updateAdvtViewCount(id: Int32, type : String, callback: @escaping IntegerCallback) {
-        let route = Router.updateAdvtViewCount(id: id, type: type)
+    func updateAdvtViewCount(id: Int64, type : String, callback: @escaping IntegerCallback) {
+        let route = Router.updateAdvtViewCount(id: Int32(id), type: type)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
@@ -740,6 +740,41 @@ class APIs: NSObject {
     }
     
     
+    func deleteImageAdRequest(params:[String: Any], completion:@escaping isSuccessCallback) {
+        let route = Router.uploadImage()
+        print(route.serverUrl.rawValue)
+        let url = "\(APIs.Router.uploadImage().serverUrl.rawValue)/Services/frmUploadImages.aspx"
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        Alamofire.upload(multipartFormData: { (MultipartFormData) in
+            for (key, value) in params {
+                MultipartFormData.append(String(describing: value).data(using: String.Encoding.utf8)!, withName: key)
+            }
+            
+            
+        }, to: url, method: .post, headers: nil, encodingCompletion: { (result) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            switch result {
+            case .success(let upload, _, _):
+                upload.responseJSON(completionHandler: { (dataResponse) in
+                    if dataResponse.result.error != nil {
+                        completion(false, dataResponse.error ?? APIError.unknown)
+                    }
+                    else {
+                        //   let result = self.result(with: dataResponse)
+                        completion(true, nil)
+                        
+                    }
+                })
+            case .failure(let encodingError):
+                print(encodingError)
+                //postAd.errorMsg = encodingError.localizedDescription
+                completion(false, encodingError.localizedDescription as? Error)
+            }
+        })
+    }
+    
+    
     func uploadImage(advId:Int?, ImageNo:Int?, Image:Data?, IsMain :Bool ,callback: @escaping IntegerCallback) {
         let route = Router.uploadImage()
         let formData:(MultipartFormData) -> Void = { data in
@@ -783,7 +818,7 @@ class APIs: NSObject {
             }
         }
     }
-    
+
     func activeUserAccount(userId : Int, callback: @escaping isSuccessCallback) {
         let route = Router.activeUserAccount(userId: userId)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in

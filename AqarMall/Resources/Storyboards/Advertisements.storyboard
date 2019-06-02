@@ -1410,6 +1410,7 @@
                         <outlet property="favorateButton" destination="3Mz-qH-qwe" id="ukM-pR-mch"/>
                         <outlet property="titleLabel" destination="FBb-kF-DOz" id="gin-0d-Yg6"/>
                         <outlet property="viewsNoLabel" destination="jR3-gh-EQL" id="PVQ-ff-RRn"/>
+                        <outlet property="viewsTitleLabel" destination="luC-8G-ZAc" id="WDM-Wn-qIn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHP-iY-nzO" userLabel="First Responder" sceneMemberID="firstResponder"/>

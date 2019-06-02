@@ -51,7 +51,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
     var selectedImagePickerButton = UIButton()
     var isEditMode: Bool = false
     var advInfo = AdvertisementInfo()
-    
+    var loadIndex = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -434,9 +434,15 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         
         let cameraActionButton: UIAlertAction = UIAlertAction(title: "حذف الصورة", style: .default)
         { action -> Void in
-            
-            self.postAd.images.remove(at: indexPath.row)
-            self.imagesCollection.reloadData()
+            AppUtils.ShowLoading()
+            print("indexPath.row \(indexPath.row + 1)")
+            SubmitAdsVM.deleteImage(advId: self.advInfo.entryID ?? 0, imageNo:(indexPath.row + 1) , completion: {(reult) in
+                print("is image deleted : \(reult)")
+                AppUtils.HideLoading()
+                self.postAd.images.remove(at: indexPath.row)
+                self.imagesCollection.reloadData()
+            })
+
         }
         actionSheetController.addAction(cameraActionButton)
         
@@ -620,53 +626,95 @@ extension SubmitAdvFormViewController {
         return "Advertisements/Advt\(advInfo.entryID ?? 0)/\(image)"
     }
     
+    
+    
     func loadImages() {
-        if let image1 = advInfo.image1 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
-            load(url: pictureURL)
-        }
-        if let image2 = advInfo.image2 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
-            load(url: pictureURL)
-        }
-        if let image3 = advInfo.image3 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
-            load(url: pictureURL)
-        }
-        if let image4 = advInfo.image4 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
-            load(url: pictureURL)
-        }
-        if let image5 = advInfo.image5 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
-            load(url: pictureURL)
-        }
-        if let image6 = advInfo.image6 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
-            load(url: pictureURL)
-        }
-        if let image7 = advInfo.image7 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
-            load(url: pictureURL)
-        }
-        if let image8 = advInfo.image8 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
-            load(url: pictureURL)
-        }
-        if let image9 = advInfo.image9 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
-            load(url: pictureURL)
+        switch loadIndex {
+        case 1:
+            if let image1 = advInfo.image1 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 2:
+            if let image = advInfo.image2 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 3:
+            if let image = advInfo.image3 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 4:
+            if let image = advInfo.image4 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 5:
+            if let image = advInfo.image5 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 6:
+            if let image = advInfo.image6 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 7:
+            if let image = advInfo.image7 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 8:
+            if let image = advInfo.image8 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        case 9:
+            if let image = advInfo.image9 {
+                let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image))!
+                load(url: pictureURL, completion: { (reult) in
+                    self.loadIndex += 1
+                    self.loadImages()
+                })
+            }
+        default:
+            return
         }
     }
     
     
-    func load(url: URL) {
+    func load(url: URL, completion:@escaping (_ isSuccess:Bool) -> Void) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 DispatchQueue.main.async {
                     self?.postAd.images.append(postImages(image: data)!)
-                    
                     self?.imagesCollection.reloadData()
+                    completion(true)
                 }
             }
         }
