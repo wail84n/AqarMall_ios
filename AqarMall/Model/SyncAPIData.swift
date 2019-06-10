@@ -22,7 +22,25 @@ struct SyncAPIData{
                     if index == 0 {
                         AppUtils.SaveData(key: .categories_last_change, value: "\(category.LastChange)")
                     }
-                    DB_Categories.saveRecord(category: category)
+                   // DB_Categories.saveRecord(category: category)
+                    
+                    
+                    switch category.LastChangeType {
+                    case 1:
+                         DB_Categories.saveRecord(category: category)
+                    case 2:
+                        if  DB_Categories.deleteRecord(Id: Int32(category.ID)){
+                            print("the '\(category.Name)' Category has been deleted")
+                        }
+                         DB_Categories.saveRecord(category: category)
+                    case 3:
+                        if  DB_Categories.deleteRecord(Id: Int32(category.ID)){
+                            print("the '\(category.Name)' Category has been deleted")
+                        }
+                    default:
+                        break
+                    }
+                    
                 }
             }
             completion(true, result?.count ?? 0 , nil)

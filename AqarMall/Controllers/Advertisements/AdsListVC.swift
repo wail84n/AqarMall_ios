@@ -111,7 +111,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
-                    if counter == 4 {
+                    if counter == 4 && self.banners.count > 0 {
                         counter = 0
                         let banner = AdvertisementInfo()
                         banner.isBanner = true
@@ -227,7 +227,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
-                    if counter == 4 {
+                    if counter == 4 && self.banners.count > 0 {
                         counter = 0
                         var banner = ExchangeAds(withBanner: self.addBanner())
                         banner?.isBanner = true
@@ -256,7 +256,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
-                    if counter == 4 {
+                    if counter == 4 && self.banners.count > 0 {
                         counter = 0
                         var banner = ExchangeAds(withBanner: self.addBanner())
                         banner?.isBanner = true
@@ -281,11 +281,74 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             isFromAdvDetails = false
         }
         
-        
         getBannersData()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AdsListVC.gotNotification), name: NSNotification.Name(rawValue: PushNotification), object: nil)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        // Hide the Navigation Bar
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @objc func gotNotification(result : Notification?) {
+        guard
+            let _result = result,
+            let _object = _result.object
+            else{
+                return
+        }
+        
+        if _object as! String == "refresh_categories" {
+            switch sectionSegment.selectedSegmentIndex
+            {
+            case 2:
+                getCategoriesData(isRent: true)
+            case 3:
+                getCategoriesData(isRent: false)
+            default:
+                break
+            }
+        }else if _object as! String == "refresh_Provinces" {
+            
+        }else if _object as! String == "refresh_Areas" {
+            
+        }else if _object as! String == "pushNotif" {
+            
+            //            guard let adsID = _result["AdsID"] as? String,
+            //                let type = result?["type"] as? String else { return }
+            //
+            
+            guard let parsedDictionary = _result.userInfo as? [String: Any],
+                let _adsID = parsedDictionary["AdsID"] as? String,
+                let _type = parsedDictionary["type"] as? String
+                else{
+                    return
+            }
+
+            self.prepareGoToAd(adsID: _adsID, type: _type)
+        
+        }
+    
+    }
+    
+//    func prepareGoToAd(adsID : String, type: String){
+//        let vc = UIStoryboard(name: "Advertisements", bundle: nil).instantiateViewController(withIdentifier: "AdDetails_NewVC") as! AdDetails_NewVC
+//        let adv = AdvertisementInfo()
+//        adv.entryID = Int32(adsID)
+//        vc.adDetails = adv
+//        vc.currentPage = 1
+//        vc.isLastCall = true
+//        vc.ads.append(adv)
+//        print(vc.ads.count)
+//        vc.intAdIndex = 0
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
+    
     override func viewDidAppear(_ animated: Bool) {
         
     }
@@ -548,6 +611,12 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
 
             navPlace.proccessType = 2
             
+            if sectionSegment.selectedSegmentIndex == 2 {
+                navPlace.advType = .rent
+            }else if sectionSegment.selectedSegmentIndex == 3 {
+                navPlace.advType = .sale
+            }
+            
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
             if let _adDetails = adDetails {
@@ -592,12 +661,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             navPlace.intCat =  intCat
             navPlace.advancedSearch = advancedSearch
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        // Hide the Navigation Bar
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }
 
@@ -1060,7 +1123,6 @@ extension AdsListVC: AdvancedSearchDelegate {
             }
             print(self.arrAdve.count)
             if let _result = result{
-                
                 print("isLastCall \(self.isLastCall)")
                 self.isLastCall = _result.count > 0 ? false : true
                 print("isLastCall \(self.isLastCall)")
@@ -1069,7 +1131,7 @@ extension AdsListVC: AdvancedSearchDelegate {
                 for (index, record) in _result.enumerated() {
                     print(index)
                     
-                    if counter == 4 {
+                    if counter == 4 && self.banners.count > 0 {
                         counter = 0
                         let banner = AdvertisementInfo()
                         banner.isBanner = true
@@ -1084,7 +1146,6 @@ extension AdsListVC: AdvancedSearchDelegate {
             }
         }
     }
-    
 }
 
 

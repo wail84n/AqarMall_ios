@@ -54,6 +54,8 @@ class AppUtils: NSObject {
         case sponsorLastChange = "sponsorLastChange"
         case sms_attempts = "smsAttempts"
         case contact_us = "ContactUs"
+        case device_token_info = "DeviceTokenInfo"
+        case device_token_saved_on_server = "DeviceTokenSavedOnServer"
     }
     
     class func LoadData(key: AppVariables)  -> String

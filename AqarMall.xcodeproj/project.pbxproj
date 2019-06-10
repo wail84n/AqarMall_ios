@@ -85,6 +85,7 @@
 		527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */; };
 		527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527E0AAB223041D1005934DC /* ChooseAddressCell.swift */; };
 		527E0AAE223041D1005934DC /* ChooseAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527E0AAC223041D1005934DC /* ChooseAddressCell.xib */; };
+		528001DB22A5EE560046BE21 /* PushDeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528001DA22A5EE560046BE21 /* PushDeviceInfo.swift */; };
 		5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89521F3474E00A177B0 /* DB_Areas.swift */; };
 		5281D89821F3494A00A177B0 /* Areas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89721F3494A00A177B0 /* Areas.swift */; };
 		5281D89A21F3513E00A177B0 /* Provinces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281D89921F3513E00A177B0 /* Provinces.swift */; };
@@ -234,6 +235,7 @@
 		527E0AA922303CD3005934DC /* ChooseAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressViewController.swift; sourceTree = "<group>"; };
 		527E0AAB223041D1005934DC /* ChooseAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAddressCell.swift; sourceTree = "<group>"; };
 		527E0AAC223041D1005934DC /* ChooseAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChooseAddressCell.xib; sourceTree = "<group>"; };
+		528001DA22A5EE560046BE21 /* PushDeviceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushDeviceInfo.swift; sourceTree = "<group>"; };
 		5281D89521F3474E00A177B0 /* DB_Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Areas.swift; sourceTree = "<group>"; };
 		5281D89721F3494A00A177B0 /* Areas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Areas.swift; sourceTree = "<group>"; };
 		5281D89921F3513E00A177B0 /* Provinces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provinces.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */,
 				524519E4225A8F0E0034CD69 /* ContactUs.swift */,
 				521E68EB229100A200DAA470 /* ReceivedBids.swift */,
+				528001DA22A5EE560046BE21 /* PushDeviceInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -842,6 +845,9 @@
 					52E6523321D9DB6700E66AA2 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -1105,6 +1111,7 @@
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
+				528001DB22A5EE560046BE21 /* PushDeviceInfo.swift in Sources */,
 				5204DD6722339DB600319A58 /* UIImage+Crop.swift in Sources */,
 				52E6528421D9EBCB00E66AA2 /* UIDevice.swift in Sources */,
 				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
@@ -1310,13 +1317,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B55QK7P86R;
+				DEVELOPMENT_TEAM = 6QXDZTU967;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AqarMall/AqarMall-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -1331,13 +1338,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B55QK7P86R;
+				DEVELOPMENT_TEAM = 6QXDZTU967;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.AqarMall;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AqarMall/AqarMall-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

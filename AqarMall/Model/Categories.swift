@@ -44,12 +44,9 @@ class Categories: NSObject {
             let _LastChangeType = _object["LastChangeType"] as? Int8,
             let _LicenseType = _object["LicenseType"] as? Bool,
             let _MonthlyRent = _object["MonthlyRent"] as? Bool,
-            let _Name = _object["Name"] as? String,
             let _NumberOfBathrooms = _object["NumberOfBathrooms"] as? Bool,
             let _NumberOfFloors = _object["NumberOfFloors"] as? Bool,
             let _NumberOfRooms = _object["NumberOfRooms"] as? Bool,
-            let _RentPriceLabel = _object["RentPriceLabel"] as? String,
-            let _SalePriceLabel = _object["SalePriceLabel"] as? String,
             let _Size = _object["Size"] as? Bool
             else{
                 return nil
@@ -67,6 +64,24 @@ class Categories: NSObject {
             self.IsSale = false
         }
         
+        if let _name = _object["Name"] as? String {
+            self.Name = _name
+        }else{
+            self.Name = ""
+        }
+        
+        if let _rentPriceLabel = _object["RentPriceLabel"] as? String {
+            self.RentPriceLabel = _rentPriceLabel
+        }else{
+            self.RentPriceLabel = ""
+        }
+        
+        if let _salePriceLabel = _object["SalePriceLabel"] as? String {
+            self.SalePriceLabel = _salePriceLabel
+        }else{
+            self.SalePriceLabel = ""
+        }
+        
         self.AgeOfBuilding = _AgeOfBuilding
         self.BuildingSize = _BuildingSize
         self.Finishing = _Finishing
@@ -80,12 +95,10 @@ class Categories: NSObject {
         self.LastChangeType = _LastChangeType
         self.LicenseType = _LicenseType
         self.MonthlyRent = _MonthlyRent
-        self.Name = _Name
         self.NumberOfBathrooms = _NumberOfBathrooms
         self.NumberOfFloors = _NumberOfFloors
         self.NumberOfRooms = _NumberOfRooms
-        self.RentPriceLabel = _RentPriceLabel
-        self.SalePriceLabel = _SalePriceLabel
+
         self.Size = _Size
         
         super.init()

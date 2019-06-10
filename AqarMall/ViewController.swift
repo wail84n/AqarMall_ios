@@ -13,9 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: ReceivedPushNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.ReceivedNotification), name: NSNotification.Name(rawValue: ReceivedPushNotification), object: nil)
-        // Do any additional setup after loading the view.
+         // Do any additional setup after loading the view.
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -43,9 +41,37 @@ class ViewController: UIViewController {
             }
             let gameVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SponsorViewControllerNav") //as! SponsorViewController
             vc.present(gameVC, animated: true, completion: nil)
+        }else if _object as! String == "pushNotif" {
+            
+            //            guard let adsID = _result["AdsID"] as? String,
+            //                let type = result?["type"] as? String else { return }
+            //
+            
+            guard let parsedDictionary = _result.userInfo as? [String: Any],
+                let _adsID = parsedDictionary["AdsID"] as? String,
+                let _type = parsedDictionary["type"] as? String
+                else{
+                    return
+            }
+            
+            self.prepareGoToAd(adsID: _adsID, type: _type)
+            
         }
     }
 
+    func prepareGoToAd(adsID : String, type: String){
+        let vc = UIStoryboard(name: "Advertisements", bundle: nil).instantiateViewController(withIdentifier: "AdDetails_NewVC") as! AdDetails_NewVC
+        let adv = AdvertisementInfo()
+        adv.entryID = Int32(adsID)
+        vc.adDetails = adv
+        vc.currentPage = 1
+        vc.isLastCall = true
+        vc.ads.append(adv)
+        print(vc.ads.count)
+        vc.intAdIndex = 0
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func setBack(isDismiss : Bool = false){
         let buttonImage = #imageLiteral(resourceName: "back")
         let button = UIButton(type: .system)

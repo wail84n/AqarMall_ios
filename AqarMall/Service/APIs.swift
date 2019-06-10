@@ -134,7 +134,8 @@ class APIs: NSObject {
         case postCancelBid(id : Int)
         case getBidsByAdID(Id : Int32)
         case postApproveBid(Id : Int32, type : Int8)
-        
+        case postDeviceInfo(parameters : [String:Any])
+        //(deviceName:String, deviceToken:String, deviceType:Int8, deviceUDID:String, userID:String)
         
         
         var contentType:ContentType {
@@ -191,6 +192,7 @@ class APIs: NSObject {
                  .postBid(_, _, _, _),
                  .postSearch(_, _),
                  .postCancelBid(_),
+                 .postDeviceInfo(_),
                  .postApproveBid(_, _):
                 return .post
             default:
@@ -268,6 +270,8 @@ class APIs: NSObject {
                 return "getBidsByLandID"
             case .postApproveBid(_, _):
                 return "/postApproveBid"
+            case .postDeviceInfo(_):
+                return "/postDeviceInfo"
             }
         }
         
@@ -344,7 +348,7 @@ class APIs: NSObject {
                 if let _keyword = keyword{
                     dict["keyword"] = _keyword
                 }
-            case .getRequiredAds(let areaId, let pageNumber, let keyword):
+            case .getRequiredAds(_, let pageNumber, let keyword):
                 if let _pageNumber = pageNumber{
                     dict["pageNumber"] = _pageNumber
                 }
@@ -414,6 +418,8 @@ class APIs: NSObject {
                 return ["id":id]
             case .postApproveBid(let id,let type):
                 return ["id":id, "type":type]
+            case .postDeviceInfo(let parameters):
+                return parameters
             default:
                 return nil
             }
@@ -547,6 +553,26 @@ class APIs: NSObject {
             }
         }
     }
+    
+    func postDeviceInfo(parameters : [String:Any], callback: @escaping IntegerCallback) {
+        let route = Router.postDeviceInfo(parameters: parameters)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            if let advIda = result["code"] as? Int {
+                callback(advIda, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
     
     func postBid(_price: Int, _userID: Int32, _landID: Int32, _message: String, callback: @escaping IntegerCallback) {
         let route = Router.postBid(price: _price, userID: _userID, landID: _landID, message: _message)

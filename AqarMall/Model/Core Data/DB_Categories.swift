@@ -126,4 +126,24 @@ struct DB_Categories {
     }
 
     
+    static func deleteRecord(Id : Int32)-> Bool{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "CategoriesData")
+        userFetch.predicate = NSPredicate(format: "id = %@", "\(Id)")
+        do {
+            let result = try appDelegate.persistentContainer.viewContext.fetch(userFetch) as? [CategoriesData]
+            if let _result = result {
+                for obj in _result{
+                    appDelegate.persistentContainer.viewContext.delete(obj)
+                }
+                try appDelegate.persistentContainer.viewContext.save()
+                return true
+            }
+        }catch{
+            print("Fiald")
+        }
+        return false
+    }
+    
 }

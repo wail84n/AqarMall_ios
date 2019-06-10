@@ -22,9 +22,39 @@ class ChooseAdvSectionViewController: ViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-//        if AppUtils.LoadData(key: .user_id).isEmpty {
-//        }
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ChooseAdvSectionViewController.gotNotification), name: NSNotification.Name(rawValue: PushNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        // Hide the Navigation Bar
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    @objc func gotNotification(result : Notification?) {
+        guard
+            let _result = result,
+            let _object = _result.object
+            else{
+                return
+        }
+        
+        if _object as! String == "pushNotif" {
+            guard let parsedDictionary = _result.userInfo as? [String: Any],
+                let _adsID = parsedDictionary["AdsID"] as? String,
+                let _type = parsedDictionary["type"] as? String
+                else{
+                    return
+            }
+            
+            self.prepareGoToAd(adsID: _adsID, type: _type)
+            
+        }
+        
     }
     
     func configureView(){
