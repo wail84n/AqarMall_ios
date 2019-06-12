@@ -113,11 +113,8 @@ class FavorateViewController: ViewController, AdDetailsDelegate {
                 else{
                     return
             }
-            
             self.prepareGoToAd(adsID: _adsID, type: _type)
-            
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

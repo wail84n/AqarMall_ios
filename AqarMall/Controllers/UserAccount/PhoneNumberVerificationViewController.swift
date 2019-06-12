@@ -128,8 +128,8 @@ class PhoneNumberVerificationViewController: ViewController, UITextFieldDelegate
     
     @objc func timerAction() {
         counter += 1
-        counterLabel.text = "\(10 - counter)"
-        if counter == 10 {
+        counterLabel.text = "\(30 - counter)"
+        if counter == 30 {
             timer.invalidate()
             if SMScounter >= 2 {
                 skipActivationButton.isHidden = false
@@ -141,9 +141,7 @@ class PhoneNumberVerificationViewController: ViewController, UITextFieldDelegate
                 skipActivationButton.isHidden = true
                 activeByAdminLabel.isHidden = true
             }
-            
         }
-        
     }
     /*
     // MARK: - Navigation

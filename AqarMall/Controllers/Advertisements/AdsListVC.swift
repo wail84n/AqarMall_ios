@@ -725,7 +725,7 @@ extension AdsListVC: UITableViewDataSource {
         let record = arrExchangeAdve[btnsendtag.tag]
         
         let indexPath = IndexPath(item: btnsendtag.tag, section: 0)
-        let cell = tableView.cellForRow(at: indexPath) as? AdsCell
+        let cell = tableView.cellForRow(at: indexPath) as? ExchangeAdsCell
         
         if let btnfavorte = btnsendtag.currentImage {
             if btnfavorte.isEqual(UIImage(named: "favorateList_on")) {

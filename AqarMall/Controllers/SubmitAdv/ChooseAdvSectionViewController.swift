@@ -54,7 +54,6 @@ class ChooseAdvSectionViewController: ViewController {
             self.prepareGoToAd(adsID: _adsID, type: _type)
             
         }
-        
     }
     
     func configureView(){

@@ -66,6 +66,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
             return
         }
 
+        AppUtils.ShowLoading()
         APIs.shared.getMySellerAds(userId: _userInfo.entryID, pageNumber: 1, sectionId: isRent) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
@@ -106,7 +107,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
         guard let _userInfo = userInfo  else {
             return
         }
-        
+        AppUtils.ShowLoading()
         APIs.shared.getMyExchangePropertyAds(_userId: _userInfo.entryID, _pageNumber: 1) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
@@ -139,7 +140,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
         guard let _userInfo = userInfo  else {
             return
         }
-        
+        AppUtils.ShowLoading()
         APIs.shared.getMyBuyerRequiredAds(_userId: _userInfo.entryID, _pageNumber: 1) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
@@ -202,7 +203,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
     }
     
     func refreshView(){
-        AppUtils.ShowLoading()
+        
         switch sectionSegment.selectedSegmentIndex
         {
         case 0:
@@ -314,10 +315,12 @@ extension MyAdvViewController: UITableViewDataSource, UITableViewDelegate {
             cell.priceLabel.text = "\(record.price ?? 0)"
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
-            cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
-            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
-            cell.favorateButton.tag = indexPath.row
-            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
+            
+            cell.favorateButton.isHidden = true
+//            cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+//            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+//            cell.favorateButton.tag = indexPath.row
+//            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
             
         }else if let cell = cell as? bannerCell {
             if sectionSegment.selectedSegmentIndex < 2 {
