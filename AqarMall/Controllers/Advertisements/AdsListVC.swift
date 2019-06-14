@@ -10,7 +10,6 @@ import UIKit
 import ScrollableSegmentedControl
 
 class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
-    
     @IBOutlet weak var searchTextSearchBar: UISearchBar!
     @IBOutlet weak var AdvancedSearchButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -52,7 +51,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     var advancedSearch = AdvancedSearch()
     var isFormAdvancedSearch = false
     var isFromAdvDetails = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -210,6 +209,10 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         if (self.arrAdve.count - 1) >= index {
             self.arrAdve[index] = myAd
         }
+    }
+    
+    func addToFavorate() {
+        self.tableView.reloadData()
     }
     
     func getExchangeAds() {
@@ -916,8 +919,7 @@ extension AdsListVC: UITableViewDataSource {
             }
         }
         
-
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.middle)
     }
     
 //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

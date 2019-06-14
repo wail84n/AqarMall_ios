@@ -177,6 +177,10 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
         return banners[bannerIndex - 1]
     }
     
+    func addToFavorate() {
+        self.tableView.reloadData()
+    }
+    
     func updateAdvInAdsList(myAd: AdvertisementInfo, index: Int) {
         if (self.arrAdve.count - 1) >= index {
             self.arrAdve[index] = myAd

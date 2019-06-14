@@ -24,40 +24,40 @@ class ImageGalleryVC: UIViewController {
         super.viewDidLoad()
         AppUtils.SendGAIScreenName(screenName: "تكبير الصورة")
         var imageURLs : [URL] = []
-        if let image1 = myAd.image1 {
-            let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image1))!
+        if let image = myAd.image1, !image.isEmpty {
+            let picture1URL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(picture1URL)
         }
-        if let image2 = myAd.image2 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image2))!
+        if let image = myAd.image2, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image3 = myAd.image3 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image3))!
+        if let image = myAd.image3, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image4 = myAd.image4 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image4))!
+        if let image = myAd.image4, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image5 = myAd.image5 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image5))!
+        if let image = myAd.image5, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image6 = myAd.image6 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image6))!
+        if let image = myAd.image6, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image7 = myAd.image7 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image7))!
+        if let image = myAd.image7, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image8 = myAd.image8 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image8))!
+        if let image = myAd.image8, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
-        if let image9 = myAd.image9 {
-            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image9))!
+        if let image = myAd.image9, !image.isEmpty {
+            let pictureURL = APIs.shared.getFileURL(imageName: getImagePath(image: image), IsFromOldApp: myAd.isFromOldApp)!
             imageURLs.append(pictureURL)
         }
         
@@ -76,10 +76,12 @@ class ImageGalleryVC: UIViewController {
     }
     
     func getImagePath(image : String)-> String {
-        return "Advertisements/Advt\(myAd.entryID ?? 0)/\(image)"
-        
+        if myAd.isFromOldApp {
+            return "RealEstate/Advt\(myAd.entryID_OldApp ?? 0)/\(image)"
+        }else{
+            return "Advertisements/Advt\(myAd.entryID ?? 0)/\(image)"
+        }
     }
-    
 //    override func viewWillAppear(_ animated: Bool) {
 //        self.navigationController?.setNavigationBarHidden(true, animated: true)
 //    }

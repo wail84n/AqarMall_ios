@@ -12,6 +12,7 @@ import MessageUI
 
 protocol AdDetailsDelegate {
     func updateAdvInAdsList(myAd: AdvertisementInfo, index : Int)
+    func addToFavorate()
 }
 
 class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
@@ -124,11 +125,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     }
     
     func isFormNotification(ad : AdvertisementInfo){
-
-        
         if isFromNotification {
 
-            
         }
     }
     
@@ -612,6 +610,10 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
             self.setFavoriteImageBy(flag: true)
         }
         
+        if let _delegate = self.delegate {
+            _delegate.addToFavorate()
+            
+        }
        // let favoriteFlag = AppUtils.markAdAsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)
        // self.setFavoriteImageBy(flag: favoriteFlag)
     }

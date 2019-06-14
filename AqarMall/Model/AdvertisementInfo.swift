@@ -10,6 +10,8 @@ import UIKit
 
 class AdvertisementInfo : NSObject {
     var entryID:Int32?
+    var entryID_OldApp:Int32?
+    var isFromOldApp: Bool = false
     var title:String?
     var provinceName:String?
     var areaName:String?
@@ -38,6 +40,7 @@ class AdvertisementInfo : NSObject {
     var isBanner : Bool = false
     var banner : BannersData? = nil
     var sectionID : Int8?
+    
     var properties : AdvertisementProperties? = nil
     override init() {
         
@@ -117,6 +120,14 @@ class AdvertisementInfo : NSObject {
             self.properties = _properties
         }
         
+        if let _entryID_OldApp = _object["EntryID_OldApp"] as? Int32 {
+            self.entryID_OldApp = _entryID_OldApp
+        }
+        
+        if let _isFromOldApp = _object["IsFromOldApp"] as? Bool {
+            self.isFromOldApp = _isFromOldApp
+        }
+        
         self.entryID = shortDetails.entryID
         self.title = shortDetails.title
         self.provinceName = shortDetails.provinceName
@@ -138,6 +149,8 @@ class AdvertisementInfo : NSObject {
             let _details = _object["Description"] as? String,
             let _price = _object["Price"] as? Double,
             let _priceLabel = _object["PriceLabel"] as? String,
+//            let _entryID_OldApp = _object["EntryID_OldApp"] as? Int32,
+//            let _isFromOldApp = _object["IsFromOldApp"] as? Bool,
             let _size = _object["Size"] as? String
             
             else{
@@ -145,6 +158,9 @@ class AdvertisementInfo : NSObject {
         }
         
         self.entryID = _entryID
+//        self.entryID_OldApp = _entryID_OldApp
+//        self.isFromOldApp = _isFromOldApp
+        
         self.title = _title
         self.provinceId = _provinceId
         self.areaId = _areaId

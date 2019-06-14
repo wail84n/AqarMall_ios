@@ -9,6 +9,7 @@
 import UIKit
 
 class FavorateViewController: ViewController, AdDetailsDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var sectionSegment: UISegmentedControl!
     
@@ -174,6 +175,10 @@ class FavorateViewController: ViewController, AdDetailsDelegate {
 //        }
 //    }
 
+    func addToFavorate() {
+        self.tableView.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navPlace = segue.destination as? AdDetails_NewVC {
             let adDetails = sender as? AdvertisementInfo

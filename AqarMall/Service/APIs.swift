@@ -17,15 +17,25 @@ public enum ContentType:String {
 public enum appURLs: String{
     case mainServer = "http://test.imallkw.com"
     case imageURL = "http://test.imallkw.com/Upload/"
+    case imageURL_OldApp = "http://imallkw.com/cmsImallkwQRealEstate/Upload/"
+    
+   // http://imallkw.com/cmsImallkwQRealEstate/Upload/RealEstate/Advt15998/eb29a427-63cc-4b52-aa9c-2d38af1b956b.png
     case apiURL = "http://test.imallkw.com/Api.svc/"
 }
 
 class APIs: NSObject {
     public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
     
-    func getFileURL(imageName: String) -> URL? {
+    func getFileURL(imageName: String, IsFromOldApp : Bool = false) -> URL? {
        // print(URL(string: appURLs.imageURL.rawValue + imageName))
-        return URL(string: appURLs.imageURL.rawValue + imageName)
+        if IsFromOldApp {
+            //+++ here need to get the images from old App.
+            print(appURLs.imageURL_OldApp.rawValue + imageName)
+            return URL(string: appURLs.imageURL_OldApp.rawValue + imageName)
+        }else{
+            return URL(string: appURLs.imageURL.rawValue + imageName)
+        }
+        
     }
     
     init(baseURL: String){

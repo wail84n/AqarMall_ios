@@ -212,71 +212,72 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
                 }
             }
         }
-
     }
     
     func validateImages(){
         var imageURLs : [URL] = []
         intImagesCount = 0
+        
         if let image1 = AdDetails.image1, image1.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image1)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image1), IsFromOldApp: AdDetails.isFromOldApp){
+            //if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image1)){
                 imageURLs.append(image)
             }
         }
         
         if let image2 = AdDetails.image2, image2.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image2)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image2), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image3 = AdDetails.image3, image3.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image3)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image3), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image4 = AdDetails.image4, image4.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image4)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image4), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image5 = AdDetails.image5, image5.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image5)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image5), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image6 = AdDetails.image6, image6.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image6)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image6), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image7 = AdDetails.image7, image7.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image7)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image7), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image8 = AdDetails.image8, image8.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image8)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image8), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
         
         if let image9 = AdDetails.image9, image9.isEmpty == false {
             intImagesCount += 1
-            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image9)){
+            if let image = APIs.shared.getFileURL(imageName: getImagePath(image: image9), IsFromOldApp: AdDetails.isFromOldApp){
                 imageURLs.append(image)
             }
         }
@@ -286,42 +287,50 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     }
     
     func SetProperties(){
-        if AdDetails.properties?.ageOfBuilding == "-1" {
+        if AdDetails.properties?.ageOfBuilding == "-1" || AdDetails.properties?.ageOfBuilding?.isEmpty ?? true {
             ageOfBuildingView.isHidden = true
         }else{
             ageOfBuildingView.isHidden = false
             ageOfBuildingLabel.text = AdDetails.properties?.ageOfBuilding
         }
         
-        if AdDetails.properties?.buildingSize == "-1" {
+        if AdDetails.properties?.buildingSize == "-1" || AdDetails.properties?.buildingSize?.isEmpty ?? true {
             buildingSizeView.isHidden = true
         }else{
             buildingSizeView.isHidden = false
             buildingSizeLabel.text = AdDetails.properties?.buildingSize
         }
         
-        if AdDetails.properties?.finishing == "-1" {
+        if AdDetails.properties?.finishing == "-1" || AdDetails.properties?.finishing?.isEmpty ?? true {
             finishingView.isHidden = true
         }else{
             finishingView.isHidden = false
             finishingLabel.text = AdDetails.properties?.finishing
         }
         
-        if AdDetails.properties?.interfaceType == "-1" {
+        if AdDetails.properties?.interfaceType == "-1" || AdDetails.properties?.interfaceType?.isEmpty ?? true {
             interfaceTypeView.isHidden = true
         }else{
             interfaceTypeView.isHidden = false
             interfaceLabel.text = AdDetails.properties?.interfaceType
         }
         
-        if AdDetails.properties?.landSize == "-1" {
+        if AdDetails.properties?.landSize == "-1" || AdDetails.properties?.landSize?.isEmpty ?? true{
             landSizeView.isHidden = true
         }else{
             landSizeView.isHidden = false
             landSizeLabel.text = AdDetails.properties?.landSize
         }
+        
+        if AdDetails.properties?.size == "-1" || AdDetails.properties?.size?.isEmpty ?? true {
+            sizeView.isHidden = true
+        }else{
+            sizeView.isHidden = false
+            sizeLabel.text = AdDetails.properties?.size
+        }
+        
 
-        if AdDetails.properties?.licenseType == "-1" {
+        if AdDetails.properties?.licenseType == "-1" || AdDetails.properties?.licenseType?.isEmpty ?? true {
             licenseView.isHidden = true
         }else{
             licenseView.isHidden = false
@@ -329,7 +338,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfBathrooms == "-1" {
+        if AdDetails.properties?.numberOfBathrooms == "-1" || AdDetails.properties?.numberOfBathrooms?.isEmpty ?? true {
             bathroomNoView.isHidden = true
         }else{
             bathroomNoView.isHidden = false
@@ -337,7 +346,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfFloors == "-1" {
+        if AdDetails.properties?.numberOfFloors == "-1" || AdDetails.properties?.numberOfFloors?.isEmpty ?? true {
             floorsNoView.isHidden = true
         }else{
             floorsNoView.isHidden = false
@@ -345,7 +354,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfRooms == "-1" {
+        if AdDetails.properties?.numberOfRooms == "-1" || AdDetails.properties?.numberOfRooms?.isEmpty ?? true {
             roomsNoView.isHidden = true
         }else{
             roomsNoView.isHidden = false
@@ -491,8 +500,11 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     //MARK:-
     
     func getImagePath(image : String)-> String {
-        return "Advertisements/Advt\(AdDetails.entryID ?? 0)/\(image)"
-        
+        if AdDetails.isFromOldApp {
+            return "RealEstate/Advt\(AdDetails.entryID_OldApp ?? 0)/\(image)"
+        }else{
+            return "Advertisements/Advt\(AdDetails.entryID ?? 0)/\(image)"
+        }
     }
     
     func loadImages(_imageURLs : [URL]) {
