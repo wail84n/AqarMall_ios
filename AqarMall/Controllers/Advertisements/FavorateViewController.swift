@@ -261,14 +261,14 @@ extension FavorateViewController: UITableViewDataSource, UITableViewDelegate {
             print(record.isBanner)
             cell.adsTitleLabel.text = record.title
             cell.detailsLable.text = record.details
-            cell.priceLabel.text = "\(record.price ?? 0)"
+            cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
-            cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
-            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
-            cell.favorateButton.tag = indexPath.row
-            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
-
+//            cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+//            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
+//            cell.favorateButton.tag = indexPath.row
+//            cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
+            cell.favorateButton.isHidden = true
         }else if let cell = cell as? bannerCell {
             if sectionSegment.selectedSegmentIndex < 2 {
                 let record = arrExchangeAdve[indexPath.row]
@@ -286,6 +286,7 @@ extension FavorateViewController: UITableViewDataSource, UITableViewDelegate {
             let record = arrExchangeAdve[indexPath.row]
             cell.adsTitleLabel.text = record.title
             cell.detailsLable.text = record.description
+            cell.favorateButton.isHidden = true
         }
     }
     

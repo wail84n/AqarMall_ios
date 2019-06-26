@@ -130,7 +130,7 @@ class APIs: NSObject {
         case uploadImage()
         case postBuyerRequiredAdvt(parameters : [String:Any])
         case postExchangeProperty(parameters : [String:Any])
-        case postSearch(parameters : [String:Any], pageNumber: Int16)
+        case postSearch(parameters : [String:Any])
         case getContactDetails(countryId : Int16)
         case updateAdvtViewCount(id: Int32, type: String)
         case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int8)
@@ -200,7 +200,7 @@ class APIs: NSObject {
                  .postRemoveAdvt(_, _),
                  .postPoints(_, _, _, _, _, _, _, _),
                  .postBid(_, _, _, _),
-                 .postSearch(_, _),
+                 .postSearch(_),
                  .postCancelBid(_),
                  .postDeviceInfo(_),
                  .postApproveBid(_, _):
@@ -250,7 +250,7 @@ class APIs: NSObject {
                 return "/postBuyerRequiredAdvt"
             case .postExchangeProperty(_):
                 return "/postExchangeProperty"
-            case .postSearch(_, _):
+            case .postSearch(_):
                 return "/postSearch_iOS"
             case .getContactDetails(_):
                 return "/getContactDetails"
@@ -414,7 +414,7 @@ class APIs: NSObject {
                 return parameters
             case .postExchangeProperty(let parameters):
                 return parameters
-            case .postSearch(let parameters, _):
+            case .postSearch(let parameters):
                 return parameters
             case .updateAdvtViewCount(let id, let type):
                 return ["id":id, "type":type, "addOne":1]
@@ -1060,8 +1060,8 @@ class APIs: NSObject {
     }
     
     
-    func getAdvts_AdvancedSearch(parameters : [String:Any], pageNumber: Int16, callback: @escaping AdvtsCallback) {
-        let route = Router.postSearch(parameters: parameters, pageNumber: pageNumber)
+    func getAdvts_AdvancedSearch(parameters : [String:Any], callback: @escaping AdvtsCallback) {
+        let route = Router.postSearch(parameters: parameters)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
@@ -1143,6 +1143,7 @@ class APIs: NSObject {
     }
     
     func getMyBuyerRequiredAds(_userId : Int32, _pageNumber: Int16, callback: @escaping ExchangeAdsCallback) {
+
         let route = Router.getMyBuyerRequiredAds(userId: _userId, pageNumber: _pageNumber)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard

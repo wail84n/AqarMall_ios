@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.isNewlaunch = false
         }
+
         
         let uuid = UIDevice.current.identifierForVendor?.uuidString
         print("uuid \(uuid)")
@@ -52,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         FIRApp.configure()
+        
         
         GAI.sharedInstance().dispatchInterval = 2
         

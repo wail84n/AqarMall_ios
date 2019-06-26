@@ -149,12 +149,17 @@ class AdvertisementInfo : NSObject {
             let _details = _object["Description"] as? String,
             let _price = _object["Price"] as? Double,
             let _priceLabel = _object["PriceLabel"] as? String,
+           // let _catId = _object["catId"] as? Int16,
 //            let _entryID_OldApp = _object["EntryID_OldApp"] as? Int32,
 //            let _isFromOldApp = _object["IsFromOldApp"] as? Bool,
             let _size = _object["Size"] as? String
             
             else{
                 return nil
+        }
+        
+        if let _catId = _object["catId"] as? Int16 {
+            self.catId = _catId
         }
         
         self.entryID = _entryID

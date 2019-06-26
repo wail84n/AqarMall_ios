@@ -17,7 +17,7 @@ class exchangeDetailsViewController: ViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var favorateButton: UIButton!
-    
+    var delegate: AdDetailsDelegate? = nil
    // var exchangeAds : ExchangeAds? = nil
     var ads : [ExchangeAds] = []
     var intAdIndex = 0
@@ -33,6 +33,9 @@ class exchangeDetailsViewController: ViewController {
     func configureView(){
         self.setBack()
         title = "تفاصيل الإعلان"
+        
+        self.viewsTitleLabel.isHidden = true
+        self.viewsNoLabel.text = ""
         
         UpdateViews()
         let adsRecord = self.ads[intAdIndex]
@@ -178,6 +181,10 @@ class exchangeDetailsViewController: ViewController {
                 print("the record has been saved.")
             }
             self.setFavoriteImageBy(flag: true)
+            
+            if let _delegate = delegate{
+                _delegate.addToFavorate()
+            }
         }
         
         // let favoriteFlag = AppUtils.markAdAsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!)

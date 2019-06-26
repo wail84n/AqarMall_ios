@@ -327,8 +327,8 @@
                                                                             <constraint firstAttribute="width" constant="15" id="fRh-vi-iy2"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="حدد العنوان" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-x9-i6a">
-                                                                        <rect key="frame" x="224" y="9.5" width="81" height="25"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اختر المنطقة" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-x9-i6a">
+                                                                        <rect key="frame" x="218.5" y="9.5" width="86.5" height="25"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="25" id="FAo-kz-HZz"/>
                                                                         </constraints>

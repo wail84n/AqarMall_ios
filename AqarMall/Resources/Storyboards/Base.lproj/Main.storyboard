@@ -65,14 +65,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bi2-eH-XkP">
-                                <rect key="frame" x="0.0" y="44" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gut-3g-TqC">
-                                        <rect key="frame" x="215" y="27" width="140" height="45"/>
+                                        <rect key="frame" x="117.5" y="13.5" width="140" height="45"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="HJe-de-vQU"/>
-                                            <constraint firstAttribute="width" constant="140" id="oAn-ZN-qdQ"/>
+                                            <constraint firstAttribute="width" constant="140" id="5xA-h3-Hwr"/>
+                                            <constraint firstAttribute="height" constant="45" id="rMJ-FJ-6Bd"/>
                                         </constraints>
                                         <state key="normal" title="تفاصيل الإعلان">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -92,54 +92,42 @@
                                             <segue destination="utB-nc-5XU" kind="show" id="h6n-ux-EEm"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-Pu-EvZ">
-                                        <rect key="frame" x="20" y="27" width="140" height="45"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="45" id="Fk5-G2-jkT"/>
-                                            <constraint firstAttribute="width" constant="140" id="YmC-e1-noK"/>
-                                        </constraints>
-                                        <state key="normal" title="دخول التطبيق"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="6"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="back:" destination="mhn-m5-KPN" eventType="touchUpInside" id="fYT-8Y-EPD"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0r-3C-KYl">
-                                        <rect key="frame" x="0.0" y="77.5" width="375" height="1.5"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1.5" id="Cm6-oX-Xiv"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.90226348458904104" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="p0r-3C-KYl" firstAttribute="leading" secondItem="Bi2-eH-XkP" secondAttribute="leading" id="9b4-Qn-2A4"/>
-                                    <constraint firstAttribute="trailing" secondItem="Gut-3g-TqC" secondAttribute="trailing" constant="20" id="POE-e1-4Nr"/>
-                                    <constraint firstAttribute="trailing" secondItem="p0r-3C-KYl" secondAttribute="trailing" id="Ybt-rE-Zzt"/>
-                                    <constraint firstItem="UWS-Pu-EvZ" firstAttribute="leading" secondItem="Bi2-eH-XkP" secondAttribute="leading" constant="20" id="ace-RN-s0e"/>
-                                    <constraint firstAttribute="bottom" secondItem="Gut-3g-TqC" secondAttribute="bottom" constant="8" id="eza-Xt-upX"/>
-                                    <constraint firstAttribute="bottom" secondItem="UWS-Pu-EvZ" secondAttribute="bottom" constant="8" id="gKS-4I-iyl"/>
-                                    <constraint firstAttribute="bottom" secondItem="p0r-3C-KYl" secondAttribute="bottom" constant="1" id="kLT-4J-QxF"/>
-                                    <constraint firstAttribute="height" constant="80" id="rO8-wA-Kwo"/>
+                                    <constraint firstItem="Gut-3g-TqC" firstAttribute="centerY" secondItem="Bi2-eH-XkP" secondAttribute="centerY" id="94N-E6-Y38"/>
+                                    <constraint firstAttribute="height" constant="72" id="Npm-T6-V5s"/>
+                                    <constraint firstItem="Gut-3g-TqC" firstAttribute="centerX" secondItem="Bi2-eH-XkP" secondAttribute="centerX" id="b2H-bz-GEd"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-Pu-EvZ">
+                                <rect key="frame" x="25" y="77" width="40" height="40"/>
+                                <color key="backgroundColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7li-se-x6o"/>
+                                    <constraint firstAttribute="height" constant="40" id="Lwf-QV-fBg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="X"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="back:" destination="mhn-m5-KPN" eventType="touchUpInside" id="fYT-8Y-EPD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="top" secondItem="6UD-UA-jEE" secondAttribute="top" id="2aY-CR-O53"/>
+                            <constraint firstItem="UWS-Pu-EvZ" firstAttribute="top" secondItem="bUN-56-ZM0" secondAttribute="top" constant="13" id="HOH-gs-KCE"/>
                             <constraint firstItem="bUN-56-ZM0" firstAttribute="bottom" secondItem="VSA-VR-pJT" secondAttribute="bottom" id="TCs-dZ-2eH"/>
-                            <constraint firstItem="Bi2-eH-XkP" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" id="cLV-cH-Q1q"/>
-                            <constraint firstItem="Bi2-eH-XkP" firstAttribute="top" secondItem="bUN-56-ZM0" secondAttribute="top" constant="-20" id="f6U-jL-jWe"/>
-                            <constraint firstItem="bUN-56-ZM0" firstAttribute="trailing" secondItem="Bi2-eH-XkP" secondAttribute="trailing" id="nBc-xE-oUI"/>
+                            <constraint firstItem="UWS-Pu-EvZ" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" constant="25" id="VUg-aR-EaM"/>
+                            <constraint firstItem="Bi2-eH-XkP" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" id="WnF-5C-kUV"/>
+                            <constraint firstItem="Bi2-eH-XkP" firstAttribute="bottom" secondItem="bUN-56-ZM0" secondAttribute="bottom" id="g4m-Le-12y"/>
+                            <constraint firstItem="Bi2-eH-XkP" firstAttribute="trailing" secondItem="bUN-56-ZM0" secondAttribute="trailing" id="gLn-eX-li5"/>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" id="pm9-09-psY"/>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="trailing" secondItem="bUN-56-ZM0" secondAttribute="trailing" id="tcT-Is-oce"/>
                         </constraints>

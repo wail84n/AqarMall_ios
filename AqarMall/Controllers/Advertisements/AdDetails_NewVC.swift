@@ -88,14 +88,15 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
         if adsRecord.isCalledDetails == true {
             self.SetView()
         }else{
-            AppUtils.ShowLoading()
+         //   AppUtils.ShowLoading()
           //  self.title = adsRecord.
             APIs.shared.getAdvtDetails(adv: adsRecord) { (result, error) in
-                AppUtils.HideLoading()
+            //    AppUtils.HideLoading()
                 guard error == nil else {
                     print(error ?? "")
                     return
                 }
+                
                 
               //  print(result?.properties?.availableNo)
                 if let _delegate = self.delegate, let _result = result  {
@@ -104,7 +105,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
                 }
                 
                 if  let _result = result  {
-                    
+                    self.adDetails = _result
                     self.isFormNotification(ad : _result)
                     if (self.ads.count - 1) >= self.intAdIndex {
                         if _result.sectionID == 1 {
@@ -497,6 +498,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
             }
         }else if let navPlace = segue.destination as? SubmitAdvFormViewController{
             
+        }else if let navPlace = segue.destination as? printAdvViewController{
+            navPlace.adDetails = adDetails
         }
         
         

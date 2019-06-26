@@ -8,6 +8,8 @@
 
 import UIKit
 import ScrollableSegmentedControl
+import Crashlytics
+
 
 class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     @IBOutlet weak var searchTextSearchBar: UISearchBar!
@@ -47,7 +49,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     var selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
     var selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
-   // var parameters : [String : Any] = [:]
+    var advancedSearchParameters : [String : Any] = [:]
     var advancedSearch = AdvancedSearch()
     var isFormAdvancedSearch = false
     var isFromAdvDetails = false
@@ -634,6 +636,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         }else if let navPlace = segue.destination as? exchangeDetailsViewController {
             let indexPath = tableView.indexPathForSelectedRow
             navPlace.intAdIndex = indexPath?.row ?? 0
+            navPlace.delegate = self
             switch sectionSegment.selectedSegmentIndex
             {
             case 0:
@@ -771,10 +774,33 @@ extension AdsListVC: UITableViewDataSource {
             let record = arrAdve[indexPath.row]
             
             print(record.isBanner)
-            cell.adsTitleLabel.text = record.title
+            
+            if let _title = record.title, _title.isEmpty, record.catId > 0{
+                
+                var section = ""
+                
+                switch sectionSegment.selectedSegmentIndex
+                {
+                case 2:
+                    section = "للإيجار"
+                case 3:
+                    section = "للبيع"
+                default:
+                    break
+                }
+                let filtered = categories.filter({ $0.id == record.catId })
+                if filtered.count > 0{
+                  cell.adsTitleLabel.text = "\(filtered[0].name ?? "") \(section)"
+                }
+                
+            }else{
+                cell.adsTitleLabel.text = record.title
+            }
+            
             cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
             cell.detailsLable.text = record.details
-            cell.priceLabel.text = "\(record.price ?? 0)"
+            
+            cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
             cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
@@ -856,7 +882,7 @@ extension AdsListVC: UITableViewDataSource {
                             
                             if advancedSearch.isOn == true{
                                 // +++ there is no pagination in Advanced Search right now.
-                              //  getAdvancedSearch(_parameters: parameters)
+                                getAdvancedSearch()
                             }else{
                                 callAdvAPI()
                             }
@@ -1046,8 +1072,11 @@ extension AdsListVC: AdvancedSearchDelegate {
         advancedSearch = _advancedSearch
         advancedSearch.isOn = true
         isFormAdvancedSearch = true
+        clearTableView()
+        
         let parameters : [String : Any] = ["UserID": 0, "SectionID": sectionSegment.selectedSegmentIndex - 1, "CatID":intCat, "ProvinceID":selectedProvince?.entryID ?? 0, "AreaID":selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":-1, "ToPrice":-1, "FromSize":-1, "ToSize":-1]
-        getAdvancedSearch(_parameters: parameters)
+        advancedSearchParameters = parameters
+        getAdvancedSearch()
     }
     
     func advancedSearch(with _advancedSearch:AdvancedSearch) {
@@ -1057,6 +1086,7 @@ extension AdsListVC: AdvancedSearchDelegate {
         
         advancedSearch.isOn = true
         isFormAdvancedSearch = true
+        clearTableView()
         sectionSegment.selectedSegmentIndex = advancedSearch.sectionID + 1
        // self.segmentedControl.selectedSegmentIndex = _advancedSearch.catIndex
         
@@ -1065,7 +1095,8 @@ extension AdsListVC: AdvancedSearchDelegate {
 
         let parameters : [String : Any] = ["UserID": 0, "SectionID": advancedSearch.sectionID, "CatID":intCat, "ProvinceID":advancedSearch.selectedProvince?.entryID ?? 0, "AreaID":advancedSearch.selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":advancedSearch.fromPrice, "ToPrice":advancedSearch.toPrice, "FromSize":advancedSearch.fromSize, "ToSize":advancedSearch.toSize]
         
-        getAdvancedSearch(_parameters: parameters)
+        advancedSearchParameters = parameters
+        getAdvancedSearch()
     }
     
     func setProvince_Search(with province: Provinces) {
@@ -1113,10 +1144,13 @@ extension AdsListVC: AdvancedSearchDelegate {
         self.setNavigationTitle()
     }
     
-    func getAdvancedSearch(_parameters: [String : Any]) {
+    func getAdvancedSearch() {
         print(sectionSegment.selectedSegmentIndex - 1)
-        clearTableView()
-        APIs.shared.getAdvts_AdvancedSearch(parameters: _parameters, pageNumber: currentPage) { (result, error) in
+        
+        
+        print("currentPage \(currentPage)")
+        advancedSearchParameters["Page"] = currentPage
+        APIs.shared.getAdvts_AdvancedSearch(parameters: advancedSearchParameters) { (result, error) in
             AppUtils.HideLoading()
             self.isFormAdvancedSearch = false
             guard error == nil else {

@@ -70,6 +70,12 @@ class AppUtils: NSObject {
         return ""
     }
     
+    class func addCommasToNumber(number: Int)-> String{
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(from: NSNumber(value:number)) ?? "\(number)"
+    }
+    
     class func getAllProvinces()  -> [Provinces]?{
         if staticProvinces.isEmpty {
             if let _provincesData = DB_Provinces.callProvinces(){

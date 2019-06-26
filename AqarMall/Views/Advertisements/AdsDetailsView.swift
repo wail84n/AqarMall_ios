@@ -44,10 +44,12 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var adImagesSV: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var viewsLabel: UILabel!
-    @IBOutlet weak var viewsTitleLabel: UILabel!
+    
     @IBOutlet weak var areaNameLabel: UILabel!
+    @IBOutlet weak var viewsTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
-   
+    @IBOutlet weak var sizeTopLabel: UILabel!
+    
     @IBOutlet weak var descriptionTxtView: UITextView!
     @IBOutlet weak var favoriteImageView: UIButton!
     @IBOutlet weak var soldButton: UIButton!
@@ -152,6 +154,9 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         priceTitleLabel.text = myAd2.priceLabel
+        priceLabel.text = AppUtils.addCommasToNumber(number: Int(myAd2.price ?? 0))
+        
+        sizeTopLabel.text = "\(myAd2.size ?? "-")"
         
         adImagesSV.delegate = self
         
@@ -287,50 +292,52 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     }
     
     func SetProperties(){
-        if AdDetails.properties?.ageOfBuilding == "-1" || AdDetails.properties?.ageOfBuilding?.isEmpty ?? true {
+        if AdDetails.properties?.ageOfBuilding == "-1" || AdDetails.properties?.ageOfBuilding?.isEmpty ?? true || AdDetails.properties?.ageOfBuilding == "0"{
             ageOfBuildingView.isHidden = true
         }else{
             ageOfBuildingView.isHidden = false
             ageOfBuildingLabel.text = AdDetails.properties?.ageOfBuilding
         }
         
-        if AdDetails.properties?.buildingSize == "-1" || AdDetails.properties?.buildingSize?.isEmpty ?? true {
+        if AdDetails.properties?.buildingSize == "-1" || AdDetails.properties?.buildingSize?.isEmpty ?? true || AdDetails.properties?.buildingSize == "0"{
             buildingSizeView.isHidden = true
         }else{
             buildingSizeView.isHidden = false
             buildingSizeLabel.text = AdDetails.properties?.buildingSize
         }
         
-        if AdDetails.properties?.finishing == "-1" || AdDetails.properties?.finishing?.isEmpty ?? true {
+        if AdDetails.properties?.finishing == "-1" || AdDetails.properties?.finishing?.isEmpty ?? true || AdDetails.properties?.finishing == "0" {
             finishingView.isHidden = true
         }else{
             finishingView.isHidden = false
             finishingLabel.text = AdDetails.properties?.finishing
         }
         
-        if AdDetails.properties?.interfaceType == "-1" || AdDetails.properties?.interfaceType?.isEmpty ?? true {
+        if AdDetails.properties?.interfaceType == "-1" || AdDetails.properties?.interfaceType?.isEmpty ?? true || AdDetails.properties?.interfaceType == "0"{
             interfaceTypeView.isHidden = true
         }else{
             interfaceTypeView.isHidden = false
             interfaceLabel.text = AdDetails.properties?.interfaceType
         }
         
-        if AdDetails.properties?.landSize == "-1" || AdDetails.properties?.landSize?.isEmpty ?? true{
+        if AdDetails.properties?.landSize == "-1" || AdDetails.properties?.landSize?.isEmpty ?? true || AdDetails.properties?.landSize == "0"{
             landSizeView.isHidden = true
         }else{
             landSizeView.isHidden = false
             landSizeLabel.text = AdDetails.properties?.landSize
         }
         
-        if AdDetails.properties?.size == "-1" || AdDetails.properties?.size?.isEmpty ?? true {
-            sizeView.isHidden = true
-        }else{
-            sizeView.isHidden = false
-            sizeLabel.text = AdDetails.properties?.size
-        }
+        sizeView.isHidden = true
+        
+//        if AdDetails.properties?.size == "-1" || AdDetails.properties?.size?.isEmpty ?? true {
+//            sizeView.isHidden = true
+//        }else{
+//            sizeView.isHidden = false
+//            sizeLabel.text = AdDetails.properties?.size
+//        }
         
 
-        if AdDetails.properties?.licenseType == "-1" || AdDetails.properties?.licenseType?.isEmpty ?? true {
+        if AdDetails.properties?.licenseType == "-1" || AdDetails.properties?.licenseType?.isEmpty ?? true || AdDetails.properties?.licenseType == "0"{
             licenseView.isHidden = true
         }else{
             licenseView.isHidden = false
@@ -338,7 +345,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfBathrooms == "-1" || AdDetails.properties?.numberOfBathrooms?.isEmpty ?? true {
+        if AdDetails.properties?.numberOfBathrooms == "-1" || AdDetails.properties?.numberOfBathrooms?.isEmpty ?? true || AdDetails.properties?.numberOfBathrooms == "0"{
             bathroomNoView.isHidden = true
         }else{
             bathroomNoView.isHidden = false
@@ -346,7 +353,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfFloors == "-1" || AdDetails.properties?.numberOfFloors?.isEmpty ?? true {
+        if AdDetails.properties?.numberOfFloors == "-1" || AdDetails.properties?.numberOfFloors?.isEmpty ?? true || AdDetails.properties?.numberOfFloors == "0"{
             floorsNoView.isHidden = true
         }else{
             floorsNoView.isHidden = false
@@ -354,7 +361,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         
-        if AdDetails.properties?.numberOfRooms == "-1" || AdDetails.properties?.numberOfRooms?.isEmpty ?? true {
+        if AdDetails.properties?.numberOfRooms == "-1" || AdDetails.properties?.numberOfRooms?.isEmpty ?? true || AdDetails.properties?.numberOfRooms == "0"{
             roomsNoView.isHidden = true
         }else{
             roomsNoView.isHidden = false
@@ -707,11 +714,12 @@ extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
             
+            
             print(record.isBanner)
             cell.adsTitleLabel.text = record.title
             cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
             cell.detailsLable.text = record.details
-            cell.priceLabel.text = "\(record.price ?? 0)"
+            cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
             cell.AdvIdLabel.text = "\(record.entryID ?? 0)"

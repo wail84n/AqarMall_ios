@@ -23,7 +23,7 @@
                         <rect key="frame" x="8" y="3" width="304" height="126.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="بيت بالفنطاس" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDz-hH-BSA">
-                                <rect key="frame" x="143" y="8" width="153" height="20.5"/>
+                                <rect key="frame" x="143" y="12" width="153" height="20.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.039215686274509803" green="0.27450980392156865" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -180,7 +180,7 @@
                             <constraint firstItem="Rv4-ih-cKA" firstAttribute="leading" secondItem="cCy-ez-cta" secondAttribute="trailing" constant="8" id="2Ac-eq-KeJ"/>
                             <constraint firstItem="Rv4-ih-cKA" firstAttribute="leading" secondItem="cCy-ez-cta" secondAttribute="trailing" constant="8" id="3Bj-kA-ZHe"/>
                             <constraint firstItem="QOa-vx-qnW" firstAttribute="top" secondItem="DMf-to-b7c" secondAttribute="bottom" constant="8" id="AMf-bx-QfT"/>
-                            <constraint firstItem="LDz-hH-BSA" firstAttribute="top" secondItem="UDa-i4-oob" secondAttribute="top" constant="8" id="BI7-gi-Ez5"/>
+                            <constraint firstItem="LDz-hH-BSA" firstAttribute="top" secondItem="UDa-i4-oob" secondAttribute="top" constant="12" id="BI7-gi-Ez5"/>
                             <constraint firstItem="cCy-ez-cta" firstAttribute="leading" secondItem="UDa-i4-oob" secondAttribute="leading" constant="8" id="DZ8-m2-fuN"/>
                             <constraint firstItem="Ine-eF-UvH" firstAttribute="leading" secondItem="UDa-i4-oob" secondAttribute="leading" constant="4" id="FXP-o9-p6U"/>
                             <constraint firstItem="Ine-eF-UvH" firstAttribute="top" secondItem="DMf-to-b7c" secondAttribute="bottom" constant="11" id="G5r-ir-Fgt"/>

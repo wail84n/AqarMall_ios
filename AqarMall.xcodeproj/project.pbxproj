@@ -30,6 +30,7 @@
 		521E68E92290FD5D00DAA470 /* ReceivedBidsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68E72290FD5D00DAA470 /* ReceivedBidsCell.swift */; };
 		521E68EA2290FD5D00DAA470 /* ReceivedBidsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */; };
 		521E68EC229100A200DAA470 /* ReceivedBids.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E68EB229100A200DAA470 /* ReceivedBids.swift */; };
+		5222BD5722C16E0E00FEE7F7 /* printAdvViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5222BD5622C16E0E00FEE7F7 /* printAdvViewController.swift */; };
 		5224FA9D228761A600DEABFB /* MyBidsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9C228761A600DEABFB /* MyBidsViewController.swift */; };
 		5224FAA12288AB0100DEABFB /* myBidsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5224FA9F2288AB0100DEABFB /* myBidsCell.swift */; };
 		5224FAA22288AB0100DEABFB /* myBidsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5224FAA02288AB0100DEABFB /* myBidsCell.xib */; };
@@ -180,6 +181,7 @@
 		521E68E72290FD5D00DAA470 /* ReceivedBidsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBidsCell.swift; sourceTree = "<group>"; };
 		521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceivedBidsCell.xib; sourceTree = "<group>"; };
 		521E68EB229100A200DAA470 /* ReceivedBids.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBids.swift; sourceTree = "<group>"; };
+		5222BD5622C16E0E00FEE7F7 /* printAdvViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = printAdvViewController.swift; sourceTree = "<group>"; };
 		5224FA9C228761A600DEABFB /* MyBidsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidsViewController.swift; sourceTree = "<group>"; };
 		5224FA9F2288AB0100DEABFB /* myBidsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myBidsCell.swift; sourceTree = "<group>"; };
 		5224FAA02288AB0100DEABFB /* myBidsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myBidsCell.xib; sourceTree = "<group>"; };
@@ -370,6 +372,13 @@
 				521DAA7E226AF5850082305C /* MyAdvViewController.swift */,
 			);
 			path = MyAdv;
+			sourceTree = "<group>";
+		};
+		5222BD5122C16D8300FEE7F7 /* OTResizableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OTResizableView;
 			sourceTree = "<group>";
 		};
 		5224FA9E2288AACC00DEABFB /* Bids */ = {
@@ -670,6 +679,7 @@
 		52E6526F21D9E45F00E66AA2 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5222BD5122C16D8300FEE7F7 /* OTResizableView */,
 				5204DD5E22339D9F00319A58 /* CropViewController */,
 				52E6527021D9E47000E66AA2 /* AppUtils.swift */,
 			);
@@ -717,6 +727,7 @@
 				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
 				528313E4224416B000D4A1C0 /* FavorateViewController.swift */,
 				52614362223D208A00339882 /* exchangeDetailsViewController.swift */,
+				5222BD5622C16E0E00FEE7F7 /* printAdvViewController.swift */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -784,6 +795,7 @@
 				52E6523121D9DB6700E66AA2 /* Frameworks */,
 				52E6523221D9DB6700E66AA2 /* Resources */,
 				A8DB8293494057739D3A8FBE /* [CP] Embed Pods Frameworks */,
+				5222BD5822C170D000FEE7F7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -933,6 +945,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5222BD5822C170D000FEE7F7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		821E940BE7D64E629609BDD3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -961,11 +990,11 @@
 				"${BUILT_PRODUCTS_DIR}/ALCameraViewController/ALCameraViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/OTResizableView/OTResizableView.framework",
 				"${BUILT_PRODUCTS_DIR}/OpalImagePicker/OpalImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -979,11 +1008,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ALCameraViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OTResizableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpalImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -1126,6 +1155,7 @@
 				5281D89621F3474E00A177B0 /* DB_Areas.swift in Sources */,
 				5281D8A421F3A3A300A177B0 /* DB_Banners.swift in Sources */,
 				527E0AAA22303CD3005934DC /* ChooseAddressViewController.swift in Sources */,
+				5222BD5722C16E0E00FEE7F7 /* printAdvViewController.swift in Sources */,
 				524519E5225A8F0E0034CD69 /* ContactUs.swift in Sources */,
 				52E6527121D9E47000E66AA2 /* AppUtils.swift in Sources */,
 				52E6527C21D9EAD800E66AA2 /* UIView.swift in Sources */,
@@ -1318,6 +1348,7 @@
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1339,6 +1370,7 @@
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
+				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

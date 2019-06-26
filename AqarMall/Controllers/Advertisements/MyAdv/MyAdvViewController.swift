@@ -316,7 +316,7 @@ extension MyAdvViewController: UITableViewDataSource, UITableViewDelegate {
             print(record.isBanner)
             cell.adsTitleLabel.text = record.title
             cell.detailsLable.text = record.details
-            cell.priceLabel.text = "\(record.price ?? 0)"
+            cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
             
