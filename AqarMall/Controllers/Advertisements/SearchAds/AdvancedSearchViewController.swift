@@ -46,6 +46,8 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func backAction(_ sender: Any) {
+    }
     func configureView(){
         setPreviousData()
         

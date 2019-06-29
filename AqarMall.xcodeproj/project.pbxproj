@@ -98,6 +98,8 @@
 		528313E122417D6C00D4A1C0 /* DB_FavorateAdv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */; };
 		528313E32242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */; };
 		528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E4224416B000D4A1C0 /* FavorateViewController.swift */; };
+		5293B65D22C3F31500529652 /* SelectColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293B65C22C3F31500529652 /* SelectColorViewController.swift */; };
+		5293B65F22C3F46000529652 /* ChooseColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293B65E22C3F46000529652 /* ChooseColorCell.swift */; };
 		52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76A21DBF33400FE1D70 /* Phone.swift */; };
 		52AFE76D21DBF35700FE1D70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76C21DBF35700FE1D70 /* User.swift */; };
 		52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */; };
@@ -107,6 +109,7 @@
 		52AFE77A21DD5F4400FE1D70 /* MoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77921DD5F4400FE1D70 /* MoreVC.swift */; };
 		52AFE77E21E11E5B00FE1D70 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77D21E11E5B00FE1D70 /* APIs.swift */; };
 		52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE77F21E1224F00FE1D70 /* FullUser.swift */; };
+		52C7B93A22C63D7F00968784 /* printAdvRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C7B93922C63D7F00968784 /* printAdvRecord.swift */; };
 		52CEE2202209376900ADDC8B /* ExchangeAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE21F2209376900ADDC8B /* ExchangeAds.swift */; };
 		52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE2212209377F00ADDC8B /* RequiredAds.swift */; };
 		52CEE225220B5F8C00ADDC8B /* ExchangeAdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */; };
@@ -249,6 +252,8 @@
 		528313E022417D6C00D4A1C0 /* DB_FavorateAdv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_FavorateAdv.swift; sourceTree = "<group>"; };
 		528313E22242C39D00D4A1C0 /* DB_FavorateExchangeAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_FavorateExchangeAds.swift; sourceTree = "<group>"; };
 		528313E4224416B000D4A1C0 /* FavorateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateViewController.swift; sourceTree = "<group>"; };
+		5293B65C22C3F31500529652 /* SelectColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorViewController.swift; sourceTree = "<group>"; };
+		5293B65E22C3F46000529652 /* ChooseColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorCell.swift; sourceTree = "<group>"; };
 		52AFE76A21DBF33400FE1D70 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		52AFE76C21DBF35700FE1D70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierSubscription.swift; sourceTree = "<group>"; };
@@ -259,6 +264,7 @@
 		52AFE77D21E11E5B00FE1D70 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 		52AFE77F21E1224F00FE1D70 /* FullUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullUser.swift; sourceTree = "<group>"; };
 		52AFE78121E12AAA00FE1D70 /* AqarMall.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AqarMall.entitlements; sourceTree = "<group>"; };
+		52C7B93922C63D7F00968784 /* printAdvRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = printAdvRecord.swift; sourceTree = "<group>"; };
 		52CEE21F2209376900ADDC8B /* ExchangeAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAds.swift; sourceTree = "<group>"; };
 		52CEE2212209377F00ADDC8B /* RequiredAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredAds.swift; sourceTree = "<group>"; };
 		52CEE223220B5F8C00ADDC8B /* ExchangeAdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAdsCell.swift; sourceTree = "<group>"; };
@@ -497,6 +503,17 @@
 			path = SubmitAdv;
 			sourceTree = "<group>";
 		};
+		5293B65B22C3F2DA00529652 /* print Adv */ = {
+			isa = PBXGroup;
+			children = (
+				5222BD5622C16E0E00FEE7F7 /* printAdvViewController.swift */,
+				5293B65C22C3F31500529652 /* SelectColorViewController.swift */,
+				5293B65E22C3F46000529652 /* ChooseColorCell.swift */,
+				52C7B93922C63D7F00968784 /* printAdvRecord.swift */,
+			);
+			path = "print Adv";
+			sourceTree = "<group>";
+		};
 		52AFE77221DD5E1400FE1D70 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
@@ -718,6 +735,7 @@
 		52E6528821D9EC9D00E66AA2 /* Advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				5293B65B22C3F2DA00529652 /* print Adv */,
 				521DAA7D226AF55F0082305C /* MyAdv */,
 				524422B5224D68C000B2DC7F /* SearchAds */,
 				521CCAAF224622D700841505 /* Bids */,
@@ -727,7 +745,6 @@
 				52AFE77021DD5AAF00FE1D70 /* AdsListVC.swift */,
 				528313E4224416B000D4A1C0 /* FavorateViewController.swift */,
 				52614362223D208A00339882 /* exchangeDetailsViewController.swift */,
-				5222BD5622C16E0E00FEE7F7 /* printAdvViewController.swift */,
 			);
 			path = Advertisements;
 			sourceTree = "<group>";
@@ -1109,6 +1126,7 @@
 				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
 				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
+				5293B65D22C3F31500529652 /* SelectColorViewController.swift in Sources */,
 				521CCAAE22456D4700841505 /* UIViewController.swift in Sources */,
 				525A8BE92253DA02007CEA46 /* AdvancedSearch.swift in Sources */,
 				5204DD6D22339E8300319A58 /* UIImage.swift in Sources */,
@@ -1122,12 +1140,14 @@
 				521E68E62290FC9300DAA470 /* ReceivedBidsViewController.swift in Sources */,
 				524519E3225A7BEE0034CD69 /* MyAccountViewController.swift in Sources */,
 				52E6528221D9EB6700E66AA2 /* String.swift in Sources */,
+				52C7B93A22C63D7F00968784 /* printAdvRecord.swift in Sources */,
 				5204DD6922339DB600319A58 /* CropView.swift in Sources */,
 				527E0AA8222DBFF1005934DC /* SubmitAdvFormViewController.swift in Sources */,
 				521CCAAC2245649900841505 /* DB_UserInfo.swift in Sources */,
 				5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */,
 				527E0A9D222B202B005934DC /* ChooseAdvSectionViewController.swift in Sources */,
 				52290AA72213671100EBEAA7 /* AdDetails_NewVC.swift in Sources */,
+				5293B65F22C3F46000529652 /* ChooseColorCell.swift in Sources */,
 				524519E8225BD6AC0034CD69 /* UrlWebviewVC.swift in Sources */,
 				5204DD6A22339DB600319A58 /* ResizeControl.swift in Sources */,
 				524422A82247FA2000B2DC7F /* userNotification.swift in Sources */,

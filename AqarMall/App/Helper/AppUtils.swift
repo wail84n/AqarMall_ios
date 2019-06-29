@@ -56,6 +56,8 @@ class AppUtils: NSObject {
         case contact_us = "ContactUs"
         case device_token_info = "DeviceTokenInfo"
         case device_token_saved_on_server = "DeviceTokenSavedOnServer"
+        
+        case print_adv_screen_shot = "print_adv_screen_shot"
     }
     
     class func LoadData(key: AppVariables)  -> String
