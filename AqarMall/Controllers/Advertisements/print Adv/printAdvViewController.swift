@@ -12,9 +12,8 @@ import SDWebImage
 import OpalImagePicker
 import Photos
 
-
 class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectColorDelegate {
-
+    
     var resizableDetailsView = OTResizableView(contentView: UIView())
     var resizableTitleView = OTResizableView(contentView: UIView())
     var resizableImageBGView = OTResizableView(contentView: UIView())
@@ -30,14 +29,22 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
     @IBOutlet weak var imageBG: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    var printTextColor: PrintTextColor = .noun
+    
     var adDetails = AdvertisementInfo()
     var selectedItem = -1
     var titleFont: CGFloat = 16
     var detailsFont: CGFloat = 14
+    var _printAdvRecord = printAdvRecord()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  var style = (firstName: "John", lastName: "Smith")
+
+        
+         configureView()
+    }
+    
+    func configureView(){
         resizableDetailsView = OTResizableView(contentView: detailsView)
         resizableDetailsView.tag = 1
         resizableDetailsView.delegate = self;
@@ -73,35 +80,48 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
         detailsView.backgroundColor = UIColor.clear
         titleView.backgroundColor = UIColor.clear
         
-        //saveData()
+        if let printAdvRecord = printAdvRecord(object: AppUtils.LoadDictionaryData(key: .print_adv_screen_shot)) {
+            _printAdvRecord = printAdvRecord
+            if _printAdvRecord.titleColor != .clear {
+                self.titleTextView.textColor = _printAdvRecord.titleColor
+            }
+            
+            if _printAdvRecord.textColor != .clear {
+                self.detailsTextView.textColor = _printAdvRecord.textColor
+            }
+            
+            if _printAdvRecord.text_height != 0 && _printAdvRecord.text_width != 0 {
+                self.detailsView.frame =  CGRect(x: _printAdvRecord.text_x! , y: _printAdvRecord.text_y!, width: _printAdvRecord.text_width!, height: _printAdvRecord.text_height!)
+            }
+            
+            if _printAdvRecord.title_width != 0 && _printAdvRecord.title_height != 0 {
+                self.titleView.frame =  CGRect(x: _printAdvRecord.title_x!, y: _printAdvRecord.title_y!, width: _printAdvRecord.title_width!, height: _printAdvRecord.title_height!)
+            }
+            
+            if _printAdvRecord.imageBG_width != 0 && _printAdvRecord.imageBG_height != 0 {
+                self.imageView.frame =  CGRect(x: _printAdvRecord.imageBG_x!, y: _printAdvRecord.imageBG_y!, width:
+                    _printAdvRecord.imageBG_width!, height: _printAdvRecord.imageBG_height!)
+            }
+            
+            print(_printAdvRecord.nsDictionary)
+        }
+        saveData()
         readData()
     }
     
     func saveData(){
-        var accessLavels: AccessTuple = (hasInventoryAccess: "imageBG.frame", hasPayrolAccess: "imageView.frame")
-        
-        // Writing to defaults
-        let accessLevelDictionary = serializeTuple(tuple: accessLavels)
-        
-        print(accessLevelDictionary)
-        UserDefaults.standard.set(accessLevelDictionary, forKey: "print_adv_screen_shot")
-        
-
+      //  _printAdvRecord.imageBG_image = "wail"
+       // _printAdvRecord.titleColor = .green
+        UserDefaults.standard.set(_printAdvRecord.nsDictionary, forKey: "print_adv_screen_shot")
     }
- 
+    
     func readData(){
-        let accessDic = UserDefaults.standard.dictionary(forKey: "print_adv_screen_shot") as! AccessDictionary
-        var accessLev = deserializeDictionary(dictionary: accessDic)
-        
-        print(accessLev.hasInventoryAccess)
-        
-        accessLev.hasInventoryAccess = "wail"
-        
-        let accessLevelDictionary = serializeTuple(tuple: accessLev)
-        UserDefaults.standard.set(accessLevelDictionary, forKey: "print_adv_screen_shot")
-        
-        if let _sponsor = printAdvRecord(object: AppUtils.LoadDictionaryData(key: .print_adv_screen_shot)) {
+        if let _printAdvRecordee = printAdvRecord(object: AppUtils.LoadDictionaryData(key: .print_adv_screen_shot)) {
+            self.titleTextView.textColor = _printAdvRecordee.titleColor
+            
+          //  let whiteColor = UIColor(hexaDecimalString: stringWhite)
 
+            print(_printAdvRecordee.nsDictionary)
         }
     }
     
@@ -110,8 +130,8 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
     }
     
     @IBAction func takeScreenShotAction(_ sender: Any) {
-     //   takeScreenshot(view: mainView)
-       // captureScreenshot()
+        //   takeScreenshot(view: mainView)
+        // captureScreenshot()
         
         selectedItem = -1
         titleTextView.backgroundColor = UIColor.clear
@@ -184,14 +204,18 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
             //Cancel action?
             
         })
-
+        
     }
     
     func selectedColor(color: UIColor) {
         switch selectedItem {
         case 1:
+            _printAdvRecord.textColor = color
+            UserDefaults.standard.set(_printAdvRecord.nsDictionary, forKey: "print_adv_screen_shot")
             detailsTextView.textColor = color
         case 2:
+            _printAdvRecord.titleColor = color
+            UserDefaults.standard.set(_printAdvRecord.nsDictionary, forKey: "print_adv_screen_shot")
             titleTextView.textColor = color
         default:
             return
@@ -220,32 +244,32 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
         
     }
     
-//    @IBAction func tappedChangeAspectButton(_ sender: UIButton) {
-//        sender.isSelected = !sender.isSelected
-//        if sender.isSelected {
-//            resizableDetailsView.keepAspectEnabled = true
-//        } else {
-//            resizableDetailsView.keepAspectEnabled = false
-//            resizableDetailsView.minimumWidth = 100
-//            resizableDetailsView.minimumHeight = 100
-//        }
-//    }
+    //    @IBAction func tappedChangeAspectButton(_ sender: UIButton) {
+    //        sender.isSelected = !sender.isSelected
+    //        if sender.isSelected {
+    //            resizableDetailsView.keepAspectEnabled = true
+    //        } else {
+    //            resizableDetailsView.keepAspectEnabled = false
+    //            resizableDetailsView.minimumWidth = 100
+    //            resizableDetailsView.minimumHeight = 100
+    //        }
+    //    }
     
     func tapBegin(_ resizableView: OTResizableView) {
         print("resizableView.resizeEnabled \(resizableView.resizeEnabled)")
-      resizableView.resizeEnabled = resizableView.resizeEnabled ? false : true
-
+        resizableView.resizeEnabled = resizableView.resizeEnabled ? false : true
+        
         if resizableView.resizeEnabled == false
         {
-//            selectedItem = -1
-//            titleTextView.backgroundColor = UIColor.clear
-//            detailsTextView.backgroundColor = UIColor.clear
-//            
-//          //  titleTextView.isEditable = false
-//            titleTextView.isSelectable = false
-//            
-//            // detailsTextView.isEditable = false
-//            detailsTextView.isSelectable = false
+            //            selectedItem = -1
+            //            titleTextView.backgroundColor = UIColor.clear
+            //            detailsTextView.backgroundColor = UIColor.clear
+            //
+            //          //  titleTextView.isEditable = false
+            //            titleTextView.isSelectable = false
+            //
+            //            // detailsTextView.isEditable = false
+            //            detailsTextView.isSelectable = false
             
             return
         }
@@ -259,10 +283,10 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
             detailsTextView.isSelectable = true
             
             titleTextView.backgroundColor = UIColor.clear
-
+            
             titleTextView.isEditable = false
             titleTextView.isSelectable = false
-
+            
             resizableImageBGView.resizeEnabled = !resizableView.resizeEnabled
             resizableTitleView.resizeEnabled = !resizableView.resizeEnabled
         case 2:
@@ -298,21 +322,20 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
         print("tapBegin:\(resizableView.frame)")
     }
     
-//    func takeScreenshot(view: UIView) -> UIImageView {
-//
-//        UIGraphicsBeginImageContext(view.frame.size)
-//        view.layer.render(in: UIGraphicsGetCurrentContext()!)
-//        let image = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
-//
-//        return UIImageView(image: image)
-//    }
+    //    func takeScreenshot(view: UIView) -> UIImageView {
+    //        UIGraphicsBeginImageContext(view.frame.size)
+    //        view.layer.render(in: UIGraphicsGetCurrentContext()!)
+    //        let image = UIGraphicsGetImageFromCurrentImageContext()
+    //        UIGraphicsEndImageContext()
+    //        UIImageWriteToSavedPhotosAlbum(image!, nil, nil, nil)
+    //
+    //        return UIImageView(image: image)
+    //    }
     
     func captureScreenshot(){
-     //   imageView.frame = CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: imageView.frame.size.height)
+        //   imageView.frame = CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: imageView.frame.size.height)
         
-       // mainView.frame = CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: imageView.frame.size.height)
+        // mainView.frame = CGRect(x: 0, y: 0, width: imageView.frame.size.width, height: imageView.frame.size.height)
         
         let layer = mainView.layer // UIApplication.shared.keyWindow!.layer
         let scale = UIScreen.main.scale
@@ -334,51 +357,41 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
             titleTextView.frame = CGRect(x: 15, y: 15, width: resizableView.frame.size.width - 50, height: resizableView.frame.size.height - 50)
         }else if resizableView.tag == 3{
             imageBG.frame = CGRect(x:-10, y: -10, width: resizableView.frame.size.width , height: resizableView.frame.size.height)
-            
-         //   mainView.frame = imageBG.frame // CGRect(x: 0, y: 0, width: imageBG.frame.size.width, height: imageBG.frame.size.height)
+            //   mainView.frame = imageBG.frame // CGRect(x: 0, y: 0, width: imageBG.frame.size.width, height: imageBG.frame.size.height)
         }
     }
-
+    
     func tapMoved(_ resizableView: OTResizableView) {
         print("tapMoved:\(resizableView.frame))")
     }
     
     func tapEnd(_ resizableView: OTResizableView) {
         print("tapEnd:\(resizableView.frame)")
-        
-    //    AccessTuple = (hasInventoryAccess: resizableView.frame, hasPayrolAccess: resizableView.frame)
-    
-
+        if resizableView.tag == 1{
+            _printAdvRecord.text_x = resizableView.frame.origin.x
+            _printAdvRecord.text_y = resizableView.frame.origin.y
+            _printAdvRecord.text_width = resizableView.frame.size.width
+            _printAdvRecord.text_height = resizableView.frame.size.height
+        }else if resizableView.tag == 2{
+            _printAdvRecord.title_x = resizableView.frame.origin.x
+            _printAdvRecord.title_y = resizableView.frame.origin.y
+            _printAdvRecord.title_width = resizableView.frame.size.width
+            _printAdvRecord.title_height = resizableView.frame.size.height
+        }else if resizableView.tag == 3{
+            _printAdvRecord.imageBG_x = resizableView.frame.origin.x
+            _printAdvRecord.imageBG_y = resizableView.frame.origin.y
+            _printAdvRecord.imageBG_width = resizableView.frame.size.width
+            _printAdvRecord.imageBG_height = resizableView.frame.size.height
+        }
+        UserDefaults.standard.set(_printAdvRecord.nsDictionary, forKey: "print_adv_screen_shot")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let navPlace = segue.destination as? SelectColorViewController {
             navPlace.delegate = self
+            
         }
     }
-    
-    
-    typealias AccessTuple = (hasInventoryAccess: String, hasPayrolAccess: String)
-    typealias AccessDictionary = [String: String]
-    
-    let InventoryKey = "hasInventoryAccess"
-    let PayrollKey = "hasPayrollAccess"
-    
-
-    func serializeTuple(tuple: AccessTuple) -> AccessDictionary {
-        return [
-            InventoryKey : tuple.hasInventoryAccess,
-            PayrollKey : tuple.hasPayrolAccess
-        ]
-    }
-    
-    func deserializeDictionary(dictionary: AccessDictionary) -> AccessTuple {
-        return AccessTuple(
-            dictionary[InventoryKey] as String!,
-            dictionary[PayrollKey] as String!
-        )
-    }
-
     
 }
 
@@ -391,15 +404,15 @@ extension printAdvViewController: UIImagePickerControllerDelegate, UINavigationC
         present(picker, animated: true, completion: nil)
     }
     
-//    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingIMAGEWithInfo info: [String : Any]) {
-//        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
-//            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
-//        }
-//        
-//        imageBG.image = selectedImage
-//     //   showCropper(for: chosenImage)
-//        dismiss(animated:true, completion: nil)
-//    }
+    //    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingIMAGEWithInfo info: [String : Any]) {
+    //        guard let selectedImage = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {
+    //            fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
+    //        }
+    //
+    //        imageBG.image = selectedImage
+    //     //   showCropper(for: chosenImage)
+    //        dismiss(animated:true, completion: nil)
+    //    }
 }
 
 
