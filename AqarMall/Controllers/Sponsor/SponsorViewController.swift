@@ -46,6 +46,17 @@ class SponsorViewController: UIViewController {
         }
     }
     
+    
+    func UpdateViews(){
+        APIs.shared.updateAdvtViewCount(id: Int64(sponsor?.sponsorID ?? 0), type: "1" ){ (advViews, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+            
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: true)

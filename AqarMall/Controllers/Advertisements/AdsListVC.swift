@@ -296,7 +296,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         // Hide the Navigation Bar
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
+   //     NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
@@ -665,6 +665,8 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
 //            navPlace.selectedProvince = selectedProvince
             navPlace.sectionId = sectionSegment.selectedSegmentIndex - 1
             navPlace.intCat =  intCat
+            print(advancedSearch.sectionID)
+            advancedSearch.sectionID = sectionSegment.selectedSegmentIndex - 1
             navPlace.advancedSearch = advancedSearch
         }
     }

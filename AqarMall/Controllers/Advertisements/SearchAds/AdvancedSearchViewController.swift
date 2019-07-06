@@ -146,19 +146,19 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     }
     
     @IBAction func StartAdvancesSearch(_ sender: Any) {
-        if let fromPrice = fromPriceTextField.text, fromPrice.isEmpty == false {
+        if let fromPrice = fromPriceTextField.text?.replacedArabicDigitsWithEnglish, fromPrice.isEmpty == false {
             advancedSearch.fromPrice = Int32(fromPrice) ?? 0
         }
         
-        if let toPrice = toPriceTextField.text, toPrice.isEmpty == false {
+        if let toPrice = toPriceTextField.text?.replacedArabicDigitsWithEnglish, toPrice.isEmpty == false {
             advancedSearch.toPrice = Int32(toPrice) ?? 0
         }
         
-        if let fromSize = fromSizeTextField.text, fromSize.isEmpty == false {
+        if let fromSize = fromSizeTextField.text?.replacedArabicDigitsWithEnglish, fromSize.isEmpty == false {
             advancedSearch.fromSize = Int32(fromSize) ?? 0
         }
         
-        if let toSize = toSizeTextField.text, toSize.isEmpty == false {
+        if let toSize = toSizeTextField.text?.replacedArabicDigitsWithEnglish, toSize.isEmpty == false {
             advancedSearch.toSize = Int32(toSize) ?? 0
         }
         
@@ -176,7 +176,7 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
         fromPriceTextField.borderColor = UIColor.clear
         toPriceTextField.borderColor = UIColor.clear
         if fromPriceTextField.text?.isEmpty == false && toPriceTextField.text?.isEmpty == false {
-            guard let fromPrice = Int(fromPriceTextField.text ?? "0"),
+            guard let fromPrice = Int(fromPriceTextField.text?.replacedArabicDigitsWithEnglish ?? "0"),
                 let toPrice = Int(toPriceTextField.text ?? "0")
                 else{
                     return false

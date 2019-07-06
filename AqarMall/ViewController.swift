@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: ReceivedPushNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.ReceivedNotification), name: NSNotification.Name(rawValue: ReceivedPushNotification), object: nil)
-
     }
     
     @objc func ReceivedNotification(result : Notification?) {

@@ -164,16 +164,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
             print("Categories No : \(recordNo ?? 0)")
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "refresh_categories", userInfo: nil) // +++ the categories have been loaded.
+            NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_categories", userInfo: nil) // +++ the categories have been loaded.
             
             SyncAPIData.callProvincesAPI { (result, recordNo, error) in
                 print("Provinces No : \(recordNo ?? 0)")
                 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "refresh_Provinces", userInfo: nil) // +++ the Provinces have been loaded.
+                NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Provinces", userInfo: nil) // +++ the Provinces have been loaded.
                 
                 SyncAPIData.callAreasAPI { (result, recordNo, error) in
                     print("Areas No : \(recordNo ?? 0)")
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "refresh_Areas", userInfo: nil) // +++ the Areas have been loaded.
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Areas", userInfo: nil) // +++ the Areas have been loaded.
                     
                     SyncAPIData.callGeneralPagesAPI { (result, recordNo, error) in
                         print("General Pages No : \(recordNo ?? 0)")

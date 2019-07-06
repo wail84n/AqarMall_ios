@@ -9,7 +9,6 @@
 import UIKit
 
 struct printAdvRecord {
-   // let entryID:CGRect
     var imageBG_image : String? = ""
     var imageBG_x : CGFloat? = 0
     var imageBG_y : CGFloat? = 0
@@ -29,6 +28,14 @@ struct printAdvRecord {
     var text_y : CGFloat? = 0
     var text_width : CGFloat? = 0
     var text_height : CGFloat? = 0
+    
+    var phone_fontSize : CGFloat? = 0
+    var phoneColor : UIColor? = .clear
+    var phone_x : CGFloat? = 0
+    var phone_y : CGFloat? = 0
+    var phone_width : CGFloat? = 0
+    var phone_height : CGFloat? = 0
+    
     var dictionary32: [String: Any]? = [:]
     
     init() {
@@ -36,7 +43,6 @@ struct printAdvRecord {
     }
     
     public init?(object: AnyObject?) {
-        
         guard
             let _object = object,
             let _imageBG_image = _object["imageBG_image"] as? String,
@@ -55,7 +61,13 @@ struct printAdvRecord {
             let _text_x = _object["text_x"] as? CGFloat,
             let _text_y = _object["text_y"] as? CGFloat,
             let _text_width = _object["text_width"] as? CGFloat,
-            let _text_height = _object["text_height"] as? CGFloat
+            let _text_height = _object["text_height"] as? CGFloat,
+            let _phone_fontSize = _object["phone_fontSize"] as? CGFloat,
+            let _phoneColor = _object["phoneColor"] as? String,
+            let _phone_x = _object["phone_x"] as? CGFloat,
+            let _phone_y = _object["phone_y"] as? CGFloat,
+            let _phone_width = _object["phone_width"] as? CGFloat,
+            let _phone_height = _object["phone_height"] as? CGFloat
             else{
                 return nil
         }
@@ -64,7 +76,7 @@ struct printAdvRecord {
         self.imageBG_y = _imageBG_y
         self.imageBG_width = _imageBG_width
         self.imageBG_height = _imageBG_height
-        
+
         self.title_fontSize = _title_fontSize
         self.titleColor = _titleColor.color
         self.title_x = _title_x
@@ -78,7 +90,15 @@ struct printAdvRecord {
         self.text_y = _text_y
         self.text_width = _text_width
         self.text_height = _text_height
+        
+        self.phone_fontSize = _phone_fontSize
+        self.phoneColor = _phoneColor.color
+        self.phone_x = _phone_x
+        self.phone_y = _phone_y
+        self.phone_width = _phone_width
+        self.phone_height = _phone_height
     }
+    
     var dictionary: [String: Any] {
         return ["imageBG_image": imageBG_image ?? "",
                 "imageBG_x": imageBG_x ?? 0,
@@ -91,6 +111,14 @@ struct printAdvRecord {
                 "title_y": title_y ?? 0,
                 "title_width": title_width ?? 0,
                 "title_height": title_height ?? 0,
+                
+                "phone_fontSize": phone_fontSize ?? 0,
+                "phoneColor": phoneColor?.toHexString() ?? "",
+                "phone_x": phone_x ?? 0,
+                "phone_y": phone_y ?? 0,
+                "phone_width": phone_width ?? 0,
+                "phone_height": phone_height ?? 0,
+                
                 "text_fontSize": text_fontSize ?? 0,
                 "textColor": textColor?.toHexString() ?? "",
                 "text_x": text_x ?? 0,
