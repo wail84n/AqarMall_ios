@@ -68,11 +68,11 @@
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gut-3g-TqC">
-                                        <rect key="frame" x="117.5" y="13.5" width="140" height="45"/>
+                                        <rect key="frame" x="117.5" y="18.5" width="140" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="5xA-h3-Hwr"/>
-                                            <constraint firstAttribute="height" constant="45" id="rMJ-FJ-6Bd"/>
+                                            <constraint firstAttribute="height" constant="35" id="rMJ-FJ-6Bd"/>
                                         </constraints>
                                         <state key="normal" title="تفاصيل الإعلان">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,7 +123,7 @@
                         <constraints>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="top" secondItem="6UD-UA-jEE" secondAttribute="top" id="2aY-CR-O53"/>
                             <constraint firstItem="UWS-Pu-EvZ" firstAttribute="top" secondItem="bUN-56-ZM0" secondAttribute="top" constant="13" id="HOH-gs-KCE"/>
-                            <constraint firstItem="bUN-56-ZM0" firstAttribute="bottom" secondItem="VSA-VR-pJT" secondAttribute="bottom" id="TCs-dZ-2eH"/>
+                            <constraint firstAttribute="bottom" secondItem="VSA-VR-pJT" secondAttribute="bottom" id="TCs-dZ-2eH"/>
                             <constraint firstItem="UWS-Pu-EvZ" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" constant="25" id="VUg-aR-EaM"/>
                             <constraint firstItem="Bi2-eH-XkP" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" id="WnF-5C-kUV"/>
                             <constraint firstItem="Bi2-eH-XkP" firstAttribute="bottom" secondItem="bUN-56-ZM0" secondAttribute="bottom" id="g4m-Le-12y"/>

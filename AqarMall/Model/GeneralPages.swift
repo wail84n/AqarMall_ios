@@ -20,18 +20,24 @@ struct GeneralPages {
             let _object = object,
             let _entryID = _object["EntryID"] as? Int32,
             let _lastChange = _object["LastChange"] as? Int64,
-            let _lastChangeType = _object["LastChangeType"] as? Int8,
-            let _title = _object["Title"] as? String,
-            let _details = _object["Details"] as? String
+            let _lastChangeType = _object["LastChangeType"] as? Int8
             else{
                 return nil
         }
-        
         self.entryID = _entryID
-        self.title = _title
-        self.details = _details
         self.lastChange = _lastChange
         self.lastChangeType = _lastChangeType
         
+        if let _title = _object["Title"] as? String {
+            self.title = _title
+        }else{
+            self.title = ""
+        }
+        
+        if let _details = _object["Details"] as? String {
+            self.details = _details
+        }else{
+            self.details = ""
+        }
     }
 }

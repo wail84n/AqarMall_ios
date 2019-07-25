@@ -35,4 +35,24 @@ struct ReceivedBids {
         self.price = _price
         self.regDate = _regDate
     }
+    
+    
+    
+  //  pr("threeTimesTable[3] \(threeTimesTable[3])")
+}
+
+
+struct TimesTable {
+    let multiplier: Int
+//    subscript(index: Int) -> Int {
+//        return multiplier * index
+//    }
+    
+    subscript(index: Int) -> Int{
+        return multiplier * index
+    }
+    
+    subscript(index: String) -> String{
+        return "wail"
+    }
 }

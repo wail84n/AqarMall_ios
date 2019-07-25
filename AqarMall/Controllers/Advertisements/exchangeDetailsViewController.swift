@@ -18,6 +18,9 @@ class exchangeDetailsViewController: ViewController {
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var favorateButton: UIButton!
     var delegate: AdDetailsDelegate? = nil
+    
+   // @IBOutlet weak var descriptionConstraint_y: NSLayoutConstraint!
+
    // var exchangeAds : ExchangeAds? = nil
     var ads : [ExchangeAds] = []
     var intAdIndex = 0
@@ -42,6 +45,8 @@ class exchangeDetailsViewController: ViewController {
         self.setFavoriteImageBy(flag: DB_FavorateExchangeAds.validateRecord(Id: adsRecord.entryID ?? 0))
      //   self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
         
+//        print(self.getNavigationBarHeight())
+//        descriptionConstraint_y.constant = self.getNavigationBarHeight() + 5
         dateLabel.text = adsRecord.date
         titleLabel.text = adsRecord.title
         detailsTextView.text = adsRecord.description

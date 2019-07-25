@@ -352,7 +352,7 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
         switch resizableView.tag {
         case 1:
             titleLabel.text = "تفاصيل الإعلان"
-            detailsTextView.backgroundColor = UIColor.white
+            detailsTextView.backgroundColor = UIColor.lightWhite()
             titleTextView.backgroundColor = UIColor.clear
             phoneNoTextView.backgroundColor = UIColor.clear
             
@@ -371,7 +371,7 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
         case 2:
             titleLabel.text = "عنوان الإعلان"
             
-            titleTextView.backgroundColor = UIColor.white
+            titleTextView.backgroundColor = UIColor.lightWhite()
             detailsTextView.backgroundColor = UIColor.clear
             phoneNoTextView.backgroundColor = UIColor.clear
             
@@ -406,7 +406,7 @@ class printAdvViewController: UIViewController,OTResizableViewDelegate, SelectCo
             resizablePhoneNoView.resizeEnabled = !resizableView.resizeEnabled
         case 4:
             titleLabel.text = "رقم الهاتف"
-            phoneNoTextView.backgroundColor = UIColor.white
+            phoneNoTextView.backgroundColor = UIColor.lightWhite()
             detailsTextView.backgroundColor = UIColor.clear
             titleTextView.backgroundColor = UIColor.clear
             

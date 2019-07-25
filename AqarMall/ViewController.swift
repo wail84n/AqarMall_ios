@@ -13,9 +13,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var sss = ["sss", "were", "dsd"]
+        var ssse =  sss.reversed().joined(separator: "\n")
+        let threeTimesTable = TimesTable(multiplier: 3)
+        print("ddd \(threeTimesTable[9])")
+        print("ddd \(threeTimesTable["2"])")
          // Do any additional setup after loading the view.
     }
     
+    func getNavigationBarHeight() -> CGFloat{
+        return UIApplication.shared.statusBarFrame.height +
+            self.navigationController!.navigationBar.frame.height
+    }
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: ReceivedPushNotification), object: nil)
     }

@@ -98,6 +98,11 @@ class AppUtils: NSObject {
         return nil
     }
     
+//    class func topBarHeight(){
+//        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
+//            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+//    }
+    
     class func getProvince(provinceId: Int32)  -> Provinces?
     {
         if let _staticProvinces = getAllProvinces() {
@@ -192,6 +197,12 @@ class AppUtils: NSObject {
     class func SaveDictionary(key:AppVariables ,value:NSDictionary)
     {
         UserDefaults.standard.set(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func removeData(key:AppVariables)
+    {
+        UserDefaults.standard.removeObject(forKey: key.rawValue)
         UserDefaults.standard.synchronize()
     }
     

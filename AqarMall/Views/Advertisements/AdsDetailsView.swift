@@ -466,7 +466,6 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         }
         
         validateImages()
-        //self.loadImages()
     }
     
     func getActualViewHeight() -> CGFloat{
@@ -517,7 +516,6 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     func loadImages(_imageURLs : [URL]) {
         let screenSize = UIScreen.main.bounds
         for index in (0..<_imageURLs.count) {
-            
             let imageView = UIImageView(frame: CGRect(x: screenSize.width * CGFloat(index) , y: 0, width: screenSize.width, height: self.adImagesSV.frame.size.height))
             imageView.tag = index
             imageView.backgroundColor = UIColor.black
@@ -538,12 +536,13 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
                     }
             }
              
-            let tap = UITapGestureRecognizer(target: self, action: #selector(Gallery(sender:))) // +++
-            imageView.addGestureRecognizer(tap) // +++
+            let tap = UITapGestureRecognizer(target: self, action: #selector(Gallery(sender:)))
+            imageView.addGestureRecognizer(tap)
             imageView.isUserInteractionEnabled = true
             
             self.adImagesSV.addSubview(imageView)
         }
+        
         self.adImagesSV.contentSize = CGSize(width: screenSize.width * CGFloat(_imageURLs.count), height: self.adImagesSV.frame.size.height)
         self.adImagesSV.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         self.pageControl.numberOfPages = _imageURLs.count

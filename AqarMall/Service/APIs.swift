@@ -133,6 +133,7 @@ class APIs: NSObject {
         case postSearch(parameters : [String:Any])
         case getContactDetails(countryId : Int16)
         case updateAdvtViewCount(id: Int32, type: String)
+        case updateSponsorViewCount(id: Int32)
         case getMySellerAds(userId: Int32, pageNumber: Int16, sectionId : Int8)
         case getMyBuyerRequiredAds(userId: Int32, pageNumber: Int16)
         case getMyExchangePropertyAds(userId: Int32, pageNumber: Int16)
@@ -197,6 +198,7 @@ class APIs: NSObject {
                  .postAdvt(_),
                  .updateAdvt(_),
                  .updateAdvtViewCount(_, _),
+                 .updateSponsorViewCount(_),
                  .postRemoveAdvt(_, _),
                  .postPoints(_, _, _, _, _, _, _, _),
                  .postBid(_, _, _, _),
@@ -256,6 +258,8 @@ class APIs: NSObject {
                 return "/getContactDetails"
             case .updateAdvtViewCount(_, _):
                 return "/updateAdvtViewCount"
+            case .updateSponsorViewCount(_):
+                return "/updateSponsorView"
             case .getRelatedAdvts(_, _):
                 return "/getRelatedAdvts"
             case .getMySellerAds(_, _, _):
@@ -418,6 +422,8 @@ class APIs: NSObject {
                 return parameters
             case .updateAdvtViewCount(let id, let type):
                 return ["id":id, "type":type, "addOne":1]
+            case .updateSponsorViewCount(let id):
+                return ["id":id]
             case .postRemoveAdvt(let id, let type):
                 return ["id":id, "type":type]
             case .postPoints(let actionType,let areaID,let catID,let points,let provinceID,let sectionID,let userID,let deviceUDID):
@@ -644,6 +650,25 @@ class APIs: NSObject {
     
     func updateAdvtViewCount(id: Int64, type : String, callback: @escaping IntegerCallback) {
         let route = Router.updateAdvtViewCount(id: Int32(id), type: type)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+                else {
+                    callback(-1, response.error ?? APIError.unknown)
+                    return
+            }
+            print(result)
+            if let advViews = result as? Int {
+                callback(advViews, nil)
+            }else{
+                callback(0, nil)
+            }
+        }
+    }
+    
+    func updateSponsorViewCount(id: Int64, callback: @escaping IntegerCallback) {
+        let route = Router.updateSponsorViewCount(id: Int32(id))
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
@@ -908,12 +933,18 @@ class APIs: NSObject {
                     callback(nil, response.error ?? APIError.unknown)
                     return
             }
-            var body:NSDictionary
             
-            body = ["SponsorID": sponsor[0].sponsorID,"Name": sponsor[0].name , "FileName":sponsor[0].fileName, "Details":sponsor[0].details, "LastChange": sponsor[0].lastChange, "LastChangeType": sponsor[0].lastChangeType]
-            
-            AppUtils.SaveDictionary(key: .sponsor, value: body)
-            callback(sponsor, nil)
+            if !sponsor.isEmpty {
+                var body:NSDictionary
+                
+                body = ["SponsorID": sponsor[0].sponsorID,"Name": sponsor[0].name , "FileName":sponsor[0].fileName, "Details":sponsor[0].details, "LastChange": sponsor[0].lastChange, "LastChangeType": sponsor[0].lastChangeType]
+                
+                AppUtils.SaveDictionary(key: .sponsor, value: body)
+                callback(sponsor, nil)
+            }else{
+                AppUtils.removeData(key: .sponsor)
+            }
+
         }
     }
     

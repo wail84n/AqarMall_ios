@@ -35,7 +35,6 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
     }
     
     func configureView(){
-        
         userInfo = DB_UserInfo.callRecords()
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -223,7 +222,7 @@ class MyAdvViewController: ViewController, AdDetailsDelegate {
             callAdvAPI(isRent: 1)
         case 3:
             clearTableView()
-            callAdvAPI(isRent: 0)
+            callAdvAPI(isRent: 2)
         default:
             break
         }
