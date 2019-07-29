@@ -14,7 +14,7 @@ struct postAdv {
     var areaID: Int16 = 0
     var countryType: Int16 = 0
     var provinceID: Int16 = 0
-    var callMe : Bool = false
+    var callMe : Bool = true
     var title : String = ""
     var Description : String = ""
     var Price : Double = 0
@@ -30,7 +30,6 @@ struct postAdv {
     var AgeOfBuilding : String = ""
     var BuildingSize : String = ""
     var VideoLink : String = ""
-    var CallMe : Bool = false
     
     var images = [postImages]()
 }

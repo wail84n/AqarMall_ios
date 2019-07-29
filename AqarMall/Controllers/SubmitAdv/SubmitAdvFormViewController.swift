@@ -170,13 +170,13 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
     @IBAction func directAdvChanged(_ sender: UIButton) {
         notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
         directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
-        postAd.CallMe = true
+        postAd.callMe = true
     }
     
     @IBAction func notDirectAdvChanged(_ sender: UIButton) {
         directAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_off_small"), for: .normal)
         notDirectAdvButton.setImage(#imageLiteral(resourceName: "icon_radio_on_small"), for: .normal)
-        postAd.CallMe = false
+        postAd.callMe = false
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

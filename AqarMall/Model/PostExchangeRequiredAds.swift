@@ -14,5 +14,5 @@ struct PostExchangeRequiredAds {
     var description:String = ""
     var title:String = ""
     var phone:String = ""
-    var callMe:Bool = false
+    var callMe:Bool = true
 }
