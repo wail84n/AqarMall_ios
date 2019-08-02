@@ -651,7 +651,9 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
 extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
 
     func callAdvAPI() {
-        APIs.shared.getRelatedAdvts(advtId: AdDetails.entryID, catId: AdDetails.catId) { (result, error) in
+        //{{imall}}getRelatedAdvts?advtId=16969&catId=2&pageNumber=1&sectionId=1
+        let sectionId : Int16 = isRent ? 1 : 2
+        APIs.shared.getRelatedAdvts(advtId: AdDetails.entryID, catId: AdDetails.catId, sectionId: sectionId) { (result, error) in
             AppUtils.HideLoading()
             guard error == nil else {
                 print(error ?? "")

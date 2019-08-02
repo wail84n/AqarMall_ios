@@ -119,7 +119,7 @@ class APIs: NSObject {
         case getExchangeAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getRequiredAds(areaId : Int?, pageNumber: Int16?, keyword : String?)
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
-        case getRelatedAdvts(advtId : Int32?, catId: Int16?)
+        case getRelatedAdvts(advtId : Int32?, catId: Int16?, sectionId: Int16)
         case getAdvtDetails(Id:Int32?)
         case getCountries()
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
@@ -260,7 +260,7 @@ class APIs: NSObject {
                 return "/updateAdvtViewCount"
             case .updateSponsorViewCount(_):
                 return "/updateSponsorView"
-            case .getRelatedAdvts(_, _):
+            case .getRelatedAdvts(_, _, _):
                 return "/getRelatedAdvts"
             case .getMySellerAds(_, _, _):
                 return "/getSellerAds"
@@ -373,10 +373,11 @@ class APIs: NSObject {
             case .getSponsors(let lastchange, let countryId):
                 dict["lastchange"] = lastchange
                 dict["countryId"] = countryId
-            case .getRelatedAdvts(let advtId, let catId):
+            case .getRelatedAdvts(let advtId, let catId, let sectionId):
                 dict["advtId"] = advtId
                 dict["catId"] = catId
                 dict["pageNumber"] = 1
+                dict["sectionId"] = sectionId
             case .getContactDetails(let countryId):
                 dict["countryId"] = countryId
             case .getMySellerAds(let userId, let pageNumber, let sectionId):
@@ -1060,8 +1061,8 @@ class APIs: NSObject {
     }
     
     
-    func getRelatedAdvts(advtId : Int32?, catId: Int16?, callback: @escaping AdvtsCallback) {
-        let route = Router.getRelatedAdvts(advtId: advtId, catId: catId)
+    func getRelatedAdvts(advtId : Int32?, catId: Int16?, sectionId: Int16, callback: @escaping AdvtsCallback) {
+        let route = Router.getRelatedAdvts(advtId: advtId, catId: catId, sectionId: sectionId)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,
