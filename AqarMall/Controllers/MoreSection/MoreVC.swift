@@ -111,7 +111,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
             print(_contact_us.email)
             let phoneNumber = _contact_us.phone1
-            AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "اتصال هاتفي", _label: phoneNumber)
+           // AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "اتصال هاتفي", _label: phoneNumber)
+            AppUtils.addEventToFireBase(eventName: "contact_us", _parameters: ["type" : "phone"])
             if #available(iOS 10.0, *) {
                 guard let number = URL(string: "telprompt://" + phoneNumber) else { return }
                 UIApplication.shared.open(number, options: [:], completionHandler: nil)
@@ -126,7 +127,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     @IBAction func Send_SMS(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
             let messageVC = MFMessageComposeViewController()
-            AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "رسالة نصية", _label: _contact_us.SMS)
+            AppUtils.addEventToFireBase(eventName: "contact_us", _parameters: ["type" : "sms"])
+           // AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "رسالة نصية", _label: _contact_us.SMS)
             messageVC.recipients = [_contact_us.SMS]
             messageVC.messageComposeDelegate = self;
             self.present(messageVC, animated: true, completion: nil)
@@ -141,7 +143,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     @IBAction func sendEmail(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
             if MFMailComposeViewController.canSendMail() {
-                AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "بريد إلكتروني", _label: _contact_us.email)
+                AppUtils.addEventToFireBase(eventName: "contact_us", _parameters: ["type" : "email"])
+                //AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "بريد إلكتروني", _label: _contact_us.email)
                 let mail = MFMailComposeViewController()
                 mail.mailComposeDelegate = self
                 mail.setToRecipients([_contact_us.email])
@@ -162,7 +165,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func contactByWhatsApp(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "وتساب", _label: _contact_us.whatsApp)
+            AppUtils.addEventToFireBase(eventName: "contact_us", _parameters: ["type" : "whats_app"])
+           // AppUtils.SendGAIEventTrack(category: "اتصل بنا", actionName: "وتساب", _label: _contact_us.whatsApp)
             if #available(iOS 10.0, *) {
                 guard let number = URL(string: _contact_us.whatsApp) else { return }
                 UIApplication.shared.open(number, options: [:], completionHandler: nil)
@@ -240,7 +244,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func ShareApp() {
         let shareText = "حمل تطبيق عقار مول وشاهد افضل العروض العقارية  \n\n https://imallrs.page.link/share"
-        AppUtils.SendGAIEventTrack(category: "اخبر صديق", actionName: "-", _label: "-")
+        AppUtils.addEventToFireBase(eventName: "share_app", _parameters: [:])
+       // AppUtils.SendGAIEventTrack(category: "اخبر صديق", actionName: "-", _label: "-")
         if let image = UIImage(named: "PlaceHolder") {
             let vc = UIActivityViewController(activityItems: [shareText, image], applicationActivities: [])
             present(vc, animated: true)

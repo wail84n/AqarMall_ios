@@ -171,17 +171,23 @@ class exchangeDetailsViewController: ViewController {
                 print("the favorate record has been deleted.")
                 self.setFavoriteImageBy(flag: false)
                 if self.advType != .for_exchange{
-                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبدل", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "remove_favorate", _parameters: ["type" : "exchange"])
+                    //AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبدل", _label: adsRecord.title)
                 }else{
-                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "remove_favorate", _parameters: ["type" : "required"])
+                    //AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
                 }
+                
+                
             }
         }else{
             if DB_FavorateExchangeAds.saveRecord(adv: adsRecord, advType: advType!) {
                 if self.advType != .for_exchange{
-                    AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبدل", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "exchange"])
+                   // AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبدل", _label: adsRecord.title)
                 }else{
-                    AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "required"])
+                    //AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "مطلوب عقار", _label: adsRecord.title)
                 }
                 print("the record has been saved.")
             }

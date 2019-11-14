@@ -9,6 +9,7 @@
 import UIKit
 import RSLoadingView
 import SwiftKeychainWrapper
+import Firebase
 
 enum AdvType : String {
     case rent = "rent"
@@ -316,7 +317,6 @@ class AppUtils: NSObject {
         }
     }
     
-    
     class func SendGAIScreenName(screenName : String){
         guard let tracker = GAI.sharedInstance().defaultTracker else { return }
         tracker.set(kGAIScreenName, value: screenName)
@@ -324,8 +324,7 @@ class AppUtils: NSObject {
         tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
-    class func SendGAIEventTrack
-        (category: String, actionName: String? = "-", _label: String? = "-") {
+    class func SendGAIEventTrack(category: String, actionName: String? = "-", _label: String? = "-") {
         //Google Analytics Event Click name
         guard let tracker = GAI.sharedInstance().defaultTracker else { return }
         
@@ -336,6 +335,11 @@ class AppUtils: NSObject {
             value: nil).build()
         tracker.send((eventTracker as! [AnyHashable: Any]))
     }
+    
+    class func addEventToFireBase(eventName: String, _parameters: [String : Any]){
+        FIRAnalytics.logEvent(withName: eventName, parameters: _parameters)
+    }
+
 }
 
 extension UIApplication {

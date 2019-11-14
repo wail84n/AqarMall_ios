@@ -592,18 +592,22 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
                 self.setFavoriteImageBy(flag: false)
                 
                 if self.advType != .rent{
-                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبيع", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "remove_favorate", _parameters: ["type" : "sale"])
+                   // AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "للبيع", _label: adsRecord.title)
                 }else{
-                    AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "ايجار", _label: adsRecord.title)
+                    AppUtils.addEventToFireBase(eventName: "remove_favorate", _parameters: ["type" : "rant"])
+                    //AppUtils.SendGAIEventTrack(category: "حذف من المفضلة", actionName: "ايجار", _label: adsRecord.title)
                 }
             }
         }else{
             var _sectionID : Int8 = 1
             if self.advType != .rent{
                 _sectionID = 2
-                AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبيع", _label: adsRecord.title)
+                AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "sale"])
+               // AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبيع", _label: adsRecord.title)
             }else{
-                AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "ايجار", _label: adsRecord.title)
+                AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "rant"])
+                //AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "ايجار", _label: adsRecord.title)
             }
             
             AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)
@@ -662,7 +666,13 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
         let adsRecord = self.ads[intAdIndex]
         let phoneNumber = adsRecord.phone
         
-        AppUtils.SendGAIEventTrack(category: "اتصال هاتفي", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
+        if self.advType != .rent{
+            AppUtils.addEventToFireBase(eventName: "ads_call_phone", _parameters: ["type" : "sale"])
+        }else{
+            AppUtils.addEventToFireBase(eventName: "ads_call_phone", _parameters: ["type" : "rant"])
+        }
+        
+        //AppUtils.SendGAIEventTrack(category: "اتصال هاتفي", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
         if #available(iOS 10.0, *) {
             guard let number = URL(string: "telprompt://" + phoneNumber!) else { return }
             UIApplication.shared.open(number, options: [:], completionHandler: nil)
@@ -813,7 +823,13 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
             return
         }
         
-        AppUtils.SendGAIEventTrack(category: "الوتساب", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
+        if self.advType != .rent{
+            AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])
+        }else{
+            AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "rant"])
+        }
+        
+       // AppUtils.SendGAIEventTrack(category: "الوتساب", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
         if #available(iOS 10.0, *) {
             guard let number = URL(string: _whatsApp) else { return }
             UIApplication.shared.open(number, options: [:], completionHandler: nil)
