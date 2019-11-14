@@ -27,6 +27,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var areaButton: UIButton!
     @IBOutlet weak var provinceButton: UIButton!
+    @IBOutlet weak var cancelSearchButton: UIButton!
     
     var segmentedControl: ScrollableSegmentedControl!
     
@@ -54,14 +55,85 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     var isFormAdvancedSearch = false
     var isFromAdvDetails = false
 
+    var text = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+      
+//        
+//        DispatchQueue.main.async{
+//            for _ in 1...135{
+//                self.text.append("wail")
+//                print(self.text)
+//            }
+//        }
+//        
+//        
+//        DispatchQueue.main.async {
+//            for _ in 1...135{
+//                self.text.append("mohammad")
+//                print(self.text)
+//            }
+//        }
+//        
+//        
+//        for _ in 1...135{
+//            print(self.text)
+//        }
+//
+//        
+//        DispatchQueue.global().async {
+//            self.text.append("wail")
+//        }
+
+        
+//        DispatchQueue.main.async {
+//            self.text.append("mohammad")
+//        }
+//        print(text)
+        
         configureView()
         AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
     }
 
+    func validateSearch(){
+        //+++ this function to chech if there is any search or not to show cancelSearch button or hid it.
+        
+        guard let _provinceId  = selectedProvince?.entryID,
+         let _areaId  = selectedArea?.entryID
+        else {
+            cancelSearchButton.isHidden = true
+            return
+        }
+        
+        if advancedSearch.isOn || _provinceId > 0 || _areaId > 0 {
+            cancelSearchButton.isHidden = false
+        }else{
+            cancelSearchButton.isHidden = true
+        }
+    }
+    
+    @IBAction func cancelSearchAction(_ sender: Any) {
+        selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
+        selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
+        
+        advancedSearch.isOn = false
+        provinceButton.setTitle(selectedProvince?.name, for: .normal)
+        areaButton.setTitle(selectedArea?.name, for: .normal)
+        advancedSearch.cancelSearch()
+        
+        if self.arrAdve.count > 0 {
+            let topIndex = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: topIndex, at: .top, animated: false)
+        }
+        
+        cancelSearchButton.isHidden = true
+        clearTableView()
+        callAdvAPI()
+    }
+    
     func configureView(){
+        validateSearch()
         let userInfo = DB_UserInfo.callRecords()
         if let _userInfo = userInfo {
             APIs.shared.getMyBidAds(userId: _userInfo.entryID, pageNumber: 1) { (result, error) in
@@ -79,7 +151,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             }
         }
 
-        
         AdvancedSearchButton.isHidden = false
         searchTextSearchBar.delegate = self
         self.tableView.delegate = self
@@ -152,7 +223,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     
     @IBAction func selectArea(_ sender: Any) {
         if selectedProvince?.entryID == 0 {
-            self.showAlert(withTitle: .Missing, text: "الرجاء اختر المحافظة اولاً")
+            self.showAlert(withTitle: .Missing, text: "الرجاء اختر المحافظة قبل اختيار المنطقة")
         }else{
             guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "SelectAddressViewController") as? SelectAddressViewController
                 else { return }
@@ -187,6 +258,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         selectedProvince = province
         advancedSearch.selectedProvince = selectedProvince
         clearTableView()
+        validateSearch()
         callAdvAPI()
     }
     
@@ -195,6 +267,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         selectedArea = area
         advancedSearch.selectedArea = selectedArea
         clearTableView()
+        validateSearch()
         callAdvAPI()
     }
     
@@ -439,6 +512,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             self.headerHeightConstraint.constant = 160
             addressView.isHidden = true
             AdvancedSearchButton.isHidden = true
+            cancelSearchButton.isHidden = true  
             clearTableView()
             getExchangeAds()
             AppUtils.SendGAIScreenName(screenName: "عقار للبدل")
@@ -452,6 +526,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             self.headerHeightConstraint.constant = 160
             addressView.isHidden = true
             AdvancedSearchButton.isHidden = true
+            cancelSearchButton.isHidden = true
             clearTableView()
             getRequiredAds()
             AppUtils.SendGAIScreenName(screenName: "مطلوب عقار")
@@ -465,6 +540,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             addressView.isHidden = false
             AdvancedSearchButton.isHidden = false
             advancedSearch.sectionID = 1
+            validateSearch()
             getCategoriesData(isRent: true)
             AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
         case 3:
@@ -476,6 +552,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             AdvancedSearchButton.isHidden = false
             addressView.isHidden = false
             advancedSearch.sectionID = 2
+            validateSearch()
             getCategoriesData(isRent: false)
             AppUtils.SendGAIScreenName(screenName: "عقار للبيع")
         default:
@@ -1075,7 +1152,7 @@ extension AdsListVC: AdvancedSearchDelegate {
         advancedSearch.isOn = true
         isFormAdvancedSearch = true
         clearTableView()
-        
+        validateSearch()
         let parameters : [String : Any] = ["UserID": 0, "SectionID": sectionSegment.selectedSegmentIndex - 1, "CatID":intCat, "ProvinceID":selectedProvince?.entryID ?? 0, "AreaID":selectedArea?.entryID ?? 0, "Keywords":advancedSearch.keywords, "Notification":false, "FromPrice":-1, "ToPrice":-1, "FromSize":-1, "ToSize":-1]
         advancedSearchParameters = parameters
         getAdvancedSearch()
@@ -1085,7 +1162,7 @@ extension AdsListVC: AdvancedSearchDelegate {
         setProvince_Search(with: _advancedSearch.selectedProvince!)
         setArea_Search(with: _advancedSearch.selectedArea!)
         advancedSearch = _advancedSearch
-        
+        validateSearch()
         advancedSearch.isOn = true
         isFormAdvancedSearch = true
         clearTableView()

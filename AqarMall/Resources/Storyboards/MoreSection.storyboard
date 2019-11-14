@@ -63,10 +63,12 @@
                                                                     <action selector="goToAccount:" destination="fyF-bV-CnQ" eventType="touchUpInside" id="Rl6-7L-xaY"/>
                                                                 </connections>
                                                             </button>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGe-8O-OtL">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGe-8O-OtL">
                                                                 <rect key="frame" x="0.0" y="139" width="375" height="1"/>
-                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="MxP-34-e2j"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -75,8 +77,11 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="UN7-Mo-m2O" secondAttribute="trailing" constant="10" id="4UH-vw-Fsd"/>
+                                                            <constraint firstAttribute="bottom" secondItem="TGe-8O-OtL" secondAttribute="bottom" id="LDY-9U-hS3"/>
+                                                            <constraint firstAttribute="trailing" secondItem="TGe-8O-OtL" secondAttribute="trailing" id="QWh-ay-UWz"/>
                                                             <constraint firstItem="UN7-Mo-m2O" firstAttribute="centerY" secondItem="ha2-Np-lx0" secondAttribute="centerY" id="QeP-rD-5Cm"/>
                                                             <constraint firstAttribute="height" constant="140" id="Reh-IZ-Pwg"/>
+                                                            <constraint firstItem="TGe-8O-OtL" firstAttribute="leading" secondItem="ha2-Np-lx0" secondAttribute="leading" id="UC9-Lq-4it"/>
                                                             <constraint firstItem="U70-tP-xjK" firstAttribute="centerY" secondItem="ha2-Np-lx0" secondAttribute="centerY" id="bHI-GY-qqE"/>
                                                             <constraint firstItem="57o-b8-goY" firstAttribute="centerY" secondItem="ha2-Np-lx0" secondAttribute="centerY" id="hCL-5R-PBf"/>
                                                             <constraint firstItem="U70-tP-xjK" firstAttribute="centerX" secondItem="ha2-Np-lx0" secondAttribute="centerX" id="jhT-1b-Iuy"/>

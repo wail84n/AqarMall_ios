@@ -664,10 +664,36 @@
                                 <rect key="frame" x="0.0" y="220" width="375" height="447"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vBq-bO-YVL">
+                                <rect key="frame" x="15" y="607" width="40" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.48627450979999998" blue="0.53333333329999999" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="KQ7-nd-luo"/>
+                                    <constraint firstAttribute="height" constant="40" id="id4-jH-qOM"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                <state key="normal" image="cancelSearch"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="9"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.054901960780000002" green="0.65098039220000004" blue="0.52941176469999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelSearchAction:" destination="A3h-kp-3KN" eventType="touchUpInside" id="EQm-mI-pW4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="h1h-pE-HAy" firstAttribute="bottom" secondItem="vBq-bO-YVL" secondAttribute="bottom" constant="20" id="Ltr-tw-bsx"/>
                             <constraint firstItem="K0e-24-eNF" firstAttribute="top" secondItem="7wR-vC-n1P" secondAttribute="bottom" id="P7p-Ep-CUq"/>
+                            <constraint firstItem="vBq-bO-YVL" firstAttribute="leading" secondItem="h1h-pE-HAy" secondAttribute="leading" constant="15" id="Sxk-mb-iAT"/>
                             <constraint firstItem="K0e-24-eNF" firstAttribute="bottom" secondItem="h1h-pE-HAy" secondAttribute="bottom" id="UMc-rQ-Lwp"/>
                             <constraint firstItem="7wR-vC-n1P" firstAttribute="leading" secondItem="h1h-pE-HAy" secondAttribute="leading" id="YTh-YH-6YZ"/>
                             <constraint firstItem="7wR-vC-n1P" firstAttribute="centerX" secondItem="h1h-pE-HAy" secondAttribute="centerX" id="jYf-hE-2RY"/>
@@ -684,6 +710,7 @@
                         <outlet property="addressLabel" destination="cYy-t6-7kf" id="IYc-fX-eXl"/>
                         <outlet property="addressView" destination="Hth-Ny-ANL" id="m3g-8K-DIC"/>
                         <outlet property="areaButton" destination="ZzS-cr-ObE" id="tDv-6x-2SB"/>
+                        <outlet property="cancelSearchButton" destination="vBq-bO-YVL" id="p8M-bB-c5D"/>
                         <outlet property="headerHeightConstraint" destination="Mxl-dt-dHn" id="fdB-mg-DVl"/>
                         <outlet property="headerTitleView" destination="E30-Ac-EO2" id="7DA-w7-zS1"/>
                         <outlet property="headerView" destination="SmB-kK-26F" id="X6E-o6-Ein"/>
@@ -2553,6 +2580,7 @@
         <image name="btnFavorate" width="97" height="92"/>
         <image name="btnShareButton" width="97" height="92"/>
         <image name="btnWhatsAppButton" width="97" height="92"/>
+        <image name="cancelSearch" width="80" height="80"/>
         <image name="filter" width="19" height="20"/>
         <image name="icons8-color-50" width="50" height="50"/>
         <image name="leftarrow" width="16" height="16"/>
@@ -2561,8 +2589,8 @@
         <image name="thumbnail_image" width="1286" height="1600"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="U9S-Tt-zEZ"/>
-        <segue reference="wDs-KB-XIt"/>
-        <segue reference="2V6-BF-a8b"/>
+        <segue reference="81O-wL-cxf"/>
+        <segue reference="3aq-kA-p9g"/>
+        <segue reference="xd2-Uk-jZg"/>
     </inferredMetricsTieBreakers>
 </document>

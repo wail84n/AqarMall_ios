@@ -211,10 +211,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="Jbz-zE-kZ7">
+                                <rect key="frame" x="15" y="434" width="345" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="DVq-mT-knu"/>
+                                </constraints>
+                                <string key="text">ملاحظة مهمة: من اجل ضمان الحصول على عدد اكثر من المشاهدات على اعلانك احرص على اضافة اكبر قدر متاح من المعلومات عن العقار ولذك لسهوله البحث عنه من قبل المستخدمين </string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eLO-I8-Tt9" firstAttribute="top" secondItem="gbX-oU-FyD" secondAttribute="bottom" constant="10" id="5Rn-JN-p9L"/>
+                            <constraint firstItem="5TD-5w-q4P" firstAttribute="trailing" secondItem="Jbz-zE-kZ7" secondAttribute="trailing" constant="15" id="5Rq-Ru-l79"/>
+                            <constraint firstItem="Jbz-zE-kZ7" firstAttribute="leading" secondItem="5TD-5w-q4P" secondAttribute="leading" constant="15" id="8SK-4r-ePo"/>
                             <constraint firstItem="j8V-MY-Hgg" firstAttribute="leading" secondItem="5TD-5w-q4P" secondAttribute="leading" id="Cmn-yt-7pe"/>
                             <constraint firstItem="gbX-oU-FyD" firstAttribute="trailing" secondItem="5TD-5w-q4P" secondAttribute="trailing" id="D9s-Xd-yyC"/>
                             <constraint firstItem="wfk-Uw-qcF" firstAttribute="leading" secondItem="5TD-5w-q4P" secondAttribute="leading" id="QkG-W4-FwS"/>
@@ -226,6 +238,7 @@
                             <constraint firstItem="eLO-I8-Tt9" firstAttribute="trailing" secondItem="5TD-5w-q4P" secondAttribute="trailing" id="jyM-jS-prY"/>
                             <constraint firstItem="s8v-E2-tt2" firstAttribute="leading" secondItem="5TD-5w-q4P" secondAttribute="leading" constant="16" id="lvF-cC-ag3"/>
                             <constraint firstItem="gbX-oU-FyD" firstAttribute="top" secondItem="s8v-E2-tt2" secondAttribute="bottom" constant="15" id="moa-B8-GkD"/>
+                            <constraint firstItem="Jbz-zE-kZ7" firstAttribute="top" secondItem="wfk-Uw-qcF" secondAttribute="bottom" constant="10" id="rFK-bO-Q8q"/>
                             <constraint firstItem="j8V-MY-Hgg" firstAttribute="top" secondItem="eLO-I8-Tt9" secondAttribute="bottom" constant="10" id="vV1-2q-HhP"/>
                             <constraint firstItem="s8v-E2-tt2" firstAttribute="top" secondItem="5TD-5w-q4P" secondAttribute="top" constant="20" id="xVG-yH-dGP"/>
                             <constraint firstItem="wfk-Uw-qcF" firstAttribute="top" secondItem="j8V-MY-Hgg" secondAttribute="bottom" constant="8" symbolic="YES" id="xxP-l3-Jtc"/>

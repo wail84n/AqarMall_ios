@@ -123,6 +123,10 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     
     func postRegister() {
         hideKeyboard()
+//        if phoneNumberTextField.text == "112233445566778899" {
+//            var userInfo : FullUser = nil
+//            return
+//        }
         guard let _email = emailTextField.text,
         let _userName = userNameTextField.text,
         let _phone = phoneNumberTextField.text else {
@@ -147,7 +151,6 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
                     self.performSegue(withIdentifier: "ToVerificationPhoneNumber", sender: self)
                 }
             }
-
         }
     }
     

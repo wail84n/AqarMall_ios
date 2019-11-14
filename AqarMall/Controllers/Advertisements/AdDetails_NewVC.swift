@@ -661,6 +661,8 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
         // +++ wail
         let adsRecord = self.ads[intAdIndex]
         let phoneNumber = adsRecord.phone
+        
+        AppUtils.SendGAIEventTrack(category: "اتصال هاتفي", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
         if #available(iOS 10.0, *) {
             guard let number = URL(string: "telprompt://" + phoneNumber!) else { return }
             UIApplication.shared.open(number, options: [:], completionHandler: nil)
@@ -811,6 +813,7 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
             return
         }
         
+        AppUtils.SendGAIEventTrack(category: "الوتساب", actionName: "تفاصيل الإعلان", _label: "\(adsRecord.entryID ?? 0) | \(adsRecord.phone ?? "")")
         if #available(iOS 10.0, *) {
             guard let number = URL(string: _whatsApp) else { return }
             UIApplication.shared.open(number, options: [:], completionHandler: nil)

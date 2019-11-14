@@ -26,4 +26,20 @@ struct AdvancedSearch {
     
     var isOn = false // +++ to check if the the user on Advance search or not
     var catIndex = -1 // +++ to save categoryindex that we can use it in other page.
+    
+    mutating func cancelSearch(){
+        ProvinceID = 0
+        AreaID = 0
+        keywords = ""
+        notification = false
+        fromPrice = -1
+        toPrice = -1
+        fromSize = -1
+        toSize = -1
+        
+        selectedProvince = Provinces(_entryID: 0, _name: "جميع المحافظات")
+        selectedArea = Areas(_entryID: 0, _name: "جميع المناطق")
+        
+        isOn = false // +++ to check if the the user on Advance search or not
+    }
 }

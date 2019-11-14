@@ -210,6 +210,7 @@
 		5247F660225EE7AA002ECD33 /* generalPagesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = generalPagesCell.xib; sourceTree = "<group>"; };
 		5247F663225EE979002ECD33 /* GeneralPagesDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPagesDetailsVC.swift; sourceTree = "<group>"; };
 		524A5C6B226FABC2008843F4 /* MyBidAds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBidAds.swift; sourceTree = "<group>"; };
+		52532C62236E049F00598614 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		525A8BE82253DA02007CEA46 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		52603858224F6F4E001F3A1B /* AdvancedSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearchViewController.swift; sourceTree = "<group>"; };
 		5261434C2236E7DB00339882 /* UserInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationViewController.swift; sourceTree = "<group>"; };
@@ -793,6 +794,7 @@
 		F77F5B38FEFE9EE25B2F3049 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52532C62236E049F00598614 /* AdSupport.framework */,
 				4B31C865D89FB8504D3416A0 /* Pods_AqarMall.framework */,
 				3680C2542FFD3D4884F65E9A /* Pods_AqarMallTests.framework */,
 				6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */,
@@ -881,6 +883,9 @@
 								enabled = 1;
 							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
 						};
@@ -1366,6 +1371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
 				ENABLE_BITCODE = YES;
@@ -1376,6 +1382,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AqarMall/AqarMall-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1388,6 +1395,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
 				ENABLE_BITCODE = YES;
@@ -1398,6 +1406,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AqarMall/AqarMall-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

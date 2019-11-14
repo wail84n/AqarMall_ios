@@ -310,6 +310,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         guard let adsID = response.notification.request.content.userInfo["AdsID"] as? String,
               let type = response.notification.request.content.userInfo["type"] as? String else { return }
         
+       // guard let adsID = response.notification.request.content.userInfo["ad_id"] as? String else { return }
+        
         print("adsID: \(adsID) || type: \(type)")
         
         self.isPushNotification = true

@@ -37,8 +37,18 @@ struct FullUser {
         self.deviceId = _deviceId
         self.verificationStatus = _user.verificationStatus
         self.isSkippedVerification = _user.isSkipped
-        
     }
+    
+//    public init?(phone : String) {
+//        self.entryID = 123321
+//        self.name = "زائر"
+//        self.email = "-"
+//        self.phone = phone
+//        self.SMSCode = _user.SMSCode
+//        self.deviceId = _user.deviceId
+//        self.verificationStatus = _user.verificationStatus
+//        self.isSkippedVerification = _user.isSkippedVerification
+//    }
     
     public init?(object: AnyObject?) {
         guard

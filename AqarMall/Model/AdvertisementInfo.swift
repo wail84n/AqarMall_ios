@@ -128,14 +128,48 @@ class AdvertisementInfo : NSObject {
             self.isFromOldApp = _isFromOldApp
         }
         
-        self.entryID = shortDetails.entryID
-        self.title = shortDetails.title
-        self.provinceName = shortDetails.provinceName
-        self.areaName = shortDetails.areaName
+        if let _price = _object["Price"] as? Double {
+            self.price = _price
+        }
+        
+        if let _size = _object["Size"] as? String {
+            self.size = _size
+        }
+        
+        if let _priceLabel = _object["PriceLabel"] as? String {
+            self.priceLabel = _priceLabel
+        }
+        
+        if let _provinceName = shortDetails.provinceName, !_provinceName.isEmpty {
+            self.provinceName = shortDetails.provinceName
+        }else{
+            if let _provinceId = self.provinceId {
+                self.provinceName = AppUtils.getProvince(provinceId: _provinceId)?.name
+            }
+        }
+
+        if let _areaName = shortDetails.areaName, !_areaName.isEmpty {
+            self.areaName = shortDetails.areaName
+        }else{
+            if let _areaID = self.areaId {
+                self.areaName = AppUtils.getArea(areaId: _areaID)?.name
+            }
+        }
+        
+        if let _title = _object["Title"] as? String {
+            self.title = _title
+        }
+        
+        if let _entryID = _object["EntryID"] as? Int32{
+            self.entryID = _entryID
+        }
+        //self.entryID = shortDetails.entryID
+       // self.title = shortDetails.title
+        
         self.details = _details
-        self.price = shortDetails.price
-        self.priceLabel = shortDetails.priceLabel
-        self.size = shortDetails.size
+     //   self.price = shortDetails.price
+       // self.priceLabel = shortDetails.priceLabel
+    //    self.size = shortDetails.size
         self.isCalledDetails = true
     }
     
