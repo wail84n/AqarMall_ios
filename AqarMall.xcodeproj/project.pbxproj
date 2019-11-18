@@ -100,6 +100,7 @@
 		528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528313E4224416B000D4A1C0 /* FavorateViewController.swift */; };
 		5293B65D22C3F31500529652 /* SelectColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293B65C22C3F31500529652 /* SelectColorViewController.swift */; };
 		5293B65F22C3F46000529652 /* ChooseColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5293B65E22C3F46000529652 /* ChooseColorCell.swift */; };
+		529E55BA237DE23900497EC9 /* UserDefaults+Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E55B9237DE23800497EC9 /* UserDefaults+Key.swift */; };
 		52AFE76B21DBF33400FE1D70 /* Phone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76A21DBF33400FE1D70 /* Phone.swift */; };
 		52AFE76D21DBF35700FE1D70 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76C21DBF35700FE1D70 /* User.swift */; };
 		52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */; };
@@ -255,6 +256,7 @@
 		528313E4224416B000D4A1C0 /* FavorateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavorateViewController.swift; sourceTree = "<group>"; };
 		5293B65C22C3F31500529652 /* SelectColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorViewController.swift; sourceTree = "<group>"; };
 		5293B65E22C3F46000529652 /* ChooseColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseColorCell.swift; sourceTree = "<group>"; };
+		529E55B9237DE23800497EC9 /* UserDefaults+Key.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Key.swift"; sourceTree = "<group>"; };
 		52AFE76A21DBF33400FE1D70 /* Phone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Phone.swift; sourceTree = "<group>"; };
 		52AFE76C21DBF35700FE1D70 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52AFE76E21DBFED600FE1D70 /* CarrierSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierSubscription.swift; sourceTree = "<group>"; };
@@ -710,6 +712,7 @@
 				52E6527921D9E8F000E66AA2 /* UIColor.swift */,
 				52E6527B21D9EAD800E66AA2 /* UIView.swift */,
 				52DC5254220C065D009F2B88 /* UIButton.swift */,
+				529E55B9237DE23800497EC9 /* UserDefaults+Key.swift */,
 				52E6527D21D9EB3800E66AA2 /* UIImageView.swift */,
 				52E6527F21D9EB5100E66AA2 /* UITextField.swift */,
 				52E6528121D9EB6700E66AA2 /* String.swift */,
@@ -1172,6 +1175,7 @@
 				52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */,
 				524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */,
 				521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */,
+				529E55BA237DE23900497EC9 /* UserDefaults+Key.swift in Sources */,
 				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				5204DD6622339DB600319A58 /* CropViewController.swift in Sources */,
