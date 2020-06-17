@@ -163,7 +163,24 @@ struct SyncAPIData{
                     if index == 0 {
                         AppUtils.SaveData(key: .banner_last_change, value: "\(record.lastChange)")
                     }
-                    DB_Banners.saveRecord(banner: record)
+                    
+                    switch record.lastChangeType {
+                    case 1:
+                        DB_Banners.saveRecord(banner: record)
+                    case 2:
+                        if DB_Banners.deleteRecord(Id: record.bannerID){
+                            print("the '\(record.title)' banner has been deleted")
+                        }
+                        DB_Banners.saveRecord(banner: record)
+                    case 3:
+                        if DB_Banners.deleteRecord(Id: record.bannerID){
+                            print("the '\(record.title)' banner has been deleted")
+                        }
+                    default:
+                        break
+                    }
+                    
+                   // DB_Banners.saveRecord(banner: record)
                 }
             }
             completion(true, result?.count ?? 0 , nil)

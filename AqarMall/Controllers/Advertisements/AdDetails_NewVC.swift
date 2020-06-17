@@ -629,7 +629,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
         let adsRecord = self.ads[intAdIndex]
         if let entryID = adsRecord.entryID {
             let shareLink = "http://test.imallkw.com/frmAvailable.aspx?id=\(entryID)"
-            let text = "\(adsRecord.title!)\n\(shareLink)\n حمل تطبيق عقار مول للمزيد \n\("http://http://imallkw.com/")"
+            let text = "\(adsRecord.title!)\n\(shareLink)\n حمل تطبيق عقار مول للمزيد \n\("http://imallkw.com/")"
 
             let textToShare = [ text ]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)

@@ -13,8 +13,11 @@ import UserNotifications
 import FirebaseAnalytics
 import Firebase
 import FacebookCore
-import SwiftKeychainWrapper
 import FirebaseMessaging
+import FirebaseDynamicLinks
+
+import SwiftKeychainWrapper
+
 
 //import Crashlytics
 
@@ -55,6 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FIRApp.configure()
         
         
+        
         GAI.sharedInstance().dispatchInterval = 2
         
         if #available(iOS 10.0, *) {
@@ -71,6 +75,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications()
+        
+        
+        
+        if let url = launchOptions?[UIApplication.LaunchOptionsKey.url] as? URL { //Deeplink
+            print(url)
+        }
+        else if let activityDictionary = launchOptions?[UIApplication.LaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] { //Universal link
+            for key in activityDictionary.keys {
+                if let userActivity = activityDictionary[key] as? NSUserActivity {
+                    
+                    if let incommingURL = userActivity.webpageURL {
+                        print("incomming URL is : \(incommingURL)")
+                    }
+                }
+            }
+        }
+        
+        let activityDic = launchOptions?[.userActivityDictionary]
+        if let isActivityDic = activityDic {
+            // Continue activity here
+            return true
+        }
         
         return true
     }
@@ -264,7 +290,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 try context.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // fatalError() causes the application to generate a crash  vlog and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
@@ -374,6 +400,125 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
         window.rootViewController?.present(alert, animated: false, completion: nil)
     }
+ 
     
+    
+    @available(iOS 9.0, *)
+    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        return application(app, open: url,
+                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                           annotation: "")
+    }
+    
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+//            // Handle the deep link. For example, show the deep-linked content or
+//            // apply a promotional offer to the user's account.
+//            // ...
+//            return true
+//        }
+//        return false
+//    }
+    
+    func handleIncommingDynamivLink(_ dynamicLink : FIRDynamicLink) {
+        guard  let url = dynamicLink.url else{
+            print("my dynamic obhect has no URL")
+            return
+        }
+        print("the dynamic link is :\(url.absoluteString)")
+        
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            let queryItems = components.queryItems
+            else {return}
+        
+        print(queryItems.first(where: { $0.name == "key" })?.value ?? "")
+        
+        for queryItems in queryItems{
+            print("Parameter \(queryItems.name) value \(queryItems.value ?? "")")
+        }
+        
+        
+        if let _link = queryItems.first(where: { $0.name == "key" })?.value {
+            if _link == "31307" {
+                print("ok")
+//                if ChatInfoView.isInitialized {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.1) {
+//                        self.startChat()
+//                    }
+//                }else{
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+//                        self.startChat()
+//                    }
+//                }
+            }
+        }
+        
+//        switch dynamicLink.matchType {
+//        case .unique:
+//            print("unique")
+//        case .default:
+//            print("default")
+//        case .none:
+//            print("none")
+//        case .weak:
+//            print("weak")
+//        }
+    }
+    
+    
+//    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+//        print("I have received a URL : \(url.absoluteString)")
+//        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+//            self.handleIncommingDynamivLink(dynamicLink)
+//            return true
+//        }
+//
+//
+//        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+//            _ = dynamicLink.url
+//            self.handleIncommingDynamivLink(dynamicLink)
+//            // ...
+//            return true
+//        }
+//
+//        return false
+//    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
+            // Handle the deep link. For example, show the deep-linked content or
+            // apply a promotional offer to the user's account.
+            // ...
+            return true
+        }
+        return false
+    }
+    
+    private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        
+        if let incommingURL = userActivity.webpageURL {
+            print("incomming URL is : \(incommingURL)")
+            
+            let linkHandled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(incommingURL) { (dynamicLink, error) in
+                guard error == nil else{
+                    print("found Error : \(error!.localizedDescription)")
+                    return
+                }
+                
+                if let dynamicLink = dynamicLink {
+                    self.handleIncommingDynamivLink(dynamicLink)
+                }
+            }
+            
+            if linkHandled ?? false {
+                return true
+            }else{
+                
+                return false
+            }
+        }
+        
+        return false
+    }
 }
 

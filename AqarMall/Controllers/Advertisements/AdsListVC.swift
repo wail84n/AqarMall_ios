@@ -396,11 +396,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         }else if _object as! String == "refresh_Areas" {
             
         }else if _object as! String == "pushNotif" {
-            
-            //            guard let adsID = _result["AdsID"] as? String,
-            //                let type = result?["type"] as? String else { return }
-            //
-            
             guard let parsedDictionary = _result.userInfo as? [String: Any],
                 let _adsID = parsedDictionary["AdsID"] as? String,
                 let _type = parsedDictionary["type"] as? String
@@ -473,13 +468,11 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             }
             
             if isFormAdvancedSearch == true {
-                
                 self.segmentedControl.selectedSegmentIndex = advancedSearch.catIndex
             }else{
                 self.segmentedControl.selectedSegmentIndex = 0
                 advancedSearch.catIndex = 0
             }
-
             headerView.addSubview(segmentedControl)
         }
     }
@@ -635,10 +628,21 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         if isFormAdvancedSearch == false {
             // +++ no need to call this code if the user came from advanced search.
             clearTableView()
-            callAdvAPI()
+            
+            if advancedSearch.isOn == true {
+                if !advancedSearch.keywords.isEmpty{
+                    self.textSearch(with: advancedSearch)
+                }else{
+                    callAdvAPI()
+                    //self.advancedSearch(with: advancedSearch)
+                }
+            }else{
+                callAdvAPI()
+            }
+            
         }
-
     }
+
     
     @IBAction func showFilterList(_ sender: Any) {
         
@@ -1306,5 +1310,4 @@ extension AdsListVC: UISearchBarDelegate {
             break
         }
     }
-    
 }

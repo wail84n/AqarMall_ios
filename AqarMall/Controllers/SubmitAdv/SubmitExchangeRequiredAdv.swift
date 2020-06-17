@@ -41,7 +41,6 @@ class SubmitExchangeRequiredAdv: ViewController, UITextViewDelegate, UITextField
         advTitleTextField.delegate = self
         adDetailsTextView.text = "وصف الإعلان"
         adDetailsTextView.textColor = UIColor.lightGray
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

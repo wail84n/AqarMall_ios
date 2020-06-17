@@ -8,9 +8,5 @@
 	<array>
 		<string>applinks:imallrs.page.link</string>
 	</array>
-	<key>keychain-access-groups</key>
-	<array>
-		<string>$(AppIdentifierPrefix)com.nokhetha.AqarMall</string>
-	</array>
 </dict>
 </plist>

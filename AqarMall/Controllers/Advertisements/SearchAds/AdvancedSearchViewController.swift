@@ -146,6 +146,7 @@ class AdvancedSearchViewController: ViewController, SelectAddressDelegate {
     }
     
     @IBAction func StartAdvancesSearch(_ sender: Any) {
+        advancedSearch.keywords = textSearechTextField.text ?? ""
         if let fromPrice = fromPriceTextField.text?.replacedArabicDigitsWithEnglish, fromPrice.isEmpty == false {
             advancedSearch.fromPrice = Int32(fromPrice) ?? 0
         }
