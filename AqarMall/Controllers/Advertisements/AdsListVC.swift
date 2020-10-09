@@ -10,7 +10,6 @@ import UIKit
 import ScrollableSegmentedControl
 import Crashlytics
 
-
 class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     @IBOutlet weak var searchTextSearchBar: UISearchBar!
     @IBOutlet weak var AdvancedSearchButton: UIButton!
@@ -59,7 +58,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-      
 //        
 //        DispatchQueue.main.async{
 //            for _ in 1...135{
@@ -93,7 +91,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
 //        print(text)
         
         configureView()
-        AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
+     //   AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
     }
 
     func validateSearch(){
@@ -347,14 +345,25 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             }
         }
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.headerHeightConstraint.constant = self.maxHeaderHeight
         updateHeader()
         
+        
+        if AppUtils.callInAppMessage == 0 || AppUtils.callInAppMessage == 10 {
+            print("+++call_in_app_message")
+            AppUtils.callInAppMessage = 1
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                AppUtils.addEventToFireBase(eventName: "call_in_app_message", _parameters: [:])
+            }
+        }else{
+            AppUtils.callInAppMessage += 1
+        }
+
         if isFromAdvDetails == false {
-            AppUtils.SendGAIScreenName(screenName: "الرئيسية")
+           // AppUtils.SendGAIScreenName(screenName: "الرئيسية")
         }else{
             isFromAdvDetails = false
         }
@@ -508,7 +517,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             cancelSearchButton.isHidden = true  
             clearTableView()
             getExchangeAds()
-            AppUtils.SendGAIScreenName(screenName: "عقار للبدل")
+           // AppUtils.SendGAIScreenName(screenName: "عقار للبدل")
             break
         case 1:
             maxHeaderHeight = 160
@@ -522,7 +531,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             cancelSearchButton.isHidden = true
             clearTableView()
             getRequiredAds()
-            AppUtils.SendGAIScreenName(screenName: "مطلوب عقار")
+          //  AppUtils.SendGAIScreenName(screenName: "مطلوب عقار")
             break
         case 2:
             maxHeaderHeight = 200
@@ -535,7 +544,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             advancedSearch.sectionID = 1
             validateSearch()
             getCategoriesData(isRent: true)
-            AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
+          //  AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
         case 3:
             maxHeaderHeight = 200
             segmentedControl.isHidden = false
@@ -547,7 +556,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             advancedSearch.sectionID = 2
             validateSearch()
             getCategoriesData(isRent: false)
-            AppUtils.SendGAIScreenName(screenName: "عقار للبيع")
+        //    AppUtils.SendGAIScreenName(screenName: "عقار للبيع")
         default:
             break
         }
@@ -722,10 +731,10 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             {
             case 0:
                 navPlace.advType = .for_exchange
-                AppUtils.SendGAIScreenName(screenName: "تفاصيل عقار للبدل")
+              //  AppUtils.SendGAIScreenName(screenName: "تفاصيل عقار للبدل")
             case 1:
                 navPlace.advType = .required
-                AppUtils.SendGAIScreenName(screenName: "تفاصيل مطلوب عقار")
+              //  AppUtils.SendGAIScreenName(screenName: "تفاصيل مطلوب عقار")
             default:
                 break
             }

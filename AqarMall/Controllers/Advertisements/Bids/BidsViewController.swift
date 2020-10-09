@@ -31,7 +31,7 @@ class BidsViewController: ViewController, UITextViewDelegate {
     func configureView(){
         title = "السوم على العقار"
         setBack()
-        AppUtils.SendGAIScreenName(screenName: "السوم على العقار")
+      //  AppUtils.SendGAIScreenName(screenName: "السوم على العقار")
         morInformationTextView.text = "اترك رسالة لمالك العقار"
         morInformationTextView.textColor = UIColor.lightGray
         morInformationTextView.delegate = self

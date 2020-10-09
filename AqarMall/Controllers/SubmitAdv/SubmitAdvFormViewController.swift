@@ -543,15 +543,15 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             postAd.Description =  _description
         }
         
-        if let _numberOfRooms = roomsNoTextField.text {
+        if let _numberOfRooms = roomsNoTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.NumberOfRooms =  _numberOfRooms
         }
         
-        if let _numberOfBathrooms = bathRoomNoTextField.text {
+        if let _numberOfBathrooms = bathRoomNoTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.NumberOfBathrooms = _numberOfBathrooms
         }
         
-        if let _numberOfFloors = floorsNoTextField.text {
+        if let _numberOfFloors = floorsNoTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.NumberOfFloors = _numberOfFloors
         }
         
@@ -559,15 +559,15 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             postAd.Finishing = _finishing
         }
 
-        if let _ageOfBuilding = buildingAgeTextfield.text {
+        if let _ageOfBuilding = buildingAgeTextfield.text?.replacedArabicDigitsWithEnglish {
             postAd.AgeOfBuilding = _ageOfBuilding
         }
         
-        if let _buildingSize = buildingSizeTextField.text {
+        if let _buildingSize = buildingSizeTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.BuildingSize = _buildingSize
         }
         
-        if let _landSize = landSizeTextField.text {
+        if let _landSize = landSizeTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.LandSize = _landSize
         }
         
@@ -579,7 +579,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             postAd.Size = _size
         }
 
-        if let _price = priceTextField.text {
+        if let _price = priceTextField.text?.replacedArabicDigitsWithEnglish {
             postAd.Price =  Double(_price) ?? 0
         }
         

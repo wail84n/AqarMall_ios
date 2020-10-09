@@ -53,7 +53,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AppUtils.SendGAIScreenName(screenName: "تفاصيل الإعلان")
+      //  AppUtils.SendGAIScreenName(screenName: "تفاصيل الإعلان")
         // +++ wail
 //        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
 //        tracker.set(kGAIScreenName, value: "\(self.adDetails.CatName ?? "" ) تفاصيل الإعلان")
@@ -824,7 +824,7 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
         }
         
         if self.advType != .rent{
-            AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])
+           [ AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])]
         }else{
             AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "rant"])
         }

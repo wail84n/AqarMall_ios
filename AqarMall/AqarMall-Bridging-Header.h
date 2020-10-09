@@ -6,6 +6,6 @@
 //  Copyright © 2019 Macbookpro. All rights reserved.
 //
 
-#import <GoogleAnalytics/GAI.h>
-#import <GoogleAnalytics/GAIDictionaryBuilder.h>
-#import <Google/Analytics.h>
+//#import <GoogleAnalytics/GAI.h>
+//#import <GoogleAnalytics/GAIDictionaryBuilder.h>
+//#import <Google/Analytics.h>

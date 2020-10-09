@@ -53,9 +53,13 @@ struct SubmitAdsVM {
                 
                 _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { timer in
                     print("FIRE!!!")
+                    
                     if tempImages.count == 0 {
                         completion(true, _advId, nil)
                         timer.invalidate()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            AppUtils.addEventToFireBase(eventName: "post_update_ad", _parameters: ["type" : "post"])
+                        }
                     }
                 })
             }
@@ -107,6 +111,9 @@ struct SubmitAdsVM {
                     if tempImages.count == 0 {
                         completion(true, _advId, nil)
                         timer.invalidate()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            AppUtils.addEventToFireBase(eventName: "post_update_ad", _parameters: ["type" : "update"])
+                        }
                     }
                 })
 
@@ -144,6 +151,10 @@ struct SubmitAdsVM {
                 return
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                AppUtils.addEventToFireBase(eventName: "post_required_and_exchange_ad", _parameters: ["type" : "required"])
+            }
+            
             if let _advId = advId{
                 completion(true, _advId, nil)
                 
@@ -163,6 +174,9 @@ struct SubmitAdsVM {
                 return
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                AppUtils.addEventToFireBase(eventName: "post_required_and_exchange_ad", _parameters: ["type" : "exchange"])
+            }
             if let _advId = advId{
                 completion(true, _advId, nil)
                 

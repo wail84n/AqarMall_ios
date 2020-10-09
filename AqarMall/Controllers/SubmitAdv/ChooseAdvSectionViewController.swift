@@ -93,7 +93,7 @@ class ChooseAdvSectionViewController: ViewController {
                 self.forSaleView.alpha = 1
                 self.forSaleView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
-                AppUtils.SendGAIScreenName(screenName: "اضافة عقار للبيع")
+             //   AppUtils.SendGAIScreenName(screenName: "اضافة عقار للبيع")
                 let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "ChooseAdvCatedoryViewController") as! ChooseAdvCatedoryViewController
                 vc.isRent = false
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -116,7 +116,7 @@ class ChooseAdvSectionViewController: ViewController {
                 self.forRentView.alpha = 1
                 self.forRentView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
-                AppUtils.SendGAIScreenName(screenName: "اضافة عقار للإيجار")
+            //    AppUtils.SendGAIScreenName(screenName: "اضافة عقار للإيجار")
                 let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "ChooseAdvCatedoryViewController") as! ChooseAdvCatedoryViewController
                 vc.isRent = true
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -141,7 +141,7 @@ class ChooseAdvSectionViewController: ViewController {
                 self.forExchangeView.alpha = 1
                 self.forExchangeView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
-                AppUtils.SendGAIScreenName(screenName: "اضافة عقار للبدل")
+               // AppUtils.SendGAIScreenName(screenName: "اضافة عقار للبدل")
                 let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitExchangeRequiredAdv") as! SubmitExchangeRequiredAdv
                 vc.isExchange = true
                 
@@ -171,7 +171,7 @@ class ChooseAdvSectionViewController: ViewController {
                 self.RequiredView.alpha = 1
                 self.RequiredView.transform = CGAffineTransform.identity
             }, completion: { (completed) in
-                AppUtils.SendGAIScreenName(screenName: "اضافة مطلوب عقار")
+            //    AppUtils.SendGAIScreenName(screenName: "اضافة مطلوب عقار")
                 let vc = UIStoryboard(name: "SubmitAdv", bundle: nil).instantiateViewController(withIdentifier: "SubmitExchangeRequiredAdv") as! SubmitExchangeRequiredAdv
                 vc.isExchange = false
                 self.tabBarController?.tabBar.isHidden = true

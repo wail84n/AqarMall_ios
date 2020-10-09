@@ -20,7 +20,7 @@ class SponsorDetailsViewController: UIViewController {
     
     func configureView(){
         setBack()
-        AppUtils.SendGAIScreenName(screenName: "تفاصيل الراعي الرسمي")
+     //   AppUtils.SendGAIScreenName(screenName: "تفاصيل الراعي الرسمي")
         if let _sponsor = Sponsor(object: AppUtils.LoadDictionaryData(key: .sponsor)) {
             
             title = _sponsor.name

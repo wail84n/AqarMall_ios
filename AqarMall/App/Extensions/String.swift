@@ -21,7 +21,8 @@ extension String {
                    "٦": "6",
                    "٧": "7",
                    "٨": "8",
-                   "٩": "9"]
+                   "٩": "9",
+                   ",": "."]
         map.forEach { str = str.replacingOccurrences(of: $0, with: $1) }
         return str
     }

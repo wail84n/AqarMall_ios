@@ -63,7 +63,11 @@ class ViewController: UIViewController {
             }
             
             self.prepareGoToAd(adsID: _adsID, type: _type)
-            
+        }else if _object as! String == "deep_link"{
+           // var _notification = NotificationInfo(url: _object as! String)
+            let _url : String = _result.userInfo?["url"] as? String ?? ""
+
+            self.prepareGoToAd(adsID: _url, type: "1")
         }
     }
 

@@ -34,7 +34,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
 
     override func viewWillAppear(_ animated: Bool) {
         if isFromdetails == false{
-            AppUtils.SendGAIScreenName(screenName: "المزيد")
+          //  AppUtils.SendGAIScreenName(screenName: "المزيد")
         }else{
             isFromdetails = false
         }
@@ -181,7 +181,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func followUs_facebook(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "حساب الفيسبوك")
+         //   AppUtils.SendGAIScreenName(screenName: "حساب الفيسبوك")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.facebook
             vc.title = "فيسبوك"
@@ -192,7 +192,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func followUs_instagram(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "حساب انستغرام")
+          //  AppUtils.SendGAIScreenName(screenName: "حساب انستغرام")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.instagram
             vc.title = "انستغرام"
@@ -202,7 +202,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func followUs_snapchat(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "حساب سناب شات")
+          //  AppUtils.SendGAIScreenName(screenName: "حساب سناب شات")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.snapchat
             vc.title = "سناب شات"
@@ -212,7 +212,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
 
     @IBAction func followUs_twitter(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "حساب تويتر")
+            // AppUtils.SendGAIScreenName(screenName: "حساب تويتر")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.twitter
             vc.title = "تويتر"
@@ -223,7 +223,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func followUs_website(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "الموقع الإلكتروني")
+           // AppUtils.SendGAIScreenName(screenName: "الموقع الإلكتروني")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.website
             vc.title = "الموقع"
@@ -234,7 +234,7 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
     
     @IBAction func followUs_youtube(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
-            AppUtils.SendGAIScreenName(screenName: "قناة اليوتيوب")
+          //  AppUtils.SendGAIScreenName(screenName: "قناة اليوتيوب")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "UrlWebviewVC") as! UrlWebviewVC
             vc.strURL = _contact_us.youtube
             vc.title = "يوتيوب"

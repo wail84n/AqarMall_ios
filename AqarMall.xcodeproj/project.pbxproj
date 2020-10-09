@@ -39,6 +39,7 @@
 		52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AA8221367BC00EBEAA7 /* BaseVC.swift */; };
 		52290AAC2213CB1400EBEAA7 /* ImageGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */; };
 		52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */; };
+		5236AD0724A7592100937F3E /* firebase-ios-sdk in Resources */ = {isa = PBXBuildFile; fileRef = 5236AD0624A7592100937F3E /* firebase-ios-sdk */; };
 		52389F3521FCB54700F52A0B /* AdsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3321FCB54700F52A0B /* AdsCell.swift */; };
 		52389F3621FCB54700F52A0B /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52389F3421FCB54700F52A0B /* AdsCell.xib */; };
 		52389F3B22021D8300F52A0B /* AdvertisementInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */; };
@@ -194,6 +195,7 @@
 		52290AA8221367BC00EBEAA7 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		52290AAA2213CB1400EBEAA7 /* ImageGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryVC.swift; sourceTree = "<group>"; };
 		52290AAB2213CB1400EBEAA7 /* ImageGalleryVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryVC.xib; sourceTree = "<group>"; };
+		5236AD0624A7592100937F3E /* firebase-ios-sdk */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "firebase-ios-sdk"; sourceTree = "<group>"; };
 		52389F3321FCB54700F52A0B /* AdsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCell.swift; sourceTree = "<group>"; };
 		52389F3421FCB54700F52A0B /* AdsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCell.xib; sourceTree = "<group>"; };
 		52389F3A22021D8300F52A0B /* AdvertisementInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvertisementInfo.swift; sourceTree = "<group>"; };
@@ -401,6 +403,14 @@
 				521E68E82290FD5D00DAA470 /* ReceivedBidsCell.xib */,
 			);
 			path = Bids;
+			sourceTree = "<group>";
+		};
+		5236ABF824A758C100937F3E /* firebase */ = {
+			isa = PBXGroup;
+			children = (
+				5236AD0624A7592100937F3E /* firebase-ios-sdk */,
+			);
+			path = firebase;
 			sourceTree = "<group>";
 		};
 		524422B5224D68C000B2DC7F /* SearchAds */ = {
@@ -614,6 +624,7 @@
 		52E6526721D9E39900E66AA2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5236ABF824A758C100937F3E /* firebase */,
 				521DAA7B226A67D00082305C /* GoogleService-Info.plist */,
 				52641B0A21F23564005480C2 /* Core Data Files */,
 				52E6526A21D9E3EA00E66AA2 /* Fonts */,
@@ -818,6 +829,7 @@
 				52E6523221D9DB6700E66AA2 /* Resources */,
 				A8DB8293494057739D3A8FBE /* [CP] Embed Pods Frameworks */,
 				5222BD5822C170D000FEE7F7 /* ShellScript */,
+				FC98928505FA0A849EF7C452 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -948,6 +960,7 @@
 				5261435922382E5600339882 /* ChooseCountryCell.xib in Resources */,
 				527E0A912225C881005934DC /* bannerCell.xib in Resources */,
 				527E0AA6222C5904005934DC /* ChooseAdvCatedoryCell.xib in Resources */,
+				5236AD0724A7592100937F3E /* firebase-ios-sdk in Resources */,
 				52290AAD2213CB1400EBEAA7 /* ImageGalleryVC.xib in Resources */,
 				52E6523F21D9DB6700E66AA2 /* Main.storyboard in Resources */,
 			);
@@ -1056,6 +1069,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC98928505FA0A849EF7C452 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AqarMall/Pods-AqarMall-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AqarMall/Pods-AqarMall-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AqarMall/Pods-AqarMall-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1348,6 +1378,7 @@
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = AqarMall/Info.plist;
@@ -1355,6 +1386,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1372,6 +1404,7 @@
 				CODE_SIGN_ENTITLEMENTS = AqarMall/AqarMall.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = AqarMall/Info.plist;
@@ -1379,6 +1412,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.nokhetha.iMallRS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

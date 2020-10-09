@@ -85,7 +85,7 @@ class FavorateViewController: ViewController, AdDetailsDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AppUtils.SendGAIScreenName(screenName: "المفضلة")
+     //   AppUtils.SendGAIScreenName(screenName: "المفضلة")
         refreshView()
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)

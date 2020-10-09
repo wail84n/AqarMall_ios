@@ -22,7 +22,7 @@ class SponsorViewController: UIViewController {
     private func configureView(){
      //   self.backAction()
         
-        AppUtils.SendGAIScreenName(screenName: "الراعي الرسمي")
+      //  AppUtils.SendGAIScreenName(screenName: "الراعي الرسمي")
         if let _sponsor = Sponsor(object: AppUtils.LoadDictionaryData(key: .sponsor)) {
             sponsor = _sponsor
             

@@ -18,18 +18,17 @@ import FirebaseDynamicLinks
 
 import SwiftKeychainWrapper
 
-
 //import Crashlytics
 
 let ReceivedPushNotification = "General_Notification"
 let PushNotification = "push_Notification"
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var isNewlaunch = true
     var isPushNotification = false
     
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    func applicationReceivedRemoteMessage(_ remoteMessage: MessagingRemoteMessage) {
         print("wail")
     }
     
@@ -43,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.isNewlaunch = false
         }
 
-        
         let uuid = UIDevice.current.identifierForVendor?.uuidString
         print("uuid \(uuid)")
         
@@ -55,12 +53,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         
         
-        GAI.sharedInstance().dispatchInterval = 2
+ //       GAI.sharedInstance().dispatchInterval = 2
         
+        Messaging.messaging().delegate = self
         if #available(iOS 10.0, *) {
             let authOptions : UNAuthorizationOptions = [.alert, .badge, .sound]
             let center = UNUserNotificationCenter.current()
@@ -69,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
             // For iOS 10 data message (sent via FCM)
-            FIRMessaging.messaging().remoteMessageDelegate = self
+          //  Messaging.messaging().remoteMessageDelegate = self
         } else {
             let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
@@ -111,14 +110,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        print(token22)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            if let refreshedToken = FIRInstanceID.instanceID().token() {
-                print("InstanceID token: \(refreshedToken)")
-                
-                if AppUtils.LoadData(key: .device_token_info) != refreshedToken {
-                    AppUtils.SaveData(key: .device_token_info, value: refreshedToken)
-                    AppUtils.SaveData(key: .device_token_saved_on_server, value: "0")
+//            if let refreshedToken = InstanceID.instanceID().to{
+//                print("InstanceID token: \(refreshedToken)")
+//
+//                if AppUtils.LoadData(key: .device_token_info) != refreshedToken {
+//                    AppUtils.SaveData(key: .device_token_info, value: refreshedToken)
+//                    AppUtils.SaveData(key: .device_token_saved_on_server, value: "0")
+//
+//                    self.manageDeviceTokenwithServer()
+//                }
+//            }
+//
+            
+            InstanceID.instanceID().instanceID { (result, error) in
+                if let error = error {
+                    print("Error fetching remote instange ID: \(error)")
+                } else if let result = result {
                     
-                    self.manageDeviceTokenwithServer()
+                    
+                    if AppUtils.LoadData(key: .device_token_info) != result.token {
+                        AppUtils.SaveData(key: .device_token_info ,value: result.token)
+                        AppUtils.SaveData(key: .device_token_saved_on_server, value: "0")
+                        
+                        self.manageDeviceTokenwithServer()
+                    }
+                    print("Remote instance ID token: \(result.token)")
                 }
             }
             // Print it to console
@@ -403,12 +419,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
  
     
     
-    @available(iOS 9.0, *)
-    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        return application(app, open: url,
-                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-                           annotation: "")
-    }
+//    @available(iOS 9.0, *)
+//    private func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+//        return application(app, open: url,
+//                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//                           annotation: "")
+//    }
     
 //    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
 //        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
@@ -420,7 +436,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        return false
 //    }
     
-    func handleIncommingDynamivLink(_ dynamicLink : FIRDynamicLink) {
+    func handleIncommingDynamivLink(_ dynamicLink : DynamicLink) {
         guard  let url = dynamicLink.url else{
             print("my dynamic obhect has no URL")
             return
@@ -483,23 +499,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        return false
 //    }
-    
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        if let dynamicLink = FIRDynamicLinks.dynamicLinks()?.dynamicLink(fromCustomSchemeURL: url) {
-            // Handle the deep link. For example, show the deep-linked content or
-            // apply a promotional offer to the user's account.
-            // ...
-            return true
-        }
-        return false
-    }
+//
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+//            // Handle the deep link. For example, show the deep-linked content or
+//            // apply a promotional offer to the user's account.
+//            // ...
+//            return true
+//        }
+//        return false
+//    }
     
     private func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         
         if let incommingURL = userActivity.webpageURL {
             print("incomming URL is : \(incommingURL)")
             
-            let linkHandled = FIRDynamicLinks.dynamicLinks()?.handleUniversalLink(incommingURL) { (dynamicLink, error) in
+            let linkHandled = DynamicLinks.dynamicLinks().handleUniversalLink(incommingURL) { (dynamicLink, error) in
                 guard error == nil else{
                     print("found Error : \(error!.localizedDescription)")
                     return
@@ -520,5 +536,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return false
     }
+    
+    
+    // MARK: - Universal Links
+       func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+           let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+               print("dynamiclink \(dynamiclink?.url?.absoluteString)")
+               
+            
+            guard let _url = dynamiclink?.url,
+                let components = URLComponents(url: _url, resolvingAgainstBaseURL: false),
+                let queryItems = components.queryItems
+                else {return}
+            
+            print(queryItems.first(where: { $0.name == "key" })?.value ?? "")
+            
+            
+            for queryItems in queryItems{
+                print("Parameter \(queryItems.name) value \(queryItems.value ?? "")")
+            }
+            
+
+              
+            if let _link = queryItems.first(where: { $0.name == "key" })?.value{
+                var dict : Dictionary = Dictionary<AnyHashable,Any>()
+                dict["url"] = _link
+                NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "deep_link", userInfo: dict)
+            }
+            
+               // ...
+           }
+           
+           return handled
+       }
+       
+       @available(iOS 9.0, *)
+       func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+           return application(app, open: url,
+                              sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+                              annotation: "")
+       }
+       
+       func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+           if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+               // Handle the deep link. For example, show the deep-linked content or
+               // apply a promotional offer to the user's account.
+               // ...
+               return true
+           }
+           return false
+       }
+
 }
 

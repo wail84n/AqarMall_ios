@@ -43,6 +43,7 @@ enum pointsActionType : Int8 {
 class AppUtils: NSObject {
     static var staticProvinces = [Provinces]()
     static var staticAreas = [Areas]()
+    static var callInAppMessage: Int = 0
     
     enum AppVariables : String {
         case categories_last_change = "categories_last_change"
@@ -317,27 +318,27 @@ class AppUtils: NSObject {
         }
     }
     
-    class func SendGAIScreenName(screenName : String){
-        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
-        tracker.set(kGAIScreenName, value: screenName)
-        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-        tracker.send(builder.build() as [NSObject : AnyObject])
-    }
-    
-    class func SendGAIEventTrack(category: String, actionName: String? = "-", _label: String? = "-") {
-        //Google Analytics Event Click name
-        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
-        
-        let eventTracker: NSObject = GAIDictionaryBuilder.createEvent(
-            withCategory: category,
-            action: actionName,
-            label: _label,
-            value: nil).build()
-        tracker.send((eventTracker as! [AnyHashable: Any]))
-    }
+//    class func SendGAIScreenName(screenName : String){
+//        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
+//        tracker.set(kGAIScreenName, value: screenName)
+//        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
+//        tracker.send(builder.build() as [NSObject : AnyObject])
+//    }
+//    
+//    class func SendGAIEventTrack(category: String, actionName: String? = "-", _label: String? = "-") {
+//        //Google Analytics Event Click name
+//        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
+//        
+//        let eventTracker: NSObject = GAIDictionaryBuilder.createEvent(
+//            withCategory: category,
+//            action: actionName,
+//            label: _label,
+//            value: nil).build()
+//        tracker.send((eventTracker as! [AnyHashable: Any]))
+//    }
     
     class func addEventToFireBase(eventName: String, _parameters: [String : Any]){
-        FIRAnalytics.logEvent(withName: eventName, parameters: _parameters)
+        Analytics.logEvent(eventName, parameters: _parameters)
     }
 
 }

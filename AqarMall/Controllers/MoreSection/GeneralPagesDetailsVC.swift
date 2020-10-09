@@ -16,7 +16,7 @@ class GeneralPagesDetailsVC: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppUtils.SendGAIScreenName(screenName: "تفاصيل الصفحات العامة")
+     //   AppUtils.SendGAIScreenName(screenName: "تفاصيل الصفحات العامة")
         self.setMsgText()
         self.configureView()
         // Do any additional setup after loading the view.

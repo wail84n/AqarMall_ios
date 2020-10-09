@@ -28,7 +28,7 @@ class AdvFilterViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AppUtils.SendGAIScreenName(screenName: "ترتيب الإعلانات")
+      //  AppUtils.SendGAIScreenName(screenName: "ترتيب الإعلانات")
         // Do any additional setup after loading the view.
     }
     

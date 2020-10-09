@@ -24,7 +24,7 @@ class BannerDetailsViewController: ViewController {
     func configureView(){
         self.setBack()
         title = bannerDetails.title
-        AppUtils.SendGAIScreenName(screenName: "تفاصيل الراعي الرسمي")
+     //   AppUtils.SendGAIScreenName(screenName: "تفاصيل الراعي الرسمي")
         webView.allowsInlineMediaPlayback = true
         webView.loadHTMLString(bannerDetails.fullImage ?? "", baseURL: nil)
         self.webView.isOpaque = false

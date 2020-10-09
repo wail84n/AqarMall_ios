@@ -23,7 +23,7 @@ class NotificationsVC: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         callNotificationAPI()
         if isFromDetails == false{
-            AppUtils.SendGAIScreenName(screenName: "الإشعارات")
+        //    AppUtils.SendGAIScreenName(screenName: "الإشعارات")
         }else{
             isFromDetails = false
         }
