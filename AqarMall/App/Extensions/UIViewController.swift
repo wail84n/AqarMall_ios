@@ -58,3 +58,28 @@ extension UIViewController{
     }
     
 }
+
+
+extension UIViewController {
+    func switchRootViewController(rootViewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        let window = UIApplication.shared.keyWindow
+        
+        if animated {
+            UIView.transition(with: window!, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                let oldState: Bool = UIView.areAnimationsEnabled
+                UIView.setAnimationsEnabled(false)
+
+                window!.rootViewController = rootViewController // navigationController
+                window!.makeKeyAndVisible()
+                UIView.setAnimationsEnabled(oldState)
+            }, completion: { (finished: Bool) -> () in
+                if (completion != nil) {
+                    completion!()
+                }
+            })
+        } else {
+            window!.rootViewController = rootViewController
+        }
+    }
+
+}

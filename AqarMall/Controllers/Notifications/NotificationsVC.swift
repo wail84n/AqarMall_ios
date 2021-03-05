@@ -21,15 +21,16 @@ class NotificationsVC: ViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        callNotificationAPI()
+        
         if isFromDetails == false{
+            callNotificationAPI()
         //    AppUtils.SendGAIScreenName(screenName: "الإشعارات")
         }else{
             isFromDetails = false
         }
+        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NotificationsVC.notification), name: NSNotification.Name(rawValue: PushNotification), object: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,23 +53,15 @@ class NotificationsVC: ViewController {
             let gameVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SponsorViewControllerNav") //as! SponsorViewController
             vc.present(gameVC, animated: true, completion: nil)
         }else if _object as! String == "pushNotif" {
-            
-            //            guard let adsID = _result["AdsID"] as? String,
-            //                let type = result?["type"] as? String else { return }
-            //
-            
             guard let parsedDictionary = _result.userInfo as? [String: Any],
                 let _adsID = parsedDictionary["AdsID"] as? String,
                 let _type = parsedDictionary["type"] as? String
                 else{
                     return
             }
-            
             self.prepareGoToAd(adsID: _adsID, type: _type)
-            
         }
     }
-    
     
     func configureView(){
         title = "الإشعارات"
@@ -79,7 +72,19 @@ class NotificationsVC: ViewController {
         let userInfo = DB_UserInfo.callRecords()
         if let _userInfo = userInfo {
             AppUtils.ShowLoading()
-            APIs.shared.getNotifications(userId: 75 , lastchange: 0) { (result, error) in
+//            APIs.shared.getNotifications(userId: 75 , lastchange: 0) { (result, error) in
+//                AppUtils.HideLoading()
+//                guard error == nil else {
+//                    print(error ?? "")
+//                    return
+//                }
+//                if let _notifications = result {
+//                    self.notifications = _notifications
+//                    self.tableView.reloadData()
+//                }
+//            }
+            
+            APIs.shared.getUserNotifications() { (result, error) in
                 AppUtils.HideLoading()
                 guard error == nil else {
                     print(error ?? "")
@@ -90,6 +95,7 @@ class NotificationsVC: ViewController {
                     self.tableView.reloadData()
                 }
             }
+            
         }
     }
     
@@ -118,8 +124,11 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let record = notifications[indexPath.row]
         
-        if record.type == 1 {
+        if record.type == 1  {
             // +++ ads
+            self.prepareGoToAd(_notification: record)
+        }else if record.type == 5  {
+                // +++ ads
             self.prepareGoToAd(_notification: record)
         }else if record.type == 4 {
             // +++ ads

@@ -13,32 +13,48 @@ public enum ContentType:String {
     case applicationJson = "application/json"
     case multipartFormData = "multipart/form-data"
 }
-
+// http://imallcms.aqarmalls.com/api.svc/GetNotificationsByPagination?page=1&deviceuuid=0&userId=4557
 public enum appURLs: String{
-    case mainServer = "http://test.imallkw.com"
-    case imageURL = "http://test.imallkw.com/Upload/"
+    case mainServer = "http://imallcms.aqarmalls.com" //"http://test.imallkw.com"
+    case imageURL = "http://imallcms.aqarmalls.com/Upload/" // "http://test.imallkw.com/Upload/"
     case imageURL_OldApp = "http://imallkw.com/cmsImallkwQRealEstate/Upload/"
     
    // http://imallkw.com/cmsImallkwQRealEstate/Upload/RealEstate/Advt15998/eb29a427-63cc-4b52-aa9c-2d38af1b956b.png
-    case apiURL = "http://test.imallkw.com/Api.svc/"
+    case apiURL =  "http://imallcms.aqarmalls.com/Api.svc/" //"http://test.imallkw.com/Api.svc/"
+    case apiURL_mainServer =  "http://imallcms.aqarmalls.com/Api.svc/ff" //"http://test.imallkw.com/Api.svc/"
+    
+    var getUrl: String {
+        switch self {
+        case .mainServer:
+            return "http://imallcms.aqarmalls.com" //AppUtils.selectedCountry?.baseURL ?? ""
+        case .imageURL:
+            return "http://imallcms.aqarmalls.com/Upload/" //("\(AppUtils.selectedCountry?.baseURL ?? "")/Upload/")
+        case .imageURL_OldApp:
+            return "http://imallkw.com/cmsImallkwQRealEstate/Upload//Upload/"
+        case .apiURL:
+            return "http://imallcms.aqarmalls.com/Api.svc/" //("\(AppUtils.selectedCountry?.baseURL ?? "")/Api.svc/")
+        case .apiURL_mainServer:
+            return "http://imallcms.aqarmalls.com/Api.svc"
+        }
+    }
 }
 
 class APIs: NSObject {
-    public static let shared = APIs(baseURL: appURLs.apiURL.rawValue) // PROD
+    public static let shared = APIs(baseURL: appURLs.apiURL.getUrl) // PROD
     
     func getFileURL(imageName: String, IsFromOldApp : Bool = false) -> URL? {
-       // print(URL(string: appURLs.imageURL.rawValue + imageName))
+       // print(URL(string: appURLs.imageURL.getUrl + imageName))
         if IsFromOldApp {
             //+++ here need to get the images from old App.
-            print(appURLs.imageURL_OldApp.rawValue + imageName)
-            return URL(string: appURLs.imageURL_OldApp.rawValue + imageName)
+            print(appURLs.imageURL_OldApp.getUrl + imageName)
+            return URL(string: appURLs.imageURL_OldApp.getUrl + imageName)
         }else{
-            return URL(string: appURLs.imageURL.rawValue + imageName)
+            return URL(string: appURLs.imageURL.getUrl + imageName)
         }
-        
     }
     
     init(baseURL: String){
+        print("API url baseURL\(baseURL)")
         Router.baseURL = URL(string: baseURL)
         super.init()
     }
@@ -121,13 +137,13 @@ class APIs: NSObject {
         case getAdvts(provinceType : Int?, sectionId: Int?, catId: Int?, provinceId: Int32?, areaId: Int32?, pageNumber: Int16?, orderBy: Int16?, orderType : String?)
         case getRelatedAdvts(advtId : Int32?, catId: Int16?, sectionId: Int16)
         case getAdvtDetails(Id:Int32?)
-        case getCountries()
+        case getCountries
         case userRegister(email : String?, name : String, phone : String,SMSCode : String)
         case activeUserAccount(userId : Int)
         case postAdvt(parameters : [String:Any])
         case updateAdvt(parameters : [String:Any])
         case getSponsors(lastchange:Int, countryId:Int)
-        case uploadImage()
+        case uploadImage
         case postBuyerRequiredAdvt(parameters : [String:Any])
         case postExchangeProperty(parameters : [String:Any])
         case postSearch(parameters : [String:Any])
@@ -146,12 +162,13 @@ class APIs: NSObject {
         case getBidsByAdID(Id : Int32)
         case postApproveBid(Id : Int32, type : Int8)
         case postDeviceInfo(parameters : [String:Any])
+        case getUserNotifications
         //(deviceName:String, deviceToken:String, deviceType:Int8, deviceUDID:String, userID:String)
         
         
         var contentType:ContentType {
             switch self {
-            case .uploadImage():
+            case .uploadImage:
                 return .multipartFormData
             default:
                 return .applicationJson
@@ -162,7 +179,7 @@ class APIs: NSObject {
             var dict:HTTPHeaders = [:]
             
             switch self {
-            case .uploadImage():
+            case .uploadImage:
                 break
             default:
                 dict = [
@@ -176,13 +193,15 @@ class APIs: NSObject {
         
         var serverUrl:appURLs {
             switch self {
-            case .uploadImage():
+            case .uploadImage:
                 return .mainServer
 //                 .getActiveContacts(_, _, _):
 //                return .contactsNumberServer
 //            // return .mainServer
 //            case .getPlayerAchievements:
 //                return .mainServer_v2
+            case .getCountries:
+                return .apiURL_mainServer
             default:
                 return .apiURL
             }
@@ -192,7 +211,7 @@ class APIs: NSObject {
             switch self {
             case .userRegister(_ , _, _, _),
                  .activeUserAccount(_),
-                 .uploadImage(),
+                 .uploadImage,
                  .postBuyerRequiredAdvt(_),
                  .postExchangeProperty(_),
                  .postAdvt(_),
@@ -234,8 +253,8 @@ class APIs: NSObject {
                 return "getBuyerRequiredAds"
             case .getAdvtDetails(_):
                 return "getAdvtDetails_ios"
-            case .getCountries():
-                return "getInnerCountries"
+            case .getCountries:
+                return "GetAppCountries"
             case .userRegister(_ , _, _, _):
                 return "postRegister"
             case .activeUserAccount(_):
@@ -246,7 +265,7 @@ class APIs: NSObject {
                 return "postAdvt"
             case .updateAdvt(_):
                 return "updateAdvt"
-            case .uploadImage():
+            case .uploadImage:
                 return "/Services/frmUploadImages.aspx"
             case .postBuyerRequiredAdvt(_):
                 return "/postBuyerRequiredAdvt"
@@ -286,6 +305,8 @@ class APIs: NSObject {
                 return "/postApproveBid"
             case .postDeviceInfo(_):
                 return "/postDeviceInfo"
+            case .getUserNotifications:
+                return "/GetNotificationsByPagination"
             }
         }
         
@@ -399,6 +420,13 @@ class APIs: NSObject {
                 dict["lastchange"] = lastchange
             case .getBidsByAdID(let Id):
                 dict["landId"] = Id
+            case .getUserNotifications:
+                let userInfo = DB_UserInfo.callRecords()
+                dict["page"] = 1
+                if let _userInfo = userInfo{
+                    dict["userId"] = _userInfo.entryID
+                }
+                dict["deviceuuid"] = AppUtils.getUuid()
             default:
                 return nil
             }
@@ -443,7 +471,7 @@ class APIs: NSObject {
         }
         
         func asURLRequest() throws -> URLRequest {
-            let url = URL(string: self.serverUrl.rawValue)?.appendingPathComponent(self.path)
+            let url = URL(string: self.serverUrl.getUrl)?.appendingPathComponent(self.path)
             
             var urlRequest = try URLRequest(url: url!, method: self.method, headers: self.headers)
 
@@ -451,6 +479,7 @@ class APIs: NSObject {
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: params)
             }
             
+            print("API url \(url)")
             if let body = self.body, self.contentType == .applicationJson {
                 print(body)
                 urlRequest = try JSONEncoding.default.encode(urlRequest, with: body)
@@ -738,6 +767,22 @@ class APIs: NSObject {
         }
     }
     
+    func getUserNotifications(callback: @escaping NotificationsCallback) {
+        let route = Router.getUserNotifications
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let records = (result as? [AnyObject])?.compactMap({ userNotification(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(records, nil)
+        }
+    }
+    
+    
     func postRemoveAdvt(id: Int32, type : Int8, callback: @escaping IntegerCallback) {
         let route = Router.postRemoveAdvt(id: id, type: type)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -759,9 +804,9 @@ class APIs: NSObject {
     }
     
     func postImagesAdRequest(params:[String: Any], completion:@escaping isSuccessCallback) {
-        let route = Router.uploadImage()
-        print(route.serverUrl.rawValue)
-        let url = "\(APIs.Router.uploadImage().serverUrl.rawValue)/Services/frmUploadImages.aspx"
+        let route = Router.uploadImage
+        print(route.serverUrl.getUrl)
+        let url = "\(APIs.Router.uploadImage.serverUrl.getUrl)/Services/frmUploadImages.aspx"
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.upload(multipartFormData: { (MultipartFormData) in
@@ -803,9 +848,9 @@ class APIs: NSObject {
     
     
     func deleteImageAdRequest(params:[String: Any], completion:@escaping isSuccessCallback) {
-        let route = Router.uploadImage()
-        print(route.serverUrl.rawValue)
-        let url = "\(APIs.Router.uploadImage().serverUrl.rawValue)/Services/frmUploadImages.aspx"
+        let route = Router.uploadImage
+        print(route.serverUrl.getUrl)
+        let url = "\(APIs.Router.uploadImage.serverUrl.getUrl)/Services/frmUploadImages.aspx"
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.upload(multipartFormData: { (MultipartFormData) in
@@ -838,7 +883,7 @@ class APIs: NSObject {
     
     
     func uploadImage(advId:Int?, ImageNo:Int?, Image:Data?, IsMain :Bool ,callback: @escaping IntegerCallback) {
-        let route = Router.uploadImage()
+        let route = Router.uploadImage
         let formData:(MultipartFormData) -> Void = { data in
             var myInt = advId
             var dtData = Data(bytes: &myInt, count: MemoryLayout.size(ofValue: myInt))
@@ -909,7 +954,7 @@ class APIs: NSObject {
     
     
     func getCountries(callback: @escaping countriesCallback) {
-        let route = Router.getCountries()
+        let route = Router.getCountries
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
             guard
                 response.result.isSuccess,

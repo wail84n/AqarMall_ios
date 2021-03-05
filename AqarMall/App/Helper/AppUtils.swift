@@ -37,14 +37,32 @@ enum pointsActionType : Int8 {
     case search = 3
     case view_adv_from_notification = 4
     case add_requiredAdv = 5
-    
+    case share = 6
+
+
+    func getPoints() -> Int8{
+        switch self {
+        case .viewAdv:
+            return 1
+        case .favorate:
+            return 3
+        case .search:
+            return 3
+        case .view_adv_from_notification:
+            return 1
+        case .add_requiredAdv:
+            return 1
+        case .share:
+            return 3
+        }
+    }
 }
 
 class AppUtils: NSObject {
     static var staticProvinces = [Provinces]()
     static var staticAreas = [Areas]()
     static var callInAppMessage: Int = 0
-    
+    static var selectedCountry : Countries? = nil
     enum AppVariables : String {
         case categories_last_change = "categories_last_change"
         case provinces_last_change = "provinces_last_change"
@@ -60,6 +78,7 @@ class AppUtils: NSObject {
         case device_token_saved_on_server = "DeviceTokenSavedOnServer"
         
         case print_adv_screen_shot = "print_adv_screen_shot"
+        case selected_country = "selected_country"
     }
     
     class func LoadData(key: AppVariables)  -> String
@@ -150,7 +169,7 @@ class AppUtils: NSObject {
         if let user_uuid = KeychainWrapper.standard.string(forKey: "user_uuid"){
             print(user_uuid)
             
-            APIs.shared.postPoints(_actionType: actionType.rawValue, _areaID: areaID, _catID: catID, _points: actionType.rawValue, _provinceID: provinceID, _sectionID: sectionID, _userID: userId, _deviceUDID: user_uuid) { (result, error) in
+            APIs.shared.postPoints(_actionType: actionType.rawValue, _areaID: areaID, _catID: catID, _points: actionType.getPoints(), _provinceID: provinceID, _sectionID: sectionID, _userID: userId, _deviceUDID: user_uuid) { (result, error) in
                 guard error == nil else {
                     print(error ?? "")
                     return
@@ -187,6 +206,42 @@ class AppUtils: NSObject {
             }
         }
         return ""
+    }
+    
+    class func changeSelectedCountry(country: Countries){
+        
+        let jsonData = try! JSONEncoder().encode(country)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        print(jsonString)
+        
+        selectedCountry = country
+        SaveData(key: .selected_country, value: jsonString)
+    }
+    
+    class func loadSelectedCountry()-> Countries?{
+        let jsonString = AppUtils.LoadData(key: .selected_country)
+        
+        if jsonString.isEmpty {
+            return nil
+//            if let countries = Countries(countryID: 12, code: "", country: "", image: "", baseURL: "", currency: ""){
+//                changeSelectedCountry(country: countries)
+//            }
+            
+        }
+        
+        if let jsonData = jsonString.data(using: .utf8)
+        {
+            let decoder = JSONDecoder()
+
+            do {
+                let country = try decoder.decode(Countries.self, from: jsonData)
+                selectedCountry = country
+                return country
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
     
     class func SaveData(key:AppVariables ,value:String)
@@ -341,6 +396,76 @@ class AppUtils: NSObject {
         Analytics.logEvent(eventName, parameters: _parameters)
     }
 
+    class func loadServerData(){
+    //    callSponsoreAPI()
+    //    callContactUs_API()
+        APIs.shared.getContactUs() { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+        }
+        
+        SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
+            print("Categories No : \(recordNo ?? 0)")
+
+            NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_categories", userInfo: nil) // +++ the categories have been loaded.
+            
+            SyncAPIData.callProvincesAPI { (result, recordNo, error) in
+                print("Provinces No : \(recordNo ?? 0)")
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Provinces", userInfo: nil) // +++ the Provinces have been loaded.
+                
+                SyncAPIData.callAreasAPI { (result, recordNo, error) in
+                    print("Areas No : \(recordNo ?? 0)")
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Areas", userInfo: nil) // +++ the Areas have been loaded.
+                    
+                    SyncAPIData.callGeneralPagesAPI { (result, recordNo, error) in
+                        print("General Pages No : \(recordNo ?? 0)")
+                        
+                        SyncAPIData.callBannersAPI { (result, recordNo, error) in
+                            print("Banners No : \(recordNo ?? 0)")
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    
+//    func callSponsoreAPI(){
+//        APIs.shared.getSponsor(lastchange: 0, countryId: 1) { (result, error) in
+//            guard error == nil else {
+//                print(error ?? "")
+//                return
+//            }
+//            if let _result = result{
+//                print(_result.count)
+//                if _result.count > 0 {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+//                        self.goToSponsorPage()
+//                    })
+//                }
+//            }
+//        }
+//    }
+    
+//    func callContactUs_API(){
+//        APIs.shared.getContactUs() { (result, error) in
+//            guard error == nil else {
+//                print(error ?? "")
+//                return
+//            }
+//        }
+//    }
+//
+//    func goToSponsorPage(){
+//        if isPushNotification == false {
+//            NotificationCenter.default.post(name: Notification.Name(rawValue: ReceivedPushNotification), object: "showSponsor", userInfo: nil)
+//        }
+//        isPushNotification = false
+//    }
 }
 
 extension UIApplication {

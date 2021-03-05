@@ -20,6 +20,8 @@ class PhoneNumberVerificationViewController: ViewController, UITextFieldDelegate
     @IBOutlet weak var activeByAdminLabel: UILabel!
     @IBOutlet weak var skipActivationButton: UIButton!
     weak var delegate: PhoneNumberVerificationDelegate? = nil
+    var phoneValidatedClosure: (() ->())?
+    
     var timer = Timer()
     var counter = 0
     var SMScounter = 0
@@ -35,6 +37,8 @@ class PhoneNumberVerificationViewController: ViewController, UITextFieldDelegate
        // self.setBack()
         self.navigationItem.setHidesBackButton(true, animated:true);
 
+        verificationTextView.becomeFirstResponder()
+        
         SMScounter = Int(AppUtils.LoadData(key: .sms_attempts)) ?? 0
         
         SMScounter += 1
@@ -88,6 +92,7 @@ class PhoneNumberVerificationViewController: ViewController, UITextFieldDelegate
         
         if let _userInfo = userInfo {
             if _userInfo.SMSCode == verificationTextView.text {
+                self.phoneValidatedClosure?()
                 DB_UserInfo.activeUserAccount()
                 self.activeAccountOnSarver(userId: Int(_userInfo.entryID))
             }else{

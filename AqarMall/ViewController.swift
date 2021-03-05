@@ -21,6 +21,12 @@ class ViewController: UIViewController {
          // Do any additional setup after loading the view.
     }
     
+    func navigateToLoadPage(){
+        var vc: UIViewController!
+        vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        self.switchRootViewController(rootViewController: vc, animated: true, completion: nil)
+    }
+    
     func getNavigationBarHeight() -> CGFloat{
         return UIApplication.shared.statusBarFrame.height +
             self.navigationController!.navigationBar.frame.height

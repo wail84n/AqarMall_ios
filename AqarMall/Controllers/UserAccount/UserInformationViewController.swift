@@ -22,6 +22,8 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var countryButton: UIButton!
     
+    var phoneValidatedClosure: (() ->())?
+    
     var selectedCountry : Countries? = nil
     var isFromAddAdv = false
     
@@ -40,6 +42,8 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     func configureView(){
         title = "معلومات الحساب"
         self.setBack()
+        userNameTextField.becomeFirstResponder()
+
         print(AppUtils.getUuid())
     }
 
@@ -83,7 +87,6 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
         }
         //performSegue(withIdentifier: "ToVerificationPhoneNumber", sender: self)
     }
-    
     
     func updateView() {
         switch viewStatus {
@@ -157,8 +160,11 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ChooseCountryViewController {
             vc.delegate = self
-        }else if let vc = segue.destination as? PhoneNumberVerificationViewController {
+        }else if let vc = segue.destination as? PhoneNumberVerificationViewController{
             vc.delegate = self
+            vc.phoneValidatedClosure = {[weak self] in
+                self?.phoneValidatedClosure?()
+            }
         }
     }
     

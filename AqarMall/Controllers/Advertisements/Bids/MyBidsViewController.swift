@@ -117,6 +117,7 @@ extension MyBidsViewController: UITableViewDelegate, UITableViewDataSource {
         header.priceTitleLabel.text = "\(record.priceLabel ?? "")"
         header.sizeLabel.text = "\(record.size ?? "")"
         header.AdvIdLabel.text = "\(record.entryID ?? 0)"
+        header.curencyLabel.text = AppUtils.selectedCountry?.currency
         // cell.cellView.dropShadow(scale: true)
         
         if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){

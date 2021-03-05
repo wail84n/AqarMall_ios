@@ -14,6 +14,7 @@ class BidsViewController: ViewController, UITextViewDelegate {
     @IBOutlet weak var priceNameLabel: UILabel!
     @IBOutlet weak var priceLable: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var currancyLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var bidButton: UIButton!
     @IBOutlet weak var bidTextfield: UITextField!
@@ -41,6 +42,7 @@ class BidsViewController: ViewController, UITextViewDelegate {
         priceNameLabel.text = adDetails.priceLabel ?? "السعر"
         sizeLabel.text = adDetails.size ?? "-"
         detailsTextView.text = adDetails.details
+        currancyLabel.text = AppUtils.selectedCountry?.currency
                 
     }
     

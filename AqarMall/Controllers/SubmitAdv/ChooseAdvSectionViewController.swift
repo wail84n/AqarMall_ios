@@ -17,13 +17,14 @@ class ChooseAdvSectionViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureView()
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        configureView()
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: PushNotification), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ChooseAdvSectionViewController.gotNotification), name: NSNotification.Name(rawValue: PushNotification), object: nil)
     }
@@ -62,9 +63,9 @@ class ChooseAdvSectionViewController: ViewController {
         let userInfo = DB_UserInfo.callRecords()
         
         if let _userInfo = userInfo {
-            if _userInfo.isSkippedVerification == false && _userInfo.verificationStatus == false{
-                createAccount()
-            }
+//            if _userInfo.isSkippedVerification == false && _userInfo.verificationStatus == false{
+//                createAccount()
+//            }
         }else{
             createAccount()
         }

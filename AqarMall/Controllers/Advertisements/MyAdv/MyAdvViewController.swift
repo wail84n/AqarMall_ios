@@ -318,7 +318,7 @@ extension MyAdvViewController: UITableViewDataSource, UITableViewDelegate {
             cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
-            
+            cell.curencyLabel.text = AppUtils.selectedCountry?.currency
             cell.favorateButton.isHidden = true
 //            cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
 //            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0

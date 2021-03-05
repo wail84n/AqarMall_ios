@@ -81,7 +81,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var bidsButton: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
-    
+    @IBOutlet weak var currancyLabel: UILabel!
     @IBOutlet weak var bidsView: UIView!
     @IBOutlet weak var moreDetailsButton: UIButton!
     @IBOutlet weak var catNameLabel: UILabel!
@@ -123,6 +123,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
         self.viewsTitleLabel.isHidden = true
         self.viewsLabel.text = ""
         
+        self.currancyLabel.text = AppUtils.selectedCountry?.currency
         AdDetails = myAd2
         self.titleLabel.text = myAd2.title
     
@@ -724,6 +725,7 @@ extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
             cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
             cell.sizeLabel.text = "\(record.size ?? "")"
             cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
+            cell.curencyLabel.text = AppUtils.selectedCountry?.currency
             // cell.cellView.dropShadow(scale: true)
             
             if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){

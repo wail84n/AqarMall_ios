@@ -604,10 +604,8 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
             if self.advType != .rent{
                 _sectionID = 2
                 AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "sale"])
-               // AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "للبيع", _label: adsRecord.title)
             }else{
                 AppUtils.addEventToFireBase(eventName: "add_favorate", _parameters: ["type" : "rant"])
-                //AppUtils.SendGAIEventTrack(category: "اضافة للمفضلة", actionName: "ايجار", _label: adsRecord.title)
             }
             
             AppUtils.postPointsToServer(actionType: .favorate, areaID: adsRecord.areaId ?? 0, catID: Int32(adsRecord.catId), provinceID: adsRecord.provinceId ?? 0, sectionID: _sectionID)

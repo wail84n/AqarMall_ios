@@ -54,9 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         FirebaseApp.configure()
-        
-        
-        
+
  //       GAI.sharedInstance().dispatchInterval = 2
         
         Messaging.messaging().delegate = self
@@ -96,6 +94,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // Continue activity here
             return true
         }
+        
+        
+        if let country = AppUtils.loadSelectedCountry() {
+            print(country.baseURL)
+        }else{
+            
+            let jsonString = "{\"code\":\"+965\",\"baseURL\":\"http:\\/\\/imallcms.aqarmalls.com\\/\",\"country\":\"Kuwait\",\"countryID\":1,\"image\":\"http:\\/\\/imallcms.aqarmalls.com\\/Upload\\/Countries\\/cb7f800e-9ec9-41f5-bf8d-16ace3c37e71.png\",\"currency\":\"KWD\"}"
+            AppUtils.SaveData(key: .selected_country, value: jsonString)
+            
+//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "UserAccount", bundle: nil)
+//            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "ChooseCountryViewController") as! ChooseCountryViewController
+//            homePage.isFromSettings = true
+//
+//            self.window?.rootViewController = homePage
+        }
+
         
         return true
     }
@@ -202,35 +216,60 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         UIApplication.shared.applicationIconBadgeNumber = 0
         callSponsoreAPI()
-        callContactUs_API()
-        SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
-            print("Categories No : \(recordNo ?? 0)")
+        //callContactUs_API()
+ 
+        callAPIs(){ result in
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_categories", userInfo: nil) // +++ the categories have been loaded.
+        }
+    }
+
+
+    func callAPIs(reSet: Bool = false, completion: @escaping (Bool) -> Void){
+        
+        APIs.shared.getContactUs() { (result, error) in
+            guard error == nil else {
+                print(error ?? "")
+                return
+            }
+        }
+        
+        SyncAPIData.callCategoriesAPI { (result, recordNo, error) in
+            print("Data has been loaded+++ Categories: \(recordNo ?? 0)")
+
+            if !reSet {
+                NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_categories", userInfo: nil) // +++ the categories have been loaded.
+            }
             
             SyncAPIData.callProvincesAPI { (result, recordNo, error) in
-                print("Provinces No : \(recordNo ?? 0)")
+                print("Data has been loaded+++ Provinces: \(recordNo ?? 0)")
                 
-                NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Provinces", userInfo: nil) // +++ the Provinces have been loaded.
+                if !reSet {
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Provinces", userInfo: nil) // +++ the Provinces have been loaded.
+                }
                 
                 SyncAPIData.callAreasAPI { (result, recordNo, error) in
-                    print("Areas No : \(recordNo ?? 0)")
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Areas", userInfo: nil) // +++ the Areas have been loaded.
+                    print("Data has been loaded+++ Areas No : \(recordNo ?? 0)")
+                    
+                    if !reSet {
+                        NotificationCenter.default.post(name: Notification.Name(rawValue: PushNotification), object: "refresh_Areas", userInfo: nil) // +++ the Areas have been loaded.
+                    }
+                    
+                    completion(true)
                     
                     SyncAPIData.callGeneralPagesAPI { (result, recordNo, error) in
-                        print("General Pages No : \(recordNo ?? 0)")
+                        print("Data has been loaded+++ General Pages No : \(recordNo ?? 0)")
                         
                         SyncAPIData.callBannersAPI { (result, recordNo, error) in
-                            print("Banners No : \(recordNo ?? 0)")
+                            print("Data has been loaded+++ Banners No+++ : \(recordNo ?? 0)")
+                            
                         }
                     }
                     
                 }
-                
             }
         }
     }
-
+    
     func callSponsoreAPI(){
         APIs.shared.getSponsor(lastchange: 0, countryId: 1) { (result, error) in
             guard error == nil else {
@@ -248,14 +287,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func callContactUs_API(){
-        APIs.shared.getContactUs() { (result, error) in
-            guard error == nil else {
-                print(error ?? "")
-                return
-            }
-        }
-    }
+
     
     func goToSponsorPage(){
         if isPushNotification == false {

@@ -63,5 +63,11 @@ extension UIView {
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
     
-    
+    static var identifier: String {
+        return String(describing: self)
+    }
+
+    static var nib:UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
 }

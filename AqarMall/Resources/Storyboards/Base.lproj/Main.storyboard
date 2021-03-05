@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
                 <navigationController id="RQe-ti-iXc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="اضافة اعلان" image="tab_AddAds" id="Vac-c9-8Dz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lpO-x8-xKh">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -42,7 +40,7 @@
             <objects>
                 <navigationController storyboardIdentifier="SponsorViewControllerNav" id="07h-i8-LXC" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n3M-gK-BN1">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -67,7 +65,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bi2-eH-XkP">
                                 <rect key="frame" x="0.0" y="595" width="375" height="72"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gut-3g-TqC">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gut-3g-TqC">
                                         <rect key="frame" x="117.5" y="18.5" width="140" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -101,7 +99,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWS-Pu-EvZ">
-                                <rect key="frame" x="25" y="77" width="40" height="40"/>
+                                <rect key="frame" x="25" y="57" width="40" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.27450980392156865" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7li-se-x6o"/>
@@ -119,6 +117,7 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="bUN-56-ZM0"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="top" secondItem="6UD-UA-jEE" secondAttribute="top" id="2aY-CR-O53"/>
@@ -131,7 +130,6 @@
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="leading" secondItem="bUN-56-ZM0" secondAttribute="leading" id="pm9-09-psY"/>
                             <constraint firstItem="VSA-VR-pJT" firstAttribute="trailing" secondItem="bUN-56-ZM0" secondAttribute="trailing" id="tcT-Is-oce"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bUN-56-ZM0"/>
                     </view>
                     <navigationItem key="navigationItem" id="LJG-bJ-lb3"/>
                     <connections>
@@ -147,7 +145,7 @@
             <objects>
                 <navigationController id="utB-nc-5XU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1TK-Oh-H01">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -167,13 +165,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cdq-nw-Ykl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="mB9-QF-jrQ" id="KRB-Yi-fjP"/>
                                 </connections>
                             </webView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="dAn-fX-CdD"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dAn-fX-CdD" firstAttribute="bottom" secondItem="Cdq-nw-Ykl" secondAttribute="bottom" id="mhc-J0-LTj"/>
@@ -181,7 +180,6 @@
                             <constraint firstItem="dAn-fX-CdD" firstAttribute="trailing" secondItem="Cdq-nw-Ykl" secondAttribute="trailing" id="vFf-pB-h3X"/>
                             <constraint firstItem="Cdq-nw-Ykl" firstAttribute="leading" secondItem="dAn-fX-CdD" secondAttribute="leading" id="xzY-0H-Fc6"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="dAn-fX-CdD"/>
                     </view>
                     <navigationItem key="navigationItem" id="plM-ah-Ueq"/>
                     <connections>
@@ -219,7 +217,7 @@
                 <navigationController id="JVl-VA-F48" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="المزيد" image="tab_More" id="998-It-VEH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z39-T0-iu1">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -230,10 +228,10 @@
             </objects>
             <point key="canvasLocation" x="294" y="2074"/>
         </scene>
-        <!--MoreVC-->
+        <!--MoreSection-->
         <scene sceneID="YV9-hK-a9d">
             <objects>
-                <viewControllerPlaceholder storyboardName="MoreSection" referencedIdentifier="MoreVC" id="FwK-H7-W0m" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MoreSection" id="FwK-H7-W0m" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="sa7-iF-NCC"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVm-Dd-65n" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,7 +244,7 @@
                 <navigationController id="dSe-CG-mdc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="الإشعارات" image="tab_Notification" id="oUJ-iv-aZh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Fa-QX-8bK">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -273,7 +271,7 @@
                 <navigationController id="ty1-j2-8PL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="الرئيسية" image="tab_Main" id="vfb-1d-MCs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0bZ-8R-57e">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -300,7 +298,7 @@
                 <navigationController id="ukO-e2-7Of" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="المفضلة" image="tab_Favorate" id="gSM-br-Pox"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VpF-7g-L5q">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

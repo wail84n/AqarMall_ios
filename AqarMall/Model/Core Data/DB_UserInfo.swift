@@ -50,6 +50,14 @@ struct DB_UserInfo {
         return false
     }
     
+    static func validateUserLogin()-> Bool{
+        let userInfo = callRecords()
+        if let _ = userInfo {
+            return true
+        }
+        return false
+    }
+        
     static func callRecords()-> FullUser?{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "UsersData")

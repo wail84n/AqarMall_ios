@@ -31,4 +31,29 @@ class AdsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func update(record: AdvertisementInfo){
+        
+         print(record.isBanner)
+         
+
+         
+         addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
+         detailsLable.text = record.details
+         
+         priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
+         priceTitleLabel.text = "\(record.priceLabel ?? "")"
+         sizeLabel.text = "\(record.size ?? "")"
+         AdvIdLabel.text = "\(record.entryID ?? 0)"
+        // cell.cellView.dropShadow(scale: true)
+
+        curencyLabel.text = AppUtils.selectedCountry?.currency
+        
+         if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
+             favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
+         }else{
+             favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
+         }
+        
+    }
+    
 }

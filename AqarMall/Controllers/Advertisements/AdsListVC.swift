@@ -58,37 +58,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//        
-//        DispatchQueue.main.async{
-//            for _ in 1...135{
-//                self.text.append("wail")
-//                print(self.text)
-//            }
-//        }
-//        
-//        
-//        DispatchQueue.main.async {
-//            for _ in 1...135{
-//                self.text.append("mohammad")
-//                print(self.text)
-//            }
-//        }
-//        
-//        
-//        for _ in 1...135{
-//            print(self.text)
-//        }
-//
-//        
-//        DispatchQueue.global().async {
-//            self.text.append("wail")
-//        }
-
-        
-//        DispatchQueue.main.async {
-//            self.text.append("mohammad")
-//        }
-//        print(text)
         
         configureView()
      //   AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
@@ -818,6 +787,8 @@ extension AdsListVC: UITableViewDataSource {
                 default:
                     break
                 }
+                
+                AppUtils.postPointsToServer(actionType: .favorate, areaID: record.areaId ?? 0, catID: Int32(record.catId), provinceID: record.provinceId ?? 0, sectionID: record.sectionID ?? 0)
             }
         }
     }
@@ -874,12 +845,8 @@ extension AdsListVC: UITableViewDataSource {
         if let cell = cell as? AdsCell {
             let record = arrAdve[indexPath.row]
             
-            print(record.isBanner)
-            
             if let _title = record.title, _title.isEmpty, record.catId > 0{
-                
                 var section = ""
-                
                 switch sectionSegment.selectedSegmentIndex
                 {
                 case 2:
@@ -893,29 +860,14 @@ extension AdsListVC: UITableViewDataSource {
                 if filtered.count > 0{
                   cell.adsTitleLabel.text = "\(filtered[0].name ?? "") \(section)"
                 }
-                
             }else{
                 cell.adsTitleLabel.text = record.title
             }
             
-            cell.addressLabel.text = "\(record.provinceName ?? "") / \(record.areaName ?? "")"
-            cell.detailsLable.text = record.details
-            
-            cell.priceLabel.text = AppUtils.addCommasToNumber(number: Int(record.price ?? 0))
-            cell.priceTitleLabel.text = "\(record.priceLabel ?? "")"
-            cell.sizeLabel.text = "\(record.size ?? "")"
-            cell.AdvIdLabel.text = "\(record.entryID ?? 0)"
-           // cell.cellView.dropShadow(scale: true)
+            cell.update(record: record)
 
-            if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){
-                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList_on"), for: .normal)
-            }else{
-                cell.favorateButton.setImage(#imageLiteral(resourceName: "favorateList"), for: .normal)
-            }
-            //cell.favorateButton.tag = Int("\(record.entryID ?? 0)") ?? 0
             cell.favorateButton.tag = indexPath.row
             cell.favorateButton.addTarget(self, action: #selector(removeAdvFavorate), for: .touchUpInside)
-            
         }else if let cell = cell as? bannerCell {
             if sectionSegment.selectedSegmentIndex < 2 {
                 let record = arrExchangeAdve[indexPath.row]

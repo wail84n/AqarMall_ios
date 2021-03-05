@@ -96,6 +96,7 @@ extension ReceivedBidsViewController: UITableViewDelegate, UITableViewDataSource
         header.priceTitleLabel.text = "\(adDetails.priceLabel ?? "")"
         header.sizeLabel.text = "\(adDetails.size ?? "")"
         header.AdvIdLabel.text = "\(adDetails.entryID ?? 0)"
+        header.curencyLabel.text = AppUtils.selectedCountry?.currency
         // cell.cellView.dropShadow(scale: true)
         
         if DB_FavorateAdv.validateRecord(Id: adDetails.entryID ?? 0){

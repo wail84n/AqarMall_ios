@@ -105,9 +105,8 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             self.performSegue(withIdentifier: "fromMoreToReg", sender: self)
         }
     }
-    
+    // ChooseCountryViewController
     @IBAction func CallPhone(_ sender: Any) {
-        
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
             print(_contact_us.email)
             let phoneNumber = _contact_us.phone1
@@ -139,7 +138,6 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     @IBAction func sendEmail(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
             if MFMailComposeViewController.canSendMail() {
@@ -155,13 +153,11 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
                 // show failure alert
             }
         }
-
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
     }
-    
     
     @IBAction func contactByWhatsApp(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
@@ -178,7 +174,6 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
         }
     }
     
-    
     @IBAction func followUs_facebook(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
          //   AppUtils.SendGAIScreenName(screenName: "حساب الفيسبوك")
@@ -188,7 +183,6 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
     
     @IBAction func followUs_instagram(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
@@ -220,7 +214,6 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
         }
     }
     
-    
     @IBAction func followUs_website(_ sender: Any) {
         if let _contact_us = ContactUs(object: AppUtils.LoadDictionaryData(key: .contact_us)) {
            // AppUtils.SendGAIScreenName(screenName: "الموقع الإلكتروني")
@@ -251,19 +244,13 @@ class MoreVC: ViewController, MFMailComposeViewControllerDelegate, MFMessageComp
             present(vc, animated: true)
         }
     }
-    
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let navPlace = segue.destination as? ChooseCountryViewController {
+            navPlace.isFromSettings = true
+        }
     }
-    */
-
 }
-
 
 extension MoreVC: UITableViewDelegate, UITableViewDataSource {
     
