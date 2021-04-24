@@ -22,6 +22,8 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var countryButton: UIButton!
     
+    var country: Countries? = nil
+    
     var phoneValidatedClosure: (() ->())?
     
     var selectedCountry : Countries? = nil
@@ -45,6 +47,26 @@ class UserInformationViewController: ViewController, PhoneNumberVerificationDele
         userNameTextField.becomeFirstResponder()
 
         print(AppUtils.getUuid())
+      //  getCountries()
+    }
+    
+    func getCountries() {
+        AppUtils.ShowLoading()
+        APIs.shared.getCountries() {[weak self] (result, error) in
+            AppUtils.HideLoading()
+            guard let self = self,
+                  error == nil else {
+                print(error ?? "")
+                return
+            }
+            if let _countries = result {
+                
+                if let _country = _countries.first(where: {$0.countryID == 1}){
+                    self.country = _country
+                    self.countryButton.setTitle(_country.code, for: .normal)
+                }
+            }
+        }
     }
 
     func dismisView() {

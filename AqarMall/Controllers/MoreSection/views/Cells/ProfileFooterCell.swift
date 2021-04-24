@@ -50,7 +50,7 @@ class ProfileFooterCell: UITableViewCell {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
         } else {
-            let appID = "id1394093760"
+            let appID = "id1023287787"
             let urlStr = "https://itunes.apple.com/app/\(appID)"
             guard let url = URL(string: urlStr), UIApplication.shared.canOpenURL(url) else { return }
 

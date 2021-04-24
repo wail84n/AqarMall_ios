@@ -163,6 +163,9 @@ class APIs: NSObject {
         case postApproveBid(Id : Int32, type : Int8)
         case postDeviceInfo(parameters : [String:Any])
         case getUserNotifications
+        case getUpdateStatus(version: String)
+        
+        //http://imallcms.aqarmalls.com/Api.svc/getMobileAppVersionControl2?OSID=1&Version=3.0.4
         //(deviceName:String, deviceToken:String, deviceType:Int8, deviceUDID:String, userID:String)
         
         
@@ -307,6 +310,8 @@ class APIs: NSObject {
                 return "/postDeviceInfo"
             case .getUserNotifications:
                 return "/GetNotificationsByPagination"
+            case .getUpdateStatus:
+                return "/getMobileAppVersionControl_iOS"
             }
         }
         
@@ -321,6 +326,10 @@ class APIs: NSObject {
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
                 }
+                
+            case .getUpdateStatus(let version):
+                dict["OSID"] = "1"
+                dict["Version"] = version
             case .getProvinces(let lastchange):
                 if let _lastchange = lastchange{
                     dict["lastchange"] = _lastchange
@@ -505,7 +514,6 @@ class APIs: NSObject {
     typealias NotificationsCallback = (_ result:[userNotification]?, _ error:Error?) -> Void
     typealias ReceivedBidsCallback = (_ result:[ReceivedBids]?, _ error:Error?) -> Void
     
-    
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
         Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
@@ -559,7 +567,6 @@ class APIs: NSObject {
             }
         }
     }
-    
     
     func updateAdvt(parameters : [String:Any], callback: @escaping IntegerCallback) {
         let route = Router.updateAdvt(parameters: parameters)
@@ -618,7 +625,6 @@ class APIs: NSObject {
             }
         }
     }
-    
     
     func postBid(_price: Int, _userID: Int32, _landID: Int32, _message: String, callback: @escaping IntegerCallback) {
         let route = Router.postBid(price: _price, userID: _userID, landID: _landID, message: _message)
@@ -766,6 +772,28 @@ class APIs: NSObject {
             callback(records, nil)
         }
     }
+    
+    func getUpdateStatus(vesion : String, callback: @escaping isSuccessCallback) {
+        let route = Router.getUpdateStatus(version: vesion)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response)
+               // let records = (result as? [AnyObject])?.compactMap({ userNotification(object: $0) })
+                else {
+                    callback(false, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            if let forceUpdate = result["ShouldUpdate"] as? Bool {
+                callback(forceUpdate, nil)
+            }else{
+                callback(false, nil)
+            }
+            
+        }
+    }
+    
     
     func getUserNotifications(callback: @escaping NotificationsCallback) {
         let route = Router.getUserNotifications

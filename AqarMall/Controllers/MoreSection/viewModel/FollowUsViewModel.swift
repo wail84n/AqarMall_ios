@@ -20,17 +20,17 @@ enum FollowUsEnum: Int {
     func getImage()-> UIImage{
         switch self {
         case .facebook:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "followUs_facebook")
         case .snapChat:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "followUs_snapchat")
         case .twitter:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "followUs_twitter")
         case .website:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "followUs_website")
         case .youtube:
             return #imageLiteral(resourceName: "more_country_settings")
         case .instagram:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "followUs_inst")
         }
     }
     

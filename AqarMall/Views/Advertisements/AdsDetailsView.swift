@@ -113,6 +113,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var isRent = false
   //  var catId  = 0
     var isFromMyAds = false
+    var propertiesNo = 0
   //  let user = UserVM.checkUserLogin()
     
     func SetAdValue(myAd2: AdvertisementInfo, isFromMyAds: Bool, advType: AdvType){
@@ -297,6 +298,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             ageOfBuildingView.isHidden = true
         }else{
             ageOfBuildingView.isHidden = false
+            propertiesNo += 1
             ageOfBuildingLabel.text = AdDetails.properties?.ageOfBuilding
         }
         
@@ -304,6 +306,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             buildingSizeView.isHidden = true
         }else{
             buildingSizeView.isHidden = false
+            propertiesNo += 1
             buildingSizeLabel.text = AdDetails.properties?.buildingSize
         }
         
@@ -311,6 +314,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             finishingView.isHidden = true
         }else{
             finishingView.isHidden = false
+            propertiesNo += 1
             finishingLabel.text = AdDetails.properties?.finishing
         }
         
@@ -318,6 +322,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             interfaceTypeView.isHidden = true
         }else{
             interfaceTypeView.isHidden = false
+            propertiesNo += 1
             interfaceLabel.text = AdDetails.properties?.interfaceType
         }
         
@@ -325,6 +330,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             landSizeView.isHidden = true
         }else{
             landSizeView.isHidden = false
+            propertiesNo += 1
             landSizeLabel.text = AdDetails.properties?.landSize
         }
         
@@ -342,6 +348,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             licenseView.isHidden = true
         }else{
             licenseView.isHidden = false
+            propertiesNo += 1
             licenseLabel.text = AdDetails.properties?.licenseType
         }
         
@@ -350,6 +357,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             bathroomNoView.isHidden = true
         }else{
             bathroomNoView.isHidden = false
+            propertiesNo += 1
             bathroomNoLabel.text = AdDetails.properties?.numberOfBathrooms
         }
         
@@ -358,6 +366,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             floorsNoView.isHidden = true
         }else{
             floorsNoView.isHidden = false
+            propertiesNo += 1
             flooresNoLabel.text = AdDetails.properties?.numberOfFloors
         }
         
@@ -366,6 +375,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             roomsNoView.isHidden = true
         }else{
             roomsNoView.isHidden = false
+            propertiesNo += 1
             roomNoLabel.text = AdDetails.properties?.numberOfRooms
         }
     }
@@ -495,6 +505,11 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             _viewHeight -= 675
             relatedView.isHidden = true
         }
+        
+        if propertiesNo > 0 {
+            _viewHeight += CGFloat(propertiesNo * 40)
+        }
+        print("propertiesNo \(propertiesNo) || \(availableNo)")
         return _viewHeight
     }
     

@@ -18,8 +18,13 @@ class ProfileTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func setData(image: UIImage, title: String){
-        iconImageView.image = image
+    func setData(image: UIImage?, title: String){
+        if let _image = image {
+            iconImageView.image = _image
+            iconImageView.isHidden = false
+        }else{
+            iconImageView.isHidden = true
+        }
         titleLabel.text = title
     }
     

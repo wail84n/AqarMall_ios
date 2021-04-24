@@ -63,6 +63,54 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
      //   AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
     }
 
+    
+    func ValidateVersionVersion(){
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            APIs.shared.getUpdateStatus(vesion: appVersion) { (result, error) in 
+                guard error == nil else {
+                    print(error ?? "")
+                    return
+                }
+
+                if let _result = result, _result == true {
+                    self.showAlert()
+                }
+            }
+        }
+    }
+    
+    func showAlert()
+    {
+        let alert = UIAlertController(title: "تحديث التطبيق", message: "الإصدار الحالي لم يعد متاح، الرجاء تحديث التطبيق", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "حدّث الآن", style: .default, handler: { action in
+                                        switch action.style{
+                                        case .default:
+                                            self.openStoreURL()
+                                            self.showAlert()
+                                        case .cancel:
+                                            print("cancel")
+                                            
+                                        case .destructive:
+                                            print("destructive")
+                                        }}))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openStoreURL() {
+        let arURL = "https://apps.apple.com/us/app/عقار-مول/id1023287787"
+        let url =  arURL.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
+        
+        if let url = URL(string: arURL.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? "https://www.apple.com/kw/ios/app-store/"),
+            UIApplication.shared.canOpenURL(url)   //itms-apps://itunes.apple.com/app/id1024941703
+        {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
+    
     func validateSearch(){
         //+++ this function to chech if there is any search or not to show cancelSearch button or hid it.
         
@@ -127,6 +175,8 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         tableView.register(UINib(nibName: "AdsCell", bundle: nil), forCellReuseIdentifier: "AdsCell")
         tableView.register(UINib(nibName: "ExchangeAdsCell", bundle: nil), forCellReuseIdentifier: "ExchangeAdsCell")
         tableView.register(UINib(nibName: "bannerCell", bundle: nil), forCellReuseIdentifier: "bannerCell")
+        
+        ValidateVersionVersion()
     }
     
     func callAdvAPI() {

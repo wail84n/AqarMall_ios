@@ -131,7 +131,7 @@ extension NotificationsVC: UITableViewDelegate, UITableViewDataSource {
                 // +++ ads
             self.prepareGoToAd(_notification: record)
         }else if record.type == 4 {
-            // +++ ads
+            // +++ Bid
             self.prepareBid(_notification: record)
         }
     }

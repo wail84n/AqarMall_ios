@@ -15,6 +15,8 @@ struct Countries: Codable {
     let image: String
     let baseURL: String
     let currency: String
+    let phoneStartWith: String
+    let phoneLength: String
     
     public init?(object: AnyObject?) {
         guard
@@ -24,6 +26,8 @@ struct Countries: Codable {
             let _country = _object["Name"] as? String,
             let _currency = _object["Currency"] as? String,
             let _baseURL = _object["BaseURL"] as? String,
+            let _phoneStartWith = _object["PhoneNoInitials"] as? String,
+            let _phoneLength = _object["PhoneNoLimits"] as? String,
             let _image = _object["Image"] as? String
             else{
                 return nil
@@ -35,6 +39,8 @@ struct Countries: Codable {
         self.image = _image
         self.currency = _currency
         self.baseURL = _baseURL
+        self.phoneStartWith = _phoneStartWith
+        self.phoneLength = _phoneLength
     }
     
     init?(countryID: Int16, code: String, country: String, image: String, baseURL: String, currency: String) {
@@ -44,6 +50,8 @@ struct Countries: Codable {
         self.image = image
         self.currency = currency
         self.baseURL = baseURL
+        self.phoneStartWith = ""
+        self.phoneLength = ""
     }
 }
 

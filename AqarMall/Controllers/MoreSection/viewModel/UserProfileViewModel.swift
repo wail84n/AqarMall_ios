@@ -72,17 +72,18 @@ class UserProfileViewModel {
     var settingsSection = [String]()
     var settingsSection_img = [UIImage]()
     
-    var tatayabSection = [String]()
-    var tatayabSection_img: [String] = ["Shape", "contact"]
+//    var contactSection = [String]()
+//    var contactSection_img: [String] = ["Shape", "contact"]
     
     var moreInfoSession = [GeneralPagesData]()
     
     func fillSections(){
         accountSection = [profile.myAds, profile.myBids]
-        accountSection_img = [#imageLiteral(resourceName: "more_evaluate_RS"), #imageLiteral(resourceName: "more_ask_question")]
+        accountSection_img = [#imageLiteral(resourceName: "profile_myAds"), #imageLiteral(resourceName: "profile_myBids")]
         
         settingsSection = [profile.contactUs, profile.followUs]
-        settingsSection_img = [#imageLiteral(resourceName: "more_ask_question"), #imageLiteral(resourceName: "more_country_settings")]
+        settingsSection_img = [#imageLiteral(resourceName: "profile_contactUs"), #imageLiteral(resourceName: "profile_followUs")]
+        
         
         if let _generalPages = DB_GeneralPages.callGeneralPages() {
             moreInfoSession = _generalPages

@@ -18,13 +18,13 @@ enum ContactUsEnum: Int {
     func getImage()-> UIImage{
         switch self {
         case .phoneCall:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "contactUs_phone")
         case .sms:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "contactUs_sms")
         case .email:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "contactUs_email")
         case .wahtsapp:
-            return #imageLiteral(resourceName: "more_country_settings")
+            return #imageLiteral(resourceName: "contactUs_whatsapp")
         }
     }
     

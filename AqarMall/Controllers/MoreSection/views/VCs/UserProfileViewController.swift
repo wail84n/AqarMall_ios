@@ -173,8 +173,7 @@ extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource{
             }
         case .moreInfo:
             if let cell = cell as? ProfileTableViewCell {
-                cell.setData(image: #imageLiteral(resourceName: "more_ask_question"), title: viewModel.moreInfoSession[indexPath.row].title ?? "")
-                // cell.update(with: viewModel.tatayabSection[indexPath.row], image: viewModel.tatayabSection_img[indexPath.row])
+                cell.setData(image: nil, title: viewModel.moreInfoSession[indexPath.row].title ?? "")
             }
         case .footer:
             if let cell = cell as? ProfileFooterCell {
@@ -217,21 +216,10 @@ extension UserProfileViewController: UITableViewDelegate, UITableViewDataSource{
     
     func myAds(){
         if DB_UserInfo.validateUserLogin() {
-            //            if _userInfo.isSkippedVerification == false && _userInfo.verificationStatus == false{
-            //                self.performSegue(withIdentifier: userRegSegue, sender: self)
-            //            }else{
-            //                self.performSegue(withIdentifier: myAdsSegue, sender: self)
-            //            }
             self.performSegue(withIdentifier: myAdsSegue, sender: self)
         }else{
             self.performSegue(withIdentifier: userRegSegue, sender: self)
         }
-        //        let userInfo = DB_UserInfo.callRecords()
-        //        if let _userInfo = userInfo {
-        //
-        //        }else{
-        //
-        //        }
     }
     
     func myBids(){
