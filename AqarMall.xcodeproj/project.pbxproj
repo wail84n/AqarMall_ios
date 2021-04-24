@@ -139,6 +139,7 @@
 		52EC44DF21E1373500A3E8C0 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC44DE21E1373500A3E8C0 /* Categories.swift */; };
 		52EC44E121E139DF00A3E8C0 /* aqarMallErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC44E021E139DF00A3E8C0 /* aqarMallErrors.swift */; };
 		52EF62A22255310500463B60 /* AdvFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EF62A12255310500463B60 /* AdvFilterViewController.swift */; };
+		8304E5322634DE51005FB8DC /* testFile1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8304E5312634DE51005FB8DC /* testFile1.swift */; };
 		836DC26B25D5E26200A52186 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DC26A25D5E26200A52186 /* UserProfileViewController.swift */; };
 		836DC27025D5E27300A52186 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DC26F25D5E27300A52186 /* UserProfileViewModel.swift */; };
 		836DC27725D6712500A52186 /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836DC27525D6712500A52186 /* ProfileHeaderCell.swift */; };
@@ -321,6 +322,7 @@
 		52FB46D022987AEA00959589 /* AqarMall-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AqarMall-Bridging-Header.h"; sourceTree = "<group>"; };
 		5A22D66B8A30A73F8CC5EB94 /* Pods-AqarMallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallTests/Pods-AqarMallTests.release.xcconfig"; sourceTree = "<group>"; };
 		6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AqarMallUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8304E5312634DE51005FB8DC /* testFile1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile1.swift; sourceTree = "<group>"; };
 		836DC26A25D5E26200A52186 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		836DC26F25D5E27300A52186 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		836DC27525D6712500A52186 /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				52E6524521D9DB6A00E66AA2 /* Info.plist */,
 				52FB46D022987AEA00959589 /* AqarMall-Bridging-Header.h */,
 				83D3E7FB2634D95E00DE2579 /* waelTest.swift */,
+				8304E5312634DE51005FB8DC /* testFile1.swift */,
 			);
 			path = AqarMall;
 			sourceTree = "<group>";
@@ -1263,6 +1266,7 @@
 				52DC5255220C065D009F2B88 /* UIButton.swift in Sources */,
 				52290AA9221367BC00EBEAA7 /* BaseVC.swift in Sources */,
 				836DC27025D5E27300A52186 /* UserProfileViewModel.swift in Sources */,
+				8304E5322634DE51005FB8DC /* testFile1.swift in Sources */,
 				524422B2224BE9DF00B2DC7F /* SubmitExchangeRequiredAdv.swift in Sources */,
 				521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */,
 				529E55BA237DE23900497EC9 /* UserDefaults+Key.swift in Sources */,
