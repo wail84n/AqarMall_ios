@@ -153,6 +153,7 @@
 		837FCD6E25D7C91E008DD921 /* ContactUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FCD6D25D7C91E008DD921 /* ContactUsViewModel.swift */; };
 		837FCD7325D7DB3A008DD921 /* FollowUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FCD7225D7DB3A008DD921 /* FollowUsViewController.swift */; };
 		837FCD7825D7DB57008DD921 /* FollowUsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FCD7725D7DB57008DD921 /* FollowUsViewModel.swift */; };
+		83D3E7FC2634D95E00DE2579 /* waelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D3E7FB2634D95E00DE2579 /* waelTest.swift */; };
 		D14614E74A255B5A69F05E90 /* Pods_AqarMallUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -334,6 +335,7 @@
 		837FCD6D25D7C91E008DD921 /* ContactUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUsViewModel.swift; sourceTree = "<group>"; };
 		837FCD7225D7DB3A008DD921 /* FollowUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUsViewController.swift; sourceTree = "<group>"; };
 		837FCD7725D7DB57008DD921 /* FollowUsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUsViewModel.swift; sourceTree = "<group>"; };
+		83D3E7FB2634D95E00DE2579 /* waelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waelTest.swift; sourceTree = "<group>"; };
 		A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.release.xcconfig"; sourceTree = "<group>"; };
 		B36DB8AF7DE3552A89C541A4 /* Pods-AqarMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.debug.xcconfig"; sourceTree = "<group>"; };
 		DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallUITests/Pods-AqarMallUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				52E6523B21D9DB6700E66AA2 /* SecondViewController.swift */,
 				52E6524521D9DB6A00E66AA2 /* Info.plist */,
 				52FB46D022987AEA00959589 /* AqarMall-Bridging-Header.h */,
+				83D3E7FB2634D95E00DE2579 /* waelTest.swift */,
 			);
 			path = AqarMall;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				52AFE76F21DBFED600FE1D70 /* CarrierSubscription.swift in Sources */,
 				528313E5224416B000D4A1C0 /* FavorateViewController.swift in Sources */,
 				52AFE78021E1224F00FE1D70 /* FullUser.swift in Sources */,
+				83D3E7FC2634D95E00DE2579 /* waelTest.swift in Sources */,
 				527E0AAD223041D1005934DC /* ChooseAddressCell.swift in Sources */,
 				5261434F2236E87100339882 /* PhoneNumberVerificationViewController.swift in Sources */,
 				52E6527E21D9EB3800E66AA2 /* UIImageView.swift in Sources */,
