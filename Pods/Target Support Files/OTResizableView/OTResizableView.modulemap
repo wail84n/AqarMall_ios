@@ -1,0 +1,6 @@
+framework module OTResizableView {
+  umbrella header "OTResizableView-umbrella.h"
+
+  export *
+  module * { export * }
+}

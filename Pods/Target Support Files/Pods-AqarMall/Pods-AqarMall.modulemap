@@ -1,0 +1,6 @@
+framework module Pods_AqarMall {
+  umbrella header "Pods-AqarMall-umbrella.h"
+
+  export *
+  module * { export * }
+}
