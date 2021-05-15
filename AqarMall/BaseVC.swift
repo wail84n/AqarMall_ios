@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// from wael
 class BaseVC: UIViewController {
 
   //  var selectedPlace = PlacesRecord()
