@@ -18,7 +18,7 @@ import FirebaseDynamicLinks
 
 import SwiftKeychainWrapper
 
-// hi wael 222
+// hi
 //import Crashlytics
 
 let ReceivedPushNotification = "General_Notification"
