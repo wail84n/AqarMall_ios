@@ -7,7 +7,7 @@
 //
 
 import UIKit
-// ss
+
 class FirstViewController: UIViewController {
 
     override func viewDidLoad() {
