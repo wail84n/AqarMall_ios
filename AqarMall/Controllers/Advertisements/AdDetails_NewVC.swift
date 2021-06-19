@@ -28,7 +28,6 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     var colors:[UIColor] = [UIColor.red, UIColor.blue, UIColor.green, UIColor.yellow]
     var frame: CGRect = CGRect(x:0, y:0, width:0, height:0)
     var pageControl : UIPageControl = UIPageControl(frame: CGRect(x:50,y: 300, width:200, height:50))
-    
     var proccessType : Int8 = 0
     
     var latitude: Double = 0.0
@@ -164,7 +163,6 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
             adView.SetAdValue(myAd2: adsRecord, isFromMyAds: isFromMyAds, advType: _advType)
         }
         
-
         let viewHight = adView.getViewHight()
         adView.frame.size.height = viewHight
       //  self.setFavoriteImageBy(flag: AppUtils.checkIsFavorite(entryID: Int(adsRecord.entryID ?? 0), advType: advType!))
@@ -267,7 +265,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     
     func LoadMoreAds(){
         currentPage += 1
-        print("1111----1111---1-1-1-1-1-1-1-1--1-1-1-1-")
+
         if isOnLoadMode == false {
             AppUtils.ShowLoading()
             isOnLoadMode = true
@@ -822,7 +820,7 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
         }
         
         if self.advType != .rent{
-           [ AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])]
+           [AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])]
         }else{
             AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "rant"])
         }

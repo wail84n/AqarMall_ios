@@ -164,7 +164,9 @@ class APIs: NSObject {
         case postDeviceInfo(parameters : [String:Any])
         case getUserNotifications
         case getUpdateStatus(version: String)
-        
+        case getUserDetails(mob: String)
+        case getAdPackages
+        case postAdPackageTransactions(packageID: Int, userID: Int)
         //http://imallcms.aqarmalls.com/Api.svc/getMobileAppVersionControl2?OSID=1&Version=3.0.4
         //(deviceName:String, deviceToken:String, deviceType:Int8, deviceUDID:String, userID:String)
         
@@ -227,6 +229,7 @@ class APIs: NSObject {
                  .postSearch(_),
                  .postCancelBid(_),
                  .postDeviceInfo(_),
+                 .postAdPackageTransactions(_, _),
                  .postApproveBid(_, _):
                 return .post
             default:
@@ -312,6 +315,12 @@ class APIs: NSObject {
                 return "/GetNotificationsByPagination"
             case .getUpdateStatus:
                 return "/getMobileAppVersionControl_iOS"
+            case .getUserDetails(_):
+                return "/GetUserDetails"
+            case .getAdPackages:
+                return "/getAdPackages"
+            case .postAdPackageTransactions(_, _):
+                return "/postAdPackageTransactions"
             }
         }
         
@@ -436,6 +445,9 @@ class APIs: NSObject {
                     dict["userId"] = _userInfo.entryID
                 }
                 dict["deviceuuid"] = AppUtils.getUuid()
+                
+            case .getUserDetails(let mob):
+                dict["mob"] = mob
             default:
                 return nil
             }
@@ -474,11 +486,13 @@ class APIs: NSObject {
                 return ["id":id, "type":type]
             case .postDeviceInfo(let parameters):
                 return parameters
+            case .postAdPackageTransactions(let packageID, let userID):
+                return ["PackageID":packageID, "UserID":userID]
             default:
                 return nil
             }
         }
-        
+
         func asURLRequest() throws -> URLRequest {
             let url = URL(string: self.serverUrl.getUrl)?.appendingPathComponent(self.path)
             
@@ -510,9 +524,13 @@ class APIs: NSObject {
     typealias ExchangeAdsCallback = (_ users:[ExchangeAds]?, _ error:Error?) -> Void
     typealias isSuccessCallback = (_ result:Bool?, _ error:Error?) -> Void
     typealias IntegerCallback = (_ result:Int?, _ error:Error?) -> Void
-    typealias MyBidAdsCallback = (_ result:[MyBidAds]?, _ error:Error?) -> Void
-    typealias NotificationsCallback = (_ result:[userNotification]?, _ error:Error?) -> Void
-    typealias ReceivedBidsCallback = (_ result:[ReceivedBids]?, _ error:Error?) -> Void
+    typealias MyBidAdsCallback = (_ result: [MyBidAds]?, _ error:Error?) -> Void
+    typealias NotificationsCallback = (_ result: [userNotification]?, _ error:Error?) -> Void
+    typealias ReceivedBidsCallback = (_ result: [ReceivedBids]?, _ error:Error?) -> Void
+    typealias UserDetailsCallback = (_ users: UserDetails?, _ error:Error?) -> Void
+    typealias AdPackagesCallback = (_ packages: [AdPackages]?, _ error:Error?) -> Void
+    typealias PostAdPackageCallback = (_ transaction: AdPackageTransactions?, _ error:Error?) -> Void
+    
     
     func postRegister(email : String?, name : String, phone : String,SMSCode : String, callback: @escaping FullUserCallback) {
         let route = Router.userRegister(email: email, name: name, phone: phone, SMSCode: SMSCode)
@@ -828,6 +846,53 @@ class APIs: NSObject {
             }else{
                 callback(0, nil)
             }
+        }
+    }
+    
+    func getUserDetails(mob: String, callback: @escaping UserDetailsCallback) {
+        let route = Router.getUserDetails(mob: mob)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let user = UserDetails(object: result)
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            callback(user, nil)
+        }
+    }
+    
+    func getAdPackages(callback: @escaping AdPackagesCallback) {
+        let route = Router.getAdPackages
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let adPackages = (result as? [AnyObject])?.compactMap({ AdPackages(object: $0) })
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            callback(adPackages, nil)
+        }
+    }
+    
+    func postAdPackageTransactions(packageID: Int, userID: Int, callback: @escaping PostAdPackageCallback) {
+        let route = Router.postAdPackageTransactions(packageID: packageID, userID: userID)
+        Alamofire.request(route).validate(responseValidator).responseJSON { (response) in
+            guard
+                response.result.isSuccess,
+                let result = self.result(with: response),
+                let transaction = AdPackageTransactions(object: result)
+                else {
+                    callback(nil, response.error ?? APIError.unknown)
+                    return
+            }
+            
+            callback(transaction, nil)
         }
     }
     

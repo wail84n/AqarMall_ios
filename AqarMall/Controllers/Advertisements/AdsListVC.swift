@@ -62,7 +62,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         configureView()
      //   AppUtils.SendGAIScreenName(screenName: "عقار للإيجار")
     }
-
     
     func ValidateVersionVersion(){
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
@@ -89,7 +88,6 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
                                             self.showAlert()
                                         case .cancel:
                                             print("cancel")
-                                            
                                         case .destructive:
                                             print("destructive")
                                         }}))

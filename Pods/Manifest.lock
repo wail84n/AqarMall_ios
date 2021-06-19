@@ -229,8 +229,8 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   ALCameraViewController: 144dea45fd749a623aafd8cb7b10cea88499fcc3
-  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
-  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Crashlytics: d3e5090419ddee1003192c98ac0e6dfdb1dba266
+  Fabric: ea977e3cd9c20425516d3dafd3bf8c941c51223f
   FacebookCore: ba86524b66cfa86d0f8e65d08faa8504a9f732dd
   FBSDKCoreKit: 5aada61a229054694810f3cee231f986004b3c49
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
@@ -265,6 +265,6 @@ SPEC CHECKSUMS:
   SDWebImage: 6ac2eb96571bff96ecde31a987172c5934a0eb7d
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 92defb50473ad25acd45a635c4cdbc0a26aa0763
+PODFILE CHECKSUM: 7959cac0b59858f05f614d0ab6efe30d6fa9548f
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

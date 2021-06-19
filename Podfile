@@ -36,6 +36,6 @@ pod 'FirebaseInAppMessaging', :path => 'AqarMall/Resources/firebase/firebase-ios
 #pod 'Google/Analytics'
 pod 'Crashlytics', '~> 3.13.1'
 pod 'OTResizableView'
-
+#pod 'LBTATools'
 
 end

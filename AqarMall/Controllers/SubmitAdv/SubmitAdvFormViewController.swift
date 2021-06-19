@@ -52,6 +52,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
     var isEditMode: Bool = false
     var advInfo = AdvertisementInfo()
     var loadIndex = 1
+    let leftViewWidth: CGFloat = 80
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +66,7 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         }else{
             title = "اضف اعلان - \(category?.name ?? "") للبيع"
         }
+
         
         self.setBack()
         
@@ -76,6 +78,11 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
             setEditMode()
         }
 
+        let testString = "1337"
+        testString.forEach { (c) in
+            print("c \(c)")
+        }
+        
         roomsNoTextField.leftViewMode = .always
         roomsNoTextField.leftView = setTitleLabel("عدد الغرف")
        // roomsNoTextField.placeholder = "...."
@@ -114,6 +121,9 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         
         sizeTextField.leftViewMode = .always
         sizeTextField.leftView = setTitleLabel("المساحة")
+
+
+      //  sizeTextField.leftView?.backgroundColor = .clear
        // sizeTextField.placeholder = "...."
         
         priceTextField.leftViewMode = .always
@@ -123,14 +133,33 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         setCatProperties()
     }
     
-    func setTitleLabel(_ title: String)-> UILabel{
-        let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 45))
+    func setLeftView(_ title: String)-> UIView{
+        let leftView = UIView()
+        
+        
+        return leftView
+    }
+    
+    func setTitleLabel(_ title: String)-> PaddingLabel{
+        let titleLabel = PaddingLabel(frame: CGRect(x: 0, y: 0, width: 50, height: 45))
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.white
+        if #available(iOS 13.0, *) {
+            titleLabel.textColor = UIColor.label
+        } else {
+            titleLabel.textColor = UIColor.white
+            // Fallback on earlier versions
+        }
+        
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.paddingLeft = 7
+        titleLabel.paddingRight = 7
+
         titleLabel.backgroundColor = UIColor.darkGreenButtonColor().withAlphaComponent(0.6)
         titleLabel.text = title
-        
+
+        titleLabel.heightAnchor.constraint(equalToConstant: sizeTextField.frame.size.height).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: leftViewWidth).isActive = true
         return titleLabel
     }
     

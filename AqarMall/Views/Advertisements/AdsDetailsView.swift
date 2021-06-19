@@ -107,7 +107,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var delegate : AdDetailsViewDelegate? = nil
     
     var AdDetails = AdvertisementInfo()
-    var viewHeight : CGFloat = 1800
+    var viewHeight : CGFloat = 2000
     var arrAdve = [AdvertisementInfo]()
     var receivedBids = [ReceivedBids]()
     var isRent = false

@@ -7,64 +7,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "087CA3DC-C576-491D-B6C3-1046D7900F55"
+            uuid = "095B155B-95F3-49B4-8EFB-EF11ECEB0972"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AqarMall/Controllers/UserAccount/ChooseCountryViewController.swift"
+            filePath = "AqarMall/Service/APIs.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "getCountries()"
+            startingLineNumber = "531"
+            endingLineNumber = "531"
+            landmarkName = "APIs"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3183736-8C58-4A7D-8FDC-DA6A2CABF4D1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AqarMall/Service/APIs.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "887"
+            endingLineNumber = "887"
+            landmarkName = "postAdPackageTransactions(packageID:userID:callback:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "01081AB4-F433-4D29-AD57-0688DB86A452"
+            uuid = "F8FD25FE-1B4A-4F51-9145-1A4E08165FD9"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AqarMall/Controllers/UserAccount/UserInformationViewController.swift"
+            filePath = "AqarMall/Controllers/SubmitAdv/User Credit/AdsPackagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "getCountries()"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "doProcess(package:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6B6E25E3-4E62-4B42-9212-AC185E93A8C2"
+            uuid = "9581BE7B-6789-4863-8D6D-EEB379133793"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AqarMall/Controllers/UserAccount/UserInformationViewController.swift"
+            filePath = "AqarMall/Controllers/SubmitAdv/User Credit/AdsPackagesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
-            landmarkName = "currentPhoneNumber()"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "doProcess(package:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90767761-4C48-4517-9047-08B273C5C61F"
+            uuid = "FCEC1866-2077-43FD-906D-35E4AD8337A3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AqarMall/Controllers/UserAccount/UserInformationViewController.swift"
+            filePath = "AqarMall/Controllers/SubmitAdv/ChooseAdvSectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "postRegister()"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "getAvailableAdsNumber(phoneNo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC527BF4-911D-4402-B128-8797F4BD0C4C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AqarMall/Controllers/SubmitAdv/ChooseAdvSectionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "getAvailableAdsNumber(phoneNo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6439153-4E3C-400A-8661-1689FDE4E8B0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AqarMall/Controllers/Advertisements/AdDetails_NewVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "SetView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "236F769A-88E9-4DB7-A682-C73699378B70"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AqarMall/Views/Advertisements/AdsDetailsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "483"
+            endingLineNumber = "483"
+            landmarkName = "getActualViewHeight()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

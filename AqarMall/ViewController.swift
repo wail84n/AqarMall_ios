@@ -8,11 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController { // UIViewController // LBTAFormController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
         var sss = ["sss", "were", "dsd"]
         var ssse =  sss.reversed().joined(separator: "\n")
         let threeTimesTable = TimesTable(multiplier: 3)
