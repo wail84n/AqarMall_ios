@@ -624,7 +624,7 @@ class AdDetails_NewVC: ViewController, UIScrollViewDelegate, MFMailComposeViewCo
     @IBAction func share_Ad(_ sender: Any) {
         let adsRecord = self.ads[intAdIndex]
         if let entryID = adsRecord.entryID {
-            let shareLink = "http://test.imallkw.com/frmAvailable.aspx?id=\(entryID)"
+            let shareLink = "http://imallcms.aqarmalls.com/frmAvailable.aspx?id=\(entryID)"
             let text = "\(adsRecord.title!)\n\(shareLink)\n حمل تطبيق عقار مول للمزيد \n\("http://imallkw.com/")"
 
             let textToShare = [ text ]
@@ -815,12 +815,23 @@ extension AdDetails_NewVC: AdDetailsViewDelegate {
         let adsRecord = self.ads[intAdIndex]
         // UIApplication.shared.openURL(URL(string:adsRecord.whatsApp ?? "")!)
         
-        guard let _whatsApp = adsRecord.whatsApp else {
+        
+        
+        guard var _whatsApp = adsRecord.whatsApp,
+              let _details = AdDetails.details else {
             return
         }
         
+        let defaultMsg = "السلام عليكم\n" + "شاهدت اعلانك التالي في تطبيق *عقار مول* وعندي استفسار\n" + "\n-------\n" + _details + "\n-------\n\n"
+        
+        guard let _defaultMsg = defaultMsg.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)  else {
+            return
+        }
+        _whatsApp = _whatsApp + "?text=\(_defaultMsg)"
+        
+        print(_whatsApp)
         if self.advType != .rent{
-           [AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])]
+            AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "sale"])
         }else{
             AppUtils.addEventToFireBase(eventName: "ads_contact_whatsApp", _parameters: ["type" : "rant"])
         }

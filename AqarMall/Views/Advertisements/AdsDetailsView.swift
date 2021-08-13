@@ -107,7 +107,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
     var delegate : AdDetailsViewDelegate? = nil
     
     var AdDetails = AdvertisementInfo()
-    var viewHeight : CGFloat = 2000
+    var viewHeight : CGFloat = 2175
     var arrAdve = [AdvertisementInfo]()
     var receivedBids = [ReceivedBids]()
     var isRent = false
@@ -148,7 +148,7 @@ class AdsDetailsView: UIView, UIScrollViewDelegate {
             isRent = true
             catNameLabel.text = "\(cat?.name ?? "") للايجار"
         case .sale:
-            bidsView.isHidden = false
+            bidsView.isHidden = true // false
             isRent = false
             catNameLabel.text = "\(cat?.name ?? "") للبيع"
         default:
@@ -757,7 +757,7 @@ extension AdsDetailsView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 135
+        return 170
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

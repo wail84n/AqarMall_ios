@@ -78,8 +78,8 @@ class UserProfileViewModel {
     var moreInfoSession = [GeneralPagesData]()
     
     func fillSections(){
-        accountSection = [profile.myAds, profile.myBids]
-        accountSection_img = [#imageLiteral(resourceName: "profile_myAds"), #imageLiteral(resourceName: "profile_myBids")]
+        accountSection = [profile.myAds] // [profile.myAds, profile.myBids]
+        accountSection_img = [#imageLiteral(resourceName: "profile_myAds")] //[#imageLiteral(resourceName: "profile_myAds"), #imageLiteral(resourceName: "profile_myBids")]
         
         settingsSection = [profile.contactUs, profile.followUs]
         settingsSection_img = [#imageLiteral(resourceName: "profile_contactUs"), #imageLiteral(resourceName: "profile_followUs")]

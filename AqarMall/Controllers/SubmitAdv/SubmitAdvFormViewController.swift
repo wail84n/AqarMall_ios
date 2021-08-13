@@ -144,13 +144,13 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         let titleLabel = PaddingLabel(frame: CGRect(x: 0, y: 0, width: 50, height: 45))
         titleLabel.font = UIFont.systemFont(ofSize: 14)
         titleLabel.textAlignment = .center
-        if #available(iOS 13.0, *) {
-            titleLabel.textColor = UIColor.label
-        } else {
-            titleLabel.textColor = UIColor.white
-            // Fallback on earlier versions
-        }
-        
+//        if #available(iOS 13.0, *) {
+//            titleLabel.textColor = UIColor.label
+//        } else {
+//            titleLabel.textColor = UIColor.white
+//            // Fallback on earlier versions
+//        }
+        titleLabel.textColor = UIColor.white
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.paddingLeft = 7
         titleLabel.paddingRight = 7

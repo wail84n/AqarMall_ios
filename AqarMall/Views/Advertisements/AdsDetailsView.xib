@@ -1017,11 +1017,11 @@
                                                 <constraint firstAttribute="width" constant="120" id="6SV-FK-Vts"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.58039215690000001" green="0.68235294120000001" blue="0.28627450980000002" alpha="0.64178335429816846" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="Sda-TC-y2m" firstAttribute="centerY" secondItem="e3d-Ov-NTW" secondAttribute="centerY" id="9NT-Ux-5up"/>
                                         <constraint firstItem="Sda-TC-y2m" firstAttribute="centerX" secondItem="e3d-Ov-NTW" secondAttribute="centerX" id="Dnu-Pw-wze"/>

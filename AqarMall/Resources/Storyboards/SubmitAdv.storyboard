@@ -942,14 +942,14 @@
                                 </constraints>
                             </scrollView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6HJ-qU-C2B">
-                                <rect key="frame" x="0.0" y="1125" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="1120" width="375" height="80"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="7iG-j1-rie"/>
+                                    <constraint firstAttribute="height" constant="80" id="7iG-j1-rie"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QsQ-ea-vHp">
-                                <rect key="frame" x="15" y="1140" width="345" height="45"/>
+                                <rect key="frame" x="15" y="1137.5" width="345" height="45"/>
                                 <color key="backgroundColor" red="0.039215686270000001" green="0.27450980390000002" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="cqb-CA-Xke"/>

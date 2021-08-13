@@ -12,7 +12,9 @@
         <scene sceneID="6pe-43-YtU">
             <objects>
                 <navigationController id="RQe-ti-iXc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="اضافة اعلان" image="tab_AddAds" id="Vac-c9-8Dz"/>
+                    <tabBarItem key="tabBarItem" title="اضافة اعلان" image="tab_AddAds" id="Vac-c9-8Dz">
+                        <inset key="imageInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lpO-x8-xKh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -215,7 +217,10 @@
         <scene sceneID="RVT-e6-J1F">
             <objects>
                 <navigationController id="JVl-VA-F48" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="المزيد" image="tab_More" id="998-It-VEH"/>
+                    <tabBarItem key="tabBarItem" title="المزيد" image="tab_More" id="998-It-VEH">
+                        <inset key="imageInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                        <color key="badgeColor" red="0.58039215690000001" green="0.68235294120000001" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z39-T0-iu1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -242,7 +247,9 @@
         <scene sceneID="zzb-Ox-hcb">
             <objects>
                 <navigationController id="dSe-CG-mdc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="الإشعارات" image="tab_Notification" id="oUJ-iv-aZh"/>
+                    <tabBarItem key="tabBarItem" title="الإشعارات" image="tab_Notification" id="oUJ-iv-aZh">
+                        <inset key="imageInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0Fa-QX-8bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -269,7 +276,9 @@
         <scene sceneID="ykq-Ws-xYW">
             <objects>
                 <navigationController id="ty1-j2-8PL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="الرئيسية" image="tab_Main" id="vfb-1d-MCs"/>
+                    <tabBarItem key="tabBarItem" title="الرئيسية" image="tab_Main" id="vfb-1d-MCs">
+                        <inset key="imageInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0bZ-8R-57e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -296,7 +305,9 @@
         <scene sceneID="Ned-GF-p0G">
             <objects>
                 <navigationController id="ukO-e2-7Of" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="المفضلة" image="tab_Favorate" id="gSM-br-Pox"/>
+                    <tabBarItem key="tabBarItem" title="المفضلة" image="tab_Favorate" id="gSM-br-Pox">
+                        <inset key="imageInsets" minX="0.0" minY="30" maxX="0.0" maxY="30"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VpF-7g-L5q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -321,10 +332,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tab_AddAds" width="30" height="30"/>
-        <image name="tab_Favorate" width="30" height="30"/>
-        <image name="tab_Main" width="30" height="30"/>
-        <image name="tab_More" width="30" height="30"/>
-        <image name="tab_Notification" width="30" height="30"/>
+        <image name="tab_AddAds" width="81" height="81"/>
+        <image name="tab_Favorate" width="81" height="81"/>
+        <image name="tab_Main" width="81" height="81"/>
+        <image name="tab_More" width="81" height="81"/>
+        <image name="tab_Notification" width="81" height="81"/>
     </resources>
 </document>

@@ -345,6 +345,20 @@ extension MyAdvViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+//    {
+//        if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
+//            return 90
+//        }
+//        
+//        let record = arrAdve[indexPath.row]
+//        if record.isBanner == true{
+//            return 100
+//        }
+//        return 135
+//    }
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         if sectionSegment.selectedSegmentIndex == 0 || sectionSegment.selectedSegmentIndex == 1 {
@@ -353,9 +367,9 @@ extension MyAdvViewController: UITableViewDataSource, UITableViewDelegate {
         
         let record = arrAdve[indexPath.row]
         if record.isBanner == true{
-            return 100
+            return 120
         }
-        return 135
+        return 170
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

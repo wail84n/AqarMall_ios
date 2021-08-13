@@ -299,9 +299,9 @@ extension FavorateViewController: UITableViewDataSource, UITableViewDelegate {
         
         let record = arrAdve[indexPath.row]
         if record.isBanner == true{
-            return 100
+            return 120
         }
-        return 135
+        return 170
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

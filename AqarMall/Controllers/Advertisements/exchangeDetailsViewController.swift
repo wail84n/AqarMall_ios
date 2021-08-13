@@ -92,7 +92,7 @@ class exchangeDetailsViewController: ViewController {
     @IBAction func share_Ad(_ sender: Any) {
         let adsRecord = self.ads[intAdIndex]
         if let entryID = adsRecord.entryID {
-            let shareLink = "http://test.imallkw.com/frmAvailable.aspx?id=\(entryID)"
+            let shareLink = "http://imallcms.aqarmalls.com/frmAvailable.aspx?id=\(entryID)"
             let text = "\(adsRecord.title!)\n\(shareLink)\n حمل تطبيق عقار مول للمزيد \n\("http://imallkw.com/")"
             
             let textToShare = [ text ]

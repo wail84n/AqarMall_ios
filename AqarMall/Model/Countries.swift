@@ -15,8 +15,23 @@ struct Countries: Codable {
     let image: String
     let baseURL: String
     let currency: String
-    let phoneStartWith: String
-    let phoneLength: String
+    let phoneStartWith: String?
+    let phoneLength: String?
+    
+    
+//    "{\"code\":\"+965\",\"baseURL\":\"http:\\/\\/imallcms.aqarmalls.com\\/\",\"country\":\"Kuwait\",\"countryID\":1,\"image\":\"http:\\/\\/imallcms.aqarmalls.com\\/Upload\\/Countries\\/cb7f800e-9ec9-41f5-bf8d-16ace3c37e71.png\",\"currency\":\"KWD\"}"
+    
+    enum CodingKeys: String, CodingKey {
+        case countryID
+        case code
+        case country
+        case image
+        case baseURL
+        case currency
+        case phoneStartWith
+        case phoneLength
+        
+    }
     
     public init?(object: AnyObject?) {
         guard

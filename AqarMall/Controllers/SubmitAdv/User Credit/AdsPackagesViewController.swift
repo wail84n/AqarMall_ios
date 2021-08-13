@@ -133,7 +133,6 @@ extension AdsPackagesViewController: UICollectionViewDelegate, UICollectionViewD
         
         
         APIs.shared.postAdPackageTransactions(packageID: package.id, userID: Int(_userId)) {[weak self](result, error) in
-            
             guard let self = self,
                   error == nil else {
                 print(error ?? "")
@@ -141,11 +140,10 @@ extension AdsPackagesViewController: UICollectionViewDelegate, UICollectionViewD
             }
             
             AppUtils.HideLoading()
-            self.showAlert(withTitle: .Success, text: "تم ارسال طلبك وسيتكم التواصل معكم في اقرب وقت ممكن")
             
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//
-//            }
+            self.showAlert(withTitle: .Success, text: "تم ارسال طلبك وسيتكم التواصل معكم في اقرب وقت ممكن") {
+                self.navigationController?.popViewController(animated: true)
+            }
 
         }
 

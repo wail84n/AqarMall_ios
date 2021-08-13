@@ -21,13 +21,13 @@ class bannerCell: UITableViewCell {
         {
             bannerImageView.image = UIImage(named:"defult_banner")!
         }else{
-            let url = URL(string: "http://test.imallkw.com/Upload/Banner/\(banner.fileName ?? "")")!
+            let url = URL(string: "http://imallcms.aqarmalls.com/Upload/Banner/\(banner.fileName ?? "")")!
             
             bannerImageView.af_setImage(
                 withURL:  url,
                 placeholderImage: UIImage(named: "defult_banner"), // defaultImage
                 filter: nil,
-                imageTransition: UIImageView.ImageTransition.crossDissolve(0.7),
+                imageTransition: UIImageView.ImageTransition.crossDissolve(0.2),
                 runImageTransitionIfCached: false) {
                     // Completion closure
                     response in

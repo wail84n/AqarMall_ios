@@ -50,4 +50,17 @@ struct UserDetails {
         self.SMSCode = _SMSCode
         self.verificationStatus = _verificationStatus
     }
+    
+    init(availableAds: Int, noOfPaidAds: Int, pendingFreeAds: Int) {
+        self.availableAds = availableAds
+        self.countryID = 0
+        self.email = ""
+        self.entryID = 0
+        self.name = ""
+        self.noOfPaidAds = noOfPaidAds
+        self.pendingFreeAds = pendingFreeAds
+        self.phone = ""
+        self.SMSCode = ""
+        self.verificationStatus = false
+    }
 }

@@ -46,6 +46,7 @@ class AdsCell: UITableViewCell {
          AdvIdLabel.text = "\(record.entryID ?? 0)"
         // cell.cellView.dropShadow(scale: true)
 
+        print("AppUtils.selectedCountry?.currency \(AppUtils.selectedCountry?.currency)")
         curencyLabel.text = AppUtils.selectedCountry?.currency
         
          if DB_FavorateAdv.validateRecord(Id: record.entryID ?? 0){

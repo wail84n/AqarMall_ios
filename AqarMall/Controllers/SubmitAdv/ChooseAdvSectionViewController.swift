@@ -90,10 +90,9 @@ class ChooseAdvSectionViewController: ViewController {
                 return
             }
             
-            if let availableAds = result?.availableAds,
-               let noOfPaidAds = result?.noOfPaidAds{
+            if let availableAds = result?.availableAds{ // let noOfPaidAds = result?.noOfPaidAds
                 
-                self.totalAvailableAds = availableAds + noOfPaidAds
+                self.totalAvailableAds = availableAds // + noOfPaidAds
                 DispatchQueue.main.async {
                     self.availableAdsNoLabel.text = "\(self.totalAvailableAds)"
                 }

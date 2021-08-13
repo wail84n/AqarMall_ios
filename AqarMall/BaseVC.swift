@@ -11,7 +11,7 @@ import UIKit
 class BaseVC: UIViewController {
 
   //  var selectedPlace = PlacesRecord()
-    
+    var didComplete = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +26,14 @@ class BaseVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func doSomethingAsynchronous(queue: DispatchQueue = DispatchQueue(label: "some queue")) {
+        queue.async { [weak self] in
+            sleep(4)
+            self?.didComplete = true
+        }
     }
     
 //    func getSelectedCountry() -> PlacesRecord {

@@ -466,7 +466,7 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
             segmentedControl.removeFromSuperview()
         }
         
-        segmentedControl = ScrollableSegmentedControl(frame: CGRect(x: 0, y: sectionSegment.frame.origin.y + sectionSegment.frame.size.height + 10, width: screenBound_width , height: 32))
+        segmentedControl = ScrollableSegmentedControl(frame: CGRect(x: 0, y: sectionSegment.frame.origin.y + sectionSegment.frame.size.height + 5, width: screenBound_width , height: 40))
 
         if isRent == true {
             if let _categories = DB_Categories.callCategories(byType: .isRent) {
@@ -481,9 +481,9 @@ class AdsListVC: ViewController, AdDetailsDelegate, SelectAddressDelegate {
         if categories.count > 1 {
             segmentedControl.segmentStyle = .textOnly
             segmentedControl.underlineSelected = true
-            segmentedControl.tintColor = UIColor.segmentColor()
+            segmentedControl.tintColor = .white // UIColor.segmentColor()
             segmentedControl.fixedSegmentWidth = true
-            
+            segmentedControl.backgroundColor = .greenColor()
             segmentedControl.addTarget(self, action: #selector(AdsListVC.segmentSelected(sender:)), for: .valueChanged)
 
             self.segmentedControl.insertSegment(withTitle: "الكل", at: 0)
@@ -1005,9 +1005,9 @@ extension AdsListVC: UITableViewDataSource {
         
         let record = arrAdve[indexPath.row]
         if record.isBanner == true{
-            return 100
+            return 120
         }
-        return 135
+        return 170
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
