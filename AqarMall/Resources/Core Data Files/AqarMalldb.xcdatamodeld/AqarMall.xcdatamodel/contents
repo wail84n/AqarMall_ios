@@ -92,4 +92,7 @@
         <attribute name="smsCode" optional="YES" attributeType="String"/>
         <attribute name="verificationStatus" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="Waeltest" representedClassName="Waeltest" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
 </model>
