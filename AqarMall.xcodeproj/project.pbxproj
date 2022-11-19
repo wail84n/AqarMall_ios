@@ -1512,7 +1512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6.0;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1538,7 +1538,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6.0;
 				DEVELOPMENT_TEAM = 6QXDZTU967;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = AqarMall/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
