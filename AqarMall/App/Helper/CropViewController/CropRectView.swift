@@ -8,6 +8,7 @@
 //
 
 import UIKit
+  
 
 protocol CropRectViewDelegate: class {
     func cropRectViewDidBeginEditing(_ view: CropRectView)
