@@ -70,7 +70,6 @@
 		5261435F223A012D00339882 /* SponsorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5261435E223A012D00339882 /* SponsorViewController.swift */; };
 		52614361223C20DC00339882 /* SponsorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614360223C20DC00339882 /* SponsorDetailsViewController.swift */; };
 		52614363223D208A00339882 /* exchangeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52614362223D208A00339882 /* exchangeDetailsViewController.swift */; };
-		52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */; };
 		52641B5221F2646E005480C2 /* SyncAPIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5121F2646E005480C2 /* SyncAPIData.swift */; };
 		52641B5521F27710005480C2 /* DB_Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52641B5421F27710005480C2 /* DB_Categories.swift */; };
 		5277570C220F540500A222C7 /* AdsDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5277570B220F540500A222C7 /* AdsDetailsView.swift */; };
@@ -251,7 +250,6 @@
 		5261435E223A012D00339882 /* SponsorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorViewController.swift; sourceTree = "<group>"; };
 		52614360223C20DC00339882 /* SponsorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorDetailsViewController.swift; sourceTree = "<group>"; };
 		52614362223D208A00339882 /* exchangeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exchangeDetailsViewController.swift; sourceTree = "<group>"; };
-		52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AqarMall.xcdatamodel; sourceTree = "<group>"; };
 		52641B5121F2646E005480C2 /* SyncAPIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncAPIData.swift; sourceTree = "<group>"; };
 		52641B5421F27710005480C2 /* DB_Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Categories.swift; sourceTree = "<group>"; };
 		5277570B220F540500A222C7 /* AdsDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsDetailsView.swift; sourceTree = "<group>"; };
@@ -510,7 +508,6 @@
 		52641B0A21F23564005480C2 /* Core Data Files */ = {
 			isa = PBXGroup;
 			children = (
-				52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */,
 			);
 			path = "Core Data Files";
 			sourceTree = "<group>";
@@ -1299,7 +1296,6 @@
 				521DAA7F226AF5850082305C /* MyAdvViewController.swift in Sources */,
 				529E55BA237DE23900497EC9 /* UserDefaults+Key.swift in Sources */,
 				836DC27725D6712500A52186 /* ProfileHeaderCell.swift in Sources */,
-				52641B4D21F2368B005480C2 /* AqarMall.xcdatamodeld in Sources */,
 				52CEE2222209377F00ADDC8B /* RequiredAds.swift in Sources */,
 				5204DD6622339DB600319A58 /* CropViewController.swift in Sources */,
 				52E6523A21D9DB6700E66AA2 /* FirstViewController.swift in Sources */,
@@ -1680,19 +1676,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		52641B4B21F2368B005480C2 /* AqarMall.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */,
-			);
-			currentVersion = 52641B4C21F2368B005480C2 /* AqarMall.xcdatamodel */;
-			path = AqarMall.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 52E6522C21D9DB6700E66AA2 /* Project object */;
 }
