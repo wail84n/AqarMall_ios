@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+   
 class Phone: NSObject {
     let model: String
     weak var owner: User?
