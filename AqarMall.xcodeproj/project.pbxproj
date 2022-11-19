@@ -679,7 +679,6 @@
 				5236ABF824A758C100937F3E /* firebase */,
 				521DAA7B226A67D00082305C /* GoogleService-Info.plist */,
 				52641B0A21F23564005480C2 /* Core Data Files */,
-				52E6526A21D9E3EA00E66AA2 /* Fonts */,
 				52E6526921D9E3D400E66AA2 /* Images */,
 				52E6526821D9E3BF00E66AA2 /* Storyboards */,
 			);
@@ -706,13 +705,6 @@
 				52E6524021D9DB6A00E66AA2 /* Assets.xcassets */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		52E6526A21D9E3EA00E66AA2 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		52E6526B21D9E40B00E66AA2 /* Service */ = {
