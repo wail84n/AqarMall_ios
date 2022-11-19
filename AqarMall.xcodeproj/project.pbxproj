@@ -163,6 +163,7 @@
 		83CBEB8D267DE02B00333530 /* AdPackageTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CBEB8C267DE02B00333530 /* AdPackageTransactions.swift */; };
 		D14614E74A255B5A69F05E90 /* Pods_AqarMallUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6750CA13D9521CE6C0415668 /* Pods_AqarMallUITests.framework */; };
 		D1DC691429297EE40096EAAA /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1DC691329297EE40096EAAA /* CoreData.framework */; };
+		D1DC6917292984B70096EAAA /* AqarMalldb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1DC6915292984B70096EAAA /* AqarMalldb.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -354,6 +355,7 @@
 		A6D7D7741D83B28C37C3C30C /* Pods-AqarMall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.release.xcconfig"; sourceTree = "<group>"; };
 		B36DB8AF7DE3552A89C541A4 /* Pods-AqarMall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMall/Pods-AqarMall.debug.xcconfig"; sourceTree = "<group>"; };
 		D1DC691329297EE40096EAAA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D1DC6916292984B70096EAAA /* AqarMall.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AqarMall.xcdatamodel; sourceTree = "<group>"; };
 		DF8AC0135E2A8E1AFB2F5AFD /* Pods-AqarMallUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallUITests/Pods-AqarMallUITests.release.xcconfig"; sourceTree = "<group>"; };
 		EF798DB85A1A5E2E60C6F57A /* Pods-AqarMallUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AqarMallUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AqarMallUITests/Pods-AqarMallUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -508,6 +510,7 @@
 		52641B0A21F23564005480C2 /* Core Data Files */ = {
 			isa = PBXGroup;
 			children = (
+				D1DC6915292984B70096EAAA /* AqarMalldb.xcdatamodeld */,
 			);
 			path = "Core Data Files";
 			sourceTree = "<group>";
@@ -1282,6 +1285,7 @@
 				527E0AA5222C5904005934DC /* ChooseAdvCatedoryCell.swift in Sources */,
 				526143532236F2A300339882 /* Countries.swift in Sources */,
 				52E6528621D9EC6F00E66AA2 /* ViewController.swift in Sources */,
+				D1DC6917292984B70096EAAA /* AqarMalldb.xcdatamodeld in Sources */,
 				836DC28B25D695C100A52186 /* ProfileFooterCell.swift in Sources */,
 				5281D89E21F3648300A177B0 /* GeneralPages.swift in Sources */,
 				52E6528021D9EB5100E66AA2 /* UITextField.swift in Sources */,
@@ -1676,6 +1680,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D1DC6915292984B70096EAAA /* AqarMalldb.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D1DC6916292984B70096EAAA /* AqarMall.xcdatamodel */,
+			);
+			currentVersion = D1DC6916292984B70096EAAA /* AqarMall.xcdatamodel */;
+			path = AqarMalldb.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 52E6522C21D9DB6700E66AA2 /* Project object */;
 }
