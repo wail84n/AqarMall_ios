@@ -494,6 +494,8 @@ class SubmitAdvFormViewController: ViewController, ChooseAddressDelegate, CropVi
         //        controller.dismissViewControllerAnimated(true, completion: nil)
         //        imageView.image = image
         //        updateEditButtonEnabled()
+        
+        
     }
     
     func cropViewController(_ controller: CropViewController, didFinishCroppingImage image: UIImage, transform: CGAffineTransform, cropRect: CGRect) {
